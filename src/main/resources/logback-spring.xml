@@ -8,36 +8,38 @@
 
     <!-- Loggers -->
     <logger name="org.springframework.core">
-        <level value="info" />
+        <level value="OFF" />
     </logger>
     <logger name="org.springframework.beans">
-        <level value="info" />
+        <level value="OFF" />
     </logger>
     <logger name="org.springframework.context">
-        <level value="info" />
+        <level value="OFF" />
     </logger>
     <logger name="org.springframework.web">
         <level value="info" />
     </logger>
     <logger name="java.sql">
-        <level value="info" />
+        <level value="error" />
     </logger>
     <logger name="org.mybatis.spring">
-        <level value="info" />
+        <level value="error" />
     </logger>
     <logger name="com.rental.geniecar" level="debug" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <logger name="jdbc" level="info" />
+    <logger name="jdbc" level="OFF" />
+    <logger name="jdbc.connection" level="OFF"/>
 
-    <logger name="jdbc.sqlonly" level="info" additivity="false">
+    <logger name="jdbc.sqlonly" level="OFF" additivity="false">
        <appender-ref ref="STDOUT" />
     </logger>
 
-    <logger name="jdbc.resultsettable" level="info" additivity="false">
+    <logger name="jdbc.resultsettable" level="OFF" additivity="false">
        <appender-ref ref="STDOUT" />
     </logger>
+
 
     <root level="info">
        <appender-ref ref="STDOUT" />
