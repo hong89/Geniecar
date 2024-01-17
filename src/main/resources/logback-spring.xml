@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <!-- Loggers -->
+    <logger name="org.springframework.core">
+        <level value="info" />
+    </logger>
+    <logger name="org.springframework.beans">
+        <level value="info" />
+    </logger>
+    <logger name="org.springframework.context">
+        <level value="info" />
+    </logger>
+    <logger name="org.springframework.web">
+        <level value="info" />
+    </logger>
+    <logger name="java.sql">
+        <level value="info" />
+    </logger>
+    <logger name="org.mybatis.spring">
+        <level value="info" />
+    </logger>
+    <logger name="com.rental.geniecar" level="debug" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="jdbc" level="info" />
+
+    <logger name="jdbc.sqlonly" level="info" additivity="false">
+       <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="jdbc.resultsettable" level="info" additivity="false">
+       <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="info">
+       <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
