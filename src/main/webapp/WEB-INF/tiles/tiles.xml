@@ -17,22 +17,14 @@
 
     <!-- viewName 따른 title과 body 연결 -->
 
-    <definition name="/" extends="baseLayout">
-        <put-attribute name="title" value="인덱스" />
-        <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
-    </definition>
-
-
-
-
-    <definition name="reservation/*" extends="baseLayout">
-        <put-attribute name="title" value="예약" />
-        <put-attribute name="body" value="/WEB-INF/views/reservation/{1}.jsp" />
-    </definition>
-
     <definition name="*/*" extends="baseLayout">
-        <put-attribute name="title" value="게시판목록창" />
+        <put-attribute name="title" value="GENIECAR" />
         <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+    </definition>
+
+    <definition name="*/*/*" extends="baseLayout">
+        <put-attribute name="title" value="GENIECAR" />
+        <put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
     </definition>
 
 </tiles-definitions>

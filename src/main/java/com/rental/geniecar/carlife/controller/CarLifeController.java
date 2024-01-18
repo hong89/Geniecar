@@ -1,4 +1,4 @@
-package com.rental.geniecar.carLife.controller;
+package com.rental.geniecar.carlife.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

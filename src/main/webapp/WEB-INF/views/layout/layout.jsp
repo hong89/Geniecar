@@ -18,7 +18,7 @@
             height: 200px;
             margin-bottom: 5px;
             border: 0px solid #bcbcbc;
-            background-color: lightpink;
+            background-color: rgb(144, 93, 190);
         }
         #container {
             width: 100%;
@@ -37,7 +37,7 @@
             height: 200px;
             padding: 5px;
             border: 0px solid #bcbcbc;
-            background-color: lightpink;
+            background-color: #f8f7fd;
         }
     </style>
     <title><tiles:insertAttribute name="title" /></title>
