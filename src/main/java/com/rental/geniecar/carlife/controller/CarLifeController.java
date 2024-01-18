@@ -30,5 +30,10 @@ public class CarLifeController {
 	public String eventDetail() {
 		return "carLife/eventDetail";
 	}
+	
+	@GetMapping("/commuteRent.do")
+	public String commuteRent() {
+		return "carLife/commuteRent";
+	}
 
 }
