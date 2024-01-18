@@ -5,8 +5,9 @@
     <title>footer</title>
 </head>
 <body>
+푸터
 <!--footer 컴포넌트-->
-<footer class="footer">
+<%--<footer class="footer">
     <input type="hidden" name="serviceModeFooter" id="serviceModeFooter" value="real">
     <div class="footer-link">
         <div class="inner">
@@ -440,6 +441,6 @@
             </div>
         </div>
     </div>
-</footer>
+</footer>--%>
 </body>
 </html>

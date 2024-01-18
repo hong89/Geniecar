@@ -5,7 +5,8 @@
     <title>롯데렌터카</title>
 </head>
 <body>
-<header class="header">
+헤더
+<%--<header class="header">
     <nav class="header-nav">
         <div class="inner">
             <div class="nav-wrap">
@@ -724,6 +725,6 @@
         <!--- 드롭다운 메뉴 추가-->
     </nav>
     <!--//해더네비-->
-</header>
+</header>--%>
 </body>
 </html>
