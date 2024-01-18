@@ -1,59 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
-    <!--[if IE 7]><html dir="ltr" lang="ko" class="ie7"><![endif]-->
-    <!--[if IE 8]><html dir="ltr" lang="ko" class="ie8"><![endif]-->
-    <!--[if IE 9]><html dir="ltr" lang="ko" class="ie9"><![endif]-->
-    <script>
-        /*
-         * LRHP.java
-         */
-        var __LANG = "kor";
-        var __ISMOBILE = "N";
-        var __LRHP_TEMP_CD = "TEMP_CD";
-        var __CONTEXT_PATH = "/hp";
-        var __MIN_PAYMENT_AMT = "1000";
-        var __SERVICE_REAL = "real";
-        /*
-         * ReturnCode.java
-         */
-        var __RET_OK = "01";
-        var __RET_FAIL = "02";
-        var __RET_ERROR = "04";
-        var __RET_MSG = "03";
-        var __RET_NEED_LOGIN = "07";
-        /*
-         * properties
-         */
-        var __PROP_GLOBALS_SITEURL = "https://www.lotterentacar.net";
-        //serviceMode
-        var __PROP_SERVICE_MODE = "real";
-        //sinchajang direct url
-        var __PROP_GLOBALS_ODMDOMAIN = "";
-        if (__PROP_SERVICE_MODE == __SERVICE_REAL) {
-            __PROP_GLOBALS_ODMDOMAIN = "https://direct.lotterentacar.net";
-        } else {
-            __PROP_GLOBALS_ODMDOMAIN = "https://dev-direct.lotterentacar.net";
-        }
-        //membership url
-        var __PROP_GLOBALS_MEMBERSHIP_DOMAIN = "";
-        if (__PROP_SERVICE_MODE == __SERVICE_REAL) {
-            __PROP_GLOBALS_MEMBERSHIP_DOMAIN = "https://manager.lotterentacar.net";
-        } else {
-            __PROP_GLOBALS_MEMBERSHIP_DOMAIN = "http://managerdev.lotterentacar.net:8081";
-        }
-        //appGubun
-        var __FROM_LINK = "false";
-
-        var __USED_CAR_IMG_URL = location.protocol.indexOf("https") !== -1 ? "https://" : "http://";
-        __USED_CAR_IMG_URL += "www.lotterentacar.net/cm/common/file/download/api/get.do?filePath=";
-        if (__PROP_SERVICE_MODE !== __SERVICE_REAL) {
-            __USED_CAR_IMG_URL = "http://dev-www.lotterentacar.net/cm/common/file/download/api/get.do?filePath="
-        }
-    </script>
-    <html dir="ltr" lang="kor">
-
+    <html>
     <head>
-
         <meta charset="utf-8">
         <!-- Search Engine Optimization START -->
         <meta name="title" lang="ko" content="">
@@ -76,9 +24,7 @@
             <a itemprop="sameAs" href="https://www.youtube.com/channel/UCih7WKy20DaLIibm32uAQAg"></a>
             <a itemprop="sameAs" href="https://blog.naver.com/official_lotterental"></a>
         </span>
-
         <!-- 20180201 파비콘 추가 -->
-
         <link rel="shortcut icon" href="/lrhp/pc/images/favicon.ico">
         <link rel="stylesheet" href="/lrhp/pc/styles/reset.css?cb=71a31adc-d1d3-49e9-be3a-4903d0b25871">
         <link rel="stylesheet" href="/lrhp/pc/styles/layout.css?cb=71a31adc-d1d3-49e9-be3a-4903d0b25871">
@@ -86,7 +32,6 @@
         <link rel="stylesheet" href="/lrhp/pc/styles/contents.css?cb=71a31adc-d1d3-49e9-be3a-4903d0b25871">
         <link rel="stylesheet"
             href="/lrhp/pc/styles/jquery.mCustomScrollbar.css?cb=71a31adc-d1d3-49e9-be3a-4903d0b25871">
-
         <script src="/lrhp/js/lib/jquery-1.12.4.min.js"></script>
         <script src="/lrhp/js/lib/html5shiv.js"></script>
         <script src="/lrhp/js/lib/jquery.bxslider.js"></script>
@@ -132,189 +77,12 @@
                 opacity: 0 !important
             }
         </style>
-        <script>(function (a, s, y, n, c, h, i, d, e) {
-                s.className += ' ' + y; h.start = 1 * new Date;
-                h.end = i = function () { s.className = s.className.replace(RegExp(' ?' + y), '') };
-                (a[n] = a[n] || []).hide = h; setTimeout(function () { i(); h.end = null }, c); h.timeout = c;
-            })(window, document.documentElement, 'async-hide', 'dataLayer', 4000,
-                { 'GTM-WMH33T2': true });</script>
-        <!-- Modified Analytics tracking code with Optimize plugin -->
-        <script>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-                a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-            ga('create', 'UA-36855540-1', 'auto');
-            ga('require', 'GTM-WMH33T2');
-            ga('require', 'displayfeatures');
-            ga('send', 'pageview');
-        </script>
-        <!-- Google Tag Manager -->
-        <script>(function (w, d, s, l, i) {
-                w[l] = w[l] || []; w[l].push({
-                    'gtm.start':
-                        new Date().getTime(), event: 'gtm.js'
-                }); var f = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-            })(window, document, 'script', 'dataLayer', 'GTM-MZZKGR3');</script>
-        <!-- End Google Tag Manager -->
-        <!-- Facebook Pixel Code 210511 ver -->
-        <script>
-            !function (f, b, e, v, n, t, s) {
-                if (f.fbq) return;
-                n = f.fbq = function () {
-                    n.callMethod ?
-                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-                };
-                if (!f._fbq) f._fbq = n;
-                n.push = n;
-                n.loaded = !0;
-                n.version = '2.0';
-                n.queue = [];
-                t = b.createElement(e);
-                t.async = !0;
-                t.src = v;
-                s = b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t, s)
-            }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1001781240353375');
-            fbq('track', 'PageView');
-        </script>
-        <noscript>
-            <img height="1" width="1" src="https://www.facebook.com/tr?id=1001781240353375&ev=PageView&noscript=1" />
-        </noscript>
-        <!-- End Facebook Pixel Code -->
-        <!-- Adobe Analytics (temp)-->
-        <script type="text/javascript">
-            var _dl = {
-                pageInfo: {
-                    page_name: "",
-                    page_url: "", //접속한 페이지 URL
-                    site_templete: "PC", // 접속 디바이스 채널 유형 (web : PC, Mobile Web : M, App : A )
-                    page_templete: "PC", // 페이지 템플릿 (Moible / Tablet / PC)
-                    login_status: "N", // 예시) "Y"(로그인) | "N"(로그아웃)
-                    login_type: "" // 로그인시 사용한 로그인 유형, 예시) lpoint(엘포인트)| member(렌터카회원)|facebook| naver| kakaotalk
-                },
-                userInfo: {
-                    user_type: "비회원", //예시) 회원 | 비회원
-                    user_number: "", // 고객번호 knnr1234
-                    user_gender: "", // 예시) M | F
-                    user_age: "", // 예시) 10대, 20대, 30대, 40대, 50대, 60대이상
-                    marketing_check_internal: "", //
-                    marketing_check_third: "" //
-                },
-                page_event: {
-                    login: false // 로그인 완료 시에 추가
-                }
-            }
-        </script>
         <!-- Adobe Analytics (운영)-->
         <script src="https://assets.adobedtm.com/0d3d26a8f9f8/8ca38b3d4546/launch-eb7bb6609f87.min.js" async></script>
         <script src="/lrhp/pc/scripts/adobe_analytics_tagging.js?cb=71a31adc-d1d3-49e9-be3a-4903d0b25871"></script>
-        <!-- Adobe Analytics End -->
-        <!-- Adobe Analytics (temp)-->
-        <!-- <script src="https://assets.adobedtm.com/0d3d26a8f9f8/8ca38b3d4546/launch-eb7bb6609f87.min.js" async></script> -->
-        <title>
-
-            롯데렌터카
-
-        </title>
+        <title>롯데렌터카</title>
     </head>
     <div id="loding_div"></div>
-    <script>jQuery.loadBlock();</script>
-    <script>
-        var gv_SnsText = document.title;
-        /* L.POINT Member Start */
-        function lpointTopJoin() {
-            var returnurl = "https://www.lotterentacar.net";
-            _rentMembers.api.join(returnurl);
-        }
-        function shareSns(type) {
-            // 타입별 url 설정
-            var strURL = document.location.href;
-            // updateForm일 때 contentSeq값을 파라미터에 넘겨서 공유
-            if ((strURL.indexOf("/event/updateForm") > -1) && (strURL.indexOf("contSeq=") < 0)) {
-                strURL += "?contSeq=" + $("#contSeq").val() + "&mnCd=FN0501";
-            }
-            if (type == "facebook") {
-                var popOption = "width=640, height=380, left=" + (screen.width - 640) / 2 + ",top=" + (screen.height - 380) / 2 + ",location=no,menubar=no,status=no,scrollbars=no,resizable=no,titlebar=no,toolbar=no";
-                var url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(strURL);
-            } else if (type == "twitter") {
-                var popOption = "width=680, height=400, resizable=no, scrollbars=no, status=no;";
-                var content = "대한민국 No.1 롯데렌터카 ";
-                var url = "http://twitter.com/share?text=" + content + "&url=" + encodeURIComponent(strURL);
-            } else if (type == "kakaostory") {
-                var popOption = "width=640, height=460, resizable=no, scrollbars=no, status=no;";
-                var url = "https://story.kakao.com/share?url=" + encodeURIComponent(strURL);
-            } else if (type == "band") {
-                var popOption = "width=640, height=460, resizable=no, scrollbars=no, status=no;";
-                var url = "http://band.us/plugin/share?body=" + encodeURIComponent(gv_SnsText + "  " + strURL) + "&route=" + encodeURIComponent(strURL);
-            }
-            var fromLink = "false";
-            if (fromLink == "true") {
-                var fullUrl = "toapp:::appviewmove:::openweb:::" + encodeURIComponent(url);
-                document.location = fullUrl;
-            } else {
-                var wp = window.open(url, type, popOption);
-                if (wp) {
-                    wp.focus();
-                }
-            }
-        }
-        function clickKakao() {
-            ga('send', 'event', '국문 PC메인_플로팅', '문의클릭', '카카오톡상담');
-            _satellite.track("kakao_consult", { category: "신차장프로모션", action: "플로팅클릭", label: "카카오톡상담" });
-        }
-    </script>
-    <!-- 2020-10-15 YJH: 카라이프 세션이 타 페이지에서 유지되는 것을 방지 하는 공통스크립트 추가-->
-    <script>
-        //하단 스크립트는 카라이프 '즐거움을 타봥' 무한스크롤 조회시 타페이지에서 세션스토리지를 유지하는 것을 방지한다.
-        const enjoyBool1 = String(location.href).includes('/carLife/enjoyList.do');
-        const enjoyBool2 = String(location.href).includes('/carLife/enjoyDetail.do');
-        if (!enjoyBool1 && !enjoyBool2) {
-            //'즐거움을 타봥' 세션 보유 여부 확인
-            const carLifeSessionStr = sessionStorage.getItem("carLifeEnjoySession");
-            //세션스토리지에 정보가 있는지 확인
-            if (carLifeSessionStr !== undefined && carLifeSessionStr !== null && carLifeSessionStr !== '') {
-                //세션 제거
-                sessionStorage.removeItem("carLifeEnjoySession");
-            }
-        }
-        //하단 스크립트는 카라이프 '안전운전tip' 무한스크롤 조회시 타페이지에서 세션스토리지를 유지하는 것을 방지한다.
-        const safeBool1 = String(location.href).includes('/carLife/safeList.do');
-        const safeBool2 = String(location.href).includes('/carLife/safeDetail.do');
-        if (!safeBool1 && !safeBool2) {
-            //'즐거움을 타봥' 세션 보유 여부 확인
-            const carLifeSessionStr = sessionStorage.getItem("carLifeSafeSession");
-            //세션스토리지에 정보가 있는지 확인
-            if (carLifeSessionStr !== undefined && carLifeSessionStr !== null && carLifeSessionStr !== '') {
-                //세션 제거
-                sessionStorage.removeItem("carLifeSafeSession");
-            }
-        }
-    </script>
-    <!-- Google 리마케팅 태그 코드 -->
-    <script type="text/javascript">
-        /* <![CDATA[ */
-        //var google_conversion_id = 949402874;
-        //var google_custom_params = window.google_tag_params;
-        //var google_remarketing_only = true;
-        /* ]]> */
-    </script>
-    <!-- <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js"></script>
-<noscript>
-	<div style="display:inline;">
-		<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/949402874/?value=0&amp;guid=ON&amp;script=0"/>
-	</div>
-</noscript> -->
-
     <body>
         <!-- HEADER s -->
         <!-- HEADER e -->
@@ -487,27 +255,18 @@
                                     <a href="#">회원</a>
                                     <ul>
                                         <li>
-
                                             <button
                                                 onClick="_rentMembers.page.href('/myPage/member/kcb.do?type=modify')">회원정보
                                                 변경</button>
-
-
                                         </li>
                                         <li>
-
                                             <a
                                                 href="javascript:_rentMembers.page.href('/myPage/member/kcb.do?type=password');">비밀번호
                                                 변경</a>
-
-
                                         </li>
                                         <li>
-
                                             <a
                                                 href="javascript:_rentMembers.page.href('/myPage/member/leave.do');">회원탈퇴</a>
-
-
                                         </li>
                                     </ul>
                                 </li>
@@ -518,7 +277,6 @@
                         </div>
                         <!-- //.mypage-lnb -->
                         <!-- //.mypage-body-cont -->
-
                         <div class="mypage-body-cont">
                             <div class="mypage-body-cont-header">
                                 <div class="tit-area">
@@ -564,20 +322,14 @@
                                 </div>
                             </div>
                             <div class="infos-section">
-
-
-
                                 <div class="result-none">
                                     월간단기렌터카 예약 내역이 없습니다.
                                 </div>
-
-
                             </div>
                             <ul class="lst dot txt-color-red">
                                 <li>최근 90일 이내 예약건만 확인이 가능합니다.</li>
                                 <li>90일 이전 예약내역은 고객센터(1588-1230)로 문의해주시기 바랍니다.</li>
                             </ul>
-
                             <div class="btn-box">
                                 <input type="hidden" id="vbeln" value="">
                                 <a href="#" onclick="gfn_goContract({'search_no': ''});" class="btn-wide btn-white"
@@ -585,7 +337,6 @@
                                     조회 바로가기</a>
                             </div>
                         </div>
-
                         <script
                             src="/lrhp/js/web/hp/pc/myPage/reservationMonth.js?ver=71a31adc-d1d3-49e9-be3a-4903d0b25871"
                             type="text/javascript"></script>
@@ -749,11 +500,9 @@
                     page: page
                 };
             }());
-
             function handleMemberRatingLayerPopup() {
                 var rentCount = Number("0");
                 var html = "";
-
                 if (rentCount < 7) {
                     // 일반회원
                     var normalMemberMaxCount = 7;
@@ -777,12 +526,10 @@
                     html += "<p class='txt1'>더블골드의 자세한 내용은 회원혜택을 확인 해 주세요.</p>";
                     $("#gradeStepTarget").addClass("step3");
                 }
-
                 $("#bottomTxtTarget").append(html);
             }
             $(function () {
                 _mypagePopup.init();
-
                 handleMemberRatingLayerPopup();
             });
         </script>
@@ -791,15 +538,10 @@
             $(document).ready(function () {
                 myMainController.init();
                 //마이페이지 메인을 제외하고 스크롤 위치를 조정한다
-
-
-
                 window.onpageshow = function (event) {
                     var offset = $(".mypage-body-cont").offset();
                     $('html, body').animate({ scrollTop: offset.top }, 0);
                 }
-
-
             });
             function moveHelp() {
                 window.open("https://chatbot.lotterentacar.net/chat/new/P2kMtoEGcgLBN7hlr?inChannelId=LSM");
@@ -844,10 +586,7 @@
                         var goUrl = "/app/mypage/LHMA100100.do";
                         _rentMembers.native.goWithAuth(domain, domain + goUrl, 'Y');
                         */
-
                         window.open("https://www.lpoint.com/app/login/LHLA100100.do");
-
-
                     });
                 }
             });
@@ -958,5 +697,4 @@
     </aside>
     <!--//floating_zone 컴포넌트-->
     <script>jQuery.loadUnBlock()</script>
-
     </html>
