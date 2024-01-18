@@ -14,6 +14,13 @@ public class ReservationController {
         return "reservation/shortMonth/info";
     }
 	
+	@GetMapping("/shortMonth/reservationMonthApply.do")
+	public String shortreservationMonthApply(){
+		
+        return "reservation/shortMonth/reservationMonthApply";
+    }
+	
+	
 	@GetMapping("/shortInfo/pay.do")
 	public String shortInfoPay(){
 		
