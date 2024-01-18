@@ -5,8 +5,7 @@
     <title>롯데렌터카</title>
 </head>
 <body>
-헤더
-<%--<header class="header">
+<header class="header">
     <nav class="header-nav">
         <div class="inner">
             <div class="nav-wrap">
@@ -58,14 +57,6 @@
                             <b>진행중 예약</b>
                         </div-->
                     </li>
-                    <li>
-                        <button type="button" class="btn draw-btn btn-ctr-menu" onclick="toggleAll()"><i
-                                class="icon main-draw">전체메뉴</i></button>
-                    </li>
-                    <li>
-                        <button type="button" class="btn" onclick="location.href='/hp/eng/main/index.do'"><i
-                                class="icon global">영어설정</i></button>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -103,11 +94,6 @@
                                                 렌터카</a>
                                         </li>
                                         <li>
-                                            <a href="/hp/kor/reservation/driverInclude/info.do" target="_self"
-                                               data-link-area="GNB" data-link-name="단기렌터카 상품" data-link-text="기사포함 렌터카">기사포함
-                                                렌터카</a>
-                                        </li>
-                                        <li>
                                             <a href="/hp/kor/carLife/commuteRent.do" target="_self" data-link-area="GNB"
                                                data-link-name="단기렌터카 상품" data-link-text="출퇴근 렌터카">출퇴근 렌터카</a>
                                         </li>
@@ -141,14 +127,6 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li>
-                                <p><a href="/hp/kor/reservation/overseas/index.do" data-link-area="GNB"
-                                      data-link-name="해외렌터카" data-link-text="해외렌터카">해외렌터카</a></p>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/reservation/shortInfo/insu.do" data-link-area="GNB"
-                                      data-link-name="사고대차 서비스" data-link-text="사고대차 서비스">사고대차 서비스</a></p>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -157,35 +135,6 @@
                 <div class="draw-toggle-cont draw-cont-02">
                     <div class="detail-layer-in">
                         <ul class="layer-gnb list-type-col4">
-                            <li>
-                                <p><a href="/hp/kor/sinchajang/estimate.do" data-link-area="GNB"
-                                      data-link-name="다이렉트 견적" data-link-text="다이렉트 견적">다이렉트 견적</a></p>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/sinchajang/specials.do" data-link-area="GNB" data-link-name="마이카 소개"
-                                      data-link-text="마이카 소개">마이카 소개</a></p>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/sinchajang/longTermRent/partnershipCard.do" data-link-area="GNB"
-                                      data-link-name="제휴카드 혜택" data-link-text="제휴카드 혜택">제휴카드 혜택</a></p>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/sinchajang/membershipInfo.do" data-link-area="GNB"
-                                      data-link-name="마이카 멤버십" data-link-text="마이카 멤버십">마이카 멤버십</a></p>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/sinchajang/longTermRent/personal.do" data-link-area="GNB"
-                                      data-link-name="신차 장기렌터카 안내" data-link-text="신차 장기렌터카 안내">신차 장기렌터카 안내</a></p>
-                                <div class="layer-gnb-list">
-                                    <ul>
-                                        <li>
-                                            <a href="/hp/kor/sinchajang/longTermRent/personal.do" target="_self"
-                                               data-link-area="GNB" data-link-name="신차 장기렌터카 안내"
-                                               data-link-text="개인 장기렌터카">개인 장기렌터카</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -194,41 +143,6 @@
                 <div class="draw-toggle-cont draw-cont-03">
                     <div class="detail-layer-in">
                         <ul class="layer-gnb list-type-col4">
-                            <li>
-                                <p><a href="/hp/kor/usedCar/longTerm/usedCarList.do" data-link-area="GNB"
-                                      data-link-name="중고차 검색" data-link-text="중고차 검색">중고차 검색</a></p>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/usedCar/succession/index.do" data-link-area="GNB"
-                                      data-link-name="렌터카 승계 차량 검색" data-link-text="렌터카 승계 차량 검색">렌터카 승계 차량 검색</a></p>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/usedCar/sellmycar/myCarSellApply.do" data-link-area="GNB"
-                                      data-link-name="내차 팔기 신청" data-link-text="내차 팔기 신청">내차 팔기 신청</a></p>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/usedCar/longTerm/info.do" data-link-area="GNB"
-                                      data-link-name="중고차 장기렌터카 안내" data-link-text="중고차 장기렌터카 안내">중고차 장기렌터카 안내</a></p>
-                                <div class="layer-gnb-list">
-                                    <ul>
-                                        <li>
-                                            <a href="/hp/kor/usedCar/longTerm/info.do" target="_self"
-                                               data-link-area="GNB" data-link-name="중고차 장기렌터카 안내"
-                                               data-link-text="중고차 렌트서비스 안내 ">중고차 렌트서비스 안내 </a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/usedCar/succession/info.do" target="_self"
-                                               data-link-area="GNB" data-link-name="중고차 장기렌터카 안내"
-                                               data-link-text="렌터카 승계 안내">렌터카 승계 안내</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/usedCar/sellmycar/info.do" target="_self"
-                                               data-link-area="GNB" data-link-name="중고차 장기렌터카 안내"
-                                               data-link-text="내차 팔기 서비스 안내">내차 팔기 서비스 안내</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -237,14 +151,6 @@
                 <div class="draw-toggle-cont draw-cont-04">
                     <div class="detail-layer-in">
                         <ul class="layer-gnb list-type-col4">
-                            <li>
-                                <p><a href="/hp/kor/bizcar/index.do" data-link-area="GNB" data-link-name="비즈카 온라인 견적"
-                                      data-link-text="비즈카 온라인 견적">비즈카 온라인 견적</a></p>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/sinchajang/longTermRent/corp.do" data-link-area="GNB"
-                                      data-link-name="법인 장기렌트 안내" data-link-text="법인 장기렌트 안내">법인 장기렌트 안내</a></p>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -253,77 +159,6 @@
                 <div class="draw-toggle-cont draw-cont-05">
                     <div class="detail-layer-in">
                         <ul class="layer-gnb list-type-col4">
-                            <li>
-                                <p><a href="/hp/kor/cbj/index.do" data-link-area="GNB" data-link-name="차방정이란?"
-                                      data-link-text="차방정이란?">차방정이란?</a></p>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/cbj/about/product.do" data-link-area="GNB" data-link-name="서비스 안내"
-                                      data-link-text="서비스 안내">서비스 안내</a></p>
-                                <div class="layer-gnb-list">
-                                    <ul>
-                                        <li>
-                                            <a href="/hp/kor/cbj/about/product.do" target="_self" data-link-area="GNB"
-                                               data-link-name="서비스 안내" data-link-text="서비스안내">서비스안내</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/cbj/about/repair.do" target="_self" data-link-area="GNB"
-                                               data-link-name="서비스 안내" data-link-text="점검/정비안내">점검/정비안내</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/cbj/about/notice.do" target="_self" data-link-area="GNB"
-                                               data-link-name="서비스 안내" data-link-text="공지">공지</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/cbj/about/faq.do" target="_self" data-link-area="GNB"
-                                               data-link-name="서비스 안내" data-link-text="FAQ">FAQ</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/cbj/myPage/main.do" data-link-area="GNB" data-link-name="내 정보"
-                                      data-link-text="내 정보">내 정보</a></p>
-                                <div class="layer-gnb-list">
-                                    <ul>
-                                        <li>
-                                            <a href="/hp/kor/cbj/myPage/main.do" target="_self" data-link-area="GNB"
-                                               data-link-name="내 정보" data-link-text="내 차량 정보">내 차량 정보</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/cbj/benefit/coupon.do" target="_self" data-link-area="GNB"
-                                               data-link-name="내 정보" data-link-text="내 쿠폰함">내 쿠폰함</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <p><a href="/hp/kor/cbj/service/repairInfo.do" data-link-area="GNB"
-                                      data-link-name="점검/정비" data-link-text="점검/정비">점검/정비</a></p>
-                                <div class="layer-gnb-list">
-                                    <ul>
-                                        <li>
-                                            <a href="/hp/kor/cbj/service/repairInfo.do" target="_self"
-                                               data-link-area="GNB" data-link-name="점검/정비" data-link-text="점검/정비 정보">점검/정비
-                                                정보</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/cbj/service/repairAbout.do" target="_self"
-                                               data-link-area="GNB" data-link-name="점검/정비" data-link-text="방문점검 안내">방문점검
-                                                안내</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/cbj/service/repairShop.do" target="_self"
-                                               data-link-area="GNB" data-link-name="점검/정비" data-link-text="인증 정비소">인증
-                                                정비소</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/cbj/board/review.do" target="_self" data-link-area="GNB"
-                                               data-link-name="점검/정비" data-link-text="후기">후기</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -348,15 +183,6 @@
                                         <li>
                                             <a href="/hp/kor/carLife/jejuAuto.do" target="_self" data-link-area="GNB"
                                                data-link-name="지점안내" data-link-text="제주오토하우스">제주오토하우스</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/info/carBranchArea.do" target="_self" data-link-area="GNB"
-                                               data-link-name="지점안내" data-link-text="기사 포함 지점">기사 포함 지점</a>
-                                        </li>
-                                        <li>
-                                            <a href="/hp/kor/info/globalBranchArea.do" target="_self"
-                                               data-link-area="GNB" data-link-name="지점안내" data-link-text="해외 지점">해외
-                                                지점</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -451,11 +277,6 @@
                                             렌터카</a>
                                     </li>
                                     <li>
-                                        <a href="/hp/kor/reservation/driverInclude/info.do" target="_self"
-                                           data-link-area="GNB" data-link-name="단기렌터카 상품" data-link-text="기사포함 렌터카">기사포함
-                                            렌터카</a>
-                                    </li>
-                                    <li>
                                         <a href="/hp/kor/carLife/commuteRent.do" target="_self" data-link-area="GNB"
                                            data-link-name="단기렌터카 상품" data-link-text="출퇴근 렌터카">출퇴근 렌터카</a>
                                     </li>
@@ -489,160 +310,14 @@
                                 </ul>
                             </div>
                         </li>
-                        <li>
-                            <p><a href="/hp/kor/reservation/overseas/index.do" data-link-area="GNB"
-                                  data-link-name="해외렌터카" data-link-text="해외렌터카">해외렌터카</a></p>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/reservation/shortInfo/insu.do" data-link-area="GNB"
-                                  data-link-name="사고대차 서비스" data-link-text="사고대차 서비스">사고대차 서비스</a></p>
-                        </li>
                     </ul>
                     <ul class="menu-box-1depth-list">
-                        <li>
-                            <p><a href="/hp/kor/sinchajang/estimate.do" data-link-area="GNB" data-link-name="다이렉트 견적"
-                                  data-link-text="다이렉트 견적">다이렉트 견적</a></p>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/sinchajang/specials.do" data-link-area="GNB" data-link-name="마이카 소개"
-                                  data-link-text="마이카 소개">마이카 소개</a></p>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/sinchajang/longTermRent/partnershipCard.do" data-link-area="GNB"
-                                  data-link-name="제휴카드 혜택" data-link-text="제휴카드 혜택">제휴카드 혜택</a></p>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/sinchajang/membershipInfo.do" data-link-area="GNB"
-                                  data-link-name="마이카 멤버십" data-link-text="마이카 멤버십">마이카 멤버십</a></p>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/sinchajang/longTermRent/personal.do" data-link-area="GNB"
-                                  data-link-name="신차 장기렌터카 안내" data-link-text="신차 장기렌터카 안내">신차 장기렌터카 안내</a></p>
-                            <div class="layer-gnb-list">
-                                <ul>
-                                    <li>
-                                        <a href="/hp/kor/sinchajang/longTermRent/personal.do" target="_self"
-                                           data-link-area="GNB" data-link-name="신차 장기렌터카 안내" data-link-text="개인 장기렌터카">개인
-                                            장기렌터카</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                     <ul class="menu-box-1depth-list">
-                        <li>
-                            <p><a href="/hp/kor/usedCar/longTerm/usedCarList.do" data-link-area="GNB"
-                                  data-link-name="중고차 검색" data-link-text="중고차 검색">중고차 검색</a></p>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/usedCar/succession/index.do" data-link-area="GNB"
-                                  data-link-name="렌터카 승계 차량 검색" data-link-text="렌터카 승계 차량 검색">렌터카 승계 차량 검색</a></p>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/usedCar/sellmycar/myCarSellApply.do" data-link-area="GNB"
-                                  data-link-name="내차 팔기 신청" data-link-text="내차 팔기 신청">내차 팔기 신청</a></p>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/usedCar/longTerm/info.do" data-link-area="GNB"
-                                  data-link-name="중고차 장기렌터카 안내" data-link-text="중고차 장기렌터카 안내">중고차 장기렌터카 안내</a></p>
-                            <div class="layer-gnb-list">
-                                <ul>
-                                    <li>
-                                        <a href="/hp/kor/usedCar/longTerm/info.do" target="_self" data-link-area="GNB"
-                                           data-link-name="중고차 장기렌터카 안내" data-link-text="중고차 렌트서비스 안내 ">중고차 렌트서비스
-                                            안내 </a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/usedCar/succession/info.do" target="_self" data-link-area="GNB"
-                                           data-link-name="중고차 장기렌터카 안내" data-link-text="렌터카 승계 안내">렌터카 승계 안내</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/usedCar/sellmycar/info.do" target="_self" data-link-area="GNB"
-                                           data-link-name="중고차 장기렌터카 안내" data-link-text="내차 팔기 서비스 안내">내차 팔기 서비스 안내</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                     <ul class="menu-box-1depth-list">
-                        <li>
-                            <p><a href="/hp/kor/bizcar/index.do" data-link-area="GNB" data-link-name="비즈카 온라인 견적"
-                                  data-link-text="비즈카 온라인 견적">비즈카 온라인 견적</a></p>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/sinchajang/longTermRent/corp.do" data-link-area="GNB"
-                                  data-link-name="법인 장기렌트 안내" data-link-text="법인 장기렌트 안내">법인 장기렌트 안내</a></p>
-                        </li>
                     </ul>
                     <ul class="menu-box-1depth-list">
-                        <li>
-                            <p><a href="/hp/kor/cbj/index.do" data-link-area="GNB" data-link-name="차방정이란?"
-                                  data-link-text="차방정이란?">차방정이란?</a></p>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/cbj/about/product.do" data-link-area="GNB" data-link-name="서비스 안내"
-                                  data-link-text="서비스 안내">서비스 안내</a></p>
-                            <div class="layer-gnb-list">
-                                <ul>
-                                    <li>
-                                        <a href="/hp/kor/cbj/about/product.do" target="_self" data-link-area="GNB"
-                                           data-link-name="서비스 안내" data-link-text="서비스안내">서비스안내</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/cbj/about/repair.do" target="_self" data-link-area="GNB"
-                                           data-link-name="서비스 안내" data-link-text="점검/정비안내">점검/정비안내</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/cbj/about/notice.do" target="_self" data-link-area="GNB"
-                                           data-link-name="서비스 안내" data-link-text="공지">공지</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/cbj/about/faq.do" target="_self" data-link-area="GNB"
-                                           data-link-name="서비스 안내" data-link-text="FAQ">FAQ</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/cbj/myPage/main.do" data-link-area="GNB" data-link-name="내 정보"
-                                  data-link-text="내 정보">내 정보</a></p>
-                            <div class="layer-gnb-list">
-                                <ul>
-                                    <li>
-                                        <a href="/hp/kor/cbj/myPage/main.do" target="_self" data-link-area="GNB"
-                                           data-link-name="내 정보" data-link-text="내 차량 정보">내 차량 정보</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/cbj/benefit/coupon.do" target="_self" data-link-area="GNB"
-                                           data-link-name="내 정보" data-link-text="내 쿠폰함">내 쿠폰함</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <p><a href="/hp/kor/cbj/service/repairInfo.do" data-link-area="GNB" data-link-name="점검/정비"
-                                  data-link-text="점검/정비">점검/정비</a></p>
-                            <div class="layer-gnb-list">
-                                <ul>
-                                    <li>
-                                        <a href="/hp/kor/cbj/service/repairInfo.do" target="_self" data-link-area="GNB"
-                                           data-link-name="점검/정비" data-link-text="점검/정비 정보">점검/정비 정보</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/cbj/service/repairAbout.do" target="_self" data-link-area="GNB"
-                                           data-link-name="점검/정비" data-link-text="방문점검 안내">방문점검 안내</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/cbj/service/repairShop.do" target="_self" data-link-area="GNB"
-                                           data-link-name="점검/정비" data-link-text="인증 정비소">인증 정비소</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/cbj/board/review.do" target="_self" data-link-area="GNB"
-                                           data-link-name="점검/정비" data-link-text="후기">후기</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                     <ul class="menu-box-1depth-list">
                         <li>
@@ -661,14 +336,6 @@
                                     <li>
                                         <a href="/hp/kor/carLife/jejuAuto.do" target="_self" data-link-area="GNB"
                                            data-link-name="지점안내" data-link-text="제주오토하우스">제주오토하우스</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/info/carBranchArea.do" target="_self" data-link-area="GNB"
-                                           data-link-name="지점안내" data-link-text="기사 포함 지점">기사 포함 지점</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hp/kor/info/globalBranchArea.do" target="_self" data-link-area="GNB"
-                                           data-link-name="지점안내" data-link-text="해외 지점">해외 지점</a>
                                     </li>
                                 </ul>
                             </div>
@@ -725,6 +392,6 @@
         <!--- 드롭다운 메뉴 추가-->
     </nav>
     <!--//해더네비-->
-</header>--%>
+</header>
 </body>
 </html>

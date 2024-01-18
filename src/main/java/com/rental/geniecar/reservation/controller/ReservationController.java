@@ -38,6 +38,12 @@ public class ReservationController {
 		
         return "reservation/shortInfo/service";
     }
+	
+	@GetMapping("/index.do")
+	public String index(){
+		
+        return "reservation/index";
+    }
 
 	
 }
