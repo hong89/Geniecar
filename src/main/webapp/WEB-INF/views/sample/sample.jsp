@@ -6,6 +6,5 @@
 </head>
 <body>
     sample page
-    count : ${count}
 </body>
 </html>
