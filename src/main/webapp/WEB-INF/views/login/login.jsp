@@ -96,7 +96,7 @@
 
                         <div class="col">
                             <form>
-                                <img class="mb-4" src="/images/" alt="지니카">
+                                <img class="mb-4" src="/images/common/logo-full-image.png" alt="지니카">
                                 <h5 class="mb-3 fw-normal text-center">로그인 방식을 선택해 주세요</h5>
 
                                 <div class="form-floating mb-3">
