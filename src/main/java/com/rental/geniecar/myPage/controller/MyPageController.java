@@ -1,4 +1,4 @@
-package com.rental.geniecar.myPage.controller;
+package com.rental.geniecar.mypage.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
