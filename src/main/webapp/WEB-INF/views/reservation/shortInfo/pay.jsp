@@ -32,12 +32,12 @@
 	
 	<!-- 20180201 파비콘 추가 -->
 	
-    <link rel="shortcut icon" href="/lrhp/pc/images/favicon.ico">
-	<link rel="stylesheet" href="/lrhp/pc/styles/reset.css?cb=31759956-78d9-46a1-ac63-71f3c56b4d09">
-	<link rel="stylesheet" href="/lrhp/pc/styles/layout.css?cb=31759956-78d9-46a1-ac63-71f3c56b4d09">
-	<link rel="stylesheet" href="/lrhp/pc/styles/modules.css?cb=31759956-78d9-46a1-ac63-71f3c56b4d09">
-	<link rel="stylesheet" href="/lrhp/pc/styles/contents.css?cb=31759956-78d9-46a1-ac63-71f3c56b4d09">
-	<link rel="stylesheet" href="/lrhp/pc/styles/jquery.mCustomScrollbar.css?cb=31759956-78d9-46a1-ac63-71f3c56b4d09">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+	<link rel="stylesheet" href="/styles/reset.css?cb=31759956-78d9-46a1-ac63-71f3c56b4d09">
+	<link rel="stylesheet" href="/styles/layout.css?cb=31759956-78d9-46a1-ac63-71f3c56b4d09">
+	<link rel="stylesheet" href="/styles/modules.css?cb=31759956-78d9-46a1-ac63-71f3c56b4d09">
+	<link rel="stylesheet" href="/styles/contents.css?cb=31759956-78d9-46a1-ac63-71f3c56b4d09">
+	<link rel="stylesheet" href="/styles/jquery.mCustomScrollbar.css?cb=31759956-78d9-46a1-ac63-71f3c56b4d09">
 	
 <script src="/lrhp/js/lib/jquery-1.12.4.min.js"></script>
 <script src="/lrhp/js/lib/html5shiv.js"></script>
@@ -62,28 +62,22 @@
 <!-- kcb okcert -->
 <script src="/lrhp/js/kcb/okcert.rentcar.js"></script>
 <!-- lrhp 퍼블  -->
-<!-- <script src="/lrhp/pc/scripts/jquery/jquery-ui.min.js"></script> -->
+<!-- <script src="/scripts/jquery/jquery-ui.min.js"></script> -->
 <script src="/lrhp/js/lib/jquery-ui.1.12.1.min.js"></script>
-<script src="/lrhp/pc/scripts/jquery/plugins/slick.min.js"></script>
-<script src="/lrhp/pc/scripts/jquery/plugins/swiper.min.js"></script>
-<script src="/lrhp/pc/scripts/jquery/plugins/iscroll.min.js"></script>
-<script src="/lrhp/pc/scripts/MUI.js"></script>
-<script src="/lrhp/pc/scripts/common.js"></script>
+<script src="/scripts/jquery/plugins/slick.min.js"></script>
+<script src="/scripts/jquery/plugins/swiper.min.js"></script>
+<script src="/scripts/jquery/plugins/iscroll.min.js"></script>
+<script src="/scripts/MUI.js"></script>
+<script src="/scripts/common.js"></script>
 <!-- lrhp 공통 -->
 <script src="/lrhp/js/common/gfn_var.js"></script>
 <script src="/lrhp/js/common/gfn_msg.js"></script>
 <script src="/lrhp/js/common/gfn_util.js?cb=31759956-78d9-46a1-ac63-71f3c56b4d09"></script>
 <script src="/lrhp/js/common/gfn_sub.js"></script>
 <script src="/lrhp/js/common/gfn_com.js"></script>
-<script src="/lrhp/pc/scripts/jquery/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/scripts/jquery/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
 <!-- swiper 및 기타 특수한 경우에 대한 공통 JS 호출 -->
 <script src="/lrhp/js/common/commonPc.js"></script>
-<!-- Page-hiding snippet (recommended)  -->
-<style>.async-hide { opacity: 0 !important} </style>
-<noscript>
-	<img height="1" width="1" src="https://www.facebook.com/tr?id=1001781240353375&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Facebook Pixel Code -->
 <!-- Adobe Analytics (temp)-->
 	<title>롯데렌터카</title>
 	<!-- 202309 Google tag (gtag.js) 추가(마케팅팀 박현경 매니저님 요청) -->
@@ -228,7 +222,7 @@
 							<div class="explain-cont">
 								<div class="box-align">
 									<div class="img-box">
-										<img alt="" src="/lrhp/pc/images/@temp-short-info-default.png">
+										<img alt="" src="/images/@temp-short-info-default.png">
 									</div>
 									<div class="descri-box">
 										<h4 class="tit-size-big">회원가입 할인 혜택</h4>

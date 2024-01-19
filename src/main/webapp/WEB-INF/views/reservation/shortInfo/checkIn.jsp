@@ -29,13 +29,13 @@
             <a itemprop="sameAs" href="https://blog.naver.com/official_lotterental"></a>
         </span>
         <!-- 20180201 파비콘 추가 -->
-        <link rel="shortcut icon" href="/lrhp/pc/images/favicon.ico">
-        <link rel="stylesheet" href="/lrhp/pc/styles/reset.css?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042">
-        <link rel="stylesheet" href="/lrhp/pc/styles/layout.css?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042">
-        <link rel="stylesheet" href="/lrhp/pc/styles/modules.css?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042">
-        <link rel="stylesheet" href="/lrhp/pc/styles/contents.css?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042">
+        <link rel="shortcut icon" href="/images/favicon.ico">
+        <link rel="stylesheet" href="/styles/reset.css?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042">
+        <link rel="stylesheet" href="/styles/layout.css?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042">
+        <link rel="stylesheet" href="/styles/modules.css?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042">
+        <link rel="stylesheet" href="/styles/contents.css?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042">
         <link rel="stylesheet"
-            href="/lrhp/pc/styles/jquery.mCustomScrollbar.css?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042">
+            href="/styles/jquery.mCustomScrollbar.css?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042">
         <script src="/lrhp/js/lib/jquery-1.12.4.min.js"></script>
         <script src="/lrhp/js/lib/html5shiv.js"></script>
         <script src="/lrhp/js/lib/jquery.bxslider.js"></script>
@@ -59,28 +59,22 @@
         <!-- kcb okcert -->
         <script src="/lrhp/js/kcb/okcert.rentcar.js"></script>
         <!-- lrhp 퍼블  -->
-        <!-- <script src="/lrhp/pc/scripts/jquery/jquery-ui.min.js"></script> -->
+        <!-- <script src="/scripts/jquery/jquery-ui.min.js"></script> -->
         <script src="/lrhp/js/lib/jquery-ui.1.12.1.min.js"></script>
-        <script src="/lrhp/pc/scripts/jquery/plugins/slick.min.js"></script>
-        <script src="/lrhp/pc/scripts/jquery/plugins/swiper.min.js"></script>
-        <script src="/lrhp/pc/scripts/jquery/plugins/iscroll.min.js"></script>
-        <script src="/lrhp/pc/scripts/MUI.js"></script>
-        <script src="/lrhp/pc/scripts/common.js"></script>
+        <script src="/scripts/jquery/plugins/slick.min.js"></script>
+        <script src="/scripts/jquery/plugins/swiper.min.js"></script>
+        <script src="/scripts/jquery/plugins/iscroll.min.js"></script>
+        <script src="/scripts/MUI.js"></script>
+        <script src="/scripts/common.js"></script>
         <!-- lrhp 공통 -->
         <script src="/lrhp/js/common/gfn_var.js"></script>
         <script src="/lrhp/js/common/gfn_msg.js"></script>
         <script src="/lrhp/js/common/gfn_util.js?cb=f745001b-3c0d-406f-bb1a-dfecc4f13042"></script>
         <script src="/lrhp/js/common/gfn_sub.js"></script>
         <script src="/lrhp/js/common/gfn_com.js"></script>
-        <script src="/lrhp/pc/scripts/jquery/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/scripts/jquery/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
         <!-- swiper 및 기타 특수한 경우에 대한 공통 JS 호출 -->
         <script src="/lrhp/js/common/commonPc.js"></script>
-        <!-- Page-hiding snippet (recommended)  -->
-        <style>
-            .async-hide {
-                opacity: 0 !important
-            }
-        </style>
         <title> 롯데렌터카</title>
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11174693828"></script>
     </head>
@@ -305,7 +299,7 @@
                             </ol>
                             <div class="location-area">
                                 <div class="location">
-                                    <img alt="" src="/lrhp/pc/images/img-jejuAirport-location.png">
+                                    <img alt="" src="/images/img-jejuAirport-location.png">
                                 </div>
                                 <div class="infos">
                                     <div class="infos-header">

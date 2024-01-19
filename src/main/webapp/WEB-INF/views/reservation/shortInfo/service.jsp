@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html>
-
     <head>
         <meta charset="utf-8">
         <!-- Search Engine Optimization START -->
@@ -30,13 +29,12 @@
             <a itemprop="sameAs" href="https://blog.naver.com/official_lotterental"></a>
         </span>
         <!-- 20180201 파비콘 추가 -->
-        <link rel="shortcut icon" href="/lrhp/pc/images/favicon.ico">
-        <link rel="stylesheet" href="/lrhp/pc/styles/reset.css?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40">
-        <link rel="stylesheet" href="/lrhp/pc/styles/layout.css?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40">
-        <link rel="stylesheet" href="/lrhp/pc/styles/modules.css?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40">
-        <link rel="stylesheet" href="/lrhp/pc/styles/contents.css?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40">
-        <link rel="stylesheet"
-            href="/lrhp/pc/styles/jquery.mCustomScrollbar.css?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40">
+        <link rel="shortcut icon" href="/images/favicon.ico">
+        <link rel="stylesheet" href="/styles/reset.css?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40">
+        <link rel="stylesheet" href="/styles/layout.css?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40">
+        <link rel="stylesheet" href="/styles/modules.css?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40">
+        <link rel="stylesheet" href="/styles/contents.css?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40">
+        <link rel="stylesheet" href="/styles/jquery.mCustomScrollbar.css?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40">
         <script src="/lrhp/js/lib/jquery-1.12.4.min.js"></script>
         <script src="/lrhp/js/lib/html5shiv.js"></script>
         <script src="/lrhp/js/lib/jquery.bxslider.js"></script>
@@ -60,40 +58,31 @@
         <!-- kcb okcert -->
         <script src="/lrhp/js/kcb/okcert.rentcar.js"></script>
         <!-- lrhp 퍼블  -->
-        <!-- <script src="/lrhp/pc/scripts/jquery/jquery-ui.min.js"></script> -->
+        <!-- <script src="/scripts/jquery/jquery-ui.min.js"></script> -->
         <script src="/lrhp/js/lib/jquery-ui.1.12.1.min.js"></script>
-        <script src="/lrhp/pc/scripts/jquery/plugins/slick.min.js"></script>
-        <script src="/lrhp/pc/scripts/jquery/plugins/swiper.min.js"></script>
-        <script src="/lrhp/pc/scripts/jquery/plugins/iscroll.min.js"></script>
-        <script src="/lrhp/pc/scripts/MUI.js"></script>
-        <script src="/lrhp/pc/scripts/common.js"></script>
+        <script src="/scripts/jquery/plugins/slick.min.js"></script>
+        <script src="/scripts/jquery/plugins/swiper.min.js"></script>
+        <script src="/scripts/jquery/plugins/iscroll.min.js"></script>
+        <script src="/scripts/MUI.js"></script>
+        <script src="/scripts/common.js"></script>
         <!-- lrhp 공통 -->
         <script src="/lrhp/js/common/gfn_var.js"></script>
         <script src="/lrhp/js/common/gfn_msg.js"></script>
         <script src="/lrhp/js/common/gfn_util.js?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40"></script>
         <script src="/lrhp/js/common/gfn_sub.js"></script>
         <script src="/lrhp/js/common/gfn_com.js"></script>
-        <script src="/lrhp/pc/scripts/jquery/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/scripts/jquery/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
         <!-- swiper 및 기타 특수한 경우에 대한 공통 JS 호출 -->
         <script src="/lrhp/js/common/commonPc.js"></script>
-        <!-- Page-hiding snippet (recommended)  -->
-        <style>
-            .async-hide {
-                opacity: 0 !important
-            }
-        </style>
-
         <!-- Adobe Analytics (운영)-->
         <script src="https://assets.adobedtm.com/0d3d26a8f9f8/8ca38b3d4546/launch-eb7bb6609f87.min.js" async></script>
-        <script src="/lrhp/pc/scripts/adobe_analytics_tagging.js?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40"></script>
+        <script src="/scripts/adobe_analytics_tagging.js?cb=de3c2f18-486d-42fa-9c02-1aa55b857b40"></script>
         <!-- Adobe Analytics End -->
         <title>롯데렌터카</title>
         <!-- 202309 Google tag (gtag.js) 추가(마케팅팀 박현경 매니저님 요청) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11174693828"></script>
     </head>
     <div id="loding_div"></div>
-
-
     <body>
         <!-- HEADER s //-->
         <!-- HEADER e //-->
@@ -217,42 +206,42 @@
                                                 <p class="tit">1. 우측상단 예약확인 이동</p>
                                                 <div class="img-box">
                                                     <img alt=""
-                                                        src="/lrhp/pc/images/img-shortInfoAdditional-service-guide01.png">
+                                                        src="/images/img-shortInfoAdditional-service-guide01.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">2. 대여 중인 계약번호 선택</p>
                                                 <div class="img-box">
                                                     <img alt=""
-                                                        src="/lrhp/pc/images/img-shortInfoAdditional-service-guide02.png">
+                                                        src="/images/img-shortInfoAdditional-service-guide02.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">3. 이용 중 관리 버튼 선택</p>
                                                 <div class="img-box">
                                                     <img alt=""
-                                                        src="/lrhp/pc/images/img-shortInfoAdditional-service-guide03.png">
+                                                        src="/images/img-shortInfoAdditional-service-guide03.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">4. 반납 시간 및 반납지점 변경</p>
                                                 <div class="img-box">
                                                     <img alt=""
-                                                        src="/lrhp/pc/images/img-shortInfoAdditional-service-guide04.png">
+                                                        src="/images/img-shortInfoAdditional-service-guide04.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">5. 추가 운전자 등록</p>
                                                 <div class="img-box">
                                                     <img alt=""
-                                                        src="/lrhp/pc/images/img-shortInfoAdditional-service-guide05.png">
+                                                        src="/images/img-shortInfoAdditional-service-guide05.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">6. 추가금액 발생 시 결제하기</p>
                                                 <div class="img-box">
                                                     <img alt=""
-                                                        src="/lrhp/pc/images/img-shortInfoAdditional-service-guide06.png">
+                                                        src="/images/img-shortInfoAdditional-service-guide06.png">
                                                 </div>
                                             </li>
                                         </ol>
@@ -309,7 +298,7 @@
                                         <li>
                                             <div class="circle">
                                                 <span class="icon">
-                                                    <img alt="" src="/lrhp/pc/images/icons/ico_hipass_pc2.png">
+                                                    <img alt="" src="/images/icons/ico_hipass_pc2.png">
                                                 </span>
                                             </div>
                                             <div class="details">
@@ -867,13 +856,13 @@
                                             </ul>
                                         </div>
                                         <div class="right">
-                                            <img alt="" src="/lrhp/pc/images/img-smart01.png">
+                                            <img alt="" src="/images/img-smart01.png">
                                         </div>
                                     </div>
                                     <div class="row section02">
                                         <h4 class="tit-size-mid">서비스 이용 방법</h4>
                                         <div>
-                                            <img alt="" src="/lrhp/pc/images/img-smart02.png">
+                                            <img alt="" src="/images/img-smart02.png">
                                         </div>
                                     </div>
                                     <div class="row section03">
@@ -882,55 +871,55 @@
                                             <li>
                                                 <p class="tit">1. 회원 로그인</p>
                                                 <div class="img-box">
-                                                    <img alt="" src="/lrhp/pc/images/img-smart-guide01.png">
+                                                    <img alt="" src="/images/img-smart-guide01.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">2. 스마트 키박스 서비스 운영 지점 선택</p>
                                                 <div class="img-box">
-                                                    <img alt="" src="/lrhp/pc/images/img-smart-guide02.png">
+                                                    <img alt="" src="/images/img-smart-guide02.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">3. 서비스 이용 선택 및 예약 완료 (결제 완료)</p>
                                                 <div class="img-box">
-                                                    <img alt="" src="/lrhp/pc/images/img-smart-guide03.png">
+                                                    <img alt="" src="/images/img-smart-guide03.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">4. 마이페이지 – 예약확인 이동</p>
                                                 <div class="img-box">
-                                                    <img alt="" src="/lrhp/pc/images/img-smart-guide04.png">
+                                                    <img alt="" src="/images/img-smart-guide04.png">
                                                 </div>
                                             </li>
                                             <!--231213삭제<li>
                                     <p class="tit">5. 결제 카드 등록</p>
                                     <div class="img-box">
-                                        <img alt="" src="/lrhp/pc/images/img-smart-guide05.png">
+                                        <img alt="" src="/images/img-smart-guide05.png">
                                     </div>
                                 </li>-->
                                             <li>
                                                 <p class="tit">5. 서비스 이용 계약번호 선택</p>
                                                 <div class="img-box">
-                                                    <img alt="" src="/lrhp/pc/images/img-smart-guide06.png">
+                                                    <img alt="" src="/images/img-smart-guide06.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">6. 사전체크인 선택</p>
                                                 <div class="img-box">
-                                                    <img alt="" src="/lrhp/pc/images/img-smart-guide07.png">
+                                                    <img alt="" src="/images/img-smart-guide07.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">7. 추가 운전자 등록</p>
                                                 <div class="img-box">
-                                                    <img alt="" src="/lrhp/pc/images/img-smart-guide08.png">
+                                                    <img alt="" src="/images/img-smart-guide08.png">
                                                 </div>
                                             </li>
                                             <li>
                                                 <p class="tit">8. 이용자 동의 항목 체크 후 확인</p>
                                                 <div class="img-box">
-                                                    <img alt="" src="/lrhp/pc/images/img-smart-guide09.png">
+                                                    <img alt="" src="/images/img-smart-guide09.png">
                                                 </div>
                                             </li>
                                         </ol>
@@ -1241,7 +1230,7 @@
                                 </div>
                                 <div class="explain-cont">
                                     <div class="grey-box">
-                                        <img alt="" src="/lrhp/pc/images/img-asiana-airlines.png">
+                                        <img alt="" src="/images/img-asiana-airlines.png">
                                         <div class="btns">
                                             <a class="btn-auto black" href="https://flyasiana.com/C/KR/KO/index"
                                                 data-link-area="단기렌트 서비스 안내" data-link-name="부가서비스안내"
@@ -1268,7 +1257,7 @@
                                             대여 예약건에 한해서 적립이 가능합니다.</li>
                                     </ul>
                                     <div class="grey-box">
-                                        <img alt="" src="/lrhp/pc/images/img-korean-air.png">
+                                        <img alt="" src="/images/img-korean-air.png">
                                         <div class="btns">
                                             <a class="btn-auto black" href="https://www.koreanair.com/ot/ko#"
                                                 data-link-area="단기렌트 서비스 안내" data-link-name="부가서비스안내"
@@ -1301,9 +1290,7 @@
                 type="text/javascript"></script>
         </main>
         <!-- BODY e //-->
-
         <!-- FOOTER s -->
         <!-- FOOTER e //-->
     </body>
-
     </html>
