@@ -1536,7 +1536,7 @@
             <div class="layer-wrap layer-popup layer-details layer-sel-branch">
                 <div class="pop-inner">
                     <div class="popup-top">
-                        <!-- <span class="logo"><img src="/images/common/logo-header.png" alt="대한민국 No1.롯데렌터카"></span> -->
+                        <span class="logo"><img src="/images/common/logo-full-image.png" alt="대한민국 No1.롯데렌터카"></span> -->
                         <h4 style="font-size:18px;">
                             <o class="name_kor">가산디지털지점</o>
                         </h4>
