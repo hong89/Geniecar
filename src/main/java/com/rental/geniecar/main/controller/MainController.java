@@ -15,4 +15,9 @@ public class MainController {
 	public String index() {
 		return "main/index";
 	}
+	
+	@GetMapping("/indexTest.do")
+	public String indexTest() {
+		return "main/indexTest";
+	}
 }

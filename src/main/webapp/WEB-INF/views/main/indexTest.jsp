@@ -3,15 +3,38 @@
     <html dir="ltr" lang="kor">
     <head>
         <meta charset="utf-8">
+        <!-- Search Engine Optimization START -->
+      
+
+
+        <!-- 20180201 파비콘 추가 -->
         
-        <meta name="title" lang="ko" content="롯데렌터카 공식 웹사이트">
+        <link rel="stylesheet" href="/styles/content.css">
+       
+
+
         
-        
+        <style>
+            .async-hide {
+                opacity: 0 !important
+            }
+        </style>
+
+
+        <style>
+        body { 
+              font-family: "Noto Sans KR", sans-serif;
+              font-optical-sizing: auto;
+              font-weight: 400;
+              font-style: normal;
+            } 
+        </style>
+     
+
         <title>
-            롯데렌터카
+            지니렌터카
         </title>
     </head>
-    <div id="loding_div"></div>
     <body>
         <!-- HEADER s -->
         <!-- HEADER e //-->
@@ -55,103 +78,8 @@
                 </form>
                 <div class="main-reserv-visual-wrap">
                     <!-- main visual slide -->
-                    <div class="main-visual-slide">
-                        <div class="swiper-pagination-wrap">
-                            <div class="swiper-pagination">
-                                <div class="main-visual-pager">
-                                    <p class="num num-1">1</p>
-                                    <p class="loading-bar">
-                                        <i class="loading-ani"></i>
-                                    </p>
-                                    <p class="num num-2">6</p>
-                                    <button type="button" class="stop"></button>
-                                    <button type="button" class="play"></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-container main-visual-list">
-                            <div class="main-slide-wrap">
-                                <div class="main-img-wrap">
-                                    <a class="bannerDetail"> <img
-                                            src="/atch/getImage.do?atchFileId=FILE0000000003158885" />
-                                        <input type="hidden"
-                                            value="https://direct.lotterentacar.net/about/introOdmInformation.do?utm_source=PChome&amp;utm_medium=banner&amp;utm_campaign=ad1"
-                                            class='lkUrl'> <input type="hidden" value="Y" class='openNewTabYn'>
-                                    </a>
-                                </div>
-                                <div class="main-img-wrap">
-                                    <a class="bannerDetail"> <img
-                                            src="/atch/getImage.do?atchFileId=FILE0000000003374742" />
-                                        <input type="hidden"
-                                            value="https://www.lotterentacar.net/hp/kor/cbj/promotion/new-year.do"
-                                            class='lkUrl'> <input type="hidden" value="Y" class='openNewTabYn'>
-                                    </a>
-                                </div>
-                                <div class="main-img-wrap">
-                                    <a class="bannerDetail"> <img
-                                            src="/atch/getImage.do?atchFileId=FILE0000000003384403" />
-                                        <input type="hidden"
-                                            value="https://direct.lotterentacar.net/about/specialSaleLease.do?cmpid=sinda/lotterental/pc/lease/lease_promotion"
-                                            class='lkUrl'> <input type="hidden" value="Y" class='openNewTabYn'>
-                                    </a>
-                                </div>
-                                <div class="main-img-wrap">
-                                    <a class="bannerDetail"> <img
-                                            src="/atch/getImage.do?atchFileId=FILE0000000003275586" />
-                                        <input type="hidden"
-                                            value="https://www.lotterentacar.net/hp/kor/carLife/eventDetail.do?pageIndex=1&amp;contSeq=596&amp;listType=ongoing&amp;utm_source=Mobilehome&amp;utm_medium=banner&amp;utm_campaign=PC"
-                                            class='lkUrl'> <input type="hidden" value="Y" class='openNewTabYn'>
-                                    </a>
-                                </div>
-                                <div class="main-img-wrap">
-                                    <a class="bannerDetail"> <img
-                                            src="/atch/getImage.do?atchFileId=FILE0000000003229507" />
-                                        <input type="hidden" value="https://www.lotterentacar.net/hp/kor/carLife/eventDetail.do?pageIndex=1&amp;contSeq=594&amp;listType=ongoing&amp;utm_source=PChome&amp;utm_medium=banner&amp;utm_campaign=ad1" class='lkUrl'>
-                                        <input type="hidden" value="Y" class='openNewTabYn'>
-                                    </a>
-                                </div>
-                                <div class="main-img-wrap">
-                                    <a class="bannerDetail"> <img
-                                            src="/atch/getImage.do?atchFileId=FILE0000000003181216" />
-                                        <input type="hidden"
-                                            value="https://www.lotterentacar.net/hp/kor/sinchajang/specials.do?tabGubun=2"
-                                            class='lkUrl'> <input type="hidden" value="Y" class='openNewTabYn'>
-                                    </a>
-                                </div>
-                                <div class="main-img-wrap">
-                                    <a class="bannerDetail"> <img
-                                            src="/atch/getImage.do?atchFileId=FILE0000000003120886" />
-                                        <input type="hidden"
-                                            value="https://www.lotterentacar.net/hp/kor/reservation/shortMonth/info.do"
-                                            class='lkUrl'> <input type="hidden" value="Y" class='openNewTabYn'>
-                                    </a>
-                                </div>
-                                <div class="main-img-wrap">
-                                    <a class="bannerDetail"> <img
-                                            src="/atch/getImage.do?atchFileId=FILE0000000003372349" />
-                                        <input type="hidden"
-                                            value="https://www.lotterentacar.net/hp/kor/carLife/eventDetail.do?pageIndex=1&amp;contSeq=597&amp;listType=ongoing"
-                                            class='lkUrl'> <input type="hidden" value="Y" class='openNewTabYn'>
-                                    </a>
-                                </div>
-                                <div class="main-img-wrap">
-                                    <a class="bannerDetail"> <img
-                                            src="/atch/getImage.do?atchFileId=FILE0000000003089169" />
-                                        <input type="hidden"
-                                            value="https://www.lotterentacar.net/hp/kor/carLife/eventDetail.do?pageIndex=1&amp;contSeq=590&amp;listType=ongoing&amp;utm_source=PChome&amp;utm_medium=banner&amp;utm_campaign=ad1"
-                                            class='lkUrl'> <input type="hidden" value="Y" class='openNewTabYn'>
-                                    </a>
-                                </div>
-                                <div class="main-img-wrap">
-                                    <a class="bannerDetail"> <img
-                                            src="/atch/getImage.do?atchFileId=FILE0000000002546816" />
-                                        <input type="hidden"
-                                            value="https://www.lotterentacar.net/hp/kor/carLife/commuteRent.do"
-                                            class='lkUrl'> <input type="hidden" value="N" class='openNewTabYn'>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
+                       
                     </div>
                     <!-- main visual slide -->
                     <!-- 장소 선택 -->
