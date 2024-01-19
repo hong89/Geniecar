@@ -8,32 +8,32 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/carLife")
+@RequestMapping("/carlife")
 public class CarLifeController {
 	
 	@GetMapping("/jejuAuto.do")
 	public String jejuAuto() {
-		return "carLife/jejuAuto";
+		return "carlife/jejuAuto";
 	}
 	
 	@GetMapping("/eventMain.do")
 	public String eventMain() {
-		return "carLife/eventMain";
+		return "carlife/eventMain";
 	}
 	
 	@GetMapping("/winnerEventMain.do")
 	public String winnerEventMain() {
-		return "carLife/winnerEventMain";
+		return "carlife/winnerEventMain";
 	}
 	
 	@GetMapping("/eventDetail.do")
 	public String eventDetail() {
-		return "carLife/eventDetail";
+		return "carlife/eventDetail";
 	}
 	
 	@GetMapping("/commuteRent.do")
 	public String commuteRent() {
-		return "carLife/commuteRent";
+		return "carlife/commuteRent";
 	}
 
 }

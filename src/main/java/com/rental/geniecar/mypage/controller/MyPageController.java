@@ -1,53 +1,53 @@
-package com.rental.geniecar.sample;
+package com.rental.geniecar.mypage.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/myPage")
+@RequestMapping("/mypage")
 public class MyPageController {
 
 	@GetMapping("/main.do")
 	public String index(){
 		
-        return "myPage/main";
+        return "mypage/main";
     }
 	
 	@GetMapping("/reservation.do")
 	public String reservation(){
 		
-        return "myPage/reservation";
+        return "mypage/reservation";
     }
 	
 	@GetMapping("/reservationMonth.do")
 	public String reservationMonth(){
 		
-        return "myPage/reservationMonth";
+        return "mypage/reservationMonth";
     }
 
 	@GetMapping("/rentCarConsulting.do")
 	public String rentCarConsulting(){
 		
-        return "myPage/rentCarConsulting";
+        return "mypage/rentCarConsulting";
     }
 		
 	@GetMapping("/member/modify.do")
 	public String memberModify(){
 		
-        return "myPage/member/modify";
+        return "mypage/member/modify";
     }
 	
 	@GetMapping("/member/password.do")
 	public String memberPassword(){
 		
-        return "myPage/member/password";
+        return "mypage/member/password";
     }
 	
 	@GetMapping("/member/leave.do")
 	public String memberLeave(){
 		
-        return "myPage/member/leave";
+        return "mypage/member/leave";
     }
 
 }
