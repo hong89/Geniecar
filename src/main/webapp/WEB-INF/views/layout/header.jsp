@@ -6,9 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <title>헤더</title>
-    <!-- 스타일 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- 추가 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <!-- 자바스크립트 -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -16,6 +19,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
             integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
             crossorigin="anonymous"></script>
+    <!-- 스타일 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <!-- 공통 css 파일 -->
     <link rel="stylesheet" type="text/css" href="/styles/content.css"/>
@@ -25,9 +31,11 @@
 <body>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
+
+
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <div class="col-md-3 mb-2 mb-md-0">
-            <a class="navbar-brand fs-3 fw-bold" href="#">
+            <a class="navbar-brand fs-3 fw-bold" href="/main/index.do">
                 <img src="/images/common/logo-image.png" alt="Logo" width="35" height="50"
                      class="d-inline-block align-text-top">
                 GENIECAR
@@ -89,26 +97,37 @@
         <!-- 비회원 -->
         <c:if test="${memberInfo != null}">
             <div class="col-md-3 text-end">
-                <button type="button" class="btn" style="border: 1px solid #41087c" >로그인</button>
-                <button type="button" class="btn text-white" style="background: #41087c">회원가입</button>
+                <button type="button" class="btn" style="border: 1px solid #41087c"
+                        onclick="location.href='/login/login.do'">로그인
+                </button>
+                <button type="button" class="btn text-white" style="background: #41087c"
+                        onclick="location.href='/member/join.do'">회원가입
+                </button>
             </div>
         </c:if>
         <div class="b-example-divider"></div>
         <!-- 회원 -->
         <c:if test="${memberInfo == null}">
             <div class="col-md-3 text-end">
-                <button type="button" class="btn" style="border: 1px solid #41087c">로그아웃</button>
-                <button type="button" class="btn text-white" style="background: #41087c">마이페이지</button>
+                <button type="button" class="btn" style="border: 1px solid #41087c"
+                        onclick="location.href='/login/logout.do'">로그아웃
+                </button>
+                <button type="button" class="btn text-white" style="background: #41087c"
+                        onclick="location.href='/mypage/main.do'">마이페이지
+                </button>
+                <c:if test="${null}">
+                    <button type="button" class="btn text-white" style="background: #41087c"
+                            onclick="location.href='#'">사업자전용
+                    </button>
+                </c:if>
+                <c:if test="${null}">
+                    <button type="button" class="btn text-white" style="background: #41087c"
+                            onclick="location.href='#'">관리자전용
+                    </button>
+                </c:if>
             </div>
         </c:if>
-        <div class="b-example-divider"></div>
-        <!-- 사업자/관리자 -->
-        <c:if test="${memberInfo != null}">
-            <div class="col-md-3 text-end">
-                <button type="button" class="btn text-white" style="background: #41087c">사업자전용</button>
-                <button type="button" class="btn text-white" style="background: #41087c">관리자전용</button>
-            </div>
-        </c:if>
+
     </header>
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>
