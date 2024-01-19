@@ -25,12 +25,12 @@
         <a itemprop="sameAs" href="https://blog.naver.com/official_lotterental"></a>
     </span>
     <!-- 20180201 파비콘 추가 -->
-    <link rel="shortcut icon" href="/lrhp/pc/images/favicon.ico">
-    <link rel="stylesheet" href="/lrhp/pc/styles/reset.css?cb=9e530021-db79-4977-91e5-30029cf536a0">
-    <link rel="stylesheet" href="/lrhp/pc/styles/layout.css?cb=9e530021-db79-4977-91e5-30029cf536a0">
-    <link rel="stylesheet" href="/lrhp/pc/styles/modules.css?cb=9e530021-db79-4977-91e5-30029cf536a0">
-    <link rel="stylesheet" href="/lrhp/pc/styles/contents.css?cb=9e530021-db79-4977-91e5-30029cf536a0">
-    <link rel="stylesheet" href="/lrhp/pc/styles/jquery.mCustomScrollbar.css?cb=9e530021-db79-4977-91e5-30029cf536a0">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/styles/reset.css?cb=9e530021-db79-4977-91e5-30029cf536a0">
+    <link rel="stylesheet" href="/styles/layout.css?cb=9e530021-db79-4977-91e5-30029cf536a0">
+    <link rel="stylesheet" href="/styles/modules.css?cb=9e530021-db79-4977-91e5-30029cf536a0">
+    <link rel="stylesheet" href="/styles/contents.css?cb=9e530021-db79-4977-91e5-30029cf536a0">
+    <link rel="stylesheet" href="/styles/jquery.mCustomScrollbar.css?cb=9e530021-db79-4977-91e5-30029cf536a0">
     <script src="/lrhp/js/lib/jquery-1.12.4.min.js"></script>
     <script src="/lrhp/js/lib/html5shiv.js"></script>
     <script src="/lrhp/js/lib/jquery.bxslider.js"></script>
@@ -54,31 +54,25 @@
     <!-- kcb okcert -->
     <script src="/lrhp/js/kcb/okcert.rentcar.js"></script>
     <!-- lrhp 퍼블  -->
-    <!-- <script src="/lrhp/pc/scripts/jquery/jquery-ui.min.js"></script> -->
+    <!-- <script src="/scripts/jquery/jquery-ui.min.js"></script> -->
     <script src="/lrhp/js/lib/jquery-ui.1.12.1.min.js"></script>
-    <script src="/lrhp/pc/scripts/jquery/plugins/slick.min.js"></script>
-    <script src="/lrhp/pc/scripts/jquery/plugins/swiper.min.js"></script>
-    <script src="/lrhp/pc/scripts/jquery/plugins/iscroll.min.js"></script>
-    <script src="/lrhp/pc/scripts/MUI.js"></script>
-    <script src="/lrhp/pc/scripts/common.js"></script>
+    <script src="/scripts/jquery/plugins/slick.min.js"></script>
+    <script src="/scripts/jquery/plugins/swiper.min.js"></script>
+    <script src="/scripts/jquery/plugins/iscroll.min.js"></script>
+    <script src="/scripts/MUI.js"></script>
+    <script src="/scripts/common.js"></script>
     <!-- lrhp 공통 -->
     <script src="/lrhp/js/common/gfn_var.js"></script>
     <script src="/lrhp/js/common/gfn_msg.js"></script>
     <script src="/lrhp/js/common/gfn_util.js?cb=9e530021-db79-4977-91e5-30029cf536a0"></script>
     <script src="/lrhp/js/common/gfn_sub.js"></script>
     <script src="/lrhp/js/common/gfn_com.js"></script>
-    <script src="/lrhp/pc/scripts/jquery/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/scripts/jquery/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- swiper 및 기타 특수한 경우에 대한 공통 JS 호출 -->
     <script src="/lrhp/js/common/commonPc.js"></script>
-    <!-- Page-hiding snippet (recommended)  -->
-    <style>
-        .async-hide {
-            opacity: 0 !important
-        }
-    </style>
     <!-- Adobe Analytics (운영)-->
     <script src="https://assets.adobedtm.com/0d3d26a8f9f8/8ca38b3d4546/launch-eb7bb6609f87.min.js" async></script>
-    <script src="/lrhp/pc/scripts/adobe_analytics_tagging.js?cb=9e530021-db79-4977-91e5-30029cf536a0"></script>
+    <script src="/scripts/adobe_analytics_tagging.js?cb=9e530021-db79-4977-91e5-30029cf536a0"></script>
     <!-- Adobe Analytics End -->
     <title>롯데렌터카</title>
     <!-- 202309 Google tag (gtag.js) 추가(마케팅팀 박현경 매니저님 요청) -->
@@ -126,7 +120,7 @@
                         <ul class="multi-segment-list type-col2">
                             <li>
                                 <div class="circle">
-                                    <img src="/lrhp/pc/images/icon-mon01.jpg" alt="">
+                                    <img src="/images/icon-mon01.jpg" alt="">
                                 </div>
                                 <div class="details">
                                     <p class="tit">토탈 차량 정비 서비스 포함</p>
@@ -138,7 +132,7 @@
                             </li>
                             <li>
                                 <div class="circle">
-                                    <img src="/lrhp/pc/images/icon-mon02.jpg" alt="">
+                                    <img src="/images/icon-mon02.jpg" alt="">
                                 </div>
                                 <div class="details">
                                     <p class="tit">약정 주행거리 무제한</p>
@@ -150,7 +144,7 @@
                             </li>
                             <li>
                                 <div class="circle">
-                                    <img src="/lrhp/pc/images/icon-mon03.jpg" alt="">
+                                    <img src="/images/icon-mon03.jpg" alt="">
                                 </div>
                                 <div class="details">
                                     <p class="tit">장기간 계약의 부담 NO</p>
@@ -161,7 +155,7 @@
                             </li>
                             <li>
                                 <div class="circle">
-                                    <img src="/lrhp/pc/images/icon-mon04.jpg" alt="">
+                                    <img src="/images/icon-mon04.jpg" alt="">
                                 </div>
                                 <div class="details">
                                     <p class="tit">B2B 법인고객 비용처리 가능</p>
@@ -183,7 +177,7 @@
                         <div class="flex-monthly">
                             <div>
                                 <div class="img">
-                                    <img src="/lrhp/pc/images/img_premium.png" alt="">
+                                    <img src="/images/img_premium.png" alt="">
                                     <span>Premium</span>
                                 </div>
                                 <p class="tit">운행 36개월 미만 & 주행거리 6만 km 미만 차량</p>
@@ -197,7 +191,7 @@
                             </div>
                             <div>
                                 <div class="img">
-                                    <img src="/lrhp/pc/images/img_standard.png" alt="">
+                                    <img src="/images/img_standard.png" alt="">
                                     <span>Standard</span>
                                 </div>
                                 <p class="tit">주행거리 6만 km 이상 ~ 12만 km 미만 차량</p>
@@ -211,7 +205,7 @@
                             </div>
                             <div>
                                 <div class="img">
-                                    <img src="/lrhp/pc/images/img_slim.png" alt="">
+                                    <img src="/images/img_slim.png" alt="">
                                     <span>Slim</span>
                                 </div>
                                 <p class="tit">주행거리 12만 km 이상 차량</p>
