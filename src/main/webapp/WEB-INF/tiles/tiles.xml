@@ -15,8 +15,31 @@
         <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
     </definition>
 
-    <!-- viewName 따른 title과 body 연결 -->
+    <definition name="businessLayout" template="/WEB-INF/views/business/layout/layout.jsp">
+        <!-- 타이틀은 매핑명에 따라 변경 -->
+        <put-attribute name="title" value="" />
+        <!-- header에 header.jsp 연동 -->
+        <put-attribute name="header" value="/WEB-INF/views/business/layout/header.jsp" />
+        <!-- header에 aside.jsp 연동 -->
+        <put-attribute name="aside" value="/WEB-INF/views/business/layout/aside.jsp" />
+        <!-- 바디는 매핑명에 따라 변경 -->
+        <put-attribute name="body" value="" />
+        <!-- footer에 footer.jsp 연동 -->
+        <put-attribute name="footer" value="/WEB-INF/views/business/layout/footer.jsp" />
+    </definition>
 
+    <!-- viewName 따른 title과 body 연결 -->
+    <definition name="business/*/*" extends="businessLayout">
+        <put-attribute name="title" value="GENIECAR" />
+        <put-attribute name="body" value="/WEB-INF/views/business/{1}/{2}.jsp" />
+    </definition>
+
+    <definition name="business/*/*/*" extends="businessLayout">
+        <put-attribute name="title" value="GENIECAR" />
+        <put-attribute name="body" value="/WEB-INF/views/business/{1}/{2}/{3}.jsp" />
+    </definition>
+
+    <!-- viewName 따른 title과 body 연결 -->
     <definition name="*/*" extends="baseLayout">
         <put-attribute name="title" value="GENIECAR" />
         <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />

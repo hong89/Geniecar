@@ -29,6 +29,13 @@
         #footerAddress {
             padding: 20px 0;
         }
+
+        .footer-address {
+            padding: 5px 40px;
+        }
+        .footer-address1 {
+            padding: 30px 40px;
+        }
     </style>
 </head>
 <body>
@@ -54,7 +61,7 @@
 
 
         <div class="row" id="footerAddress">
-            <div class="col-sm-8">
+            <div class="col-sm-6 footer-address">
                 <div>
                     <img src="/images/common/logo-full-image.png" width="160px;" alt="GenieCar"/>
                 </div>
@@ -64,22 +71,19 @@
                 보험대차 1234-4321 / 일반상품렌탈 1234-5432<br/>
 
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3 footer-address1">
                 <p>고객센터</p>
                 <b>1234-1234</b>
                 평일 09:00 ~ 18:00<br>
                 단, 사고처리 문의는 24시간 가능
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3 footer-address1">
                 <div class="footer-app-wrap">
                     <p>앱 다운로드</p>
-                    <ul>
-                        <li><a href="https://play.google.com/store/apps" target="_blank"><i
-                                class="icon app01">Google Play</i></a></li>
-                        <li>
-                            <a href="https://www.apple.com/kr/store"
-                               target="_blank"><i class="icon app02">App Store</i></a></li>
-                    </ul>
+                    <a href="https://play.google.com/store/apps" target="_blank">
+                        <img src="/images/icons/ico-app01.png"/></a>
+                    <a href="https://www.apple.com/kr/store" target="_blank">
+                        <img src="/images/icons/ico-app02.png"/></a>
                 </div>
             </div>
         </div>
