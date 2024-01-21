@@ -11,9 +11,9 @@
     <style>
         #header {
             padding: 5px;
-            height: 100px;
+            height: 80px;
             margin-bottom: 5px;
-            background-color: #23093d;
+            border-bottom: #23093d 10px solid;
         }
         #container {
             width: 100%;
@@ -35,9 +35,9 @@
         }
         #footer {
             clear: both;
-            height: 100px;
+            height: 80px;
             padding: 5px;
-            background-color: #23093d;
+            border-top: #23093d 10px solid;
         }
 
     </style>

@@ -27,67 +27,6 @@
     <link rel="stylesheet" type="text/css" href="/styles/content.css"/>
     <!-- 제이쿼리 -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </style>
 </head>
 <body>
 <div class="container-xl">
