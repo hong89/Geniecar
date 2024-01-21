@@ -1,237 +1,132 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-        <!DOCTYPE html>
-        
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <!-- Search Engine Optimization START -->
-            <meta name="title" lang="ko" content="이벤트 당첨자 발표 | 롯데렌터카 공식 웹사이트">
-            <meta name="description" lang="ko" content="롯데렌터카의 이벤트 당첨자 발표 페이지입니다.">
-            <meta name="og:url" content="https://www.lotterentacar.net/hp/kor/carLife/winnerEventMain.do">
-            <meta name="og:title" lang="ko" content="이벤트 당첨자 발표 | 롯데렌터카 공식 웹사이트">
-            <meta name="og:description" lang="ko" content="롯데렌터카의 이벤트 당첨자 발표 페이지입니다.">
-            <!-- Search Engine Optimization END -->
-            <meta name="keyword" lang="ko" content="">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=1200, initial-scale=1">
-            <meta name="google-site-verification" content="wkwxO2T22rB9jUGUjbRWzFDO5lIaGS-LGKDe-Jl3j8M" />
-            <meta name="facebook-domain-verification" content="aroavnspxjj7zr6ji333p91cgpsbun" />
-            <meta http-equiv="cache-control" content="no-cache" />
-            <meta http-equiv="expires" content="0" />
-            <meta http-equiv="pragma" content="no-cache" />
-            <!-- SNS 추가 -->
-            <span itemscope="" itemtype="http://schema.org/Organization">
-                <link itemprop="url" href="https://www.lotterentacar.net">
-                <a itemprop="sameAs" href="https://www.facebook.com/official.lotterental"></a>
-                <a itemprop="sameAs" href="https://www.instagram.com/lotte_rentacar/"></a>
-                <a itemprop="sameAs" href="https://www.youtube.com/channel/UCih7WKy20DaLIibm32uAQAg"></a>
-                <a itemprop="sameAs" href="https://blog.naver.com/official_lotterental"></a>
-            </span>
-            <!-- 20180201 파비콘 추가 -->
-            <link rel="shortcut icon" href="/images/favicon.ico">
-            <link rel="stylesheet" href="/styles/reset.css?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df">
-            <link rel="stylesheet" href="/styles/layout.css?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df">
-            <link rel="stylesheet" href="/styles/modules.css?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df">
-            <link rel="stylesheet" href="/styles/contents.css?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df">
-            <link rel="stylesheet"
-                href="/lrhp/pc/styles/jquery.mCustomScrollbar.css?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df">
-            <script src="/lrhp/js/lib/jquery-1.12.4.min.js"></script>
-            <script src="/lrhp/js/lib/html5shiv.js"></script>
-            <script src="/lrhp/js/lib/jquery.bxslider.js"></script>
-            <script type="text/javascript" async="" src="https://www.google-analytics.com/ga.js"></script>
-            <script src="/lrhp/js/lib/clipboard.min.js"></script>
-            <script src="/publish/js/md5.js?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df"></script>
-            <script src="/publish/js/cmmnUtil.js?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df"></script>
-            <!-- SSO 고도화 -->
-            <script src='https://members.lpoint.com/api/js/serialize.object.js'></script>
-            <script src='https://members.lpoint.com/api/js/json2.js'></script>
-            <script src='https://members.lpoint.com/api/js/lotte.sso.api.js'></script>
-            <script src="/lrhp/js/sso/moment.js"></script>
-            <script src="/lrhp/js/sso/odm-common.js"></script>
-            <script src="/lrhp/js/sso/sso.rental.js?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df"></script>
-            <script src="/lrhp/js/sso/sso.rentacar.v2.js?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df"></script>
-            <script src="/lrhp/js/sso/api.rentcar.js?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df"></script>
-            <!-- Social Login -->
-            <script src="/lrhp/js/social/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-            <script src="/lrhp/js/social/kakao.min.v1.39.7.js"></script>
-            <script src="/lrhp/js/social/social.rentacar.js?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df"></script>
-            <!-- kcb okcert -->
-            <script src="/lrhp/js/kcb/okcert.rentcar.js"></script>
-            <!-- lrhp 퍼블  -->
-            <!-- <script src="/lrhp/pc/scripts/jquery/jquery-ui.min.js"></script> -->
-            <script src="/lrhp/js/lib/jquery-ui.1.12.1.min.js"></script>
-            <script src="/lrhp/pc/scripts/jquery/plugins/slick.min.js"></script>
-            <script src="/lrhp/pc/scripts/jquery/plugins/swiper.min.js"></script>
-            <script src="/lrhp/pc/scripts/jquery/plugins/iscroll.min.js"></script>
-            <script src="/lrhp/pc/scripts/MUI.js"></script>
-            <script src="/lrhp/pc/scripts/common.js"></script>
-            <!-- lrhp 공통 -->
-            <script src="/lrhp/js/common/gfn_var.js"></script>
-            <script src="/lrhp/js/common/gfn_msg.js"></script>
-            <script src="/lrhp/js/common/gfn_util.js?cb=2526ceea-a684-4cd7-b2fa-c6cff3f9d5df"></script>
-            <script src="/lrhp/js/common/gfn_sub.js"></script>
-            <script src="/lrhp/js/common/gfn_com.js"></script>
-            <script src="/lrhp/pc/scripts/jquery/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
-            <!-- swiper 및 기타 특수한 경우에 대한 공통 JS 호출 -->
-            <script src="/lrhp/js/common/commonPc.js"></script>
-            <!-- Page-hiding snippet (recommended)  -->
-            <style>
-                .async-hide {
-                    opacity: 0 !important
-                }
-            </style>
-   
-        
-            <title>
-                롯데렌터카
-            </title>
-        </head>
-        <div id="loding_div"></div>
-        
-       
-        <body>
-            <!-- HEADER s -->
-          
-            <!-- HEADER e //-->
-            <!-- BODY s -->
-            <input type="hidden" name="lastPageNoOnPageList" id="lastPageNoOnPageList" value="" />
-            <form id="defaultFrm" name="defaultFrm"
-                action="/hp/kor/carLife/winnerEventMain.do?pageIndex=1&amp;contSeq=&amp;listType=ongoing" method="get">
-                <input id="pageIndex" name="pageIndex" type="hidden" value="1" />
-                <input type="hidden" name="contSeq" id="contSeq" />
-                <main id="wrap" data-id="template-container">
-                    <div class="path-wrap">
-                        <div class="cover">
-                            <div class="inner">
-                                <ul>
-                                    <li>
-                                        <a>
-                                            <span class="icon home">HOME</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>CAR뮤니티</a>
-                                    </li>
-                                    <li>
-                                        <a>이벤트</a>
-                                    </li>
-                                    <li>
-                                        <a>당첨자발표</a>
-                                    </li>
-                                </ul>
-                            </div>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>복사해서 사용하세요</title>
+    <!-- 추가 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <!-- 스타일 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- 자바스크립트 -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+            crossorigin="anonymous"></script>
+
+    <!-- 공통 css 파일 -->
+    <link rel="stylesheet" type="text/css" href="/styles/content.css"/>
+    <!-- 제이쿼리 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        .nav-pills .nav-link.active,
+        .nav-pills .show > .nav-link {
+                background-color: #41087c !important;
+                color: white;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="container-xl">
+    <!--------------------------------------------------상단---------------------------------------------------------->
+
+
+    <div class="pb-5 position-relative">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb"
+            class="position-absolute end-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="${contextPath}/main/index.do">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">CAR뮤니티</li>
+                <li class="breadcrumb-item active" aria-current="page">이벤트</li>
+                <li class="breadcrumb-item active" aria-current="page">당첨자발표</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="carLife-container">
+        <div class="inner-type2">
+            <section class="text-center">
+                <h1 class="tit">당첨자 발표</h1>
+                <p class="txt">당첨을 축하드립니다!</p>
+            </section>
+
+            <nav class="mt-5 nav nav-pills flex-column flex-sm-row">
+                <a class="flex-sm-fill text-sm-center nav-link" href="${contextPath}/carlife/eventMain.do">진행중 이벤트</a>
+                <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="${contextPath}/carlife/winnerEventMain.do">당첨자 발표</a>
+            </nav>
+
+            <!-- 이벤트 리스트 -->
+            <div class="tab-cont tab-normal">
+                <div>
+                    <!-- 검색 -->
+                    <form class="p-5 row row-cols-lg-auto g-3 align-items-center justify-content-center" style="text-align: center;">
+                        <div class="col-3">
+                                <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                                <select class="form-select" id="inlineFormSelectPref">
+                                  <option value="1">전체</option>
+                                  <option value="2">제목</option>
+                                  <option value="3">내용</option>
+                                </select>
                         </div>
-                    </div>
-                    <!--container 컴포넌트-->
-                    <main id="wrap">
-                        <!--카라이프-->
-                        <div class="carLife-container">
-                            <div class="inner-type2">
-                                <section class="section-headline">
-                                    <h1 class="tit">당첨자 발표</h1>
-                                    <p class="txt">당첨을 축하드립니다!</p>
-                                </section>
-                                <!-- 탭 -->
-                                <div class="tab-nav tab-normal">
-                                    <ul class="tab-col2">
-                                        <li>
-                                            <button type="button" onclick="fnGoEventPage()">진행중 이벤트</button>
-                                        </li>
-                                        <li class="active">
-                                            <button type="button" onclick="fnWinnerEventPage()">당첨자 발표</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- //탭 -->
-                                <!-- 이벤트 리스트 -->
-                                <div class="tab-cont tab-normal">
-                                    <div>
-                                        <!-- 검색 -->
-                                        <div class="search-wrap">
-                                            <div class="select-box">
-                                                <select class="selectbox" name="searchCondition" id="searchCondition">
-                                                    <option value="0">전체</option>
-                                                    <option value="1">제목</option>
-                                                    <option value="2">내용</option>
-                                                </select>
-                                            </div>
-                                            <div class="inputT srch-input-box">
-                                                <input type="text" name="searchKeyword" id="searchKeyword"
-                                                    title="검색어 입력" placeholder="검색어를 입력해주세요." value=""
-                                                    onkeydown="Enter_Check()">
-                                            </div>
-                                            <button type="button" class="btn" onclick="fn_search()">검색</button>
-                                        </div>
-                                        <!-- //검색 -->
-                                        <!-- 당첨자 목록 -->
-                                        <div class="notice-wrap">
-                                            <!-- 게시판 -->
-                                            <div class="tbl-box">
-                                                <table class="tbl-type01">
-                                                    <caption>공지 사항의 제목과 작성을 나타낸 표</caption>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>제목</th>
-                                                            <th>작성일</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="javascript:fnFormview('1261')">2023 고객만족도 설문조사
-                                                                    4분기 이벤트 당첨자발표</a>
-                                                            </td>
-                                                            <td>
-                                                                2024.01.11
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <!-- //게시판 -->
-                                        </div>
-                                        <!-- //당첨자 목록 -->
-                                    </div>
-                                </div>
-                                <!-- //이벤트 리스트 -->
-                            </div>
+                        <div class="col-3">
+                          <label class="visually-hidden" for="inlineFormInputGroupUsername">Use</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="검색어를 입력해주세요.">
+                          </div>
+                        </div>           
+                        <div class="col-3">
+                          <button type="submit" class="btn btn-primary" style="background-color: #41087c;">검색</button>
                         </div>
-                      
-                    </main>
-            </form>
-            <!-- BODY e //-->
-       
-            <style>
-                #launcher {
-                    display: none;
-                }
-            </style>
-          
-            <!-- pc TOP 버튼 시작  ----------------------------------------------------------->
-            <div class="fixedRight noLauncher">
-                <button type="button" class="btn btn-goTop" data-link-area="공통" data-link-name="하단"
-                    data-link-text="TOP">탑으로</button>
+                    </form>
+
+                    <table class="table caption-top">
+                        <thead>
+                            <tr>
+                                <td scope="col"><strong>No</strong></td>
+                                <td align="center"scope="col"><strong>제목</strong></td>
+                                <td align="center"scope="col"><strong>작성일</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td align="center"><a href="#">2023 고객만족도 설문조사 4분기 이벤트 당첨자발표</a></td>
+                                <td align="center">2024.01.11</td>
+                        
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td align="center"><a href="#">2023 고객만족도 설문조사 3분기 이벤트 당첨자발표</a></td>
+                                <td align="center">2023.10.10</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td align="center"><a href="#">2023 고객만족도 설문조사 2분기 이벤트 당첨자발표</a></td>
+                                <td align="center">2023.07.01</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <!-- pc TOP 버튼 종료  ----------------------------------------------------------->
-           
-            <!-- FOOTER e //-->
-        </body>
-        <!-- body태그 뒤에 -->
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZZKGR3" height="0" width="0"
-                style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
-        <!--bg-dimmed 컴포넌트-->
-        <div class="bg-dimmed"></div> <!-- 딤(Dim)처리 배경 -->
-        <!--//bg-dimmed 컴포넌트-->
-        <div class="bg-dimmed-h"></div> <!-- 딤(Dim)처리 배경 -->
-        <!--//bg-dimmed 컴포넌트-->
-        <!--floating_zone 컴포넌트-->
-        <aside class="floating_zone" style="display: none;">
-            플로팅 사이드 바영역
-        </aside>
-        <!--//floating_zone 컴포넌트-->
-        <script>jQuery.loadUnBlock()</script>
-        </html>
-    </body>
-    </html>
+        </div>
+    </div>
+
+
+
+
+    <!--------------------------------------------------하단---------------------------------------------------------->
+</div>
+</body>
+</html>
