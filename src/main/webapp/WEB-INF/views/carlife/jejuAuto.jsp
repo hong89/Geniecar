@@ -59,7 +59,7 @@
                 class="position-absolute end-0">
                 <ol class="breadcrumb">
                      <li class="breadcrumb-item"><a href="${contextPath}/main/index.do">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">CAR뮤니티</li>
+                    <li class="breadcrumb-item active" aria-current="page">지점안내</li>
                     <li class="breadcrumb-item active" aria-current="page">제주오토하우스</li>
                 </ol>
             </nav>

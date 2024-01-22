@@ -44,7 +44,7 @@
             class="position-absolute end-0">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="${contextPath}/main/index.do">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">CAR뮤니티</li>
+                <li class="breadcrumb-item active" aria-current="page">고객 지원</li>
                 <li class="breadcrumb-item active" aria-current="page">이벤트</li>
                 <li class="breadcrumb-item active" aria-current="page">진행중 이벤트</li>
             </ol>

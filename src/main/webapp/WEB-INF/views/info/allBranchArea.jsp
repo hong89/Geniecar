@@ -40,7 +40,6 @@
             class="position-absolute end-0">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="${contextPath}/main/index.do">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">고객지원</li>
                 <li class="breadcrumb-item active" aria-current="page">지점안내</li>
                 <li class="breadcrumb-item active" aria-current="page">전국지점</li>
             </ol>

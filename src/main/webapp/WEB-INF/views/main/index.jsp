@@ -83,37 +83,37 @@
         <div class="row" style="text-align: center;">
             <div class="p-3 col-2">
                 <a class="page-link" href="#">
-                <img src="/images/icon-jeju1.jpg" alt="">
+                <img src="/images/icons/ico-main-new-quick01.png" alt="">
                 <p>지니카 온라인 견적</p>
                 </a>
             </div>
             <div class="p-3 col-2">
                 <a class="page-link" href="#">
-                <img src="/images/icon-jeju1.jpg" alt="">
+                <img src="/images/icons/ico-main-new-quick03.png" alt="">
                 <p>지니카 맴버쉽</p>
                 </a>
             </div>
             <div class="p-3 col-2">
                 <a class="page-link" href="#">
-                <img src="/images/icon-jeju1.jpg" alt="">
+                <img src="/images/icons/ico-main-new-quick02.png" alt="">
                 <p>예약확인</p>
                 </a>
             </div>
             <div class="p-3 col-2">
                 <a class="page-link" href="#">
-                <img src="/images/icon-jeju1.jpg" alt="">
+                <img src="/images/icons/ico-main-new-quick05.png" alt="">
                 <p>지점안내</p>
                 </a>
             </div>
             <div class="p-3 col-2">
                 <a class="page-link" href="#">
-                <img src="/images/icon-jeju1.jpg" alt="">
+                <img src="/images/icons/ico-main-new-quick06.png" alt="">
                 <p>제주오토하우스</p>
                 </a>
             </div>
             <div class="p-3 col-2">
                 <a class="page-link" href="#">
-                <img src="/images/icon-jeju1.jpg" alt="">
+                <img src="/images/icons/ico-main-new-quick08.png" alt="">
                 <p>고객 센터</p>
                 </a>
             </div>
@@ -142,8 +142,10 @@
 
     <section class="pt-5">
         <div class="explain-header">
-            <p>알려드려요</p>
-            <h2>따끈따끈한 공지사항</h2><hr/>
+            <a class="page-link" href="#">
+                <img src="/images/icons/ico-main-notice.png" alt="">   
+            알려드려요
+            <h2>따끈따끈한 공지사항</h2></a><hr/>
         </div>
         <div class="container">
             <div class="row row-cols-2">
