@@ -47,8 +47,7 @@
                             class="position-absolute top-0 end-0">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">단기렌터카</li>
-                                <li class="breadcrumb-item active" aria-current="page">서비스안내</li>
+                                <li class="breadcrumb-item active" aria-current="page">단기 렌터카 안내</li>
                                 <li class="breadcrumb-item active" aria-current="page">체크인서비스</li>
                             </ol>
                         </nav>
@@ -56,7 +55,7 @@
                     <div>
                         <div>
                             <section class="text-center pb-4">
-                                <h1>체크인 서비스</h1>
+                                <h1 class="fw-bolder">체크인 서비스</h1>
                                 <p>온라인 사전 체크인으로 지점 방문 시 빠른 차량 픽업이 가능합니다.</p>
                             </section>
                             <div class="mb-5 "
@@ -83,10 +82,10 @@
                                 </div>
                                 <div class="">
                                     <ol class="list-group list-group-horizontal row">
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>01</span>
-                                            <strong>예약 정보 확인</strong>
-                                            <ul>
+                                            <h5>예약 정보 확인</h5>
+                                            <ul class="mt-3 text-center">
                                                 <li>
                                                     예약내역에서 사전체크인할<br>
                                                     예약의 예약정보를 확인해 주세요.
@@ -97,19 +96,19 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>02</span>
-                                            <strong>사전 체크인 시작</strong>
-                                            <p>
+                                            <h5>사전 체크인 시작</h5>
+                                            <p class="mt-3 text-center">
                                                 내용에 변경사항이 없는 경우<br>
                                                 예약정보 하단의 사전체크인<br>
                                                 버튼을 눌러 체크인을 시작하세요.
                                             </p>
                                         </li>
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>03</span>
-                                            <strong>예약자 연락처 확인</strong>
-                                            <ul>
+                                            <h5>예약자 연락처 확인</h5>
+                                            <ul class="mt-3 text-center">
                                                 <li>
                                                     대여 중 연락드릴 예약자 정보의<br>
                                                     연락처를 확인해 주세요.
@@ -121,10 +120,10 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>04</span>
-                                            <strong>추가 운전자 등록</strong>
-                                            <ul>
+                                            <h5>추가 운전자 등록</h5>
+                                            <ul class="mt-3 text-center">
                                                 <li>
                                                     대여 중 동승자와 함께 운전하는<br>
                                                     경우 추가운전자 등록을 해주세요.
@@ -136,10 +135,10 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>05</span>
-                                            <strong>이용자동의</strong>
-                                            <ul>
+                                            <h5>이용자동의</h5>
+                                            <ul class="mt-3 text-center">
                                                 <li>
                                                     사전체크인을 위한<br>
                                                     이용자 동의를 해주세요.
@@ -160,34 +159,34 @@
                                 </div>
                                 <div class="">
                                     <ol class="list-group list-group-horizontal row">
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>01</span>
-                                            <strong>지점 방문</strong>
-                                            <p>
+                                            <h5>지점 방문</h5>
+                                            <p class="mt-3 text-center">
                                                 지점에 방문하면 직원에게<br>
                                                 예약자명을 말씀해 주세요.
                                             </p>
                                         </li>
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>02</span>
-                                            <strong>예약자 확인</strong>
-                                            <p>
+                                            <h5>예약자 확인</h5>
+                                            <p class="mt-3 text-center">
                                                 예약사항을 확인 후, 면허증을<br>
                                                 담당직원에게 제시해 주세요.
                                             </p>
                                         </li>
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>03</span>
-                                            <strong>차량 안내</strong>
-                                            <p>
+                                            <h5>차량 안내</h5>
+                                            <p class="mt-3 text-center">
                                                 대여기간 및 차종, 옵션 등<br>
                                                 최종 확인하세요.
                                             </p>
                                         </li>
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>04</span>
-                                            <strong>차량 이용</strong>
-                                            <p>
+                                            <h5>차량 이용</h5>
+                                            <p class="mt-3 text-center">
                                                 직원의 안내에 따라 미리 준비된<br>
                                                 차량의 상태 및 유류량 확인 후<br>
                                                 바로 차량을 이용하세요.
@@ -205,37 +204,37 @@
                                 </div>
                                 <div class="">
                                     <ol class="list-group list-group-horizontal row">
-                                        <li class="list-group-item p-3 col">
-                                            <span>01</span>
-                                            <strong>지니카 제주공항 데스크 방문</strong>
-                                            <p>
+                                        <li class="list-group-item p-3 col text-center">
+                                            <span class="rounded-circle">01</span>
+                                            <h5>지니카 제주공항 데스크 방문</h5>
+                                            <p class="mt-3 text-center">
                                                 제주공항에 도착하면 GATE 2에 위치한<br>
                                                 지니카 데스크에 방문하여<br>
                                                 제주도착을 알려 주세요.
                                             </p>
                                         </li>
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>02</span>
-                                            <strong>지니카 셔틀버스 탑승</strong>
-                                            <p>
+                                            <h5>지니카 셔틀버스 탑승</h5>
+                                            <p class="mt-3 text-center">
                                                 GATE 5번으로 나가셔서<br>
                                                 셔틀버스 탑승장 1구역 중 4번에서<br>
                                                 지니카 셔틀버스에 탑승하세요
                                             </p>
                                         </li>
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>03</span>
-                                            <strong>지점도착 및 예약자 확인</strong>
-                                            <p>
+                                            <h5>지점도착 및 예약자 확인</h5>
+                                            <p class="mt-3 text-center">
                                                 지니카 제주오토하우스에<br>
                                                 도착하면 직원에게<br>
                                                 예약자명을 말씀해 주세요.
                                             </p>
                                         </li>
-                                        <li class="list-group-item p-3 col">
+                                        <li class="list-group-item p-3 col text-center">
                                             <span>04</span>
-                                            <strong>차량안내 및 이용</strong>
-                                            <p>
+                                            <h5>차량안내 및 이용</h5>
+                                            <p class="mt-3 text-center">
                                                 직원의 안내에 따라 주차장으로<br>
                                                 이동하여 차량 상태 및 유류량을<br>
                                                 확인 후 바로 차량을 이용하세요.
@@ -278,7 +277,7 @@
                                                 예약 완료 고객님께서는 2번 게이트에 있는 공항데스크 직원에게 <br>
                                                 예약자명을 제시하고 공항에 도착했음을 알려주세요
                                                 <ul class="mb-3">
-                                                    <li style="color: #41087c;">
+                                                    <li style="color: #905dbe;">
                                                         사전체크인 완료 고객님은 셔틀버스 탑승 시 해당 QR코드를 태깅하면 고객님께서 <br>
                                                         이용하실 차량에 대한 준비가 완료됩니다.
                                                     </li>
@@ -297,11 +296,11 @@
                                                 렌터카 하우스 1구역 중 4번에서 지니카 셔틀버스에 탑승하세요.
                                                 <ul class="row mt-3">
                                                     <li class="col-4">
-                                                        <strong>셔틀버스 운영시간</strong>
+                                                        <h5>셔틀버스 운영시간</h5>
                                                         <p>06:00 ~ 22:40</p>
                                                     </li>
                                                     <li class="col">
-                                                        <strong>배차간격</strong>
+                                                        <h5>배차간격</h5>
                                                         <p>06:00 ~ 07:30 [10분~15분]</p>
                                                         <p>07:30 ~ 19:30 [8분]</p>
                                                         <p>19:30 ~ 22:40 [10분~15분]</p>
