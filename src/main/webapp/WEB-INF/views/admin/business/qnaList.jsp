@@ -37,7 +37,7 @@
 <div class="pt-5">
     <div class="inner-type2">
         <section class="text-center">
-            <h1 class="tit">FAQ 목록</h1>
+            <h1 class="tit">Q&A 목록</h1>
         </section>
         <div class="pt-5">
             <table class="table caption-top">

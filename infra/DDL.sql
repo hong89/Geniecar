@@ -1,16 +1,17 @@
 CREATE TABLE COMMON_CODE -- 공통 코드 테이블
 (
-    CODE            VARCHAR2(6) PRIMARY KEY,      -- 코드
-    CODE_NAME       NVARCHAR2(50) NOT NULL,       -- 코드 이름
-    GROUP_CODE      VARCHAR2(6) NOT NULL,         -- 그룹 코드 (코드의 상위 코드)
-    GROUP_CODE_NAME NVARCHAR2(50) NOT NULL,       -- 그룹 코드 이름
-    DESCRIPTION     NVARCHAR2 (200),              -- 코드 설명
-    CODE_SORT       NUMBER (3),                   -- 화면에 보이는 순서
+    CODE            VARCHAR2(6),      -- 코드
+    CODE_NAME       NVARCHAR2(50)       NOT NULL, -- 코드 이름
+    GROUP_CODE      VARCHAR2(6),                  -- 그룹 코드 (코드의 상위 코드)
+    GROUP_CODE_NAME NVARCHAR2(50),                -- 그룹 코드 이름
+    DESCRIPTION     NVARCHAR2(200),               -- 코드 설명
+    CODE_SORT       NUMBER(3),                    -- 화면에 보이는 순서
     USE_YN          CHAR(1) DEFAULT 'Y' NOT NULL, -- 사용유무
-    REG_ID          VARCHAR2 (20) NOT NULL,       -- 등록자 (회원아이디)
+    REG_ID          VARCHAR2(20)        NOT NULL, -- 등록자
     REG_DATE        DATE                NOT NULL, -- 등록일시
-    MOD_ID          VARCHAR2(20),                 -- 수정자 (회원아이디)
-    MOD_DATE        DATE                          -- 수정일시
+    MOD_ID          VARCHAR2(20),                 -- 수정자
+    MOD_DATE        DATE,                          -- 수정일시
+    constraint COMMON_CODE_PK PRIMARY KEY (CODE, GROUP_CODE)
 )
 
 CREATE TABLE MEMBER -- 회원 테이블
@@ -62,7 +63,7 @@ CREATE TABLE RENTAL_CAR_BRANCHS_CAR -- 렌터카 지점별 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17),                  -- 차대번호 (자동차 FK) - 복합키 처리
     RENTAL_CAR_BRANCH_NO      NUMBER(10),                    -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
-    RENTAL_STATUS_CODE        VARCHAR2(6) NOT NULL,          -- 렌트 상태 코드 (공통코드 FK) - 수리중, 가능, 폐차, 장기렌트 등등
+    --RENTAL_STATUS_CODE        VARCHAR2(6) NOT NULL,          -- 렌트 상태 코드 (공통코드 FK) - 수리중, 가능, 폐차, 장기렌트 등등
     DEFAULT_COST              NUMBER(6) NOT NULL,            -- 기본 대여료 (10분 단위)
     DEFAULT_SALE_RATE         NUMBER(2) DEFAULT 50 NOT NULL, -- 기본 할인율
     WEEK_SALE_RATE            NUMBER(2) DEFAULT 60 NOT NULL, -- 일주일 할인율
@@ -152,4 +153,22 @@ CREATE TABLE FILE -- 파일 테이블
     REG_DATE  DATE,                  -- 등록일
     CONSTRAINT FILE_FK PRIMARY KEY (FILE_NO, SEQ)
 )
--- 예약 정보 테이블 추가 예정
+
+CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
+(
+    RESERVATION_NO            VARCHAR2 ( 20 ) PRIMARY KEY, -- 예약번호
+    RENTAL_PLACE              VARCHAR2 ( 6 ) NOT NULL,     -- 대여_장소 (공통코드 FK)
+    RETURN_PLACE              VARCHAR2 ( 6 ) NOT NULL,     -- 반납_장소 (공통코드 FK)
+    RENTAL_DATE               DATE NOT NULL,               -- (대여)시작_날짜_시간
+    RETURN_DATE               DATE NOT NULL,               -- 반납_날짜_시간
+    CAR_IDENTIFICATION_NUMBER VARCHAR2 ( 17 ) NOT NULL,    -- 차대번호
+    RENTAL_CAR_BRANCH_NO      NUMBER ( 10 ) NOT NULL,      -- 렌터카_지점_NO
+    RESERVATION_MEMBER_ID     VARCHAR2 ( 20 ) NOT NULL,    -- 예약자_ID (회원아이디 FK)
+    REGULAR_PRICE             NUMBER ( 10 ) NOT NULL,      -- 정가
+    SALE_RATE                 NUMBER ( 2 ) NOT NULL,       -- 할인율
+    FINAL_RESERVATION_PRICE   NUMBER ( 10 ) NOT NULL,      -- 최종_예약_금액 (정가/할인율=최종금액)
+    REG_ID                    VARCHAR2 ( 20 ) NOT NULL,    -- 등록자 (회원아이디 FK)
+    REG_DATE                  DATE NOT NULL,               -- 등록_일시
+    MOD_ID                    VARCHAR2 ( 20 ),             -- 수정자 (회원아이디 FK)
+    MOD_DATE                  DATE                         -- 수정_일시
+)
