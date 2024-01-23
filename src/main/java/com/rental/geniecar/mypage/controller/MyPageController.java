@@ -31,6 +31,18 @@ public class MyPageController {
 		
         return "mypage/rentCarConsulting";
     }
+	
+	@GetMapping("/point.do")
+	public String point(){
+		
+        return "mypage/point";
+    }
+	
+	@GetMapping("/coupon.do")
+	public String coupon(){
+		
+        return "mypage/coupon";
+    }
 		
 	@GetMapping("/member/modify.do")
 	public String memberModify(){

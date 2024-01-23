@@ -60,8 +60,8 @@
                             class="position-absolute top-0 end-0">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/main/index.do">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">단기렌터카 안내</li>
-                                <li class="breadcrumb-item active" aria-current="page">부가서비스안내</li>
+                                <li class="breadcrumb-item active" aria-current="page">단기 렌터카 안내</li>
+                                <li class="breadcrumb-item active" aria-current="page">부가 서비스 안내</li>
                             </ol>
                         </nav>
                     </div>
@@ -122,35 +122,35 @@
                                     <p style="font-size: 14px; margin-bottom: 50px;">※ 단, 추가 금액이 발생하는 경우 결제를 하셔야만
                                         이용이
                                         가능하십니다. </p>
-                                    <div class="row mb-3">
+                                    <div class="mb-3">
                                         <h4 class="fw-bold mb-4">변경 가능 정보</h4>
-                                        <div class="around-box">
-                                            <div class="item">
-                                                <span class="icon pannel24"></span>
-                                                <p class="txt">반납시간 변경</p>
+                                        <div class="row p-5">
+                                            <div class="col p-5 text-center">
+                                                <img alt="" src="/images/icons/ico-pannel24.png">
+                                                <p>반납시간 변경</p>
                                             </div>
-                                            <div class="item">
-                                                <span class="icon pannel25"></span>
+                                            <div class="col p-5 text-center">
+                                                <img alt="" src="/images/icons/ico-pannel25.png">
                                                 <p class="txt">반납 지점 변경</p>
                                             </div>
-                                            <div class="item">
-                                                <span class="icon pannel26"></span>
+                                            <div class="col p-5 text-center">
+                                                <img alt="" src="/images/icons/ico-pannel26.png">
                                                 <p class="txt">추가 운전자 등록</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                    <div class="mb-3">
                                         <h4 class="fw-bold mb-4">이용 중 관리 서비스의 차이점</h4>
-                                        <div class="around-box">
-                                            <div class="item">
-                                                <span class="icon pannel27"></span>
+                                        <div class="row">
+                                            <div class="col p-5 text-center">
+                                                <img alt="" src="/images/icons/ico-pannel27.png">
                                                 <p class="tit">기존 방식을 이용하는 경우</p>
                                                 <p class="txt">
                                                     운영시간에 맞춰 고객센터나 지점으로 전화하거나<br> 가까운 지점에 직접 방문하여 직원에게 요청
                                                 </p>
                                             </div>
-                                            <div class="item">
-                                                <span class="icon pannel28"></span>
+                                            <div class="col p-5 text-center">
+                                                <img alt="" src="/images/icons/ico-pannel28.png">
                                                 <p class="tit">이용중 관리를 이용하는 경우</p>
                                                 <p class="txt">
                                                     갑작스러운 상황이라도 언제 어디서든 바로 바로<br> 지니카 홈페이지 또는 APP에서 간편하게 변경
@@ -158,45 +158,45 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                    <div class="mb-3">
                                         <h4 class="fw-bold mb-4">이용 중 관리 서비스 이용 방법</h4>
-                                        <ol class="service-guide-list">
-                                            <li>
+                                        <ol class="service-guide-list row">
+                                            <li class="col-6">
                                                 <p class="tit">1. 우측상단 예약확인 이동</p>
                                                 <div class="img-box">
                                                     <img alt=""
                                                         src="/images/img-shortInfoAdditional-service-guide01.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">2. 대여 중인 계약번호 선택</p>
                                                 <div class="img-box">
                                                     <img alt=""
                                                         src="/images/img-shortInfoAdditional-service-guide02.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">3. 이용 중 관리 버튼 선택</p>
                                                 <div class="img-box">
                                                     <img alt=""
                                                         src="/images/img-shortInfoAdditional-service-guide03.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">4. 반납 시간 및 반납지점 변경</p>
                                                 <div class="img-box">
                                                     <img alt=""
                                                         src="/images/img-shortInfoAdditional-service-guide04.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">5. 추가 운전자 등록</p>
                                                 <div class="img-box">
                                                     <img alt=""
                                                         src="/images/img-shortInfoAdditional-service-guide05.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">6. 추가금액 발생 시 결제하기</p>
                                                 <div class="img-box">
                                                     <img alt=""
@@ -216,12 +216,12 @@
                                 </div>
                                 <div class="explain-cont">
                                     <ul class="multi-segment-list">
-                                        <li>
-                                            <div class="circle">
-                                                <span class="icon additional-pannel01"></span>
+                                        <li class="row mb-5">
+                                            <div class="col-1 ps-4">
+                                                <img alt="" src="/images/icons/ico-additional-pannel01.png">
                                             </div>
-                                            <div class="details">
-                                                <p class="tit">(무료) 내비게이션 대여 서비스</p>
+                                            <div class="col ps-4">
+                                                <p class="fw-bolder">(무료) 내비게이션 대여 서비스</p>
                                                 <ul class="lst dot">
                                                     <li>고객님의 편안한 여행을 위해 내비게이션을 무료로 장착하여 대여해드립니다.<br>
                                                         (내비게이션이 기본 장착된 차량이 아닌 경우 거치형 내비게이션을 장착하여 제공)
@@ -229,12 +229,12 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="circle">
-                                                <span class="icon additional-pannel02"></span>
+                                        <li class="row mb-5">
+                                            <div class="col-1 ps-4">
+                                                <img alt="" src="/images/icons/ico-additional-pannel02.png">
                                             </div>
-                                            <div class="details">
-                                                <p class="tit">(유료) 카시트 대여 서비스</p>
+                                            <div class="col ps-4">
+                                                <p class="fw-bolder">(유료) 카시트 대여 서비스</p>
                                                 <ul class="lst dot">
                                                     <li>대여기간에 상관없이 예약 1회에 1개만 신청이 가능합니다. (제주는 3개까지 신청 가능)</li>
                                                     <li>대여하는 차량의 종류에 따라 카시트 설치가 어려울 수 있습니다.</li>
@@ -242,12 +242,12 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="circle">
-                                                <span class="icon additional-pannel03"></span>
+                                        <li class="row mb-5">
+                                            <div class="col-1 ps-4">
+                                                <img alt="" src="/images/icons/ico-additional-pannel03.png">
                                             </div>
-                                            <div class="details">
-                                                <p class="tit">(유료) 편도 대여 서비스</p>
+                                            <div class="col ps-4">
+                                                <p class="fw-bolder">(유료) 편도 대여 서비스</p>
                                                 <ul class="lst dot">
                                                     <li>편도 대여 서비스는 대여지점과 반남지점을 다르게 이용할 수 있는 서비스입니다.</li>
                                                     <li>24시간 이상 대여 시 이용이 가능하며, 대여지점과 반납지점의 거리에 따라 별도 비용이
@@ -255,14 +255,12 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="circle">
-                                                <span class="icon">
-                                                    <img alt="" src="/images/icons/ico_hipass_pc2.png">
-                                                </span>
+                                        <li class="row mb-5">
+                                            <div class="col-1 ps-4">
+                                                <img alt="" src="/images/icons/ico_hipass_pc2.png">
                                             </div>
-                                            <div class="details">
-                                                <p class="tit">(유료) 하이패스 선불카드</p>
+                                            <div class="col ps-4">
+                                                <p class="fw-bolder">(유료) 하이패스 선불카드</p>
                                                 <ul class="lst dot">
                                                     <li>고객님의 편리한 여정을 위해 하이패스 선불카드를 판매하고 있습니다.</li>
                                                     <li>대여기간에 상관없이 예약 1회에 1개만 신청이 가능합니다.</li>
@@ -281,30 +279,28 @@
                                     <h2 class="fw-bolder">딜리버리 서비스</h2>
                                 </div>
                                 <div class="explain-cont">
-                                    <ul class="multi-segment-list type-col2 align-top">
-                                        <li style="width:33%">
+                                    <ul class="list-group list-group-horizontal row mb-5">
+                                        <li class="list-group-item col border-0">
                                             <div class="details">
-                                                <p class="tit">이용 조건</p>
+                                                <p class="fw-bolder">이용 조건</p>
                                                 <ul class="lst dot">
-                                                    <!--231213 삭제<li>지니카 회원(비회원은 회원가입 후 가능)</li>-->
                                                     <li>선결제 완료 고객</li>
                                                     <li>자차손해면책제도 고객부담금 면제 가입 고객</li>
-                                                    <!--231213 삭제<li>카드 등록 고객</li>-->
                                                     <li>사전체크인 완료 고객</li>
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li style="width:33%">
+                                        <li class="list-group-item col border-0">
                                             <div class="details">
-                                                <p class="tit">이용 금액</p>
+                                                <p class="fw-bolder">이용 금액</p>
                                                 <ul class="lst dot">
                                                     <li>서비스 지역별 요금 상이 / 대여, 반납 별도</li>
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li style="width:33%">
+                                        <li class="list-group-item col border-0">
                                             <div class="details">
-                                                <p class="tit">서비스 가능 시간</p>
+                                                <p class="fw-bolder">서비스 가능 시간</p>
                                                 <ul class="lst dot">
                                                     <li>서비스 지역별 상이</li>
                                                     <li>자세한 내용은 각 수행지점으로 문의</li>
@@ -313,477 +309,479 @@
                                         </li>
                                     </ul>
                                     <h4 class="fw-bold mb-4">서비스 지점 및 딜리버리 지역</h4>
-                                    <div class="tab-cont tab-normal">
-                                        <div class="car-type-tab rentalFeeTab deli-nav" style="text-align:center;">
-                                            <ul class="menu-list" style="margin:30px 0 20px">
-                                                <li class="active">
-                                                    <button type="button">서울</button>
-                                                </li>
-                                                <li>
-                                                    <button type="button">인천/경기/강원</button>
-                                                </li>
-                                                <li>
-                                                    <button type="button">경상/대구</button>
-                                                </li>
-                                                <li>
-                                                    <button type="button">부산/울산</button>
-                                                </li>
-                                                <li>
-                                                    <button type="button">전라/광주</button>
-                                                </li>
-                                                <li>
-                                                    <button type="button">충청/대전</button>
-                                                </li>
-                                            </ul>
+                                    <ul class="nav nav-pills mb-3" id="pills-tab2" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="contact-tab1" data-bs-toggle="pill"
+                                                data-bs-target="#contact1" type="button" role="tab"
+                                                aria-controls="contact1" aria-selected="true">서울</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="contact-tab2" data-bs-toggle="pill"
+                                                data-bs-target="#contact2" type="button" role="tab"
+                                                aria-controls="contact2" aria-selected="false">인천/경기/강원</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="contact-tab3" data-bs-toggle="pill"
+                                                data-bs-target="#contact3" type="button" role="tab"
+                                                aria-controls="contact3" aria-selected="false">경상/대구</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="contact-tab4" data-bs-toggle="pill"
+                                                data-bs-target="#contact4" type="button" role="tab"
+                                                aria-controls="contact4" aria-selected="true">부산/울산</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="contact-tab5" data-bs-toggle="pill"
+                                                data-bs-target="#contact5" type="button" role="tab"
+                                                aria-controls="contact5" aria-selected="false">전라/광주</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="contact-tab6" data-bs-toggle="pill"
+                                                data-bs-target="#contact6" type="button" role="tab"
+                                                aria-controls="contact6" aria-selected="false">충청/대전</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="pills-tabContent2">
+                                        <div class="tab-pane fade show active" id="contact1" role="tabpanel"
+                                            aria-labelledby="contact-tab1">
+                                            <table class="table table-bordered align-middle text-center">
+                                                <colgroup>
+                                                    <col width="18%">
+                                                    <col width="auto">
+                                                    <col width="18%">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>지점</th>
+                                                        <th>딜리버리 지역</th>
+                                                        <th>연락처</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>강남</th>
+                                                        <td class="align-l">성동, 광진, 논현, 신사역, 선정릉역, 역삼역, 도곡역,
+                                                            군자역,
+                                                            강변역</td>
+                                                        <td>02-3443-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>홍대</th>
+                                                        <td class="align-l">은평, 서대문, 상암DMC</td>
+                                                        <td>02-2634-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>송파</th>
+                                                        <td class="align-l">위례신도시, 잠실, 수서동, 가락시장역, 일원역,
+                                                            수서역(SRT)
+                                                        </td>
+                                                        <td>02-2203-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>천호</th>
+                                                        <td class="align-l">하남, 강동, 광나루역, 고덕역</td>
+                                                        <td>02-482-8002</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>가산디지털</th>
+                                                        <td class="align-l">온수역, 구로, 개봉, 고척</td>
+                                                        <td>02-3664-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>구로디지털</th>
+                                                        <td class="align-l">금천, 보라매역, 대림, 신대방</td>
+                                                        <td>02-866-8003</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>서울역</th>
+                                                        <td class="align-l">충정로역</td>
+                                                        <td>02-715-0010</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>공덕</th>
+                                                        <td class="align-l">동대문, 종로, 중구</td>
+                                                        <td>02-714-8001</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>상봉</th>
+                                                        <td class="align-l">성북, 강북, 노원, 도봉</td>
+                                                        <td>02-491-8002</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>신도림</th>
+                                                        <td class="align-l">당산역, 여의도</td>
+                                                        <td>02-785-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>목동</th>
+                                                        <td class="align-l">영등포, 양천, 당산역</td>
+                                                        <td>02-2659-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>양재</th>
+                                                        <td class="align-l">청계산입구역</td>
+                                                        <td>02-529-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>마곡</th>
+                                                        <td class="align-l">강서</td>
+                                                        <td>02-2063-8504</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>관악</th>
+                                                        <td class="align-l">숭실대입구</td>
+                                                        <td>02-875-8200</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>사당</th>
+                                                        <td class="align-l">동작, 방배, 이수</td>
+                                                        <td>02-3472-8000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="car-type-tab rentalFeeTab deli-cont">
-                                            <div class="tab-cont-inner2">
-                                                <div class="tbl-box mh">
-                                                    <table>
-                                                        <colgroup>
-                                                            <col width="18%">
-                                                            <col width="auto">
-                                                            <col width="18%">
-                                                        </colgroup>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>지점</th>
-                                                                <th>딜리버리 지역</th>
-                                                                <th>연락처</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>강남</th>
-                                                                <td class="align-l">성동, 광진, 논현, 신사역, 선정릉역, 역삼역, 도곡역,
-                                                                    군자역,
-                                                                    강변역</td>
-                                                                <td>02-3443-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>홍대</th>
-                                                                <td class="align-l">은평, 서대문, 상암DMC</td>
-                                                                <td>02-2634-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>송파</th>
-                                                                <td class="align-l">위례신도시, 잠실, 수서동, 가락시장역, 일원역,
-                                                                    수서역(SRT)
-                                                                </td>
-                                                                <td>02-2203-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>천호</th>
-                                                                <td class="align-l">하남, 강동, 광나루역, 고덕역</td>
-                                                                <td>02-482-8002</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>가산디지털</th>
-                                                                <td class="align-l">온수역, 구로, 개봉, 고척</td>
-                                                                <td>02-3664-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>구로디지털</th>
-                                                                <td class="align-l">금천, 보라매역, 대림, 신대방</td>
-                                                                <td>02-866-8003</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>서울역</th>
-                                                                <td class="align-l">충정로역</td>
-                                                                <td>02-715-0010</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>공덕</th>
-                                                                <td class="align-l">동대문, 종로, 중구</td>
-                                                                <td>02-714-8001</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>상봉</th>
-                                                                <td class="align-l">성북, 강북, 노원, 도봉</td>
-                                                                <td>02-491-8002</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>신도림</th>
-                                                                <td class="align-l">당산역, 여의도</td>
-                                                                <td>02-785-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>목동</th>
-                                                                <td class="align-l">영등포, 양천, 당산역</td>
-                                                                <td>02-2659-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>양재</th>
-                                                                <td class="align-l">청계산입구역</td>
-                                                                <td>02-529-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>마곡</th>
-                                                                <td class="align-l">강서</td>
-                                                                <td>02-2063-8504</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>관악</th>
-                                                                <td class="align-l">숭실대입구</td>
-                                                                <td>02-875-8200</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>사당</th>
-                                                                <td class="align-l">동작, 방배, 이수</td>
-                                                                <td>02-3472-8000</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="tab-cont-inner2" style="display:none;">
-                                                <div class="tbl-box mh">
-                                                    <table>
-                                                        <colgroup>
-                                                            <col width="18%">
-                                                            <col width="auto">
-                                                            <col width="18%">
-                                                        </colgroup>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>지점</th>
-                                                                <th>딜리버리 지역</th>
-                                                                <th>연락처</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>인천</th>
-                                                                <td class="align-l">송도, 논현ㆍ서창, 부평ㆍ삼산, 청라ㆍ루원, 미추홀ㆍ연안,
-                                                                    중구ㆍ동구,
-                                                                    남동ㆍ연수</td>
-                                                                <td>032-881-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>부천</th>
-                                                                <td class="align-l">검단ㆍ마전ㆍ검암, 소사ㆍ심곡동ㆍ신중동ㆍ상동ㆍ송내ㆍ중동
-                                                                </td>
-                                                                <td>032-679-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>수원</th>
-                                                                <td class="align-l">광교ㆍ영통, 병점ㆍ봉담ㆍ비봉ㆍ동탄1, 북수원, 서수원,
-                                                                    수원역,
-                                                                    용인
-                                                                    기흥, 수지,
-                                                                    처인</td>
-                                                                <td>031-215-8181</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>분당</th>
-                                                                <td class="align-l">경기광주역ㆍ오포읍, 성남 수정ㆍ위례ㆍ중원, 초월ㆍ곤지암역,
-                                                                    판교ㆍ정자.
-                                                                    고등ㆍ세곡</td>
-                                                                <td>031-701-8007</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>안양</th>
-                                                                <td class="align-l">과천, 광명, 군포ㆍ의왕, 안양 동안구ㆍ만안구</td>
-                                                                <td>031-454-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>안산</th>
-                                                                <td class="align-l">시흥, 화성새솔동, 안산시 단원구ㆍ상록수</td>
-                                                                <td>031-407-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>일산</th>
-                                                                <td class="align-l">고양(삼송), 김포(고촌), 김포(장기), 파주(문산),
-                                                                    파주(운정),
-                                                                    김포(구래), 고양(한국항공대), 일산(고양종합터미널)</td>
-                                                                <td>031-814-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>평택</th>
-                                                                <td class="align-l">공도터미널, 안성터미널, 안중터미널, 지제역, 진위역,
-                                                                    고덕,
-                                                                    청북,
-                                                                    포승, 팽성, 평택대, 중앙대, 송탄역, 고덕동</td>
-                                                                <td>031-667-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>오산</th>
-                                                                <td class="align-l">동탄2ㆍ향남, 마도ㆍ서신ㆍ송산, 양감ㆍ팔탄,
-                                                                    장안ㆍ우정ㆍ남양,
-                                                                    오산대,
-                                                                    한신대, 남사읍ㆍ이동읍</td>
-                                                                <td>031-373-8006</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>원주</th>
-                                                                <td class="align-l">기업ㆍ혁신도시, 만종KTX역, 문막, 서원주역, 여주,
-                                                                    원주공항,
-                                                                    원주역, 제천, 횡성
-                                                                </td>
-                                                                <td>033-764-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>의정부</th>
-                                                                <td class="align-l">양주역, 의정부역, 구리역, 다산역, 별내역, 민락지구,
-                                                                    고산지구,
-                                                                    포천시외버스터미널</td>
-                                                                <td>031-852-8003</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>강릉</th>
-                                                                <td class="align-l">강릉 경포</td>
-                                                                <td>033-642-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>속초</th>
-                                                                <td class="align-l">간성터미널, 속초버스터미널, 양양터미널ㆍ공항</td>
-                                                                <td>033-632-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>춘천</th>
-                                                                <td class="align-l">가평터미널, 가평역, 양구터미널, 화천터미널</td>
-                                                                <td>033-243-8000</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="tab-cont-inner2" style="display:none;">
-                                                <div class="tbl-box mh">
-                                                    <table>
-                                                        <colgroup>
-                                                            <col width="18%">
-                                                            <col width="auto">
-                                                            <col width="18%">
-                                                        </colgroup>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>지점</th>
-                                                                <th>딜리버리 지역</th>
-                                                                <th>연락처</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>경주</th>
-                                                                <td class="align-l">경주시외버스터미널, 황리단길, 광명동</td>
-                                                                <td>054-746-8001</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>구미</th>
-                                                                <td class="align-l">구미역, 금오공대, 구미대, 경운대, 금오산, 진평
-                                                                    파출소, 옥계
-                                                                    사거리, 구미시청, 상모사곡동</td>
-                                                                <td>054-475-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>김천구미KTX</th>
-                                                                <td class="align-l">김천역</td>
-                                                                <td>054-434-8002</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>동대구</th>
-                                                                <td class="align-l">경북대, 삼성창조캠퍼스, 대구공항, 대구역,
-                                                                    서대구KTX역,
-                                                                    인터불고호텔, 인터불고호텔
-                                                                    엑스코</td>
-                                                                <td>053-611-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>진주</th>
-                                                                <td class="align-l">사천공항, 진주KTX역, 진주경남서부청사, 진주 이마트,
-                                                                    진주혁신도시,
-                                                                    고성군, 삼천포, 산청군</td>
-                                                                <td>055-753-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>창원</th>
-                                                                <td class="align-l">롯데마트 진해점, 롯데백화점 창원점, 마산KTX역,
-                                                                    성산구,
-                                                                    창원시외버스터미널,
-                                                                    창원중앙KTX역</td>
-                                                                <td>055-295-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>포항KTX</th>
-                                                                <td class="align-l">포항시외버스터미널, 포항공항</td>
-                                                                <td>054-278-8000</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="tab-cont-inner2" style="display:none;">
-                                                <div class="tbl-box mh">
-                                                    <table>
-                                                        <colgroup>
-                                                            <col width="18%">
-                                                            <col width="auto">
-                                                            <col width="18%">
-                                                        </colgroup>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>지점</th>
-                                                                <th>딜리버리 지역</th>
-                                                                <th>연락처</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>거제</th>
-                                                                <td class="align-l">거제보건소, 롯데마트 거제점, 홈플러스 거제점, 롯데마트
-                                                                    통영점,
-                                                                    고현버스터미널, 거제시 아주동ㆍ옥포동</td>
-                                                                <td>055-637-8009</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>김해공항</th>
-                                                                <td class="align-l">양산시, 부산 강서구ㆍ북구ㆍ사상구ㆍ사하구, 김해장유,
-                                                                    김해장유외
-                                                                </td>
-                                                                <td>051-941-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>부산역</th>
-                                                                <td class="align-l">부산 동구ㆍ서구ㆍ중구ㆍ부산진구ㆍ영도구ㆍ연제구, 롯데호텔서면
-                                                                </td>
-                                                                <td>051-442-0091</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>해운대</th>
-                                                                <td class="align-l">해운대구ㆍ동래구ㆍ 남구ㆍ금정구ㆍ수영구ㆍ부산시그니엘</td>
-                                                                <td>051-744-6160</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>울산KTX</th>
-                                                                <td class="align-l">언양시외버스터미널, 온양읍 행정복지센터, 울산과학기술원,
-                                                                    울산대공원 남문
-                                                                </td>
-                                                                <td>052-254-8050</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>울산공항</th>
-                                                                <td class="align-l">롯데호텔 울산, 서부패밀리아파트, 신라스테이 울산,
-                                                                    울산태화강역,
-                                                                    울산
-                                                                    남구ㆍ북구ㆍ중구ㆍ동구, 울산대공원 남문</td>
-                                                                <td>052-293-8000</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="tab-cont-inner2" style="display:none;">
-                                                <div class="tbl-box mh">
-                                                    <table>
-                                                        <colgroup>
-                                                            <col width="18%">
-                                                            <col width="auto">
-                                                            <col width="18%">
-                                                        </colgroup>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>지점</th>
-                                                                <th>딜리버리 지역</th>
-                                                                <th>연락처</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>광주</th>
-                                                                <td class="align-l">각화ㆍ내남ㆍ본촌ㆍ용두, 광주과학기술원, 광주종합버스터미널,
-                                                                    나주역,
-                                                                    동광주, 롯데아울렛
-                                                                    수완점, 신용ㆍ삼각ㆍ효천ㆍ행암, 양산ㆍ월남ㆍ일곡ㆍ임암, 전남대, 조선대</td>
-                                                                <td>062-943-8001</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>군산</th>
-                                                                <td class="align-l">군산공항, 군산역, 군산터미널, 김제, 부안, 서천ㆍ장향,
-                                                                    오식도(군산산업단지)
-                                                                </td>
-                                                                <td>063-452-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>목포</th>
-                                                                <td class="align-l">목포종합버스터미널, 무안공항</td>
-                                                                <td>061-274-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>순천KTX</th>
-                                                                <td class="align-l">구례역, 순천버스터미널</td>
-                                                                <td>061-724-8031</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>익산KTX</th>
-                                                                <td class="align-l">익산 원광대</td>
-                                                                <td>063-851-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>전주KTX</th>
-                                                                <td class="align-l">전북대(서신,팔복), 전북도청(삼천,평화),
-                                                                    전주버스터미널,
-                                                                    전주한옥마을, 전주혁신도시
-                                                                </td>
-                                                                <td>063-245-8000</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="tab-cont-inner2" style="display:none;">
-                                                <div class="tbl-box mh">
-                                                    <table>
-                                                        <colgroup>
-                                                            <col width="17%">
-                                                            <col width="auto">
-                                                            <col width="17%">
-                                                        </colgroup>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>지점</th>
-                                                                <th>딜리버리 지역</th>
-                                                                <th>연락처</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>대전</th>
-                                                                <td class="align-l">대전역, 유성, 세종, 오송역, 조치원역, 신탄진역,
-                                                                    옥천역,
-                                                                    논산역,
-                                                                    계룡역,
-                                                                    공주터미널, 금산터미널, 대전복합터미널, 마전(추부)터미널</td>
-                                                                <td>042-584-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>서산</th>
-                                                                <td class="align-l">서산, 당진, 대산, 태안시내, 서산터미널</td>
-                                                                <td>041-855-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>천안</th>
-                                                                <td class="align-l">단국대</td>
-                                                                <td>041-563-8000</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>천안아산</th>
-                                                                <td class="align-l">순천향대, 호서대학교 아산캠퍼스</td>
-                                                                <td>041-549-0030</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>청주</th>
-                                                                <td class="align-l">청주국제공항</td>
-                                                                <td>043-213-8000</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                        <div class="tab-pane fade" id="contact2" role="tabpanel"
+                                            aria-labelledby="contact-tab2">
+                                            <table class="table table-bordered align-middle text-center">
+                                                <colgroup>
+                                                    <col width="18%">
+                                                    <col width="auto">
+                                                    <col width="18%">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>지점</th>
+                                                        <th>딜리버리 지역</th>
+                                                        <th>연락처</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>인천</th>
+                                                        <td class="align-l">송도, 논현ㆍ서창, 부평ㆍ삼산, 청라ㆍ루원, 미추홀ㆍ연안,
+                                                            중구ㆍ동구,
+                                                            남동ㆍ연수</td>
+                                                        <td>032-881-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>부천</th>
+                                                        <td class="align-l">검단ㆍ마전ㆍ검암, 소사ㆍ심곡동ㆍ신중동ㆍ상동ㆍ송내ㆍ중동
+                                                        </td>
+                                                        <td>032-679-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>수원</th>
+                                                        <td class="align-l">광교ㆍ영통, 병점ㆍ봉담ㆍ비봉ㆍ동탄1, 북수원, 서수원,
+                                                            수원역,
+                                                            용인
+                                                            기흥, 수지,
+                                                            처인</td>
+                                                        <td>031-215-8181</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>분당</th>
+                                                        <td class="align-l">경기광주역ㆍ오포읍, 성남 수정ㆍ위례ㆍ중원, 초월ㆍ곤지암역,
+                                                            판교ㆍ정자.
+                                                            고등ㆍ세곡</td>
+                                                        <td>031-701-8007</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>안양</th>
+                                                        <td class="align-l">과천, 광명, 군포ㆍ의왕, 안양 동안구ㆍ만안구</td>
+                                                        <td>031-454-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>안산</th>
+                                                        <td class="align-l">시흥, 화성새솔동, 안산시 단원구ㆍ상록수</td>
+                                                        <td>031-407-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>일산</th>
+                                                        <td class="align-l">고양(삼송), 김포(고촌), 김포(장기), 파주(문산),
+                                                            파주(운정),
+                                                            김포(구래), 고양(한국항공대), 일산(고양종합터미널)</td>
+                                                        <td>031-814-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>평택</th>
+                                                        <td class="align-l">공도터미널, 안성터미널, 안중터미널, 지제역, 진위역,
+                                                            고덕,
+                                                            청북,
+                                                            포승, 팽성, 평택대, 중앙대, 송탄역, 고덕동</td>
+                                                        <td>031-667-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>오산</th>
+                                                        <td class="align-l">동탄2ㆍ향남, 마도ㆍ서신ㆍ송산, 양감ㆍ팔탄,
+                                                            장안ㆍ우정ㆍ남양,
+                                                            오산대,
+                                                            한신대, 남사읍ㆍ이동읍</td>
+                                                        <td>031-373-8006</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>원주</th>
+                                                        <td class="align-l">기업ㆍ혁신도시, 만종KTX역, 문막, 서원주역, 여주,
+                                                            원주공항,
+                                                            원주역, 제천, 횡성
+                                                        </td>
+                                                        <td>033-764-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>의정부</th>
+                                                        <td class="align-l">양주역, 의정부역, 구리역, 다산역, 별내역, 민락지구,
+                                                            고산지구,
+                                                            포천시외버스터미널</td>
+                                                        <td>031-852-8003</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>강릉</th>
+                                                        <td class="align-l">강릉 경포</td>
+                                                        <td>033-642-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>속초</th>
+                                                        <td class="align-l">간성터미널, 속초버스터미널, 양양터미널ㆍ공항</td>
+                                                        <td>033-632-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>춘천</th>
+                                                        <td class="align-l">가평터미널, 가평역, 양구터미널, 화천터미널</td>
+                                                        <td>033-243-8000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade" id="contact3" role="tabpanel"
+                                            aria-labelledby="contact-tab3">
+                                            <table class="table table-bordered align-middle text-center">
+                                                <colgroup>
+                                                    <col width="18%">
+                                                    <col width="auto">
+                                                    <col width="18%">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>지점</th>
+                                                        <th>딜리버리 지역</th>
+                                                        <th>연락처</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>경주</th>
+                                                        <td class="align-l">경주시외버스터미널, 황리단길, 광명동</td>
+                                                        <td>054-746-8001</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>구미</th>
+                                                        <td class="align-l">구미역, 금오공대, 구미대, 경운대, 금오산, 진평
+                                                            파출소, 옥계
+                                                            사거리, 구미시청, 상모사곡동</td>
+                                                        <td>054-475-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>김천구미KTX</th>
+                                                        <td class="align-l">김천역</td>
+                                                        <td>054-434-8002</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>동대구</th>
+                                                        <td class="align-l">경북대, 삼성창조캠퍼스, 대구공항, 대구역,
+                                                            서대구KTX역,
+                                                            인터불고호텔, 인터불고호텔
+                                                            엑스코</td>
+                                                        <td>053-611-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>진주</th>
+                                                        <td class="align-l">사천공항, 진주KTX역, 진주경남서부청사, 진주 이마트,
+                                                            진주혁신도시,
+                                                            고성군, 삼천포, 산청군</td>
+                                                        <td>055-753-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>창원</th>
+                                                        <td class="align-l">롯데마트 진해점, 롯데백화점 창원점, 마산KTX역,
+                                                            성산구,
+                                                            창원시외버스터미널,
+                                                            창원중앙KTX역</td>
+                                                        <td>055-295-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>포항KTX</th>
+                                                        <td class="align-l">포항시외버스터미널, 포항공항</td>
+                                                        <td>054-278-8000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade show" id="contact4" role="tabpanel"
+                                            aria-labelledby="contact-tab4">
+                                            <table class="table table-bordered align-middle text-center">
+                                                <colgroup>
+                                                    <col width="18%">
+                                                    <col width="auto">
+                                                    <col width="18%">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>지점</th>
+                                                        <th>딜리버리 지역</th>
+                                                        <th>연락처</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>거제</th>
+                                                        <td class="align-l">거제보건소, 롯데마트 거제점, 홈플러스 거제점, 롯데마트
+                                                            통영점,
+                                                            고현버스터미널, 거제시 아주동ㆍ옥포동</td>
+                                                        <td>055-637-8009</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>김해공항</th>
+                                                        <td class="align-l">양산시, 부산 강서구ㆍ북구ㆍ사상구ㆍ사하구, 김해장유,
+                                                            김해장유외
+                                                        </td>
+                                                        <td>051-941-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>부산역</th>
+                                                        <td class="align-l">부산 동구ㆍ서구ㆍ중구ㆍ부산진구ㆍ영도구ㆍ연제구, 롯데호텔서면
+                                                        </td>
+                                                        <td>051-442-0091</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>해운대</th>
+                                                        <td class="align-l">해운대구ㆍ동래구ㆍ 남구ㆍ금정구ㆍ수영구ㆍ부산시그니엘</td>
+                                                        <td>051-744-6160</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>울산KTX</th>
+                                                        <td class="align-l">언양시외버스터미널, 온양읍 행정복지센터, 울산과학기술원,
+                                                            울산대공원 남문
+                                                        </td>
+                                                        <td>052-254-8050</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>울산공항</th>
+                                                        <td class="align-l">롯데호텔 울산, 서부패밀리아파트, 신라스테이 울산,
+                                                            울산태화강역,
+                                                            울산
+                                                            남구ㆍ북구ㆍ중구ㆍ동구, 울산대공원 남문</td>
+                                                        <td>052-293-8000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade" id="contact5" role="tabpanel"
+                                            aria-labelledby="contact-tab5">
+                                            <table class="table table-bordered align-middle text-center">
+                                                <colgroup>
+                                                    <col width="18%">
+                                                    <col width="auto">
+                                                    <col width="18%">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>지점</th>
+                                                        <th>딜리버리 지역</th>
+                                                        <th>연락처</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>광주</th>
+                                                        <td class="align-l">각화ㆍ내남ㆍ본촌ㆍ용두, 광주과학기술원, 광주종합버스터미널,
+                                                            나주역,
+                                                            동광주, 롯데아울렛
+                                                            수완점, 신용ㆍ삼각ㆍ효천ㆍ행암, 양산ㆍ월남ㆍ일곡ㆍ임암, 전남대, 조선대</td>
+                                                        <td>062-943-8001</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>군산</th>
+                                                        <td class="align-l">군산공항, 군산역, 군산터미널, 김제, 부안, 서천ㆍ장향,
+                                                            오식도(군산산업단지)
+                                                        </td>
+                                                        <td>063-452-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>목포</th>
+                                                        <td class="align-l">목포종합버스터미널, 무안공항</td>
+                                                        <td>061-274-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>순천KTX</th>
+                                                        <td class="align-l">구례역, 순천버스터미널</td>
+                                                        <td>061-724-8031</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>익산KTX</th>
+                                                        <td class="align-l">익산 원광대</td>
+                                                        <td>063-851-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>전주KTX</th>
+                                                        <td class="align-l">전북대(서신,팔복), 전북도청(삼천,평화),
+                                                            전주버스터미널,
+                                                            전주한옥마을, 전주혁신도시
+                                                        </td>
+                                                        <td>063-245-8000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade" id="contact6" role="tabpanel"
+                                            aria-labelledby="contact-tab6">
+                                            <table class="table table-bordered align-middle text-center">
+                                                <colgroup>
+                                                    <col width="17%">
+                                                    <col width="auto">
+                                                    <col width="17%">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>지점</th>
+                                                        <th>딜리버리 지역</th>
+                                                        <th>연락처</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>대전</th>
+                                                        <td class="align-l">대전역, 유성, 세종, 오송역, 조치원역, 신탄진역,
+                                                            옥천역,
+                                                            논산역,
+                                                            계룡역,
+                                                            공주터미널, 금산터미널, 대전복합터미널, 마전(추부)터미널</td>
+                                                        <td>042-584-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>서산</th>
+                                                        <td class="align-l">서산, 당진, 대산, 태안시내, 서산터미널</td>
+                                                        <td>041-855-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>천안</th>
+                                                        <td class="align-l">단국대</td>
+                                                        <td>041-563-8000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>천안아산</th>
+                                                        <td class="align-l">순천향대, 호서대학교 아산캠퍼스</td>
+                                                        <td>041-549-0030</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>청주</th>
+                                                        <td class="align-l">청주국제공항</td>
+                                                        <td>043-213-8000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                     <div class="details">
-                                        <p class="tit" style="margin:30px 0 15px">유의 사항</p>
+                                        <p class="fw-bolder" style="margin:30px 0 15px">유의 사항</p>
                                         <ul class="lst dot">
                                             <li>딜리버리 서비스는 예약자와 임차인이 동일하여야 하며, 상이할 경우 대여가 제한될 수 있습니다.</li>
                                             <li>서비스 이용 시 일부 지점의 경우 배송시간이 제한될 수 있습니다.</li>
@@ -798,9 +796,9 @@
                                                 (사전 연락하지 않는 경우 서비스 이용에 제한이 있을 수 있습니다.)</li>
                                         </ul>
                                     </div>
-                                    <div class="btn-area">
+                                    <div class="text-center m-4">
                                         <a href="https://www.lotterentacar.net/hp/kor/reservation/step1.do?state=2&rentArea=1"
-                                            class="btn btn-white">딜리버리 예약하러 가기</a>
+                                            class="btn border fs-5"><b>딜리버리 예약하러 가기</b></a>
                                     </div>
                                 </div>
                             </section>
@@ -812,12 +810,12 @@
                                     <h2 class="fw-bolder">스마트 키박스</h2>
                                 </div>
                                 <div class="explain-cont smartkeyBox">
-                                    <div class="row section01">
-                                        <div class="left">
+                                    <div class="d-flex align-items-center mb-5">
+                                        <div class="flex-grow-1 ms-3">
                                             <h4 class="fw-bold mb-4">스마트 키박스란?</h4>
                                             <ul class="lst dot">
                                                 <li>스마트 키박스는 24시간 언제든지 비대면 대여와 반납이 가능한 회원 전용 서비스 입니다.
-                                                    <p class="txt-color-red">※ 서비스 이용 가능 시간은 지점별 상이할 수 있습니다. 자세한 내용은
+                                                    <p class="fs-6" style="color: #905dbe;">※ 서비스 이용 가능 시간은 지점별 상이할 수 있습니다.<br> 자세한 내용은
                                                         각
                                                         서비스
                                                         제공 지점으로
@@ -826,68 +824,67 @@
                                             </ul>
                                             <h4 class="fw-bold mb-4 mt30">이용 조건</h4>
                                             <ul class="lst dot">
-                                                <!--231213 삭제<li>지니카 회원</li>-->
                                                 <li>고객부담금 완전면제 가입 필수</li>
                                                 <li>사전체크인 완료</li>
                                                 <li>선결제 완료 고객</li>
                                             </ul>
                                         </div>
-                                        <div class="right">
+                                        <div class="flex-shrink-0">
                                             <img alt="" src="/images/img-smart01.png">
                                         </div>
                                     </div>
                                     <div class="row section02">
                                         <h4 class="fw-bold mb-4">서비스 이용 방법</h4>
                                         <div>
-                                            <img alt="" src="/images/img-smart02.png">
+                                            <img alt="" class="img-fluid" src="/images/img-smart02.png">
                                         </div>
                                     </div>
                                     <div class="row section03">
                                         <h4 class="fw-bold mb-4">예약 방법</h4>
-                                        <ol class="service-guide-list">
-                                            <li>
+                                        <ol class="service-guide-list row">
+                                            <li class="col-6">
                                                 <p class="tit">1. 회원 로그인</p>
                                                 <div class="img-box">
                                                     <img alt="" src="/images/img-smart-guide01.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">2. 스마트 키박스 서비스 운영 지점 선택</p>
                                                 <div class="img-box">
                                                     <img alt="" src="/images/img-smart-guide02.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">3. 서비스 이용 선택 및 예약 완료 (결제 완료)</p>
                                                 <div class="img-box">
                                                     <img alt="" src="/images/img-smart-guide03.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">4. 마이페이지 – 예약확인 이동</p>
                                                 <div class="img-box">
                                                     <img alt="" src="/images/img-smart-guide04.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">5. 서비스 이용 계약번호 선택</p>
                                                 <div class="img-box">
                                                     <img alt="" src="/images/img-smart-guide06.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">6. 사전체크인 선택</p>
                                                 <div class="img-box">
                                                     <img alt="" src="/images/img-smart-guide07.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">7. 추가 운전자 등록</p>
                                                 <div class="img-box">
                                                     <img alt="" src="/images/img-smart-guide08.png">
                                                 </div>
                                             </li>
-                                            <li>
+                                            <li class="col-6">
                                                 <p class="tit">8. 이용자 동의 항목 체크 후 확인</p>
                                                 <div class="img-box">
                                                     <img alt="" src="/images/img-smart-guide09.png">
@@ -898,9 +895,9 @@
                                     <div class="row section04">
                                         <h4 class="fw-bold mb-4">서비스 지점 안내</h4>
                                         <div class="tbl-box">
-                                            <div class="box-between">
-                                                <div class="box-between-col">
-                                                    <table class="td-align">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <table class="table align-middle text-center">
                                                         <caption></caption>
                                                         <thead>
                                                             <tr>
@@ -1044,8 +1041,8 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="box-between-col">
-                                                    <table class="td-align">
+                                                <div class="col">
+                                                    <table class="table align-middle text-center">
                                                         <caption></caption>
                                                         <thead>
                                                             <tr>
