@@ -27,36 +27,27 @@
     <link rel="stylesheet" type="text/css" href="/styles/content.css"/>
     <!-- 제이쿼리 -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        #registerForm {
+            padding: 30px;
+        }
+    </style>
 </head>
 <body>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
 
 
+    <div id="registerForm">
+        <h3>예약 등록</h3>
 
+        <form name="frmEvent" action="/business/consult/registerInsert.do">
 
+            오더 테이블 생성 후 내용 추가<br>
+            <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">등록하기</button>
 
-
-상담 등록
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </form>
+    </div>
 
 
     <!--------------------------------------------------하단---------------------------------------------------------->

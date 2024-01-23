@@ -10,9 +10,21 @@ CREATE TABLE COMMON_CODE -- 공통 코드 테이블
     REG_DATE        DATE NOT NULL,           -- 등록일시
     MOD_ID          VARCHAR2(20),            -- 수정자 (회원아이디)
     MOD_DATE        DATE                     -- 수정일시
-)
-
-
+);
+INSERT INTO COMMON_CODE ( CODE
+                        , CODE_NAME
+                        , GROUP_CODE
+                        , GROUP_CODE_NAME
+                        , DESCRIPTION
+                        , REG_ID
+                        , REG_DATE)
+VALUES ( 'LOC'
+       , '지역'
+       , NULL
+       , NULL
+       , '렌터카 지역'
+       , 'admin'
+       , SYSDATE)
 
 CREATE TABLE MEMBER -- 회원 테이블
 (
@@ -36,7 +48,7 @@ CREATE TABLE CAR -- 자량 테이블
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17) PRIMARY KEY, -- 차대번호
     CAR_TYPE_CODE             VARCHAR2(6) NOT NULL,     -- 차종코드 (공통코드 FK) 소형 준중형 중형 준대형 대형 ...
     CAR_NAME_CODE             VARCHAR2(6) NOT NULL,     -- 차량명코드 (공통코드 FK) 소나타, 스파크, k9 ..
-    FUEL_CODE                 VARCHAR2(6) NOT NULL,     -- 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
+    CAR_FUEL_CODE                 VARCHAR2(6) NOT NULL,     -- 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
     DELIVERY_DATE             DATE NOT NULL,            -- 출고일시
     COMPANY                   VARCHAR2(6) NOT NULL      -- 제조사 (공통코드 FK) 현대, 기아 ...
 )
