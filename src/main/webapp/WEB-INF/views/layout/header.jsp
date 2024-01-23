@@ -86,8 +86,8 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/info/noticeNewsMain.do">공지사항</a></li>
                     <li><a class="dropdown-item" href="/carlife/eventMain.do">이벤트</a></li>
-                    <li><a class="dropdown-item" href="/customer/faq.do">1:1 고객센터</a></li>
-                    <li><a class="dropdown-item" href="/customer/question.do">자주하는 질문</a></li>
+                    <li><a class="dropdown-item" href="/customer/question.do">1:1 고객센터</a></li>
+                    <li><a class="dropdown-item" href="/customer/faq.do">자주하는 질문</a></li>
                 </ul>
             </li>
         </ul>

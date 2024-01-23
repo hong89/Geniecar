@@ -59,8 +59,8 @@ CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블
 
 CREATE TABLE RENTAL_CAR_BRANCHS_CAR -- 렌터카 지점별 차량 테이블
 (
-    CAR_IDENTIFICATION_NUMBER VARCHAR2(17) PRIMARY KEY,      -- 차대번호 (자동차 FK) - 복합키 처리
-    RENTAL_CAR_BRANCH_NO      NUMBER(10) PRIMARY KEY,        -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
+    CAR_IDENTIFICATION_NUMBER VARCHAR2(17),                  -- 차대번호 (자동차 FK) - 복합키 처리
+    RENTAL_CAR_BRANCH_NO      NUMBER(10),                    -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
     RENTAL_STATUS_CODE        VARCHAR2(6) NOT NULL,          -- 렌트 상태 코드 (공통코드 FK) - 수리중, 가능, 폐차, 장기렌트 등등
     DEFAULT_COST              NUMBER(6) NOT NULL,            -- 기본 대여료 (10분 단위)
     DEFAULT_SALE_RATE         NUMBER(2) DEFAULT 50 NOT NULL, -- 기본 할인율
@@ -70,7 +70,8 @@ CREATE TABLE RENTAL_CAR_BRANCHS_CAR -- 렌터카 지점별 차량 테이블
     REG_ID                    VARCHAR2(20) NOT NULL,         -- 등록자 (회원아이디 FK)
     REG_DATE                  DATE    NOT NULL,              -- 등록일시
     MOD_ID                    VARCHAR2(20),                  -- 수정자 (회원아이디 FK)
-    MOD_DATE                  DATE                           -- 수정일시
+    MOD_DATE                  DATE,                          -- 수정일시
+    CONSTRAINT BRANCH_CAR_PK PRIMARY KEY (CAR_IDENTIFICATION_NUMBER, RENTAL_CAR_BRANCH_NO)
 )
 
 CREATE TABLE COUPON -- 쿠폰 테이블
@@ -89,10 +90,11 @@ CREATE TABLE COUPON -- 쿠폰 테이블
 
 CREATE TABLE MEMBER_COUPONS -- 회원 보유 쿠폰 테이블
 (
-    MEMBER_ID         VARCHAR2(20) PRIMARY KEY, -- 회원아이디 (회원아이디 FK)
-    COUPONE_SERIAL_NO VARCHAR2(14) PRIMARY KEY, -- 쿠폰 번호 (쿠폰 FK)
-    ISSUER_ID         VARCHAR2(20),             -- 발급자 (시스템이 주는 경우도 케이스도 생각하여 NULL 허용)
-    ISSUER_DATE       DATE NOT NULL             -- 발급일
+    MEMBER_ID         VARCHAR2(20),  -- 회원아이디 (회원아이디 FK) 복합키
+    COUPONE_SERIAL_NO VARCHAR2(14),  -- 쿠폰 번호 (쿠폰 FK) 복합키
+    ISSUER_ID         VARCHAR2(20),  -- 발급자 (시스템이 주는 경우도 케이스도 생각하여 NULL 허용)
+    ISSUER_DATE       DATE NOT NULL, -- 발급일
+    CONSTRAINT MEMBER_COUPONS_PK PRIMARY KEY (MEMBER_ID, COUPONE_SERIAL_NO)
 )
 
 CREATE TABLE POINT -- 포인트 테이블
