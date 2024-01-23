@@ -12,6 +12,8 @@ CREATE TABLE COMMON_CODE -- 공통 코드 테이블
     MOD_DATE        DATE                     -- 수정일시
 )
 
+
+
 CREATE TABLE MEMBER -- 회원 테이블
 (
     ID              VARCHAR2(20) PRIMARY KEY, -- 아이디
@@ -32,14 +34,14 @@ CREATE TABLE MEMBER -- 회원 테이블
 CREATE TABLE CAR -- 자량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17) PRIMARY KEY, -- 차대번호
-    CAR_TYPE_CODE             VARCHAR2(6) NOT NULL,     -- 차종코드 (공통코드 FK)
-    CAR_NAME_CODE             VARCHAR2(6) NOT NULL,     -- 차량명코드 (공통코드 FK)
-    FUEL_CODE                 VARCHAR2(6) NOT NULL,     -- 연료코드 (공통코드 FK)
+    CAR_TYPE_CODE             VARCHAR2(6) NOT NULL,     -- 차종코드 (공통코드 FK) 소형 준중형 중형 준대형 대형 ...
+    CAR_NAME_CODE             VARCHAR2(6) NOT NULL,     -- 차량명코드 (공통코드 FK) 소나타, 스파크, k9 ..
+    FUEL_CODE                 VARCHAR2(6) NOT NULL,     -- 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
     DELIVERY_DATE             DATE NOT NULL,            -- 출고일시
-    COMPANY                   VARCHAR2(6) NOT NULL      -- 제조사 (공통코드 FK)
+    COMPANY                   VARCHAR2(6) NOT NULL      -- 제조사 (공통코드 FK) 현대, 기아 ...
 )
 
-CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블
+CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블 (사업자 회원가입시 사용)
 (
     NO                NUMBER(10) PRIMARY KEY,       -- 렌터카 지점 NO (시퀀스)
     BRANCH_NAME       VARCHAR2(20) NOT NULL,        -- 렌터카 지점명
@@ -76,7 +78,7 @@ CREATE TABLE RENTAL_CAR_BRANCHS_CAR -- 렌터카 지점별 차량 테이블
 
 CREATE TABLE COUPON -- 쿠폰 테이블
 (
-    SERIAL_NO      VARCHAR2(14) PRIMARY KEY, -- 쿠폰 번호 (FORMAT: OOOO-OOOO-OOOO)
+    SERIAL_NO      VARCHAR2(14) PRIMARY KEY, -- 쿠폰 번호 (FORMAT: OOOO-OOO0O-OO0OO)
     NAME           VARCHAR2(100) NOT NULL,   -- 쿠폰명
     ABLE_REGION    VARCHAR2(6) NOT NULL,     -- 사용 가능 지역 (공통코드 FK)
     TYPE           VARCHAR2(6) NOT NULL,     -- 쿠폰 유형 (공통코드 FK)
@@ -128,10 +130,10 @@ CREATE TABLE BOARD -- 게시판 테이블
     HIT        NUMBER(8) DEFAULT 0 NOT NULL, -- 조회수
     TYPE_CODE  VARCHAR2(6) NOT NULL,         -- 게시판 타입 코드 (공통코드 FK)
     NOTICE_YN  CHAR(1) DEFAULT 'N' NOT NULL, -- 공지 유무
-    HASH_TAG   VARCHAR2(200),                -- 해시 태그
+    HASH_TAG   VARCHAR2(200),                -- 해시 태그 (해도 되고 안해도 되고)
     FILE_NO    NUMBER(20),                   -- 파일 번호
-    START_DATE DATE,                         -- 시작일자
-    END_DATE   DATE,                         -- 종료일자
+    START_DATE DATE,                         -- 시작일자 (이벤트에 사용)
+    END_DATE   DATE,                         -- 종료일자 (이벤트에 사용)
     REG_ID     VARCHAR2(20) NOT NULL,        -- 작성자
     REG_DATE   DATE,                         -- 작성일시
     MOD_ID     VARCHAR2(20),                 -- 수정자
@@ -140,15 +142,15 @@ CREATE TABLE BOARD -- 게시판 테이블
 
 CREATE TABLE FILE -- 파일 테이블
 (
-    FILE_NO      NUMBER(20) PRIMARY KEY, -- 파일 시퀀스
-    SEQ          NUMBER(3) PRIMARY KEY,  -- 파일 순서
-    SAVE_PATH    VARCHAR2(200),          -- 저장경로
-    SAVE_NAME    VARCHAR2(100),          -- 저장이름
-    FILE_NAME    VARCHAR2(200),          -- 파일이름
-    EXTENSION    VARCHAR2(10),           -- 파일 확장자
-    FILE_SIZE    NUMBER(20),             -- 파일 크기
-    DOWNLOAD_KEY VARCHAR2(36),           -- 다운로드 키
-    REG_ID       VARCHAR2(20) NOT NULL,  -- 등록자 (회원아이디 FK)
-    REG_DATE     DATE                    -- 등록일
+    FILE_NO   NUMBER(20),            -- 파일 시퀀스 (복합키)
+    SEQ       NUMBER(3),             -- 파일 순서 (복합키)
+    SAVE_PATH VARCHAR2(200),         -- 저장경로
+    SAVE_NAME VARCHAR2(100),         -- 저장이름
+    FILE_NAME VARCHAR2(200),         -- 파일이름
+    EXTENSION VARCHAR2(10),          -- 파일 확장자
+    FILE_SIZE NUMBER(20),            -- 파일 크기
+    REG_ID    VARCHAR2(20) NOT NULL, -- 등록자 (회원아이디 FK)
+    REG_DATE  DATE,                  -- 등록일
+    CONSTRAINT FILE_FK PRIMARY KEY (FILE_NO, SEQ)
 )
 -- 예약 정보 테이블 추가 예정
