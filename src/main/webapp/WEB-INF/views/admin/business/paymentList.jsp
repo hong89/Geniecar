@@ -31,10 +31,115 @@
 <body>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
-
-
-    결제 내역 목록
-
+<div class="p-5">
+    <div class="inner-type2">
+        <section class="text-center">
+            <h1 class="pb-5 tit">결제 내역 목록</h1>
+        </section>
+                <table class="pt-5 table caption-top">
+                    <thead>
+                        <tr>
+                            <td align="center"scope="col">No.</td>
+                            <td align="center"scope="col"><strong>모델명</strong></td>
+                            <td align="center"scope="col"><strong>작성자</strong></td>
+                            <td align="center"scope="col"><strong>결제종류</strong></td>
+                            <td align="center"scope="col"><strong>결제일</strong></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center">10</td>
+                            <td align="center"><a href="#">제네시스</a></td>
+                            <td align="center">최윤서</td>
+                            <td align="center">단기</td>
+                            <td align="center">2023.12.31</td>
+                        </tr>
+                        <tr>
+                            <td align="center">9</td>
+                            <td align="center"><a href="#">카니발</a></td>
+                            <td align="center">강화순</td>
+                            <td align="center">단기</td>
+                            <td align="center">2023.11.28</td>
+                        </tr>
+                        <tr>
+                            <td align="center">8</td>
+                            <td align="center"><a href="#">모닝</a></td>
+                            <td align="center">임재원</td>
+                            <td align="center">단기</td>
+                            <td align="center">2023.10.25</td>
+                        </tr>
+                        <tr>
+                            <td align="center">7</td>
+                            <td align="center"><a href="#">렉서스</a></td>
+                            <td align="center">박혜영</td>
+                            <td align="center">단기</td>
+                            <td align="center">2023.09.14</td>
+                        </tr>
+                        <tr>
+                            <td align="center">10</td>
+                            <td align="center"><a href="#">토레스</a></td>
+                            <td align="center">한상미</td>
+                            <td align="center">월 단기</td>
+                            <td align="center">2023.12.31</td>
+                        </tr>
+                        <tr>
+                            <td align="center">9</td>
+                            <td align="center"><a href="#">올란도</a></td>
+                            <td align="center">강지은</td>
+                            <td align="center">월 단기</td>
+                            <td align="center">2023.11.28</td>
+                        </tr>
+                        <tr>
+                            <td align="center">8</td>
+                            <td align="center"><a href="#">소나타</a></td>
+                            <td align="center">이세용</td>
+                            <td align="center">월 단기</td>
+                            <td align="center">2023.10.25</td>
+                        </tr>
+                        <tr>
+                            <td align="center">10</td>
+                            <td align="center"><a href="#">스파크</a></td>
+                            <td align="center">김재화</td>
+                            <td align="center">출퇴근</td>
+                            <td align="center">2023.12.31</td>
+                        </tr>
+                        <tr>
+                            <td align="center">9</td>
+                            <td align="center"><a href="#">제네시스</a></td>
+                            <td align="center">안승권</td>
+                            <td align="center">출퇴근</td>
+                            <td align="center">2023.11.28</td>
+                        </tr>
+                        <tr>
+                            <td align="center">8</td>
+                            <td align="center"><a href="#">소나타</a></td>
+                            <td align="center">신유진</td>
+                            <td align="center">출퇴근</td>
+                            <td align="center">2023.10.25</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+    </div>
+</div>
 
 
 

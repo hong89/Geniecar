@@ -46,7 +46,7 @@
         <li class="list-group-item"><p>렌터카 예약 관리</p>
             <p><a href="/admin/rental/shortRent.do">단기 렌터카 관리</a></p>
             <p><a href="/admin/rental/monthRent.do">월단기 렌터카 관리</a></p>
-            <p><a href="/admin/rental/monthRent.do">월단기 렌터카 관리</a></p>
+            <p><a href="/admin/rental/commuteRent.do">출퇴근 렌터카 관리</a></p>
         </li>
         <li class="list-group-item"><p>게시판 관리</p>
             <p><a href="/admin/board/list.do">공지사항 목록</a></p>
