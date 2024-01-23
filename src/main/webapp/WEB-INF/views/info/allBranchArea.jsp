@@ -62,7 +62,7 @@
     </div>
     <div class="col-3">
         <div class="d-flex">
-            <button type="submit" class="btn btn-primary" style="background-color: #41087c;">검색</button>
+            <button type="submit" class="btn" style="background-color: #41087c; color: white;">검색</button>
         </div>
     </div>
     <div class="col-3 text-right">
