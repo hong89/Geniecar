@@ -43,29 +43,25 @@
 <body>
 <div>
     <ul class="list-group">
-        <li class="list-group-item"><p>차량 등록</p>
-            <p><a href="/business/car/list.do">차량 목록</a></p>
-            <p><a href="/business/car/register.do">차량 등록</a></p>
+        <li class="list-group-item"><p>렌터카 예약 관리</p>
+            <p><a href="/admin/rental/shortRent.do">단기 렌터카 관리</a></p>
+            <p><a href="/admin/rental/monthRent.do">월단기 렌터카 관리</a></p>
+            <p><a href="/admin/rental/monthRent.do">월단기 렌터카 관리</a></p>
         </li>
-        <li class="list-group-item"><p>예약 목록</p>
-            <p><a href="/business/rental/shortRent.do">단기 렌터카</a></p>
-            <p><a href="/business/rental/monthRent.do">월단기 렌터카</a></p>
-            <p><a href="/business/rental/commuteRent.do">출퇴근 렌터카</a></p>
+        <li class="list-group-item"><p>게시판 관리</p>
+            <p><a href="/admin/board/list.do">공지사항 목록</a></p>
+            <p><a href="/admin/board/register.do">공지사항 등록</a></p>
+            <p><a href="/admin/board/faqList.do">FAQ 목록</a></p>
         </li>
-        <li class="list-group-item"><p>이벤트</p>
-            <p><a href="/business/event/list.do">이벤트 목록</a></p>
-            <p><a href="/business/event/register.do">이벤트 등록</a></p>
+        <li class="list-group-item"><p>회원 관리</p>
+            <p><a href="/admin/member/userList.do">회원 목록</a></p>
+            <p><a href="/admin/member/businessList.do">사업자 목록</a></p>
         </li>
-        <li class="list-group-item"><p>상담 내역</p>
-            <p><a href="/business/consult/one.do">1:1 내역</a></p>
-            <p><a href="/business/consult/review.do">이용 후기 확인</a></p>
-            <p><a href="/business/consult/consult.do">상담 내역</a></p>
-            <p><a href="/business/consult/register.do">상담 내역 등록</a></p>
-        </li>
-        <li class="list-group-item"><p>주문 결제</p>
-            <p><a href="/business/payment/shortRent.do">단기 결제 내역</a></p>
-            <p><a href="/business/payment/monthRent.do">월단기 결제 내역</a></p>
-            <p><a href="/business/payment/commuteRent.do">출퇴근 결제 내역</a></p>
+        <li class="list-group-item"><p>사업자 관리</p>
+            <p><a href="/admin/business/eventList.do">사업자 이벤트 목록</a></p>
+            <p><a href="/admin/business/reviewList.do">이용 후기 목록</a></p>
+            <p><a href="/admin/business/qnaList.do">Q&A 목록</a></p>
+            <p><a href="/admin/business/paymentList.do">결제 내역 목록</a></p>
         </li>
     </ul>
 </div>
