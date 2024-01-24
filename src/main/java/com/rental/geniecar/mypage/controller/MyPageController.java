@@ -20,6 +20,12 @@ public class MyPageController {
         return "mypage/reservation";
     }
 	
+	@GetMapping("/reservationDetail.do")
+	public String reservationDetail(){
+		
+        return "mypage/reservationDetail";
+    }
+	
 	@GetMapping("/reservationMonth.do")
 	public String reservationMonth(){
 		
@@ -43,6 +49,12 @@ public class MyPageController {
 		
         return "mypage/coupon";
     }
+
+	@GetMapping("/license.do")
+	public String license() {
+		
+		return "mypage/license";
+	}
 		
 	@GetMapping("/member/modify.do")
 	public String memberModify(){
@@ -61,5 +73,4 @@ public class MyPageController {
 		
         return "mypage/member/leave";
     }
-
 }

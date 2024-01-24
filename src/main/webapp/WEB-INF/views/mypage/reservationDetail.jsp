@@ -167,7 +167,7 @@
 						</aside>
 						<article class="p-5 container-fluid">
 							<div class="border-bottom pb-5">
-                                <h2 class="fw-bolder">비밀번호 변경</h2>
+                                <h2 class="fw-bolder">단기 렌터카예약</h2>
                             </div>
 						</article>
 					</div>

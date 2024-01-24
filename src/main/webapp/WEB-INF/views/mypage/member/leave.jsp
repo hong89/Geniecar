@@ -43,6 +43,10 @@
 						list-style: none;
 					}
 
+					.btn-goLink{
+						color: #f8f7fd;
+					}
+
 					.underline {
 						color: #f8f7fd;
 					}
@@ -72,18 +76,24 @@
 						</nav>
 					</div>
 
+
 					<header>
+					<div id="mypageheader" class="mb-5">
 						<section class="text-center pb-4">
 							<h1 class="fw-bolder">마이페이지</h1>
 							<p>지니카 회원을 위한 다양한 혜택이 준비되어 있습니다.</p>
 						</section>
 						<div class="mypage-header p-5">
 							<div class="myInfos-area">
-								<div class="border-bottom mb-5">
-									<h3 class="mb-4">
+								<div class="border-bottom mb-5 row">
+									<h3 class="mb-4 col">
 										<strong class="name" id='commonMemberName'>홍경영님</strong>
 										<span>일반회원&nbsp;</span>
 									</h3>
+									<div class="btns text-end col">
+										<a href="/mypage/license.do" class="btn-goLink me-3">운전면허증</a>
+										<a href="/mypage/creditCard.do" class="btn-goLink">결제카드</a>
+									</div>
 								</div>
 								<ul class="row text-center">
 									<li class="col">
@@ -97,14 +107,8 @@
 										<a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">0장</a>
 									</li>
 									<li class="col">
-										<img alt="" class="mb-3" src="/images/icons/ico-myPannel04.png">
-										<p>무료이용권</p>
-										<a href="/mypage/coupon.do?tab=tab_2" class="underline"
-											id="commonMemberShipCoupon">0장</a>
-									</li>
-									<li class="col">
 										<img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
-										<p>//// 내역</p>
+										<p>결제 내역</p>
 										<a href="/mypage/carSeller.do" class="underline"
 											id="commonMyCarSellCount">0건</a>
 									</li>
@@ -118,67 +122,44 @@
 							</div>
 						</div>
 					</header>
+
 					<div class="d-flex flex-row bd-highlight mb-3">
 						<aside class="p-3 fs-5">
 							<ul class="nav flex-column">
-								<li class="nav-item">
+								<li class="nav-item mb-4">
 									<a href="/mypage/reservation.do" class="nav-link" data-link-area="마이페이지"
 										data-link-name="메뉴" data-link-text="단기렌터카 예약">단기렌터카 예약</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item mb-4">
 									<a href="/mypage/reservationMonth.do" class="nav-link" data-link-area="마이페이지"
 										data-link-name="메뉴" data-link-text="월간단기렌터카 예약">월간단기렌터카 예약</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item mb-4">
 									<a href="/mypage/rentCarConsulting.do" class="nav-link">렌터카 상담 </a>
 								</li>
 
-								<li class="nav-item">
+								<li class="nav-item mb-4">
 									<a href="/mypage/point.do" class="nav-link">포인트</a>
 								</li>
-								<li class="nav-item">
-									<a href="/mypage/coupon.do" class="nav-link">할인쿠폰 및 무료이용권 </a>
-									<ul>
-										<li>
-											<a href="/mypage/coupon.do" class="nav-link">할인쿠폰 </a>
-										</li>
-										<li>
-											<a href="/mypage/coupon.do?tab=tab_2" class="nav-link">무료이용권 </a>
-										</li>
-									</ul>
+								<li class="nav-item mb-4">
+									<a href="/mypage/coupon.do" class="nav-link">할인쿠폰</a>
 								</li>
-
-								<li>
-									<a href="/mypage/creditCard.do" class="nav-link">결제카드</a>
+								<li class="nav-item mb-4">
+									<a href="/mypage/license.do" class="nav-link">운전면허증</a>
 								</li>
-
-								<li>
-									<a href="/mypage/interestCar.do" class="nav-link">나의 부가 정보</a>
-									<ul>
-										<li>
-											<a href="/mypage/interestCar.do" class="nav-link">나의 관심 차종</a>
-										</li>
-										<li>
-											<a href="/mypage/mypick.do" class="nav-link">나의 찜 차량</a>
-										</li>
-										<li>
-											<a href="/mypage/branch.do" class="nav-link">나의 관심 지점</a>
-										</li>
-									</ul>
+								<li class="nav-item mb-4">
+									<a href="/customer/question.do" class="nav-link">1:1 고객센터</a>
 								</li>
-								<li>
-									<a href="" class="nav-link">고객센터</a>
-								</li>
-								<li>
+								<li class="nav-item mb-4">
 									<a href="#" class="nav-link">회원</a>
 									<ul>
-										<li>
+										<li class="nav-item mb-4">
 											<a href="/mypage/member/modify.do" class="nav-link">회원정보 변경</a>
 										</li>
-										<li>
+										<li class="nav-item mb-4">
 											<a href="/mypage/member/password.do" class="nav-link">비밀번호 변경</a>
 										</li>
-										<li>
+										<li class="nav-item mb-4">
 											<a href="/mypage/member/leave.do" class="nav-link">회원탈퇴</a>
 										</li>
 									</ul>
@@ -186,50 +167,43 @@
 							</ul>
 						</aside>
 						<article class="p-5 container-fluid">
-							<div class="container" data-id="template-container">
-                                <div class="mypage-body-cont leave-lpoint">
-                                    <div class="mypage-body-cont-header">
-                                        <div class="tit-area">
-                                            <h4 class="tit">회원탈퇴</h4>
-                                        </div>
-                                    </div>
-                                    <div class="gray-noti-section">
-                                        <h3 class="tit">그동안 롯데렌터카를 이용해 주셔서 감사합니다.</h3>
-                                        <p class="sub-txt">유의사항을 확인바랍니다.</p>
-                                    </div>
-                                    <ul class="lst dot mt-20">
-                                        <li>최초 가입 시 이용약관에 명시되어 있듯이 고객님의 가입정보는 탈퇴하셔도 추후 발생할 후 있는 사항(교통범칙금 및 법규위반, 가입포인트 외) 으로
-                                            인해 지속적으로 보존되오니 참고하시기 바랍니다.</li>
-                                        <li>회원탈퇴를 하시면 고객님께서 보유하고 계신 포인트는 영구히 삭제됩니다.</li>
-                                        <li>자진탈퇴 (회원자격상실제외) 후 신규가입은 L.POINT 회원으로 48시간 이후 가능합니다.</li>
-                                        <li class="txt-color-red">그래도 탈퇴를 원하시면 아래의 사항을 기재하여 주시기 바랍니다. 감사합니다.</li>
-                                    </ul>
-                                    <div class="section-form type3">
-                                        <div class="form-cont agree-area">
-                                            <div class="row">
-                                                <ul class="agree-list">
-                                                    <li>
-                                                        <div class="box-type2">
-                                                            <div class="chk-icon-box">
-                                                                <input type="checkbox" id="member-agree"
-                                                                    name="member-agree" /> <label for="member-agree"> 위
-                                                                    유의사항을 모두 확인하였고 회원탈퇴에 동의합니다. </label>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="btn-area">
-                                        <button type="button" class="btn btn-white cancel">취소</button>
-                                        <button type="button" class="btn btn-red next">탈퇴</button>
-                                    </div>
-                                </div>
-                                <!-- //.mypage-body-cont -->
+							<div class="border-bottom pb-5">
+                                <h2 class="fw-bolder">회원탈퇴</h2>
                             </div>
-                            <!-- //.mypage-body-cont -->
-                        </div>
+							<div class="mt-4 mb-4 p-3 text-center" style="background-color: #f8f7fd;">
+								<h3 class="fw-bolder mt-4 p-3">그동안 지니카를 이용해 주셔서 감사합니다.</h3>
+								<p class="sub-txt mt-4 mb-5">유의사항을 확인바랍니다.</p>
+							</div>
+							<ul class="lst dot mt-20 lh-base">
+								<li>최초 가입 시 이용약관에 명시되어 있듯이 고객님의 가입정보는 탈퇴하셔도 추후 발생할 후 있는 사항(교통범칙금 및 법규위반, 가입포인트 외) 으로
+									인해 지속적으로 보존되오니 참고하시기 바랍니다.</li>
+								<li>회원탈퇴를 하시면 고객님께서 보유하고 계신 포인트는 영구히 삭제됩니다.</li>
+								<li>자진탈퇴 (회원자격상실제외) 후 신규가입은 48시간 이후 가능합니다.</li>
+								<li class="fw-bolder" style="color: #905dbe;">그래도 탈퇴를 원하시면 아래의 사항을 기재하여 주시기 바랍니다. 감사합니다.</li>
+							</ul>
+							<div class="section-form type3 mb-3">
+								<div class="form-cont agree-area">
+									<div class="row">
+										<ul class="agree-list">
+											<li>
+												<div class="box-type2">
+													<div class="chk-icon-box text-center">
+														<input type="checkbox" id="member-agree"
+															name="member-agree" /> <label for="member-agree"> 위
+															유의사항을 모두 확인하였고 회원탈퇴에 동의합니다. </label>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="btn-area row">
+								<div class="col-4"></div>
+								<button type="button" class="btn col">취소</button>
+								<button type="button" class="btn col" style="background-color: #41087c; color: #f8f7fd;">탈퇴</button>
+								<div class="col-4"></div>
+							</div>
 						</article>
 					</div>
 

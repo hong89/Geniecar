@@ -167,7 +167,9 @@
 						</aside>
 						<article class="p-5 container-fluid">
 							<div class="border-bottom pb-5">
-                                <h2 class="fw-bolder">비밀번호 변경</h2>
+                                <h2 class="fw-bolder">할인쿠폰</h2>
+								<button class="btn btn-lg mt-3 text-white"
+                                    style="background-color:#41087c;">할인쿠폰 등록하기</button>
                             </div>
 						</article>
 					</div>
