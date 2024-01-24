@@ -167,7 +167,7 @@
 						</aside>
 						<article class="p-5 container-fluid">
 							<div class="border-bottom pb-5">
-                                <h2 class="fw-bolder">회원정보 변경</h2>
+                                <h2 class="fw-bolder">운전면허 정보</h2>
                             </div>
 						</article>
 					</div>

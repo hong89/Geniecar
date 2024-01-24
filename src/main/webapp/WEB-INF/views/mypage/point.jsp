@@ -59,6 +59,18 @@
 
 						color: #41087c;
 					}
+					.nav-item button {
+                        color: #41087c;
+                    }
+
+                    .nav-item button:hover {
+                        color: #41087c;
+                    }
+
+                    .nav-pills .nav-link.active,
+                    .nav-pills .show>.nav-link {
+                        background-color: #41087c !important;
+                        color: white;
 				</style>
 			</head>
 
@@ -167,8 +179,42 @@
 						</aside>
 						<article class="p-5 container-fluid">
 							<div class="border-bottom pb-5">
-                                <h2 class="fw-bolder">회원정보 변경</h2>
+                                <h2 class="fw-bolder">포인트 사용내역</h2>
                             </div>
+							<div class="p-5">
+								잔여포인틍 이ㅣ아아<br><br><br><br><br><br>><br>
+							</div>
+							<div class="p-3">
+								<ul class="nav nav-bars nav-pills border-bottom" id="myTab" role="tablist">
+									<li class="nav-item" role="presentation">
+									  <button class="nav-link active" id="contact-tab1" data-bs-toggle="tab" data-bs-target="#contact1" type="button" role="tab" aria-controls="contact1" aria-selected="true">전체</button>
+									</li>
+									<li class="nav-item" role="presentation">
+									  <button class="nav-link" id="contact-tab2" data-bs-toggle="tab" data-bs-target="#contact2" type="button" role="tab" aria-controls="contact2" aria-selected="false">적립</button>
+									</li>
+									<li class="nav-item" role="presentation">
+									  <button class="nav-link" id="contact-tab3" data-bs-toggle="tab" data-bs-target="#contact3" type="button" role="tab" aria-controls="contact3" aria-selected="false">사용</button>
+									</li>
+								</ul>
+							</div>
+							<div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active p-3" id="contact1" role="tabpanel" aria-labelledby="contact-tab1">
+								<table class="table table-bordered align-middle text-center p-3 mt-3 mb-3">
+									<thead bgcolor="#f8f7fd" class="p-3">
+										<th style="width: 55.4%;">사용 내역</th>
+										<th style="width: 22.3%;"> 적립일/사용일</th>
+										<th>포인트</th>
+									</thead>
+									<tbody class="p-3">
+									<tr>
+										<td colspan="3"><br><br><br>포인트 적립 및 사용 내역이 없습니다.<br><br><br></td>
+									</tr>
+									</tbody>
+								</table>
+								</div>
+                                <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact-tab2">.2..</div>
+                                <div class="tab-pane fade" id="contact3" role="tabpanel" aria-labelledby="contact-tab3">.3..</div>
+							</div>
 						</article>
 					</div>
 
