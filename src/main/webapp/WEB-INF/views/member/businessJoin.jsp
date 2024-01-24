@@ -39,71 +39,90 @@
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
 
-
+    <h4>사업자 등록</h4>
     <div class="row g-3 align-items-center join-container">
         <div class="col-2"></div>
         <div class="col-2">
-            <label for="userId" class="col-form-label">아이디</label>
+            <label for="companyNumber" class="col-form-label">등록번호</label>
         </div>
         <div class="col-auto">
-            <input type="text" id="userId" class="form-control">
-        </div>
-        <div class="col-2">
-            <button type="button" class="btn text-white" style="background: #41087c; width: 110px;">중복확인</button>
+            <input type="text" id="companyNumber" class="form-control">
         </div>
     </div>
 
     <div class="row g-3 align-items-center join-container">
         <div class="col-2"></div>
         <div class="col-2">
-            <label for="userPw" class="col-form-label">비밀번호</label>
+            <label for="companyName" class="col-form-label">상호</label>
         </div>
         <div class="col-auto">
-            <input type="password" id="userPw" class="form-control" aria-describedby="passwordHelpInline">
-        </div>
-        <div class="col-auto">
-            <span id="passwordHelpInline" class="form-text">
-              8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
-            </span>
+            <input type="text" id="companyName" class="form-control">
         </div>
     </div>
     <div class="row g-3 align-items-center join-container">
         <div class="col-2"></div>
         <div class="col-2">
-            <label for="userPwCheck" class="col-form-label">비밀번호 확인</label>
+            <label for="name" class="col-form-label">대표자명</label>
         </div>
         <div class="col-auto">
-            <input type="password" id="userPwCheck" class="form-control">
+            <input type="text" id="name" class="form-control">
+        </div>
+    </div>
+    <div class="row g-3 align-items-center join-container">
+        <div class="col-2"></div>
+        <div class="col-2">
+            <label for="birth" class="col-form-label">생년월일</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" id="birth" class="form-control">
+        </div>
+    </div>
+    <div class="row g-3 align-items-center join-container">
+        <div class="col-2"></div>
+        <div class="col-2">
+            <label for="companyDate" class="col-form-label">개업년월일</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" id="companyDate" class="form-control">
+        </div>
+    </div>
+    <div class="row g-3 align-items-center join-container">
+        <div class="col-2"></div>
+        <div class="col-2">
+            <label for="tel" class="col-form-label">전화번호</label>
+        </div>
+        <div class="col-auto">
+            <input type="tel" id="tel" class="form-control">
+        </div>
+    </div>
+    <div class="row g-3 align-items-center join-container">
+        <div class="col-2"></div>
+        <div class="col-2">
+            <label for="address" class="col-form-label">사업장소재지</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" id="address" class="form-control">
+        </div>
+    </div>
+    <div class="row g-3 align-items-center join-container">
+        <div class="col-2"></div>
+        <div class="col-2">
+            <label for="businessType" class="col-form-label">사업의종류</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" id="businessType" class="form-control">
+        </div>
+    </div>
+    <div class="row g-3 align-items-center join-container">
+        <div class="col-2"></div>
+        <div class="col-2">
+            <label for="taxOffice" class="col-form-label">발급처</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" id="taxOffice" class="form-control">
         </div>
     </div>
 
-    <div class="row g-3 align-items-center join-container">
-        <div class="col-2"></div>
-        <div class="col-2">
-            <label for="userName" class="col-form-label">이름</label>
-        </div>
-        <div class="col-auto">
-            <input type="text" id="userName" class="form-control">
-        </div>
-    </div>
-    <div class="row g-3 align-items-center join-container">
-        <div class="col-2"></div>
-        <div class="col-2">
-            <label for="userAddress" class="col-form-label">주소</label>
-        </div>
-        <div class="col-auto">
-            <input type="address" id="userAddress" class="form-control">
-        </div>
-    </div>
-    <div class="row g-3 align-items-center join-container">
-        <div class="col-2"></div>
-        <div class="col-2">
-            <label for="userTel" class="col-form-label">전화번호</label>
-        </div>
-        <div class="col-auto">
-            <input type="tel" id="userTel" class="form-control">
-        </div>
-    </div>
     <div class="row g-3 align-items-center join-container">
         <div class="col-2"></div>
         <div class="col-2">

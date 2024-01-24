@@ -111,13 +111,12 @@
                     </h3>
                     <div class="btns text-end col">
                         <a href="/mypage/license.do" class="btn-goLink me-3">운전면허증</a>
-                        <a href="/mypage/creditCard.do" class="btn-goLink">결제카드</a>
                     </div>
                 </div>
                 <ul class="row text-center">
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
-                        <p>렌터카 포인트</p>
+                        <p>포인트</p>
                         <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0</a>
                     </li>
                     <li class="col">
@@ -189,7 +188,7 @@
                 <h2 class="fw-bolder">단기렌터카 예약</h2>
             </div>
             <div class="p-3">
-                <ul class="nav nav-pills nav-fill pb-3 border-bottom" id="myTab" role="tablist">
+                <ul class="nav nav-pills pb-3 border-bottom" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="contact-tab1" data-bs-toggle="tab"
                                 data-bs-target="#contact1" type="button" role="tab" aria-controls="contact1"

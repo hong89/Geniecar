@@ -264,11 +264,11 @@
 												data-bs-target="#SwitchNumber7" type="button" role="tab"
 												aria-controls="SwitchNumber7" aria-selected="false">SUV</button>
 										</li>
-										<li class="nav-item" role="presentation">
+										<!--<li class="nav-item" role="presentation">
 											<button class="nav-link" id="SwitchNumber8-tab" data-bs-toggle="pill"
 												data-bs-target="#SwitchNumber8" type="button" role="tab"
 												aria-controls="SwitchNumber8" aria-selected="false">수입차</button>
-										</li>
+										</li>-->
 										<li class="nav-item" role="presentation">
 											<button class="nav-link" id="SwitchNumber9-tab" data-bs-toggle="pill"
 												data-bs-target="#SwitchNumber9" type="button" role="tab"
@@ -1203,7 +1203,7 @@
 												</ul>
 											</div>
 										</div>
-										<div class="tab-pane fade" id="SwitchNumber8" role="tabpanel" aria-labelledby="SwitchNumber8-tab">
+										<!--<div class="tab-pane fade" id="SwitchNumber8" role="tabpanel" aria-labelledby="SwitchNumber8-tab">
 											※ 해당 요금은 23년 7월 13일자 기준 요금 입니다.
 											<div class="tbl-box">
 												<p>대여기간별 일일 요금</p>
@@ -1544,7 +1544,7 @@
 													</li>
 												</ul>
 											</div>
-										</div>
+										</div>-->
 										<div class="tab-pane fade" id="SwitchNumber9" role="tabpanel" aria-labelledby="SwitchNumber9-tab">
 											※ 해당 요금은 23년 7월 13일자 기준 요금 입니다.
 											<div class="tbl-box">
@@ -1779,11 +1779,11 @@
 												data-bs-target="#SwitchNumber17" type="button" role="tab"
 												aria-controls="SwitchNumber17" aria-selected="false">SUV</button>
 										</li>
-										<li class="nav-item" role="presentation">
+										<!--<li class="nav-item" role="presentation">
 											<button class="nav-link" id="SwitchNumber18-tab" data-bs-toggle="pill"
 												data-bs-target="#SwitchNumber18" type="button" role="tab"
 												aria-controls="SwitchNumber18" aria-selected="false">수입차</button>
-										</li>
+										</li>-->
 										<li class="nav-item" role="presentation">
 											<button class="nav-link" id="SwitchNumber19-tab" data-bs-toggle="pill"
 												data-bs-target="#SwitchNumber19" type="button" role="tab"
@@ -2726,7 +2726,7 @@
 												</table class="table table-bordered align-middle text-center">
 											</div>
 										</div>
-										<div class="tab-pane fade" id="SwitchNumber18" role="tabpanel"
+										<!--<div class="tab-pane fade" id="SwitchNumber18" role="tabpanel"
 											aria-labelledby="SwitchNumber18-tab">
 											<div class="tbl-box">
 												<p>일반 회원 대여 요금</p>
@@ -2843,7 +2843,7 @@
 													</tbody>
 												</table>
 											</div>
-										</div>
+										</div>-->
 										<div class="tab-pane fade" id="SwitchNumber19" role="tabpanel" aria-labelledby="SwitchNumber19-tab">
 											<div class="tbl-box">
 												<p>일반 회원 대여 요금</p>

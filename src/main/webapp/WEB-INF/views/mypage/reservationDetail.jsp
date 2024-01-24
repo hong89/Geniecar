@@ -100,13 +100,12 @@
                     </h3>
                     <div class="btns text-end col">
                         <a href="/mypage/license.do" class="btn-goLink me-3">운전면허증</a>
-                        <a href="/mypage/creditCard.do" class="btn-goLink">결제카드</a>
                     </div>
                 </div>
                 <ul class="row text-center">
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
-                        <p>렌터카 포인트</p>
+                        <p>포인트</p>
                         <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0</a>
                     </li>
                     <li class="col">
@@ -150,9 +149,6 @@
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/coupon.do" class="nav-link">할인쿠폰</a>
-                </li>
-                <li class="nav-item mb-4">
-                    <a href="/mypage/creditCard.do" class="nav-link">결제카드</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
