@@ -8,4 +8,13 @@
         <setting name="jdbcTypeForNull" value="NULL" />
     </settings>
 
+    <typeAliases>
+        <typeAlias type="com.rental.geniecar.common.domain.MemberVo" alias="memberVo" />
+        <typeAlias type="com.rental.geniecar.common.domain.CommonCodeVo" alias="commonCodeVo" />
+        <typeAlias type="com.rental.geniecar.common.domain.RentalCarVo" alias="rentalCarVo" />
+        <typeAlias type="com.rental.geniecar.common.domain.RentalCarBranchVo" alias="rentalCarBranchVo" />
+        <typeAlias type="com.rental.geniecar.common.domain.RentalCarBranchsCarVo" alias="rentalCarBranchsCarVo" />
+        <typeAlias type="com.rental.geniecar.common.domain.CouponVo" alias="couponVo" />
+
+    </typeAliases>
 </configuration>
