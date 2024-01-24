@@ -1,16 +1,16 @@
 CREATE TABLE COMMON_CODE -- 공통 코드 테이블
 (
-    CODE            VARCHAR2(6),      -- 코드
-    CODE_NAME       NVARCHAR2(50)       NOT NULL, -- 코드 이름
-    GROUP_CODE      VARCHAR2(6),                  -- 그룹 코드 (코드의 상위 코드)
+    CODE            CHAR(3),                      -- 코드
+    CODE_NAME       NVARCHAR2(50) NOT NULL,       -- 코드 이름
+    GROUP_CODE      CHAR(3),                      -- 그룹 코드 (코드의 상위 코드)
     GROUP_CODE_NAME NVARCHAR2(50),                -- 그룹 코드 이름
     DESCRIPTION     NVARCHAR2(200),               -- 코드 설명
     CODE_SORT       NUMBER(3),                    -- 화면에 보이는 순서
     USE_YN          CHAR(1) DEFAULT 'Y' NOT NULL, -- 사용유무
-    REG_ID          VARCHAR2(20)        NOT NULL, -- 등록자
+    REG_ID          VARCHAR2(20) NOT NULL,        -- 등록자
     REG_DATE        DATE                NOT NULL, -- 등록일시
     MOD_ID          VARCHAR2(20),                 -- 수정자
-    MOD_DATE        DATE,                          -- 수정일시
+    MOD_DATE        DATE,                         -- 수정일시
     constraint COMMON_CODE_PK PRIMARY KEY (CODE, GROUP_CODE)
 )
 
