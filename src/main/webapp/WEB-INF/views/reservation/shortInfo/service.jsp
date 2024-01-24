@@ -91,11 +91,11 @@
                                 data-bs-target="#pubtabSwitchNumber2" type="button" role="tab"
                                 aria-controls="pills-profile" aria-selected="false">대여서비스</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <!--<li class="nav-item" role="presentation">
                             <button class="nav-link" id="btnpubtabSwitchNumber3" data-bs-toggle="pill"
                                 data-bs-target="#pubtabSwitchNumber3" type="button" role="tab"
                                 aria-controls="pills-contact" aria-selected="false">딜리버리 서비스</button>
-                        </li>
+                        </li>-->
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="btnpubtabSwitchNumber4" data-bs-toggle="pill"
                                 data-bs-target="#pubtabSwitchNumber4" type="button" role="tab"
@@ -272,7 +272,7 @@
                                 </div>
                             </section>
                         </div>
-                        <div class="tab-pane fade" id="pubtabSwitchNumber3" role="tabpanel"
+                        <!--<div class="tab-pane fade" id="pubtabSwitchNumber3" role="tabpanel"
                             aria-labelledby="pills-contact-tab">
                             <section class="section-explain">
                                 <div class="pb-3 pt-3 border-bottom mb-5">
@@ -802,7 +802,7 @@
                                     </div>
                                 </div>
                             </section>
-                        </div>
+                        </div>-->
                         <div class="tab-pane fade" id="pubtabSwitchNumber4" role="tabpanel"
                             aria-labelledby="pills-contact-tab">
                             <section class="section-explain">
