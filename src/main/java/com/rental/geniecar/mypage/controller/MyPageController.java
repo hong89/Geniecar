@@ -38,6 +38,12 @@ public class MyPageController {
         return "mypage/rentCarConsulting";
     }
 	
+	@GetMapping("/rentCarConsultingDetail.do")
+	public String rentCarConsultingDetail(){
+		
+        return "mypage/rentCarConsultingDetail";
+    }
+	
 	@GetMapping("/point.do")
 	public String point(){
 		

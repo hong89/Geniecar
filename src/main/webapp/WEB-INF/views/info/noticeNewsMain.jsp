@@ -78,7 +78,7 @@
                           </div>
                         </div>           
                         <div class="col-3">
-                          <button type="submit" class="btn btn-primary" style="background-color: #41087c;">검색</button>
+                          <button type="submit" class="btn text-white" style="background-color: #41087c;">검색</button>
                         </div>
                     </form>
 
@@ -93,18 +93,18 @@
                         <tbody>
                             <tr>
                                 <td align="center">공지</td>
-                                <td align="center"><a href="#">이용약관 변경에 대한 공지</a></td>
-                                <td align="center">2024.01.11</td>
+                                <td align="center"><a href="${contextPath}/info/noticeDetail.do">지니카 서비스 가입 정상화 완료 안내</a></td>
+                                <td align="center">2023.11.20</td>
                         
                             </tr>
                             <tr>
                                 <td align="center">공지</td>
-                                <td align="center"><a href="#">2024 대한민국 퍼스트브랜드 대상 20년 연속 수상</a></td>
+                                <td align="center"><a href="${contextPath}/info/noticeDetail.do">2024 대한민국 퍼스트브랜드 대상 20년 연속 수상</a></td>
                                 <td align="center">2023.10.10</td>
                             </tr>
                             <tr>
                                 <td align="center">공지</td>
-                                <td align="center"><a href="#">수탁사 변경에 따른 개인정보 처리방침 변경에 대한 공지</a></td>
+                                <td align="center"><a href="${contextPath}/info/noticeDetail.do">수탁사 변경에 따른 개인정보 처리방침 변경에 대한 공지</a></td>
                                 <td align="center">2023.07.01</td>
                             </tr>
                         </tbody>

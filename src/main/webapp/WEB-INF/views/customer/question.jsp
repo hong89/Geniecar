@@ -63,18 +63,18 @@
                         <tbody>
                             <tr>
                                 <td align="center">문의</td>
-                                <td align="center"><a href="#">차가 시동이 안걸려서 바꾸고 싶어요</a></td>
+                                <td align="center"><a href="${contextPath}/customer/questionDetail.do">차가 시동이 안걸려서 바꾸고 싶어요</a></td>
                                 <td align="center">2024.01.11</td>
                         
                             </tr>
                             <tr>
                                 <td align="center">문의</td>
-                                <td align="center"><a href="#">배터리가 방전된거 같아요 어떻게 처리하나요?</a></td>
+                                <td align="center"><a href="${contextPath}/customer/questionDetail.do">배터리가 방전된거 같아요 어떻게 처리하나요?</a></td>
                                 <td align="center">2023.10.10</td>
                             </tr>
                             <tr>
                                 <td align="center">문의</td>
-                                <td align="center"><a href="#">차상태가 안 좋아서 바꾸고 싶어요!</a></td>
+                                <td align="center"><a href="${contextPath}/customer/questionDetail.do">차상태가 안 좋아서 바꾸고 싶어요!</a></td>
                                 <td align="center">2023.07.01</td>
                             </tr>
                         </tbody>

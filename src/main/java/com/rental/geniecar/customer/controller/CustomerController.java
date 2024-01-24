@@ -21,4 +21,8 @@ public class CustomerController {
 		return "customer/question";
 	}
 	
+	@GetMapping("/questionDetail.do")
+	public String questionDetail() {
+		return "customer/questionDetail";
+	}
 }

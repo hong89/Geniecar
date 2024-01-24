@@ -20,5 +20,10 @@ public class InfoController {
 	public String noticeNewsMain() {
 		return "info/noticeNewsMain";
 	}
+	
+	@GetMapping("/noticeDetail.do")
+	public String noticeDetail() {
+		return "info/noticeDetail";
+	}
 
 }

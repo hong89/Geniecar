@@ -170,9 +170,13 @@
                                 <h2 class="fw-bolder">렌터카 상담</h2>
                             </div>
 							<div class="border-bottom pb-5 text-center">
-								<h5><br><br><br><br>렌터카 상담 내역이 없습니다.<br><br><br><br></h5>
+								<h5><br><br><br><br>렌터카 상담 내역 1건 있습니다.<br><br><br><br></h5>
 							</div>
 							등록하신 상담 이력은 30일간 제공됩니다.
+							<div class="p-5" style="text-align: center;">
+								<a href="${contextPath}/mypage/rentCarConsultingDetail.do" class="btn btn-purple"
+									style="background-color: #41087c; color:white;">상담 내역 확인</a>
+							</div>
 						</article>
 					</div>
 
