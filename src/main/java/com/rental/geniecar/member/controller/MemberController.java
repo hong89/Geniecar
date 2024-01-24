@@ -14,5 +14,10 @@ public class MemberController {
 		
         return "member/join";
     }
+    @GetMapping("/businessJoin.do")
+    public String businessJoin(){
+
+        return "member/businessJoin";
+    }
 
 }
