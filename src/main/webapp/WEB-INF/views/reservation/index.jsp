@@ -22,6 +22,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
             integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
             crossorigin="anonymous"></script>
+    <!-- 폰트어썸 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- 공통 css 파일 -->
     <link rel="stylesheet" type="text/css" href="/styles/content.css"/>
@@ -38,9 +42,9 @@
 
     <div class="pb-5 position-relative">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb"
-            class="position-absolute end-0">
+             class="position-absolute end-0">
             <ol class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="${contextPath}/main/index.do">Home</a></li>
+                <li class="breadcrumb-item"><a href="/main/index.do">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">빠른 예약</li>
                 <li class="breadcrumb-item active" aria-current="page">내륙 예약</li>
             </ol>
@@ -55,51 +59,53 @@
             <div class="carousel-item" data-bs-interval="2000">
                 <img src="/images/banner_03.jpg" class="d-block w-100" alt="...">
             </div>
-            
+
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-10">
+                <div class="card" style="width: 100%;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="height: 70px;">
+                            <div class="row">
+                                <div class="col-1">내륙</div>
+                                <div class="col-1">제주</div>
+                                <div class="col-1"><i class="fa-solid fa-rotate-left"></i></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="height: 70px;">
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-1">
+            </div>
+        </div>
     </div>
 
 
     <div class="pt-5">
         <button type="button" id="toggleJeju" class=""
-            onClick="reservIdx.setZone('jeju')">제주</button>
+                onClick="reservIdx.setZone('jeju')">제주
+        </button>
         <button type="button" id="toggleLand" class="active"
-            onClick="reservIdx.setZone('land')">내륙</button>
+                onClick="reservIdx.setZone('land')">내륙
+        </button>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <!--------------------------------------------------하단---------------------------------------------------------->
