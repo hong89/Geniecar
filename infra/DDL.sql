@@ -31,7 +31,7 @@ CREATE TABLE MEMBER -- 회원 테이블
     TYPE            CHAR(1) NOT NULL          -- 회원 타입 (U: 사용자, B: 지점, A: 사이트 관리자)
 )
 
-CREATE TABLE CAR -- 자량 테이블
+CREATE TABLE RENTAL_CAR -- 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17) PRIMARY KEY, -- 차대번호
     CAR_TYPE_CODE             VARCHAR2(6) NOT NULL,     -- 차종코드 (공통코드 FK) 소형 준중형 중형 준대형 대형 ...
@@ -89,7 +89,7 @@ CREATE TABLE COUPON -- 쿠폰 테이블
     REG_ID         VARCHAR2(20) NOT NULL,    -- 생성자 (회원아이디 FK)
     REG_DATE       DATE NOT NULL             -- 생성일시
 )
-
+---------------------------------------------------------------------------------------------------
 CREATE TABLE MEMBER_COUPONS -- 회원 보유 쿠폰 테이블
 (
     MEMBER_ID         VARCHAR2(20),  -- 회원아이디 (회원아이디 FK) 복합키
@@ -119,12 +119,14 @@ CREATE TABLE CONSULT -- 상담 테이블
     EMAIL       VARCHAR2(100) NOT NULL,  -- 이메일
     PURPOSE     NVARCHAR2(200) NOT NULL, -- 사용목적
     WISH_REGION VARCHAR2(6) NOT NULL,    -- 희망 대여 지역 (공통코드 FK)
-    REG_DATE    DATE NOT NULL            -- 작성일시
+    REG_DATE    DATE NOT NULL,           -- 작성일시
+    STATUS_YN   CHAR(1) DEFAULT 'N'      -- 상담 완료 여부
 )
 
 CREATE TABLE BOARD -- 게시판 테이블
 (
     NO         NUMBER(20) PRIMARY KEY,       -- 시퀀스
+    PARENT_NO  NUMBER(20),                   -- 부모 번호
     TITLE      NVARCHAR2(100) NOT NULL,      -- 제목
     CONTENT    CLOB                NOT NULL, -- 내용
     HIT        NUMBER(8) DEFAULT 0 NOT NULL, -- 조회수
@@ -135,7 +137,7 @@ CREATE TABLE BOARD -- 게시판 테이블
     START_DATE DATE,                         -- 시작일자 (이벤트에 사용)
     END_DATE   DATE,                         -- 종료일자 (이벤트에 사용)
     REG_ID     VARCHAR2(20) NOT NULL,        -- 작성자
-    REG_DATE   DATE,                         -- 작성일시
+    REG_DATE   DATE    DEFAULT SYSDATE,      -- 작성일시
     MOD_ID     VARCHAR2(20),                 -- 수정자
     MOD_DATE   DATE                          -- 수정일시
 )
