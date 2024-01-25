@@ -1,3 +1,4 @@
+DROP TABLE COMMON_CODE;
 CREATE TABLE COMMON_CODE -- 공통 코드 테이블
 (
     CODE            CHAR(3),                      -- 코드
@@ -41,9 +42,7 @@ CREATE TABLE RENTAL_CAR -- 차량 테이블
     COMPANY                   VARCHAR2(6) NOT NULL      -- 제조사 (공통코드 FK) 현대, 기아 ...
 )
 ------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE BUSINESS_MEMBER (
 
-)
 
 
 
@@ -56,10 +55,12 @@ CREATE TABLE BUSINESS_MEMBER (
 
 ------------------------------------------------------------------------------------------------------------------------
 DROP TABLE RENTAL_CAR_BRANCH;
+DROP SEQUENCE CAR_BRANCH_NO;
+CREATE SEQUENCE CAR_BRANCH_NO INCREMENT BY 1 START WITH 1000000001 MINVALUE 1000000001 MAXVALUE 9999999999 NOCYCLE;
 CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블 (사업자 회원가입시 사용)
 (
     NO                NUMBER(10) PRIMARY KEY,       -- 렌터카 지점 NO (시퀀스)
-    BRANCH_NAME       VARCHAR2(40) NOT NULL,        -- 렌터카 지점명
+    BRANCH_CODE       VARCHAR2(6) NOT NULL,         -- 렌터카 지점 코드 (공통코드 FK)
     REGION_CODE       VARCHAR2(6) NOT NULL,         -- 지역 코드 (공통코드 FK)
     ROAD_ADDRESS      NVARCHAR2(200) NOT NULL,      -- 도로명 주소
     STREET_ADDRESS    NVARCHAR2(200) NOT NULL,      -- 지번 주소
