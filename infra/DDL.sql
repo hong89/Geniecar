@@ -55,10 +55,11 @@ CREATE TABLE BUSINESS_MEMBER (
 
 
 ------------------------------------------------------------------------------------------------------------------------
+DROP TABLE RENTAL_CAR_BRANCH;
 CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블 (사업자 회원가입시 사용)
 (
     NO                NUMBER(10) PRIMARY KEY,       -- 렌터카 지점 NO (시퀀스)
-    BRANCH_NAME       VARCHAR2(20) NOT NULL,        -- 렌터카 지점명
+    BRANCH_NAME       VARCHAR2(40) NOT NULL,        -- 렌터카 지점명
     REGION_CODE       VARCHAR2(6) NOT NULL,         -- 지역 코드 (공통코드 FK)
     ROAD_ADDRESS      NVARCHAR2(200) NOT NULL,      -- 도로명 주소
     STREET_ADDRESS    NVARCHAR2(200) NOT NULL,      -- 지번 주소
@@ -156,13 +157,13 @@ CREATE TABLE BOARD -- 게시판 테이블
     MOD_DATE   DATE                          -- 수정일시
 )
 
-CREATE TABLE FILE -- 파일 테이블
+CREATE TABLE IMAGE_FILE -- 파일 테이블
 (
     FILE_NO   NUMBER(20),            -- 파일 시퀀스 (복합키)
     SEQ       NUMBER(3),             -- 파일 순서 (복합키)
     SAVE_PATH VARCHAR2(200),         -- 저장경로
-    SAVE_NAME VARCHAR2(100),         -- 저장이름
-    FILE_NAME VARCHAR2(200),         -- 파일이름
+    SAVE_NAME VARCHAR2(200),         -- 저장이름 (파일이름에 SYSDATE 추가해서 UNIQUE한 이름으로 저장)
+    FILE_NAME VARCHAR2(100),         -- 파일이름
     EXTENSION VARCHAR2(10),          -- 파일 확장자
     FILE_SIZE NUMBER(20),            -- 파일 크기
     REG_ID    VARCHAR2(20) NOT NULL, -- 등록자 (회원아이디 FK)
