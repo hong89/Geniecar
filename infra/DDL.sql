@@ -13,7 +13,7 @@ CREATE TABLE COMMON_CODE -- 공통 코드 테이블
     MOD_ID          VARCHAR2(20),                 -- 수정자
     MOD_DATE        DATE,                         -- 수정일시
     constraint COMMON_CODE_PK PRIMARY KEY (CODE, GROUP_CODE)
-)
+);
 
 CREATE TABLE MEMBER -- 회원 테이블
 (
@@ -30,7 +30,7 @@ CREATE TABLE MEMBER -- 회원 테이블
     LAST_LOGIN_DATE DATE    NOT NULL,         -- 마지막 로그인 일시
     WITHDRAWAL_YN   CHAR(1) NOT NULL,         -- 탈퇴 여부
     TYPE            CHAR(1) NOT NULL          -- 회원 타입 (U: 사용자, B: 지점, A: 사이트 관리자)
-)
+);
 
 CREATE TABLE RENTAL_CAR -- 차량 테이블
 (
@@ -40,7 +40,7 @@ CREATE TABLE RENTAL_CAR -- 차량 테이블
     CAR_FUEL_CODE             VARCHAR2(6) NOT NULL,     -- 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
     DELIVERY_DATE             DATE NOT NULL,            -- 출고일시
     COMPANY                   VARCHAR2(6) NOT NULL      -- 제조사 (공통코드 FK) 현대, 기아 ...
-)
+);
 ------------------------------------------------------------------------------------------------------------------------
 
 
@@ -73,13 +73,13 @@ CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블 (사업자 회원�
     REG_DATE          DATE,                         -- 등록일시
     MOD_ID            VARCHAR2(20),                 -- 수정자 (회원아이디 FK)
     MOD_DATE          DATE                          -- 수정일시
-)
+);
 
 CREATE TABLE RENTAL_CAR_BRANCHS_CAR -- 렌터카 지점별 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17),                  -- 차대번호 (자동차 FK) - 복합키 처리
     RENTAL_CAR_BRANCH_NO      NUMBER(10),                    -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
-    --RENTAL_STATUS_CODE        VARCHAR2(6) NOT NULL,          -- 렌트 상태 코드 (공통코드 FK) - 수리중, 가능, 폐차, 장기렌트 등등
+    --RENTAL_STATUS_CODE        VARCHAR2(6) NOT NULL,        -- 렌트 상태 코드 (공통코드 FK) - 수리중, 가능, 폐차, 장기렌트 등등
     DEFAULT_COST              NUMBER(6) NOT NULL,            -- 기본 대여료 (10분 단위)
     DEFAULT_SALE_RATE         NUMBER(2) DEFAULT 50 NOT NULL, -- 기본 할인율
     WEEK_SALE_RATE            NUMBER(2) DEFAULT 60 NOT NULL, -- 일주일 할인율
@@ -90,7 +90,7 @@ CREATE TABLE RENTAL_CAR_BRANCHS_CAR -- 렌터카 지점별 차량 테이블
     MOD_ID                    VARCHAR2(20),                  -- 수정자 (회원아이디 FK)
     MOD_DATE                  DATE,                          -- 수정일시
     CONSTRAINT BRANCH_CAR_PK PRIMARY KEY (CAR_IDENTIFICATION_NUMBER, RENTAL_CAR_BRANCH_NO)
-)
+);
 
 CREATE TABLE COUPON -- 쿠폰 테이블
 (
@@ -104,7 +104,7 @@ CREATE TABLE COUPON -- 쿠폰 테이블
     MAXIMUM_AMOUNT NUMBER(7),                -- 최대 할인 금액 (NULL 이면 제한 없음)
     REG_ID         VARCHAR2(20) NOT NULL,    -- 생성자 (회원아이디 FK)
     REG_DATE       DATE NOT NULL             -- 생성일시
-)
+);
 
 CREATE TABLE MEMBER_COUPONS -- 회원 보유 쿠폰 테이블
 (
@@ -113,7 +113,7 @@ CREATE TABLE MEMBER_COUPONS -- 회원 보유 쿠폰 테이블
     ISSUER_ID         VARCHAR2(20),  -- 발급자 (시스템이 주는 경우도 케이스도 생각하여 NULL 허용)
     ISSUER_DATE       DATE NOT NULL, -- 발급일
     CONSTRAINT MEMBER_COUPONS_PK PRIMARY KEY (MEMBER_ID, COUPONE_SERIAL_NO)
-)
+);
 
 CREATE TABLE POINT -- 포인트 테이블
 (
@@ -125,7 +125,7 @@ CREATE TABLE POINT -- 포인트 테이블
     CURRENT_POINT   NUMBER(8) NOT NULL,      -- 현재 잔여 포인트
     TOTAL_USE_POINT NUMBER(8) NOT NULL,      -- 누적 사용 포인트
     MEMBER_ID       VARCHAR2(20) NOT NULL    -- 회원아이디 (회원아이디 FK)
-)
+);
 
 CREATE TABLE CONSULT -- 상담 테이블
 (
@@ -137,7 +137,7 @@ CREATE TABLE CONSULT -- 상담 테이블
     WISH_REGION VARCHAR2(6) NOT NULL,    -- 희망 대여 지역 (공통코드 FK)
     REG_DATE    DATE NOT NULL,           -- 작성일시
     STATUS_YN   CHAR(1) DEFAULT 'N'      -- 상담 완료 여부
-)
+);
 
 CREATE TABLE BOARD -- 게시판 테이블
 (
@@ -156,7 +156,7 @@ CREATE TABLE BOARD -- 게시판 테이블
     REG_DATE   DATE    DEFAULT SYSDATE,      -- 작성일시
     MOD_ID     VARCHAR2(20),                 -- 수정자
     MOD_DATE   DATE                          -- 수정일시
-)
+);
 
 CREATE TABLE IMAGE_FILE -- 파일 테이블
 (
@@ -170,7 +170,7 @@ CREATE TABLE IMAGE_FILE -- 파일 테이블
     REG_ID    VARCHAR2(20) NOT NULL, -- 등록자 (회원아이디 FK)
     REG_DATE  DATE,                  -- 등록일
     CONSTRAINT FILE_FK PRIMARY KEY (FILE_NO, SEQ)
-)
+);
 
 CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
 (
@@ -189,4 +189,4 @@ CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
     REG_DATE                  DATE NOT NULL,               -- 등록_일시
     MOD_ID                    VARCHAR2 ( 20 ),             -- 수정자 (회원아이디 FK)
     MOD_DATE                  DATE                         -- 수정_일시
-)
+);
