@@ -8,72 +8,73 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/mypage")
 public class MyPageController {
 
+	//ruddud
 	@GetMapping("/main.do")
 	public String index(){
 		
         return "mypage/main";
     }
-	
+	//ruddud
 	@GetMapping("/reservation.do")
 	public String reservation(){
 		
         return "mypage/reservation";
     }
-	
+	//ruddud
 	@GetMapping("/reservationDetail.do")
 	public String reservationDetail(){
 		
         return "mypage/reservationDetail";
     }
-	
+	//ruddud
 	@GetMapping("/reservationMonth.do")
 	public String reservationMonth(){
 		
         return "mypage/reservationMonth";
     }
-
+	//ruddud
 	@GetMapping("/rentCarConsulting.do")
 	public String rentCarConsulting(){
 		
         return "mypage/rentCarConsulting";
     }
-	
+	//ruddud
 	@GetMapping("/rentCarConsultingDetail.do")
 	public String rentCarConsultingDetail(){
 		
         return "mypage/rentCarConsultingDetail";
     }
-	
+	//ruddud
 	@GetMapping("/point.do")
 	public String point(){
 		
         return "mypage/point";
     }
-	
+	//ruddud
 	@GetMapping("/coupon.do")
 	public String coupon(){
 		
         return "mypage/coupon";
     }
-
+	//ruddud
 	@GetMapping("/license.do")
 	public String license() {
 		
 		return "mypage/license";
 	}
-		
+	//ruddud
 	@GetMapping("/member/modify.do")
 	public String memberModify(){
 		
         return "mypage/member/modify";
     }
-	
+	//ruddud
 	@GetMapping("/member/password.do")
 	public String memberPassword(){
 		
         return "mypage/member/password";
     }
-	
+	//ruddud
 	@GetMapping("/member/leave.do")
 	public String memberLeave(){
 		

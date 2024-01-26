@@ -16,4 +16,7 @@ public class MemberService {
 	public void insertMember(MemberVo vo) {
 		memberDao.insertMember(vo);
 	}
+	public String overlapped(String id) {
+		return memberDao.overlapped(id);
+	}
 }

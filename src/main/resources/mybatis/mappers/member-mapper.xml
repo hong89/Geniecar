@@ -6,4 +6,9 @@
 		INSERT INTO MEMBER VALUES (#{id}, #{pw}, #{name}, #{gender}, #{birthday}, #{hp}, #{address}, #{addressDetail}, #{zipCode}, SYSDATE, SYSDATE, 'N', 'U')
 	</insert>
 	
+	<select id="overlapped" parameterType="String" resultType="String">
+		SELECT DECODE(COUNT(*), 1, 'true', 0, 'false')
+		FROM MEMBER
+		WHERE ID = #{id}
+    </select>
 </mapper>

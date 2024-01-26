@@ -28,61 +28,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </style>
             </head>
 
@@ -100,8 +45,8 @@
                                 <h5 class="mb-3 fw-normal text-center">로그인 방식을 선택해 주세요</h5>
 
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput"
-                                        placeholder="name@example.com">
+                                    <input type="text" class="form-control" id="floatingInput"
+                                        placeholder="">
                                     <label for="floatingInput">Email address</label>
                                 </div>
                                 <div class="form-floating">
@@ -109,16 +54,11 @@
                                         placeholder="Password">
                                     <label for="floatingPassword">Password</label>
                                 </div>
-                                <!--
-                            <div class="checkbox mb-3">
-                                <label>
-                                    <input type="checkbox" value="remember-me"> Remember me
-                                </label>
-                            </div>
-                            -->
-                                <button class="w-100 btn btn-lg mt-3 text-white" type="submit"
-                                    style="background-color:#41087c;">로그인</button>
-                                <button class="w-100 btn btn-lg btn-warning mt-3" type="submit">카카오 로그인</button>
+                                <button class="w-100 btn btn-lg mt-3 text-white" type="submit" style="background-color:#41087c;">로그인</button>
+                                
+                                <a href="#">
+                                    <img src="/images/kakao_login_large_wide.png" class="w-100 mt-3">
+                                </a>
                                 <button class="w-100 btn btn-lg btn-success mt-3" type="submit">네이버 로그인</button>
                             </form>
                         </div>

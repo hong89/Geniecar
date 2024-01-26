@@ -8,4 +8,5 @@ import com.rental.geniecar.common.domain.MemberVo;
 public interface MemberDao {
 
 	public void insertMember(MemberVo vo);
+	public String overlapped(String id);
 }

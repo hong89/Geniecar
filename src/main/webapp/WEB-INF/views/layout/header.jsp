@@ -95,7 +95,7 @@
 
         <!-- c:if 임시 처리 / 추후 결정나면 변경 -->
         <!-- 비회원 -->
-        <c:if test="${memberInfo != null}">
+        <c:if test="${memberInfo == null}">
             <div class="col-md-3 text-end">
                 <button type="button" class="btn" style="border: 1px solid #41087c"
                         onclick="location.href='/login/login.do'">로그인
@@ -107,7 +107,7 @@
         </c:if>
         <div class="b-example-divider"></div>
         <!-- 회원 -->
-        <c:if test="${memberInfo == null}">
+        <c:if test="${memberInfo != null}">
             <div class="col-md-3 text-end">
                 <button type="button" class="btn" style="border: 1px solid #41087c"
                         onclick="location.href='/login/logout.do'">로그아웃

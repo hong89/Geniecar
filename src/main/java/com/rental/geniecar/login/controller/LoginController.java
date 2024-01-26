@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/login")
 public class LoginController {
 
+	//ruddud
 	@GetMapping("/login.do")
 	public String loginForm(){
 		
