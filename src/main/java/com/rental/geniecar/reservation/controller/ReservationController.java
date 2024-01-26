@@ -6,10 +6,13 @@ import com.rental.geniecar.reservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 
@@ -56,9 +59,17 @@ public class ReservationController {
     // HSH
 	@GetMapping("/index.do")
 	public String index(Model model){
-        List<CommonCodeVo> codeList = commonService.selectAll();
-        model.addAttribute("codeList", codeList);
+        List<CommonCodeVo> locationList = commonService.selectLocations();
+        model.addAttribute("locationList", locationList);
         return "reservation/index";
+    }
+
+    // HSH
+    @GetMapping("/selectBranch.do")
+    @ResponseBody
+    public ResponseEntity<List<CommonCodeVo>> selectBranch(String branchCode){
+        List<CommonCodeVo> branchList = commonService.selectBranch(branchCode);
+        return ResponseEntity.ok(branchList);
     }
 
 	

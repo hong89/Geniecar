@@ -14,7 +14,11 @@ import java.util.List;
 public class CommonService {
     private final CommonDao commonDao;
 
-    public List<CommonCodeVo> selectAll() {
-        return commonDao.selectAll();
+    public List<CommonCodeVo> selectLocations() {
+        return commonDao.selectLocations();
+    }
+
+    public List<CommonCodeVo> selectBranch(String branchCode) {
+        return commonDao.selectBranch(branchCode);
     }
 }

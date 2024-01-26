@@ -63,7 +63,33 @@
         #mainContainer {
             margin-top: -50px;
         }
+
+        .locations {
+            padding: 10px;
+        }
+
+        #searchCar {
+            padding-top: 30px;
+        }
+        #searchCar div{
+            padding: 7px;
+        }
+
     </style>
+    <script>
+        $(function () {
+            // 가지고 온 값 화면 그려주기
+            // 지점 클릭하면 대여장소 반납장소 변경하기
+
+
+            $(".locations").on("click", function () {
+                var branchCode = $(this).data('branchCode');
+                $.get("/reservation/selectBranch.do", {branchCode: branchCode}, function (res) {
+                    console.log(res);
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container-xl">
@@ -154,17 +180,20 @@
             </div>
         </div>
     </div>
+    <!-- 지역 선택 영역 -->
     <div class="container">
-        <div class="row" style="padding-top: 50px;">
-            <div class="col-2" style="height: 300px; border-right: 1px solid #23093d">
+        <div class="row" style="padding-top: 50px; height: 550px;">
+            <div class="col-2" style="height: 300px; border-right: 1px solid #23093d;">
                 <h5><strong>대여 장소를 <br/>선택해 주세요</strong></h5>
             </div>
             <div class="col-3">
                 <div class="card mb-3" style="height: 300px; border: none;">
                     <div class="card-body">
                         <div class="row">
-                            <c:forEach var="code" items="${codeList}">
-                                <div class="col-6">${code.groupCodeName}</div>
+                            <c:forEach var="location" items="${locationList}">
+                                <div class="col-6 locations text-center" data-branch-code="${location.code}">
+                                        ${location.codeName}
+                                </div>
                             </c:forEach>
                         </div>
                     </div>
@@ -173,20 +202,132 @@
             <div class="col-7">
                 <div class="card mb-3" style="height: 300px; background: #f8f7fd;">
                     <div class="card-body">
-                        <div class="row">
-                            <c:forEach var="code" items="${codeList}">
-                                <div class="col-3">${code.codeName}</div>
-                            </c:forEach>
+                        <div class="row" id="branchList">
+                            강남 지점
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+
+    <!-- 날짜 선택 영역 -->
+    <div class="container">
+        <div class="row" style="padding-top: 50px;">
+            <div class="col-2" style="height: 550px; border-right: 1px solid #23093d;">
+                <h5><strong>대여 기간을 <br/>선택해 주세요</strong></h5>
+            </div>
+            <div class="col-10">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-11">
+                        <div class="card mb-3" style="height: 350px; background: #f8f7fd;">
+                            <div class="card-body">
+                                <div class="row">
+                                    날짜
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-1"></div>
+                    <div class="col-5 text-center card mb-3"
+                         style="height: 50px; background: #f8f7fd; margin-left:10px; width: 460px; padding-top: 10px;">
+                        대여일을 선택해주세요
+                    </div>
+                    <div class="col-5 text-center card mb-3"
+                         style="height: 50px; background: #f8f7fd; margin-left:30px; width: 460px; padding-top: 10px;">
+                        반납일을 선택해주세요
+                    </div>
+
+                    <div class="col-1"></div>
+                    <div class="col-2 text-center card mb-3"
+                         style="height: 50px; background: #f8f7fd; margin-left:10px; width: 220px; padding-top: 10px;">
+                        시간 선택
+                    </div>
+                    <div class="col-2 text-center card mb-3"
+                         style="height: 50px; background: #f8f7fd; margin-left:20px; width: 220px; padding-top: 10px;">
+                        분 선택
+                    </div>
+                    <div class="col-2 text-center card mb-3"
+                         style="height: 50px; background: #f8f7fd; margin-left:30px; width: 220px; padding-top: 10px;">
+                        시간 선택
+                    </div>
+                    <div class="col-2 text-center card mb-3"
+                         style="height: 50px; background: #f8f7fd; margin-left:20px; width: 220px; padding-top: 10px;">
+                        분 선택
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-11"><p class="text-center">총 x일 x시간 x분 대여</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 차량 선택 영역 -->
+    <div class="container" id="searchCar">
+        <div class="row" style="padding-top: 50px;">
+            <div class="col-3" style="height: 550px; border: 1px solid #23093d; border-radius: 20px; padding: 20px;">
+                <p><strong>차종</strong></p>
+                <div class="row">
+                    <div class="col-auto"> <input type="checkbox"> 전체보기</div>
+                    <div class="col-auto"> <input type="checkbox"> 경형</div>
+                    <div class="col-auto"> <input type="checkbox"> 준중형</div>
+                    <div class="col-auto"> <input type="checkbox"> 중형</div>
+                    <div class="col-auto"> <input type="checkbox"> 준대형</div>
+                    <div class="col-auto"> <input type="checkbox"> 대형</div>
+                    <div class="col-auto"> <input type="checkbox"> suv경형</div>
+                    <div class="col-auto"> <input type="checkbox"> suv소형</div>
+                    <div class="col-auto"> <input type="checkbox"> suv준중형</div>
+                </div>
+                <hr/>
+                <p><strong>인승</strong></p>
+                <div class="row">
+                    <div class="col-auto"> <input type="checkbox"> 전체보기</div>
+                    <div class="col-auto"> <input type="checkbox"> 5인승</div>
+                    <div class="col-auto"> <input type="checkbox"> 7인승</div>
+                    <div class="col-auto"> <input type="checkbox"> 9인승</div>
+                </div>
+                <hr/>
+                <p><strong>연료</strong></p>
+                <div class="row">
+                    <div class="col-auto"> <input type="checkbox"> 전체보기</div>
+                    <div class="col-auto"> <input type="checkbox"> 디젤</div>
+                    <div class="col-auto"> <input type="checkbox"> 전기</div>
+                    <div class="col-auto"> <input type="checkbox"> 가솔린</div>
+                    <div class="col-auto"> <input type="checkbox"> 하이브리드</div>
+            </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-8">
+                <div class="row">
+                    <!-- 반복 영역 -->
+                    <c:forEach begin="1" step="1" end="10">
+                        <div class="col-6">
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="/images/carImage/sample.jpg" class="img-fluid rounded-start"
+                                             style="padding-top: 15px" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <p class="card-text">더 뉴 K3 (G)</p>
+                                            <p class="card-text" style="color: red">85,300원</p>
+                                            <p class="card-text"><small class="text-body-secondary">가솔린/5인승</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--------------------------------------------------하단---------------------------------------------------------->
+
 </div>
 </body>
 </html>
