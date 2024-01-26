@@ -32,8 +32,37 @@
     <!-- 제이쿼리 -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <style>
+        .breadcrumb-item a {
+            text-decoration: none;
+            color: #41087c;
+        }
 
+        .location-name {
+            align-self: center;
+            border-radius: 30px;
+            height: 50px;
+            padding-top: 10px;
+            margin: 10px;
+            font-size: 20px;
+        }
 
+        .location-name > a, #searchName > a {
+            color: black;
+            text-decoration-line: none;
+        }
+
+        #searchName {
+            align-self: center;
+            text-align: center;
+            border-radius: 30px;
+            height: 50px;
+            padding-top: 10px;
+            font-size: 18px;
+        }
+
+        #mainContainer {
+            margin-top: -50px;
+        }
     </style>
 </head>
 <body>
@@ -50,63 +79,112 @@
             </ol>
         </nav>
     </div>
+</div>
 
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="2000">
-                <img src="/images/banner_01.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item" data-bs-interval="2000">
-                <img src="/images/banner_03.jpg" class="d-block w-100" alt="...">
-            </div>
-
+<div id="carouselExampleAutoplaying" class="carousel slide d-flex justify-content-center" data-bs-ride="carousel">
+    <div class="carousel-outer">
+        <div class="carousel-item active">
+            <img src="/images/banner_01.png" class="d-block w-110" alt="event">
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-                data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-                data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <div class="carousel-item">
+            <img src="/images/banner_03.png" class="d-block w-110" alt="event">
+        </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="container-xl" id="mainContainer">
     <div class="container text-center">
         <div class="row">
-            <div class="col-1">
-            </div>
-            <div class="col-10">
+            <div class="col">
                 <div class="card" style="width: 100%;">
+
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" style="height: 70px;">
                             <div class="row">
-                                <div class="col-1">내륙</div>
-                                <div class="col-1">제주</div>
-                                <div class="col-1"><i class="fa-solid fa-rotate-left"></i></div>
+                                <div class="col-1 location-name" style="background: #f8f7fd;">
+                                    <a href="#">
+                                        제주
+                                    </a>
+                                </div>
+                                <div class="col-1 location-name" style="background: #f8f7fd;">
+                                    <a href="#">
+                                        내륙
+                                    </a>
+                                </div>
+                                <div class="col-1 location-name">
+                                    <a href="#">
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                    </a>
+                                </div>
                             </div>
                         </li>
-                        <li class="list-group-item" style="height: 70px;">
-
+                        <li class="list-group-item" style="height: 70px; text-align: left">
+                            <div class="row">
+                                <div class="col-3">
+                                    <p class="card-text"><small><strong>대여장소</strong></small><br/>
+                                        어디서 대여할까요?</p>
+                                </div>
+                                <div class="col-3">
+                                    <p class="card-text"><small><strong>반납장소</strong></small><br/>
+                                        어디로 반납할까요?</p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-text"><small><strong>대여기간</strong></small><br/>
+                                        얼마 동안 대여할까요?</p>
+                                </div>
+                                <div class="col-2" id="searchName" style="background: #f8f7fd;">
+                                    <a href="#">
+                                        차량 검색하기
+                                    </a>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-1">
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" style="padding-top: 50px;">
+            <div class="col-2" style="height: 300px; border-right: 1px solid #23093d">
+                <h5><strong>대여 장소를 <br/>선택해 주세요</strong></h5>
+            </div>
+            <div class="col-3">
+                <div class="card mb-3" style="height: 300px; border: none;">
+                    <div class="card-body">
+                        <div class="row">
+                            <c:forEach var="code" items="${codeList}">
+                                <div class="col-6">${code.groupCodeName}</div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="card mb-3" style="height: 300px; background: #f8f7fd;">
+                    <div class="card-body">
+                        <div class="row">
+                            <c:forEach var="code" items="${codeList}">
+                                <div class="col-3">${code.codeName}</div>
+                            </c:forEach>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
-    <div class="pt-5">
-        <button type="button" id="toggleJeju" class=""
-                onClick="reservIdx.setZone('jeju')">제주
-        </button>
-        <button type="button" id="toggleLand" class="active"
-                onClick="reservIdx.setZone('land')">내륙
-        </button>
-    </div>
-
 
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>
