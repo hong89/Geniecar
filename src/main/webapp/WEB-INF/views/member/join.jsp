@@ -39,81 +39,119 @@
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
 
+    <form action="/member/doJoin.do" method="post" name="doJoin">
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="id" class="col-form-label">아이디</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="id" class="form-control" name ="id">
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn text-white" style="background: #41087c; width: 110px;">중복확인</button>
+            </div>
+        </div>
 
-    <div class="row g-3 align-items-center join-container">
-        <div class="col-2"></div>
-        <div class="col-2">
-            <label for="userId" class="col-form-label">아이디</label>
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="pw" class="col-form-label">비밀번호</label>
+            </div>
+            <div class="col-auto">
+                <input type="password" id="pw" name="pw" class="form-control" aria-describedby="passwordHelpInline">
+            </div>
+            <div class="col-auto">
+                <span id="passwordHelpInline" class="form-text">
+                8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
+                </span>
+            </div>
         </div>
-        <div class="col-auto">
-            <input type="text" id="userId" class="form-control">
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="pwCheck" class="col-form-label">비밀번호 확인</label>
+            </div>
+            <div class="col-auto">
+                <input type="password" id="pwCheck" name="pwCheck" class="form-control">
+            </div>
         </div>
-        <div class="col-2">
-            <button type="button" class="btn text-white" style="background: #41087c; width: 110px;">중복확인</button>
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="name" class="col-form-label">이름</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="name" name="name" class="form-control">
+            </div>
         </div>
-    </div>
-
-    <div class="row g-3 align-items-center join-container">
-        <div class="col-2"></div>
-        <div class="col-2">
-            <label for="userPw" class="col-form-label">비밀번호</label>
+        
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="gender" class="col-form-label">성별</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="gender" name="gender" class="form-control">
+            </div>
         </div>
-        <div class="col-auto">
-            <input type="password" id="userPw" class="form-control" aria-describedby="passwordHelpInline">
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="birthday" class="col-form-label">생일</label>
+            </div>
+            <div class="col-auto">
+                <input type="date" id="birthday" name="birthday" class="form-control">
+            </div>
         </div>
-        <div class="col-auto">
-            <span id="passwordHelpInline" class="form-text">
-              8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
-            </span>
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="hp" class="col-form-label">전화번호</label>
+            </div>
+            <div class="col-auto">
+                <input type="tel" id="hp" name="hp" class="form-control">
+            </div>
         </div>
-    </div>
-    <div class="row g-3 align-items-center join-container">
-        <div class="col-2"></div>
-        <div class="col-2">
-            <label for="userPwCheck" class="col-form-label">비밀번호 확인</label>
+        
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="zipcode" class="col-form-label">주소</label>
+            </div>
+            <div class="col-auto">
+                <input type="address" id="zipcode" name="zipCode" class="form-control">
+            </div>
         </div>
-        <div class="col-auto">
-            <input type="password" id="userPwCheck" class="form-control">
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="address" class="col-form-label"></label>
+            </div>
+            <div class="col-auto">
+                <input type="address" id="address" name="address" class="form-control">
+            </div>
         </div>
-    </div>
-
-    <div class="row g-3 align-items-center join-container">
-        <div class="col-2"></div>
-        <div class="col-2">
-            <label for="userName" class="col-form-label">이름</label>
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="addressDetail" class="col-form-label"></label>
+            </div>
+            <div class="col-auto">
+                <input type="address" id="addressDetail" name="addressDetail" class="form-control">
+            </div>
         </div>
-        <div class="col-auto">
-            <input type="text" id="userName" class="form-control">
+        
+        <div class="row g-3 align-items-center join-container">
+            <div class="col-2"></div>
+            <div class="col-2">
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;">취소</button>
+                <button type="submit" class="btn text-white" style="background: #41087c; width: 110px;">다음</button>
+            </div>
         </div>
-    </div>
-    <div class="row g-3 align-items-center join-container">
-        <div class="col-2"></div>
-        <div class="col-2">
-            <label for="userAddress" class="col-form-label">주소</label>
-        </div>
-        <div class="col-auto">
-            <input type="address" id="userAddress" class="form-control">
-        </div>
-    </div>
-    <div class="row g-3 align-items-center join-container">
-        <div class="col-2"></div>
-        <div class="col-2">
-            <label for="userTel" class="col-form-label">전화번호</label>
-        </div>
-        <div class="col-auto">
-            <input type="tel" id="userTel" class="form-control">
-        </div>
-    </div>
-    <div class="row g-3 align-items-center join-container">
-        <div class="col-2"></div>
-        <div class="col-2">
-
-        </div>
-        <div class="col-auto">
-            <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;">취소</button>
-            <button type="button" class="btn text-white" style="background: #41087c; width: 110px;">다음</button>
-        </div>
-    </div>
+    </form>
 
 
     <!--------------------------------------------------하단---------------------------------------------------------->
