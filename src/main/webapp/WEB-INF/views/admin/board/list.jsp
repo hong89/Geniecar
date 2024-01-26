@@ -40,48 +40,25 @@
             <table class="table caption-top">
                 <thead>
                     <tr>
-                        <td align="center"scope="col"></td>
+                        <td align="center"scope="col"><strong>No.</strong></td>
                         <td align="center"scope="col"><strong>제목</strong></td>
                         <td align="center"scope="col"><strong>작성일</strong></td>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <tr>
-                        <td align="center">공지</td>
-                        <td align="center"><a href="#">이용약관 변경에 대한 공지</a></td>
-                        <td align="center">2024.01.11</td>
-                    </tr>
-                    <tr>
-                        <td align="center">공지</td>
-                        <td align="center"><a href="#">2024 대한민국 퍼스트브랜드 대상 20년 연속 수상</a></td>
-                        <td align="center">2023.10.10</td>
-                    </tr>
-                    <tr>
-                        <td align="center">공지</td>
-                        <td align="center"><a href="#">수탁사 변경에 따른 개인정보 처리방침 변경에 대한 공지</a></td>
-                        <td align="center">2023.07.01</td>
-                    </tr>
+                    <c:forEach var="notice" items="${noticeList}">
+                        <tr>    
+                            <td align="center">${notice.no}</td>
+                            <td align="center"><a href="/info/noticeDetail.do?boardNo=${notice.no}">${notice.title}</a></td>
+                            <td align="center">${notice.regDate}</td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
+
 </div>
 
 
