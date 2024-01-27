@@ -2,99 +2,69 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>복사해서 사용하세요</title>
-    <!-- 추가 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-    <!-- 스타일 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <!-- 자바스크립트 -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-            integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
-            crossorigin="anonymous"></script>
-    <!-- 폰트어썸 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<script src="https://cdn.jsdelivr.net/npm/jquery-templates@1.0.0/jquery.tmpl.min.js"></script>
+<style>
+    .breadcrumb-item a {
+        text-decoration: none;
+        color: #41087c;
+    }
 
-    <!-- 공통 css 파일 -->
-    <link rel="stylesheet" type="text/css" href="/styles/content.css"/>
-    <!-- 제이쿼리 -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <style>
-        .breadcrumb-item a {
-            text-decoration: none;
-            color: #41087c;
-        }
+    .location-name {
+        align-self: center;
+        border-radius: 30px;
+        height: 50px;
+        padding-top: 10px;
+        margin: 10px;
+        font-size: 20px;
+    }
 
-        .location-name {
-            align-self: center;
-            border-radius: 30px;
-            height: 50px;
-            padding-top: 10px;
-            margin: 10px;
-            font-size: 20px;
-        }
+    .location-name > a, #searchName > a {
+        color: black;
+        text-decoration-line: none;
+    }
 
-        .location-name > a, #searchName > a {
-            color: black;
-            text-decoration-line: none;
-        }
+    #searchName {
+        align-self: center;
+        text-align: center;
+        border-radius: 30px;
+        height: 50px;
+        padding-top: 10px;
+        font-size: 18px;
+    }
 
-        #searchName {
-            align-self: center;
-            text-align: center;
-            border-radius: 30px;
-            height: 50px;
-            padding-top: 10px;
-            font-size: 18px;
-        }
+    #mainContainer {
+        margin-top: -50px;
+    }
 
-        #mainContainer {
-            margin-top: -50px;
-        }
+    .locations {
+        padding: 10px;
+    }
 
-        .locations {
-            padding: 10px;
-        }
+    #searchCar {
+        padding-top: 30px;
+    }
 
-        #searchCar {
-            padding-top: 30px;
-        }
-        #searchCar div{
-            padding: 7px;
-        }
+    #searchCar div {
+        padding: 7px;
+    }
 
-    </style>
-    <script>
-        $(function () {
-            // 가지고 온 값 화면 그려주기
-            // 지점 클릭하면 대여장소 반납장소 변경하기
+</style>
+<script>
+    $(function () {
+        // 가지고 온 값 화면 그려주기
+        // 지점 클릭하면 대여장소 반납장소 변경하기
 
 
-            $(".locations").on("click", function () {
-                var branchCode = $(this).data('branchCode');
-                $.get("/reservation/selectBranch.do", {branchCode: branchCode}, function (res) {
-                    console.log(res);
-                });
+        $(".locations").on("click", function () {
+            var branchCode = $(this).data('branchCode');
+            $.get("/reservation/selectBranch.do", {branchCode: branchCode}, function (res) {
+                console.log(res);
             });
         });
-    </script>
-</head>
-<body>
-<div class="container-xl">
-    <!--------------------------------------------------상단---------------------------------------------------------->
-
+    });
+</script>
+<!--------------------------------------------------상단---------------------------------------------------------->
+<div class="container-xl" id="mainContainer">
     <div class="pb-5 position-relative">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb"
              class="position-absolute end-0">
@@ -181,7 +151,12 @@
         </div>
     </div>
     <!-- 지역 선택 영역 -->
-    <div class="container">
+    <div class="container" id="containerArea">
+
+    </div>
+
+    <!-- Template 소스 -->
+    <script type="text/x-jQuery-tmpl" id="listTest">
         <div class="row" style="padding-top: 50px; height: 550px;">
             <div class="col-2" style="height: 300px; border-right: 1px solid #23093d;">
                 <h5><strong>대여 장소를 <br/>선택해 주세요</strong></h5>
@@ -190,27 +165,32 @@
                 <div class="card mb-3" style="height: 300px; border: none;">
                     <div class="card-body">
                         <div class="row">
-                            <c:forEach var="location" items="${locationList}">
-                                <div class="col-6 locations text-center" data-branch-code="${location.code}">
-                                        ${location.codeName}
-                                </div>
-                            </c:forEach>
-                        </div>
-                    </div>
-                </div>
+        <c:forEach var="location" items="${locationList}">
+            <div class="col-6 locations text-center" data-branch-code="${location.code}">
+            ${location.codeName}
             </div>
-            <div class="col-7">
-                <div class="card mb-3" style="height: 300px; background: #f8f7fd;">
-                    <div class="card-body">
-                        <div class="row" id="branchList">
-                            강남 지점
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </c:forEach>
         </div>
     </div>
+</div>
+</div>
+<div class="col-7">
+<div class="card mb-3" style="height: 300px; background: #f8f7fd;">
+    <div class="card-body">
+        <div class="row" id="branchList">
+            강남 지점
+        </div>
+    </div>
+</div>
+</div>
+</div>
+    </script>
 
+    <script>
+        $(function () {
+            $("#listTest").tmpl({}).appendTo("#containerArea");
+        })
+    </script>
 
     <!-- 날짜 선택 영역 -->
     <div class="container">
@@ -271,33 +251,33 @@
             <div class="col-3" style="height: 550px; border: 1px solid #23093d; border-radius: 20px; padding: 20px;">
                 <p><strong>차종</strong></p>
                 <div class="row">
-                    <div class="col-auto"> <input type="checkbox"> 전체보기</div>
-                    <div class="col-auto"> <input type="checkbox"> 경형</div>
-                    <div class="col-auto"> <input type="checkbox"> 준중형</div>
-                    <div class="col-auto"> <input type="checkbox"> 중형</div>
-                    <div class="col-auto"> <input type="checkbox"> 준대형</div>
-                    <div class="col-auto"> <input type="checkbox"> 대형</div>
-                    <div class="col-auto"> <input type="checkbox"> suv경형</div>
-                    <div class="col-auto"> <input type="checkbox"> suv소형</div>
-                    <div class="col-auto"> <input type="checkbox"> suv준중형</div>
+                    <div class="col-auto"><input type="checkbox"> 전체보기</div>
+                    <div class="col-auto"><input type="checkbox"> 경형</div>
+                    <div class="col-auto"><input type="checkbox"> 준중형</div>
+                    <div class="col-auto"><input type="checkbox"> 중형</div>
+                    <div class="col-auto"><input type="checkbox"> 준대형</div>
+                    <div class="col-auto"><input type="checkbox"> 대형</div>
+                    <div class="col-auto"><input type="checkbox"> suv경형</div>
+                    <div class="col-auto"><input type="checkbox"> suv소형</div>
+                    <div class="col-auto"><input type="checkbox"> suv준중형</div>
                 </div>
                 <hr/>
                 <p><strong>인승</strong></p>
                 <div class="row">
-                    <div class="col-auto"> <input type="checkbox"> 전체보기</div>
-                    <div class="col-auto"> <input type="checkbox"> 5인승</div>
-                    <div class="col-auto"> <input type="checkbox"> 7인승</div>
-                    <div class="col-auto"> <input type="checkbox"> 9인승</div>
+                    <div class="col-auto"><input type="checkbox"> 전체보기</div>
+                    <div class="col-auto"><input type="checkbox"> 5인승</div>
+                    <div class="col-auto"><input type="checkbox"> 7인승</div>
+                    <div class="col-auto"><input type="checkbox"> 9인승</div>
                 </div>
                 <hr/>
                 <p><strong>연료</strong></p>
                 <div class="row">
-                    <div class="col-auto"> <input type="checkbox"> 전체보기</div>
-                    <div class="col-auto"> <input type="checkbox"> 디젤</div>
-                    <div class="col-auto"> <input type="checkbox"> 전기</div>
-                    <div class="col-auto"> <input type="checkbox"> 가솔린</div>
-                    <div class="col-auto"> <input type="checkbox"> 하이브리드</div>
-            </div>
+                    <div class="col-auto"><input type="checkbox"> 전체보기</div>
+                    <div class="col-auto"><input type="checkbox"> 디젤</div>
+                    <div class="col-auto"><input type="checkbox"> 전기</div>
+                    <div class="col-auto"><input type="checkbox"> 가솔린</div>
+                    <div class="col-auto"><input type="checkbox"> 하이브리드</div>
+                </div>
             </div>
             <div class="col-1"></div>
             <div class="col-8">
@@ -327,7 +307,4 @@
         </div>
     </div>
     <!--------------------------------------------------하단---------------------------------------------------------->
-
 </div>
-</body>
-</html>
