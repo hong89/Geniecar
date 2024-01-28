@@ -1,8 +1,13 @@
 package com.rental.geniecar.mypage.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.rental.geniecar.common.domain.MemberVo;
 
 @Controller
 @RequestMapping("/mypage")
@@ -10,8 +15,9 @@ public class MyPageController {
 
 	//ruddud
 	@GetMapping("/main.do")
-	public String index(){
-		
+	public String index(Model model, HttpSession session){
+		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		model.addAttribute("member", membervo);
         return "mypage/main";
     }
 	//ruddud

@@ -98,7 +98,7 @@
 							<div class="myInfos-area">
 								<div class="border-bottom mb-5 row">
 									<h3 class="mb-4 col">
-										<strong class="name" id='commonMemberName'>홍경영님</strong>
+										<strong class="name" id='commonMemberName'>${member.name}</strong>
 										<span>일반회원&nbsp;</span>
 									</h3>
 									<div class="btns text-end col">

@@ -111,6 +111,7 @@
                     $(function () {
                         $('#submitBtn').click(function () {
                             var pw = $('[name=pw]').val();
+                            var pwCheck = $('[name=pwCheck]').val();
                             var name = $('[name=name]').val();
                             var gender = $('input:radio[name="gender"]:checked').val();
                             var birthday = $('[name=birthday]').val();
@@ -120,9 +121,14 @@
                             if (!$.trim($('[name=id]').val())) {
                                 alert('아이디를 중복체크 해주세요.');
                                 return false;
-                            } 
-                            if (pw == ''||pw == null) {
+                            } else if (pw == ''||pw == null) {
                                 alert("비밀번호를 입력하세요");
+                                return false;
+                            } else if (pwCheck == ''||pwCheck == null) {
+                                alert("비밀번호 확인");
+                                return false;
+                            } else if (pw != pwCheck) {
+                                alert("비밀번호가 다릅니다.");
                                 return false;
                             } else if(name == ''||name == null){
                                 alert("이름");
