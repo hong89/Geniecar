@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery-templates@1.0.0/jquery.tmpl.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.1/mustache.min.js"/>
 <style>
     .breadcrumb-item a {
         text-decoration: none;
@@ -51,16 +51,7 @@
 </style>
 <script>
     $(function () {
-        // 가지고 온 값 화면 그려주기
-        // 지점 클릭하면 대여장소 반납장소 변경하기
 
-
-        $(".locations").on("click", function () {
-            var branchCode = $(this).data('branchCode');
-            $.get("/reservation/selectBranch.do", {branchCode: branchCode}, function (res) {
-                console.log(res);
-            });
-        });
     });
 </script>
 <!--------------------------------------------------상단---------------------------------------------------------->
@@ -155,8 +146,8 @@
 
     </div>
 
-    <!-- Template 소스 -->
-    <script type="text/x-jQuery-tmpl" id="listTest">
+    <%--지점 목록 영역 시작--%>
+    <div type="x-tmpl-mustache" id="locationTemplate" style="display: none">
         <div class="row" style="padding-top: 50px; height: 550px;">
             <div class="col-2" style="height: 300px; border-right: 1px solid #23093d;">
                 <h5><strong>대여 장소를 <br/>선택해 주세요</strong></h5>
@@ -165,35 +156,76 @@
                 <div class="card mb-3" style="height: 300px; border: none;">
                     <div class="card-body">
                         <div class="row">
-        <c:forEach var="location" items="${locationList}">
-            <div class="col-6 locations text-center" data-branch-code="${location.code}">
-            ${location.codeName}
+                            <c:forEach var="location" items="${locationList}">
+                                <div class="col-6 locations text-center" data-location-code="${location.fullCode}">
+                                        ${location.codeName}
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </c:forEach>
+            <div class="col-7">
+                <div class="card mb-3" style="height: 300px; background: #f8f7fd;">
+                    <div class="card-body">
+                        <div class="row" id="branchListArea"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
-<div class="col-7">
-<div class="card mb-3" style="height: 300px; background: #f8f7fd;">
-    <div class="card-body">
-        <div class="row" id="branchList">
-            강남 지점
-        </div>
+    <%--지점 목록 영역 끝--%>
+
+    <%--지점 목록 영역 시작--%>
+    <div type="x-tmpl-mustache" id="branchTemplate" style="display: none">
+        {{#locations}}
+            <span data-no="{{no}}">{{branchName}}</span>
+        {{/locations}}
     </div>
-</div>
-</div>
-</div>
-    </script>
+    <%--지점 목록 영역 끝--%>
 
     <script>
         $(function () {
-            $("#listTest").tmpl({}).appendTo("#containerArea");
-        })
+
+            var rentalForm = {
+                rentalPlace: '',
+                returnPlace: '',
+                rentalCarBranchNo: '',
+            };
+
+            //step1. 지역 목록 출력
+            var template = $('#locationTemplate').html();
+            var data = {"locations" : []};
+            var rendered = Mustache.render(template, data);
+            $('#containerArea').html(rendered);
+
+            //TODO 같은 지역 클릭 시 이벤트 발생되지 않도록 구현 필요
+            //step1. 지점 목록 출력
+            $('#containerArea').on("click", ".locations", function () {
+                var locationCode = $(this).data('locationCode');
+                $.get("/reservation/selectBranch.do", {locationCode: locationCode}, function (res) {
+                    data.locations = res;
+                    $('#branchListArea').html(Mustache.render($('#branchTemplate').html(), data));
+                });
+            });
+
+            //step1. 지점 목록 클릭 시 달력 step2 페이지로 전환
+            //TODO 지점 스타일 적용 시 태그 변경될 수 있으니 같이 변경 필요
+            $('#containerArea').on('click', '#branchListArea span', function(){
+                rentalForm.rentalPlace = rentalForm.returnPlace = rentalForm.rentalCarBranchNo = $(this).data('no');
+
+                var dateTemplate = $('#dateTemplate').html();
+                var dateRendered = Mustache.render(dateTemplate, data);
+                $('#containerArea').html(dateRendered);
+            });
+
+
+
+        });
     </script>
 
     <!-- 날짜 선택 영역 -->
-    <div class="container">
+    <div type="x-tmpl-mustache" id="dateTemplate" style="display: none">
         <div class="row" style="padding-top: 50px;">
             <div class="col-2" style="height: 550px; border-right: 1px solid #23093d;">
                 <h5><strong>대여 기간을 <br/>선택해 주세요</strong></h5>
@@ -246,7 +278,7 @@
     </div>
 
     <!-- 차량 선택 영역 -->
-    <div class="container" id="searchCar">
+    <div type="x-tmpl-mustache" id="searchCarTemplate" style="display: none" >
         <div class="row" style="padding-top: 50px;">
             <div class="col-3" style="height: 550px; border: 1px solid #23093d; border-radius: 20px; padding: 20px;">
                 <p><strong>차종</strong></p>

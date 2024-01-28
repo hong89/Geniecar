@@ -9,7 +9,6 @@ import java.util.List;
 public interface
 CommonDao {
 
-    List<CommonCodeVo> selectLocations();
+    List<CommonCodeVo> selectCommonCodes(String groupCode);
 
-    List<CommonCodeVo> selectBranch(String branchCode);
 }

@@ -1,4 +1,4 @@
-package com.rental.geniecar.common.domain;
+package com.rental.geniecar.domain.branch;
 
 import lombok.Getter;
 import lombok.Setter;

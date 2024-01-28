@@ -75,7 +75,7 @@ CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블 (사업자 회원�
     MOD_DATE          DATE                          -- 수정일시
 );
 
-CREATE TABLE RENTAL_CAR_BRANCHS_CAR -- 렌터카 지점별 차량 테이블
+CREATE TABLE RENTAL_CAR_BRANCHES_CAR -- 렌터카 지점별 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17),                  -- 차대번호 (자동차 FK) - 복합키 처리
     RENTAL_CAR_BRANCH_NO      NUMBER(10),                    -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
@@ -189,4 +189,14 @@ CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
     REG_DATE                  DATE NOT NULL,               -- 등록_일시
     MOD_ID                    VARCHAR2 ( 20 ),             -- 수정자 (회원아이디 FK)
     MOD_DATE                  DATE                         -- 수정_일시
+);
+
+CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
+(
+    RENTAL_DATE               DATE NOT NULL,               -- (대여)시작_날짜_시간
+    RETURN_DATE               DATE NOT NULL,               -- 반납_날짜_시간
+    CAR_IDENTIFICATION_NUMBER VARCHAR2 ( 17 ) NOT NULL,    -- 차대번호
+    REGULAR_PRICE             NUMBER ( 10 ) NOT NULL,      -- 정가
+    SALE_RATE                 NUMBER ( 2 ) NOT NULL,       -- 할인율
+    FINAL_RESERVATION_PRICE   NUMBER ( 10 ) NOT NULL,      -- 최종_예약_금액 (정가/할인율=최종금액)
 );

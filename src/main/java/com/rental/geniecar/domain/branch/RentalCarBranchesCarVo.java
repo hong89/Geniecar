@@ -1,4 +1,4 @@
-package com.rental.geniecar.common.domain;
+package com.rental.geniecar.domain.branch;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class RentalCarBranchsCarVo {
+public class RentalCarBranchesCarVo {
     private String carIdentificationNumber;   // 차대번호 (자동차 FK) - 복합키 처리
     private int rentalCarBranchNo;            // 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
     private int defaultCost;                  // 기본 대여료 (10분 단위)

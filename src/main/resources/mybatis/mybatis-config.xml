@@ -17,9 +17,9 @@
         <typeAlias type="com.rental.geniecar.common.domain.MemberCouponsVo" alias="memberCouponsVo" />
         <typeAlias type="com.rental.geniecar.common.domain.MemberVo" alias="memberVo" />
         <typeAlias type="com.rental.geniecar.common.domain.PointVo" alias="pointVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.RentalCarBranchsCarVo" alias="rentalCarBranchsCarVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.RentalCarBranchVo" alias="rentalCarBranchVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.RentalCarReservationVo" alias="rentalCarReservationVo" />
+        <typeAlias type="com.rental.geniecar.domain.branch.RentalCarBranchesCarVo" alias="rentalCarBranchsCarVo" />
+        <typeAlias type="com.rental.geniecar.domain.branch.RentalCarBranchVo" alias="rentalCarBranchVo" />
+        <typeAlias type="com.rental.geniecar.domain.branch.RentalCarReservationVo" alias="rentalCarReservationVo" />
         <typeAlias type="com.rental.geniecar.common.domain.RentalCarVo" alias="rentalCarVo" />
     </typeAliases>
 </configuration>
