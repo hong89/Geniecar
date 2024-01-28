@@ -71,5 +71,9 @@ public class ReservationController {
         return ResponseEntity.ok(branches);
     }
 
-	
+    // HSH
+    @GetMapping("/step2.do")
+    public String step2(){
+        return "reservation/step2";
+    }
 }

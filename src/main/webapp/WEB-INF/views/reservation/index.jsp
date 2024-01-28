@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.1/mustache.min.js"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.1/mustache.min.js"></script>
 <style>
     .breadcrumb-item a {
         text-decoration: none;
@@ -14,7 +14,7 @@
         border-radius: 30px;
         height: 50px;
         padding-top: 10px;
-        margin: 10px;
+        margin: 0 10px;
         font-size: 20px;
     }
 
@@ -40,11 +40,11 @@
         padding: 10px;
     }
 
-    #searchCar {
+    #searchCarTemplate {
         padding-top: 30px;
     }
 
-    #searchCar div {
+    #searchCarTemplate div {
         padding: 7px;
     }
 
@@ -55,7 +55,7 @@
     });
 </script>
 <!--------------------------------------------------상단---------------------------------------------------------->
-<div class="container-xl" id="mainContainer">
+<div class="container-xl">
     <div class="pb-5 position-relative">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb"
              class="position-absolute end-0">
@@ -178,9 +178,13 @@
 
     <%--지점 목록 영역 시작--%>
     <div type="x-tmpl-mustache" id="branchTemplate" style="display: none">
-        {{#locations}}
-            <span data-no="{{no}}">{{branchName}}</span>
-        {{/locations}}
+        <div class="row">
+            {{#locations}}
+            <div class="col-4" style="padding: 5px 10px 10px 20px">
+                <span data-no="{{no}}">{{branchName}}</span>
+            </div>
+            {{/locations}}
+        </div>
     </div>
     <%--지점 목록 영역 끝--%>
 
@@ -195,7 +199,7 @@
 
             //step1. 지역 목록 출력
             var template = $('#locationTemplate').html();
-            var data = {"locations" : []};
+            var data = {"locations": []};
             var rendered = Mustache.render(template, data);
             $('#containerArea').html(rendered);
 
@@ -211,7 +215,7 @@
 
             //step1. 지점 목록 클릭 시 달력 step2 페이지로 전환
             //TODO 지점 스타일 적용 시 태그 변경될 수 있으니 같이 변경 필요
-            $('#containerArea').on('click', '#branchListArea span', function(){
+            $('#containerArea').on('click', '#branchListArea span', function () {
                 rentalForm.rentalPlace = rentalForm.returnPlace = rentalForm.rentalCarBranchNo = $(this).data('no');
 
                 var dateTemplate = $('#dateTemplate').html();
@@ -220,12 +224,11 @@
             });
 
 
-
         });
     </script>
 
     <!-- 날짜 선택 영역 -->
-    <div type="x-tmpl-mustache" id="dateTemplate" style="display: none">
+    <div type="x-tmpl-mustache" id="dateTemplate"  style="display: none">
         <div class="row" style="padding-top: 50px;">
             <div class="col-2" style="height: 550px; border-right: 1px solid #23093d;">
                 <h5><strong>대여 기간을 <br/>선택해 주세요</strong></h5>
@@ -278,9 +281,9 @@
     </div>
 
     <!-- 차량 선택 영역 -->
-    <div type="x-tmpl-mustache" id="searchCarTemplate" style="display: none" >
+    <div type="x-tmpl-mustache" id="searchCarTemplate"  style="display: none">
         <div class="row" style="padding-top: 50px;">
-            <div class="col-3" style="height: 550px; border: 1px solid #23093d; border-radius: 20px; padding: 20px;">
+            <div class="col-3" style="height: 600px; border: 1px solid #23093d; border-radius: 20px; padding: 20px;">
                 <p><strong>차종</strong></p>
                 <div class="row">
                     <div class="col-auto"><input type="checkbox"> 전체보기</div>
@@ -310,6 +313,10 @@
                     <div class="col-auto"><input type="checkbox"> 가솔린</div>
                     <div class="col-auto"><input type="checkbox"> 하이브리드</div>
                 </div>
+                    <div style="background: #f8f7fd; border-radius: 30px; height: 50px; text-align: center; padding-top:12px; align-content: center; margin-top: 10px">
+                        <a><strong>필터 초기화</strong></a>
+                    </div>
+
             </div>
             <div class="col-1"></div>
             <div class="col-8">
