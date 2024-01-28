@@ -36,44 +36,31 @@
 <body>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
-
-    <div id="registerForm">
-        <h3>등록하기</h3>
-
-        <form name="frmEvent" action="/admin/board/insertBoard.do" method="post">
-            <div class="mb-3 row">
-                <label for="title" class="col-sm-2 col-form-label">구분</label>
-                <div class="col-sm-10">
-                    <select class="form-select" id="typeCode" name="typeCode">
-                        <option value="NOTICE">공지사항</option>
-                        <option value="FAQ">FAQ</option>
-                    </select>
-                </div>
-            </div>
+<form name="updateNotice" action="/admin/board/updateNotice.do" method="post">
+    <div class="pt-5">
+        <div class="inner-type2">
+            <section class="text-center">
+                <h1 class="tit">내용 수정하기</h1>
+            </section>
             <div class="mb-3 row">
                 <label for="title" class="col-sm-2 col-form-label">제목</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="title" name="title">
+                    <input type="text" class="form-control" id="title" name="title" value="${notice.title}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="content" class="col-sm-2 col-form-label">내용</label>
-                <div class="col-sm-10"><textarea class="form-control" id="content" name="content" rows="20"
-                                                 style="width: 100%;"></textarea>
+                <div class="col-sm-10"><textarea class="form-control" id="content" name="content" rows="20" style="width: 100%;">${notice.content}</textarea>
                 </div>
-            </div>
-            <!--
-            <div class="mb-3 row">
-                <label for="fileMultiple" class="col-sm-2 col-form-label">파일</label>
-                <div class="col-sm-10">
-                    <input class="form-control" type="file" id="fileMultiple" name="fileNo" multiple>
-                </div>
-            </div>
-            -->
-            <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">등록하기</button>
-
-        </form>
+            </div>     
+        </div>
     </div>
+    <button type="button" class="btn text-white" style="background: #41087c" onclick="location.href='list.do?typeCode=${notice.typeCode}'">목록가기</button>
+    <input type="hidden" name="no" value="${notice.no}">
+    <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">수정적용</button>
+    <!-- <button type="button" class="btn text-white" style="background: #41087c" onclick="location.href='updateNoticeForm.do?no=${notice.no}'">수정적용</button> -->
+    <button type="button" class="btn text-white" style="background: #41087c" onclick="location.href='deleteNotice.do?no=${notice.no}'">삭제하기</button>
+</form>
 
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>
