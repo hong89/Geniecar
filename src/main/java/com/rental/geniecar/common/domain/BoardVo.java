@@ -1,12 +1,13 @@
 package com.rental.geniecar.common.domain;
 
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.Setter;
-import java.util.Date;
 
 @Getter
 @Setter
-public class BoardVo {
+public class BoardVo extends CommonCrudVo {
     private int no;               // 시퀀스
     private int parentNo;         // 부모 번호
     private String title;         // 제목

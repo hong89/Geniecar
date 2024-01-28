@@ -27,35 +27,39 @@
     <link rel="stylesheet" type="text/css" href="/styles/content.css"/>
     <!-- 제이쿼리 -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-	<style>
-		
-	</style>
+    <style>
+        #registerForm {
+            padding: 30px;
+        }
+    </style>
 </head>
 <body>
 <div class="container-xl">
-	<!--------------------------------------------------상단---------------------------------------------------------->
-	<div class="pt-5">
-		<section class="text-center pb-4">
-            <h1 class="fw-bolder">공지사항 상세 내용</h1>
-        </section>
-		<div class="explain-header">
-			<p style="float: right;">2023.11.20</p>
-			<h2 class="tit-size-big">지니카 서비스 가입 정상화 완료 안내</h2><hr/>
-		</div>
-		<div class="explain-cont">
-			정부 24 시스템 장애로 인해 지연되었던 차방정 서비스 정상화를 안내 드립니다.<br/>
-			해당 시간 동안 불편함을 끼쳐드려 죄송합니다.<br/>
-			11월20일 오전 기준10시30분  재 안내<br/>
-			<br/>
-			정부 24 사이트 정상화되었으나, 현재 조회량 집중 등 서비스가 불안정한 상황으로<br/>
-			지니카 서비스 가입 및 차량등록 시도 시 조회 불가 및 타임아웃 발생할 수 있는 점 안내 드립니다.
-		</div>
-	</div>
-	<div class="p-5" style="text-align: center;">
-		<a href="${contextPath}/info/noticeNewsMain.do" class="btn text-white"
-			style="background-color: #41087c;">목록으로 돌아가기</a>
-	</div>		
-	<!--------------------------------------------------하단---------------------------------------------------------->
+    <!--------------------------------------------------상단---------------------------------------------------------->
+
+    <div class="pt-5">
+        <div class="inner-type2">
+            <section class="text-center">
+                <h1 class="tit">공지사항 상세 내용</h1>
+            </section>
+            <div class="mb-3 row">
+                <label for="title" class="col-sm-2 col-form-label">제목</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="title" name="title" value="${notice.title}">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="content" class="col-sm-2 col-form-label">내용</label>
+                <div class="col-sm-10"><textarea class="form-control" id="content" name="content" rows="20" style="width: 100%;">${notice.content}</textarea>
+                </div>
+            </div>     
+            <button type="button" class="btn text-white" style="background: #41087c" onclick="location.href='list.do?typeCode=${notice.typeCode}'">목록가기</button>
+            <button type="button" class="btn text-white" style="background: #41087c" onclick="location.href='updateNoticeForm.do?no=${notice.no}'">수정하기</button>
+            <button type="button" class="btn text-white" style="background: #41087c" onclick="location.href='deleteNotice.do?no=${notice.no}'">삭제하기</button>
+        </div>
+    </div>
+
+    <!--------------------------------------------------하단---------------------------------------------------------->
 </div>
 </body>
 </html>

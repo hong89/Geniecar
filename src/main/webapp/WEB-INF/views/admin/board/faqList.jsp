@@ -27,72 +27,84 @@
     <link rel="stylesheet" type="text/css" href="/styles/content.css"/>
     <!-- 제이쿼리 -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        // 검색수행
+        function fn_search(i_page){
+            var page = i_page;
+            if(page == null || page == '' || page == 'undefined'){
+                page = 1;
+            }
+            location.href = "/admin/board/list.do?typeCode="+$("#typeCode").val()+"&title="+$("#title").val()+"&PageNum="+page;
+        }
+    </script>
 </head>
 <body>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
-<div class="pt-5">
-    <div class="inner-type2">
-        <section class="text-center">
-            <h1 class="tit">FAQ 목록</h1>
-        </section>
-        <div class="pt-5">
-            <table class="table caption-top">
-                <thead>
+    <div class="pt-5">
+        <div class="inner-type2">
+            <section class="text-center">
+                <h1 class="tit">FAQ 목록</h1>
+            </section>
+            <div class="pt-5">
+                <table class="table caption-top">
                     <tr>
-                        <td align="center"scope="col">No.</td>
-                        <td align="center"scope="col"><strong>제목</strong></td>
-                        <td align="center"scope="col"><strong>작성일</strong></td>
+                        <th>제목</th>
+                        <td>
+                            <input type="text" id="title" name="title" value="${boardVo.title}">
+                            <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
+                        </td>
+                        <td><input type="button" value="검색" onclick="javascript:fn_search(1)"></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td align="center">5</td>
-                        <td align="center"><a href="#">Q. 차가 시끄럽고 속도가 안나는 느낌이에요.</a></td>
-                        <td align="center">2024.01.11</td>
-                    </tr>
-                    <tr>
-                        <td align="center">4</td>
-                        <td align="center"><a href="#">Q. 2차에서 계속 “띵~띵~" 경고음이 나요. 왜 이러죠?</a></td>
-                        <td align="center">2023.10.10</td>
-                    </tr>
-                    <tr>
-                        <td align="center">3</td>
-                        <td align="center"><a href="#">Q. 주행 중 갑자기 계기판에 타이어 공기압 경고등이 떴어요!</a></td>
-                        <td align="center">2023.07.01</td>
-                    </tr>
-                    <tr>
-                        <td align="center">2</td>
-                        <td align="center"><a href="#">Q. 차에 블루투스 연결은 어떻게 하나요?</a></td>
-                        <td align="center">2023.07.01</td>
-                    </tr>
-                    <tr>
-                        <td align="center">1</td>
-                        <td align="center"><a href="#">Q. 차량 대여 중 추가 운전자 등록은 어떻게 하나요?</a></td>
-                        <td align="center">2023.07.01</td>
-                    </tr>
-                </tbody>
-            </table>
+                </table>
+            </div>
+            <div class="pt-5">
+                <table class="table caption-top">
+                    <thead>
+                        <tr>
+                            <td align="center"scope="col"><strong>No.</strong></td>
+                            <td align="center"scope="col"><strong>제목</strong></td>
+                            <td align="center"scope="col"><strong>작성일</strong></td>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <c:forEach var="notice" items="${boardList}">
+                            <tr>    
+                                <td align="center">${notice.no}</td>
+                                <td align="left"><a href="/info/noticeDetail.do?boardNo=${notice.no}">${notice.title}</a></td>
+                                <td align="center">${notice.regDate}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <c:if test="${boardVo.startPageBlock > boardVo.pageBlock}">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                    <c:forEach begin="${boardVo.startPageBlock}" end="${boardVo.endPageBlock}" step="1" varStatus="status">
+                        <li class="page-item"><a class="page-link" href="#" onclick="javascript:fn_search('${status.index}')">${status.index}</a></li>
+                    </c:forEach>
+                    <c:if test="${boardVo.endPageBlock < boardVo.pageCount}">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                </ul>
+            </nav>
         </div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    
     </div>
-</div>
+
+
 
 
 

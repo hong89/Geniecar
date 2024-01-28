@@ -1,10 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rental.geniecar.sample.dao.SampleDao">
-
+<mapper namespace="com.rental.geniecar.admin.board.dao.AdminBoardDao">
+	
+	<!-- 글 목록 가져오기 -->
 	<select id="selectBoardList" parameterType="boardVo">
-		SELECT * FROM BOARD ORDER BY NO DESC
+		/* selectBoardList */
+		SELECT NO
+			 , TITLE
+			 , CONTENT
+			 , HIT
+			 , TYPE_CODE
+			 , NOTICE_YN
+			 , HASH_TAG
+			 , REG_DATE
+			 , RN
+  		  FROM 
+             ( SELECT NO
+			        , TITLE
+			        , CONTENT
+			        , HIT
+			        , TYPE_CODE
+			        , NOTICE_YN
+			        , HASH_TAG
+			        , TO_CHAR(SYSDATE, 'yyyy-mm-dd') AS REG_DATE
+			        , ROW_NUMBER() OVER(ORDER BY NO DESC)
+			          AS RN
+ 		         FROM BOARD
+ 		        WHERE TYPE_CODE = #{typeCode}
+		<if test='title != null'>
+				  AND TITLE LIKE '%' || #{title} || '%'
+		</if> 		         		    
+	         )
+		<![CDATA[
+         WHERE RN >= #{startPage} 
+           AND RN < #{startPage} + #{pageSize} 
+		]]>	         
+	  ORDER BY RN DESC
 	</select>
 	
+	<select id="selectBoardListSize" parameterType="boardVo">
+		/* selectBoardListSize */
+		SELECT COUNT(*)
+          FROM BOARD
+         WHERE TYPE_CODE = #{typeCode}
+		<if test='title != null'>
+           AND TITLE LIKE '%' || #{title} || '%'
+		</if> 		         		    
+	</select>
+	
+	<!-- 새글 등록 -->
+	<insert id="insertBoard" parameterType="boardVo">
+		INSERT INTO BOARD
+		(
+			 NO
+			, TITLE
+			, CONTENT
+			, HIT
+			, TYPE_CODE
+			, NOTICE_YN
+			, REG_ID
+
+		)
+		VALUES
+		(
+			  SEQ_NO.NEXTVAL
+			, #{title}
+			, #{content}
+			, '0'
+			, #{typeCode}
+			, 'N'
+			, 'JIN'	
+		)
+	</insert>
+	
+	<!-- 글 상세 보기 -->
+	<select id="selectNotice" parameterType="int">
+		SELECT *
+		FROM BOARD
+		WHERE NO = #{no}		
+	</select>
+	
+	<!-- 글 상세 폼 보기 -->
+	<select id="updateNoticeForm" parameterType="int">
+		SELECT *
+		FROM BOARD
+		WHERE NO = #{no}		
+	</select>
+	
+	<!-- 게시판 내용 수정 적용 -->
+	<update id="updateNotice" parameterType="boardVo">
+		UPDATE BOARD
+		SET 
+			  TITLE = #{title}
+			, CONTENT = #{content}
+			, MOD_DATE =#{modDate}
+		WHERE NO = #{no}		
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		DELETE BOARD
+		WHERE NO = #{no}
+	</delete>
 
 </mapper>
