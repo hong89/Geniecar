@@ -8,7 +8,7 @@ import java.util.Date;
 @Setter
 public class PointVo {
     private String no;             // 시퀀스
-    private String point;          // 포인트
+    private int point;          // 포인트
     private String increase;       // 증감 ('+' 이면 적립 or '-' 이면 사용)
     private String history;        // 내역
     private Date regDate;          // 적립일시/사용일시

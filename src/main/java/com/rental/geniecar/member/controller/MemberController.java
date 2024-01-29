@@ -34,7 +34,7 @@ public class MemberController {
 	//ruddud
 	@PostMapping("/doJoin.do")
 	public String doJoin(MemberVo member){
-		memberService.insertMember(member);
+		memberService.newMember(member);
 		return "member/completelyJoin";
     }
 

@@ -11,4 +11,9 @@
 		FROM MEMBER
 		WHERE ID = #{id}
     </select>
+    
+    <update id="updateWithdrawalYn" parameterType="String">
+		UPDATE MEMBER SET WITHDRAWAL_YN ='Y' WHERE ID = #{id}
+	</update>
+	
 </mapper>

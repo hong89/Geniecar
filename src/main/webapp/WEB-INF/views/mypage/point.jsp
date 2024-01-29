@@ -187,6 +187,8 @@
                         </tr>
                         </tbody>
                     </table>
+                    <p>총 대여 포인트가 50,000 이상 적립된 경우, 지니카 전국 어느 지점에서나 차량 대여 시, 잔여 포인트 사용 가능합니다.
+                        (단, 편도 반납수수료, 유류비 등 기타 비용제외)</p>
                 </div>
                 <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact-tab2">.2..</div>
                 <div class="tab-pane fade" id="contact3" role="tabpanel" aria-labelledby="contact-tab3">.3..</div>

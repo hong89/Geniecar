@@ -68,7 +68,7 @@
             <div class="myInfos-area">
                 <div class="border-bottom mb-5 row">
                     <h3 class="mb-4 col">
-                        <strong class="name" id='commonMemberName'>${member.name}</strong>
+                        <strong class="name" id='commonMemberName'>${member.name}님</strong>
                         <span>일반회원&nbsp;</span>
                     </h3>
                     <div class="btns text-end col">
@@ -79,7 +79,7 @@
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0</a>
+                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${point.point}</a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">

@@ -3,7 +3,7 @@
 <mapper namespace="com.rental.geniecar.login.dao.LoginDao">
 
 	<select id="login" resultType="memberVo" parameterType="java.util.Map">
-		SELECT * FROM MEMBER WHERE ID = #{id} AND PW = #{pw}
+		SELECT * FROM MEMBER WHERE ID = #{id} AND PW = #{pw} AND WITHDRAWAL_YN='N'
 	</select>
 
 </mapper>

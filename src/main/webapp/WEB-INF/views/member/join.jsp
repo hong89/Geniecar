@@ -53,7 +53,7 @@
                     function fn_overlapped() {
                         var _id = $("#_id").val();
                         if (_id == '') {
-                            alert("ID를 입력하세요");
+                            alert("ID를 입력해주세요");
                             return;
                         }
                         $.ajax({
@@ -69,7 +69,7 @@
                                     $('#_id').prop("disabled", true);
                                     $('#id').val(_id);
                                 } else {
-                                    alert("사용할 수 없는 ID입니다.");
+                                    alert("이미 사용 중인 아이디 입니다.");
                                 }
                             },
                             error: function (data, Status) {
@@ -92,32 +92,32 @@
                                 alert('아이디를 중복체크 해주세요.');
                                 return false;
                             } else if (pw == ''||pw == null) {
-                                alert("비밀번호를 입력하세요");
+                                alert("비밀번호를 입력해주세요");
                                 return false;
                             } else if (pwCheck == ''||pwCheck == null) {
-                                alert("비밀번호 확인");
+                                alert("비밀번호 확인을 입력해주세요");
                                 return false;
                             } else if (pw != pwCheck) {
-                                alert("비밀번호가 다릅니다.");
+                                alert("비밀번호가 일치하지 않습니다.");
                                 return false;
                             } else if(name == ''||name == null){
-                                alert("이름");
+                                alert("이름을 입력해주세요");
                                 return false;
                             } else if(gender == null){
-                                alert("성별");
+                                alert("성별을 입력해주세요");
                                 return false;
                             } else if(birthday == ''||birthday == null){
-                                alert("생일");
+                                alert("생일을 입력해주세요");
                                 return false;
                             } else if(hp == ''||hp == null){
-                                alert("전화번호");
+                                alert("전화번호를 입력해주세요");
                                 return false;
                             } else if(zipCode == ''||zipCode == null){
-                                alert("우편번호");
+                                alert("우편번호를 입력해주세요");
                                 return false;
                             }
                            
-                            $('[name=frmMember]').submit();
+                            $('[name=doJoin]').submit();
                             
                         });
                     })

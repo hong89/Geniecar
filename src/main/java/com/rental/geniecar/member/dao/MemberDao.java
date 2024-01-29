@@ -9,4 +9,6 @@ public interface MemberDao {
 
 	public void insertMember(MemberVo vo);
 	public String overlapped(String id);
+	public void updateWithdrawalYn(String id);
+	
 }
