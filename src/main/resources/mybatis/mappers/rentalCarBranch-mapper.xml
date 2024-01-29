@@ -4,7 +4,6 @@
 
 	<select id="selectBranchesByLocationCode" resultType="rentalCarBranchVo" parameterType="java.lang.String">
 		SELECT NO
-		   	  -- ,BRANCH_CODE
 		   	  ,CD.CODE_NAME AS BRANCH_NAME
 		  FROM RENTAL_CAR_BRANCH RCB, COMMON_CODE CD
 		 WHERE RCB.BRANCH_CODE = CONCAT(CD.GROUP_CODE, CD.CODE)
