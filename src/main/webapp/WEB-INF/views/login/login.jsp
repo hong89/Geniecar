@@ -45,7 +45,17 @@
                 <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=cf11928680449247d8d486d6f2f78403&redirect_uri=http://localhost:8085/main/index.do">
                     <img src="/images/kakao_login_large_wide.png" class="w-100 mt-3">
                 </a>
-                <button class="w-100 btn btn-lg btn-success mt-3" type="submit">네이버 로그인</button>
+                <div id="naver_id_login"></div>
+                                <!-- //네이버 로그인 버튼 노출 영역 -->
+                                <script type="text/javascript">
+                                    var naver_id_login = new naver_id_login("4vXvpWdKFJd1iXo7QRxe", "YOUR_CALLBACK_URL");
+                                    var state = naver_id_login.getUniqState();
+                                    naver_id_login.setButton("white", 3, 40);
+                                    naver_id_login.setDomain("http://localhost:8085");
+                                    naver_id_login.setState(state);
+                                    naver_id_login.setPopup();
+                                    naver_id_login.init_naver_id_login();
+                                </script>
             </form>
         </div>
         <div class="col">

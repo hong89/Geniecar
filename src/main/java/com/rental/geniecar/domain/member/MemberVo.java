@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Getter
 @Setter
 public class MemberVo {
@@ -11,6 +13,7 @@ public class MemberVo {
     private String pw;                    // 비밀번호
     private String name;                  // 이름
     private String gender;                // 성별 (M: 남 F: 여)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthday;                // 생년월일 ('YYYY-MM-DD')
     private String hp;                    // 휴대폰 (FORMAT: XXX-XXXX-XXXX)
     private String address;               // 주소
