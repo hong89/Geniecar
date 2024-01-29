@@ -1,6 +1,6 @@
 package com.rental.geniecar.common.dao;
 
-import com.rental.geniecar.common.domain.CommonCodeVo;
+import com.rental.geniecar.domain.common.CommonCodeVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

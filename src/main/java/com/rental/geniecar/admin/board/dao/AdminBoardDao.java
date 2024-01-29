@@ -2,7 +2,7 @@ package com.rental.geniecar.admin.board.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
-import com.rental.geniecar.common.domain.BoardVo;
+import com.rental.geniecar.domain.board.BoardVo;
 
 @Mapper
 public interface AdminBoardDao {

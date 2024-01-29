@@ -1,7 +1,7 @@
 package com.rental.geniecar.common.service;
 
 import com.rental.geniecar.common.dao.CommonDao;
-import com.rental.geniecar.common.domain.CommonCodeVo;
+import com.rental.geniecar.domain.common.CommonCodeVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

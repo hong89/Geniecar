@@ -2,7 +2,7 @@ package com.rental.geniecar.member.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.rental.geniecar.common.domain.MemberVo;
+import com.rental.geniecar.domain.member.MemberVo;
 
 @Mapper
 public interface MemberDao {

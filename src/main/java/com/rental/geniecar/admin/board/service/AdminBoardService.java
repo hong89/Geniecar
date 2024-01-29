@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rental.geniecar.admin.board.dao.AdminBoardDao;
-import com.rental.geniecar.common.domain.BoardVo;
+import com.rental.geniecar.domain.board.BoardVo;
 
 
 @Service

@@ -1,6 +1,6 @@
 package com.rental.geniecar.reservation.controller;
 
-import com.rental.geniecar.common.domain.CommonCodeVo;
+import com.rental.geniecar.domain.common.CommonCodeVo;
 import com.rental.geniecar.common.service.CommonService;
 import com.rental.geniecar.domain.branch.RentalCarBranchVo;
 import com.rental.geniecar.reservation.service.ReservationService;

@@ -9,17 +9,17 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="com.rental.geniecar.common.domain.BoardVo" alias="boardVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.CommonCodeVo" alias="commonCodeVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.ConsultVo" alias="consultVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.CouponVo" alias="couponVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.FileVo" alias="fileVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.MemberCouponsVo" alias="memberCouponsVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.MemberVo" alias="memberVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.PointVo" alias="pointVo" />
+        <typeAlias type="com.rental.geniecar.domain.board.BoardVo" alias="boardVo" />
+        <typeAlias type="com.rental.geniecar.domain.common.CommonCodeVo" alias="commonCodeVo" />
+        <typeAlias type="com.rental.geniecar.domain.board.ConsultVo" alias="consultVo" />
+        <typeAlias type="com.rental.geniecar.domain.common.CouponVo" alias="couponVo" />
+        <typeAlias type="com.rental.geniecar.domain.common.FileVo" alias="fileVo" />
+        <typeAlias type="com.rental.geniecar.domain.member.MemberCouponsVo" alias="memberCouponsVo" />
+        <typeAlias type="com.rental.geniecar.domain.member.MemberVo" alias="memberVo" />
+        <typeAlias type="com.rental.geniecar.domain.member.PointVo" alias="pointVo" />
         <typeAlias type="com.rental.geniecar.domain.branch.RentalCarBranchesCarVo" alias="rentalCarBranchsCarVo" />
         <typeAlias type="com.rental.geniecar.domain.branch.RentalCarBranchVo" alias="rentalCarBranchVo" />
         <typeAlias type="com.rental.geniecar.domain.branch.RentalCarReservationVo" alias="rentalCarReservationVo" />
-        <typeAlias type="com.rental.geniecar.common.domain.RentalCarVo" alias="rentalCarVo" />
+        <typeAlias type="com.rental.geniecar.domain.car.RentalCarVo" alias="rentalCarVo" />
     </typeAliases>
 </configuration>

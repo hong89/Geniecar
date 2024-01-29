@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.rental.geniecar.common.domain.MemberVo;
+import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
