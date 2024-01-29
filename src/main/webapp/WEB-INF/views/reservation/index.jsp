@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.1/mustache.min.js"></script>
+
+
 <style>
     .breadcrumb-item a {
         text-decoration: none;
@@ -46,6 +48,12 @@
 
     #searchCarTemplate div {
         padding: 7px;
+    }
+
+    .rental-start-calendar th, .rental-start-calendar td {
+        width: 1%;
+        text-align: center;
+        padding: 10px;
     }
 
 </style>
@@ -119,18 +127,24 @@
                             <div class="row">
                                 <div class="col-3">
                                     <p class="card-text"><small><strong>대여장소</strong></small><br/>
-                                        어디서 대여할까요?</p>
+                                        <img src="/images/icons/location-dot-solid.svg" width="15px"/>
+                                        <span id="rentalPlace">어디서 대여할까요?</span></p>
+
                                 </div>
                                 <div class="col-3">
                                     <p class="card-text"><small><strong>반납장소</strong></small><br/>
-                                        어디로 반납할까요?</p>
+                                        <img src="/images/icons/location-dot-solid.svg" width="15px"/>
+                                        <span id="returnPlace">어디로 반납할까요?</span></p>
+
                                 </div>
                                 <div class="col-4">
                                     <p class="card-text"><small><strong>대여기간</strong></small><br/>
-                                        얼마 동안 대여할까요?</p>
+                                        <img src="/images/icons/clock-solid.svg" width="17px"/>
+                                        <span id="rentalDate">얼마 동안 대여할까요?</span></p>
+
                                 </div>
                                 <div class="col-2" id="searchName" style="background: #f8f7fd;">
-                                    <a href="#">
+                                    <a href="/reservation/step2.do">
                                         차량 검색하기
                                     </a>
                                 </div>
@@ -181,7 +195,10 @@
         <div class="row">
             {{#locations}}
             <div class="col-4" style="padding: 5px 10px 10px 20px">
-                <span data-no="{{no}}">{{branchName}}</span>
+                <span data-no="{{no}}">
+                    <img src="/images/icons/location-dot-solid.svg" width="15px"/>
+                    &nbsp;&nbsp;{{branchName}}
+                </span>
             </div>
             {{/locations}}
         </div>
@@ -217,7 +234,8 @@
             //TODO 지점 스타일 적용 시 태그 변경될 수 있으니 같이 변경 필요
             $('#containerArea').on('click', '#branchListArea span', function () {
                 rentalForm.rentalPlace = rentalForm.returnPlace = rentalForm.rentalCarBranchNo = $(this).data('no');
-
+                $('#rentalPlace').empty().append($(this).text());
+                $('#returnPlace').empty().append($(this).text());
                 var dateTemplate = $('#dateTemplate').html();
                 var dateRendered = Mustache.render(dateTemplate, data);
                 $('#containerArea').html(dateRendered);
@@ -228,19 +246,171 @@
     </script>
 
     <!-- 날짜 선택 영역 -->
-    <div type="x-tmpl-mustache" id="dateTemplate"  style="display: none">
+    <div type="x-tmpl-mustache" id="dateTemplate" style="display: none">
         <div class="row" style="padding-top: 50px;">
-            <div class="col-2" style="height: 550px; border-right: 1px solid #23093d;">
+            <div class="col-2" style="border-right: 1px solid #23093d;">
                 <h5><strong>대여 기간을 <br/>선택해 주세요</strong></h5>
             </div>
             <div class="col-10">
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-11">
-                        <div class="card mb-3" style="height: 350px; background: #f8f7fd;">
+                        <div class="card mb-3" style="background: #f8f7fd;">
                             <div class="card-body">
                                 <div class="row">
-                                    날짜
+
+                                    <%--첫번째 달력--%>
+                                    <div class="col p-2">
+                                        <div class="rental-start-calendar">
+                                            <h4 class="text-center p-2">2024.01</h4>
+                                            <table>
+                                                <thead>
+                                                <tr class="weekdays">
+                                                    <th data-weekday="sun" data-column="0" style="color:red;">일</th>
+                                                    <th data-weekday="mon" data-column="1">월</th>
+                                                    <th data-weekday="tue" data-column="2">화</th>
+                                                    <th data-weekday="wed" data-column="3">수</th>
+                                                    <th data-weekday="thu" data-column="4">목</th>
+                                                    <th data-weekday="fri" data-column="5">금</th>
+                                                    <th data-weekday="sat" data-column="6" style="color:blue;">토</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="days" data-row="0">
+                                                    <td data-column="0"></td>
+                                                    <td data-column="1">1</td>
+                                                    <td data-column="2">2</td>
+                                                    <td data-column="3">3</td>
+                                                    <td data-column="4">4</td>
+                                                    <td data-column="5">5</td>
+                                                    <td data-column="6">6</td>
+                                                </tr>
+                                                <tr class="days" data-row="1">
+                                                    <td data-column="0">7</td>
+                                                    <td data-column="1">8</td>
+                                                    <td data-column="2">9</td>
+                                                    <td data-column="3">10</td>
+                                                    <td data-column="4">11</td>
+                                                    <td data-column="5">12</td>
+                                                    <td data-column="6">13</td>
+                                                </tr>
+                                                <tr class="days" data-row="2">
+                                                    <td data-column="0">14</td>
+                                                    <td data-column="1">15</td>
+                                                    <td data-column="2">16</td>
+                                                    <td data-column="3">17</td>
+                                                    <td data-column="4">18</td>
+                                                    <td data-column="5">19</td>
+                                                    <td data-column="6">20</td>
+                                                </tr>
+                                                <tr class="days" data-row="3">
+                                                    <td data-column="0">21</td>
+                                                    <td data-column="1">22</td>
+                                                    <td data-column="2">23</td>
+                                                    <td data-column="3">24</td>
+                                                    <td data-column="4">25</td>
+                                                    <td data-column="5">26</td>
+                                                    <td data-column="6">27</td>
+                                                </tr>
+                                                <tr class="days" data-row="4">
+                                                    <td data-column="0">28</td>
+                                                    <td data-column="1">29</td>
+                                                    <td data-column="2">30</td>
+                                                    <td data-column="3">31</td>
+                                                    <td data-column="4"></td>
+                                                    <td data-column="5"></td>
+                                                    <td data-column="6"></td>
+                                                </tr>
+                                                <tr class="days" data-row="5">
+                                                    <td data-column="0"></td>
+                                                    <td data-column="1"></td>
+                                                    <td data-column="2"></td>
+                                                    <td data-column="3"></td>
+                                                    <td data-column="4"></td>
+                                                    <td data-column="5"></td>
+                                                    <td data-column="6"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <%--두번째 달력--%>
+                                    <div class="col p-2">
+                                        <div class="rental-start-calendar">
+                                            <h4 class="text-center p-2">2024.02</h4>
+                                            <table>
+                                                <thead>
+                                                <tr class="weekdays">
+                                                    <th data-weekday="sun" data-column="0" style="color:red;">일</th>
+                                                    <th data-weekday="mon" data-column="1">월</th>
+                                                    <th data-weekday="tue" data-column="2">화</th>
+                                                    <th data-weekday="wed" data-column="3">수</th>
+                                                    <th data-weekday="thu" data-column="4">목</th>
+                                                    <th data-weekday="fri" data-column="5">금</th>
+                                                    <th data-weekday="sat" data-column="6" style="color:blue;">토</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="days" data-row="0">
+                                                    <td data-column="0"></td>
+                                                    <td data-column="1"></td>
+                                                    <td data-column="2"></td>
+                                                    <td data-column="3"></td>
+                                                    <td data-column="4">1</td>
+                                                    <td data-column="5">2</td>
+                                                    <td data-column="6">3</td>
+                                                </tr>
+                                                <tr class="days" data-row="1">
+                                                    <td data-column="0">4</td>
+                                                    <td data-column="1">5</td>
+                                                    <td data-column="2">6</td>
+                                                    <td data-column="3">7</td>
+                                                    <td data-column="4">8</td>
+                                                    <td data-column="5">9</td>
+                                                    <td data-column="6">10</td>
+                                                </tr>
+                                                <tr class="days" data-row="2">
+                                                    <td data-column="0">11</td>
+                                                    <td data-column="1">12</td>
+                                                    <td data-column="2">13</td>
+                                                    <td data-column="3">14</td>
+                                                    <td data-column="4">15</td>
+                                                    <td data-column="5">16</td>
+                                                    <td data-column="6">17</td>
+                                                </tr>
+                                                <tr class="days" data-row="3">
+                                                    <td data-column="0">18</td>
+                                                    <td data-column="1">19</td>
+                                                    <td data-column="2">20</td>
+                                                    <td data-column="3">21</td>
+                                                    <td data-column="4">22</td>
+                                                    <td data-column="5">23</td>
+                                                    <td data-column="6">24</td>
+                                                </tr>
+                                                <tr class="days" data-row="4">
+                                                    <td data-column="0">25</td>
+                                                    <td data-column="1">26</td>
+                                                    <td data-column="2">27</td>
+                                                    <td data-column="3">28</td>
+                                                    <td data-column="4">29</td>
+                                                    <td data-column="5"></td>
+                                                    <td data-column="6"></td>
+                                                </tr>
+                                                <tr class="days" data-row="5">
+                                                    <td data-column="0"></td>
+                                                    <td data-column="1"></td>
+                                                    <td data-column="2"></td>
+                                                    <td data-column="3"></td>
+                                                    <td data-column="4"></td>
+                                                    <td data-column="5"></td>
+                                                    <td data-column="6"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -281,7 +451,7 @@
     </div>
 
     <!-- 차량 선택 영역 -->
-    <div type="x-tmpl-mustache" id="searchCarTemplate"  style="display: none">
+    <div type="x-tmpl-mustache" id="searchCarTemplate" style="display: none">
         <div class="row" style="padding-top: 50px;">
             <div class="col-3" style="height: 600px; border: 1px solid #23093d; border-radius: 20px; padding: 20px;">
                 <p><strong>차종</strong></p>
@@ -313,9 +483,9 @@
                     <div class="col-auto"><input type="checkbox"> 가솔린</div>
                     <div class="col-auto"><input type="checkbox"> 하이브리드</div>
                 </div>
-                    <div style="background: #f8f7fd; border-radius: 30px; height: 50px; text-align: center; padding-top:12px; align-content: center; margin-top: 10px">
-                        <a><strong>필터 초기화</strong></a>
-                    </div>
+                <div style="background: #f8f7fd; border-radius: 30px; height: 50px; text-align: center; padding-top:12px; align-content: center; margin-top: 10px">
+                    <a><strong>필터 초기화</strong></a>
+                </div>
 
             </div>
             <div class="col-1"></div>
