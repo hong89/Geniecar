@@ -44,15 +44,6 @@ CREATE TABLE RENTAL_CAR -- 차량 테이블
 ------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
 ------------------------------------------------------------------------------------------------------------------------
 DROP TABLE RENTAL_CAR_BRANCH;
 DROP SEQUENCE CAR_BRANCH_NO;
@@ -80,7 +71,8 @@ CREATE TABLE RENTAL_CAR_BRANCHES_CAR -- 렌터카 지점별 차량 테이블
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17),                  -- 차대번호 (자동차 FK) - 복합키 처리
     RENTAL_CAR_BRANCH_NO      NUMBER(10),                    -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
     --RENTAL_STATUS_CODE        VARCHAR2(6) NOT NULL,        -- 렌트 상태 코드 (공통코드 FK) - 수리중, 가능, 폐차, 장기렌트 등등
-    DEFAULT_COST              NUMBER(6) NOT NULL,            -- 기본 대여료 (10분 단위)
+    IMPORT_CAR_YN             CHAR(1) DEFAULT 'N',           -- 본사 -> 대리점 인수 전('N'), 인수 완료 ('Y')
+    DEFAULT_COST              NUMBER(6),                     -- 기본 대여료 (10분 단위)
     DEFAULT_SALE_RATE         NUMBER(2) DEFAULT 50 NOT NULL, -- 기본 할인율
     WEEK_SALE_RATE            NUMBER(2) DEFAULT 60 NOT NULL, -- 일주일 할인율
     MONTH_SALE_RATE           NUMBER(2) DEFAULT 70 NOT NULL, -- 월 할인율
@@ -193,10 +185,10 @@ CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
 
 CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
 (
-    RENTAL_DATE               DATE NOT NULL,               -- (대여)시작_날짜_시간
-    RETURN_DATE               DATE NOT NULL,               -- 반납_날짜_시간
-    CAR_IDENTIFICATION_NUMBER VARCHAR2 ( 17 ) NOT NULL,    -- 차대번호
-    REGULAR_PRICE             NUMBER ( 10 ) NOT NULL,      -- 정가
-    SALE_RATE                 NUMBER ( 2 ) NOT NULL,       -- 할인율
-    FINAL_RESERVATION_PRICE   NUMBER ( 10 ) NOT NULL,      -- 최종_예약_금액 (정가/할인율=최종금액)
+    RENTAL_DATE               DATE NOT NULL,            -- (대여)시작_날짜_시간
+    RETURN_DATE               DATE NOT NULL,            -- 반납_날짜_시간
+    CAR_IDENTIFICATION_NUMBER VARCHAR2 ( 17 ) NOT NULL, -- 차대번호
+    REGULAR_PRICE             NUMBER ( 10 ) NOT NULL,   -- 정가
+    SALE_RATE                 NUMBER ( 2 ) NOT NULL,    -- 할인율
+    FINAL_RESERVATION_PRICE   NUMBER ( 10 ) NOT NULL,   -- 최종_예약_금액 (정가/할인율=최종금액)
 );

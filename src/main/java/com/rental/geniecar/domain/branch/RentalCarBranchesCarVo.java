@@ -9,6 +9,7 @@ import java.util.Date;
 public class RentalCarBranchesCarVo {
     private String carIdentificationNumber;   // 차대번호 (자동차 FK) - 복합키 처리
     private int rentalCarBranchNo;            // 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
+    private String importCarYn;               // 본사 -> 대리점 인수 전('N'), 인수 완료 ('Y')
     private int defaultCost;                  // 기본 대여료 (10분 단위)
     private int defaultSaleRate;              // 기본 할인율
     private int weekSaleRate;                 // 일주일 할인율
