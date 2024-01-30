@@ -36,12 +36,12 @@
                                                  style="width: 100%;"></textarea>
                 </div>
             </div>
-            <div class="mb-3 row">
+            <%--<div class="mb-3 row">
                 <label for="fileMultiple" class="col-sm-2 col-form-label">파일</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="file" id="fileMultiple" name="fileNo" multiple>
                 </div>
-            </div>
+            </div>--%>
             <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">등록하기</button>
 
         </form>

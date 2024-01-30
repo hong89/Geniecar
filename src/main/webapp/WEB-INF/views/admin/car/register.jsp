@@ -7,6 +7,38 @@
         padding: 30px;
     }
 </style>
+<script>
+    $(function () {
+        $('#company').on('change', function () {
+            // 제조사를 변경하면 해당 제조사의 차량이 나오도록 처리
+            let groupCode = $(this).val();
+            $.get("/admin/car/selectCodeByGroupCode.do", {groupCode: groupCode}, function (res) {
+                console.log(res);
+                var str = "<option selected>선택</option>";
+                $.each(res , function(i){
+                    str += "<option value='" + res[i].fullCode + "'>" + res[i].codeName + "</option>";
+                });
+                $('#carNameCode').empty().append(str);
+                $('#carFuel').empty().append("<option selected>선택</option>");
+            });
+        });
+        // 차량이 선택되면 차종과 연료 가져올 수 있도록 처리
+        $(document).on('change','#carNameCode', function(){
+           let carNameCode = $(this).val();
+           console.log(carNameCode)
+           $.get("/admin/car/selectCarByFullCode.do", {carNameCode: carNameCode}, function (res){
+              console.log(res);
+              var str = "<option selected>선택</option>";
+               $.each(res , function(i){
+                   str += "<option value='" + res[i].carFuelCode + "'>" + res[i].fuelName + "</option>";
+               });
+              $('#carFuel').empty().append(str);
+              $('#carTypeCode').append("<input type='hidden' value='res[i].carFuelCode'>");
+           });
+
+        });
+    });
+</script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
 
@@ -14,87 +46,47 @@
     <div id="registerForm">
         <h3>차량 등록</h3>
 
-        <form name="frmEvent" action="/business/car/registerInsert.do">
+        <form name="frmInsert" action="/business/car/registerInsert.do">
+            <input type="hidden" name="nation" value="K"/> 생산국가
+            <input type="hidden" name="detailCarModel" value="M"/> 세부차종
+            <input type="hidden" name="carBodyShape" value="4"/> 차체형상
+            <input type="hidden" name="safetyLevel" value="3"/> 안전레벨
+            <input type="hidden" name="lhd" value="P"/> 확인란
+            <input type="hidden" name="manufacture" value="O"/> 제조년월
+
             <div class="mb-3 row">
-                <label for="carIdentificationNumber" class="col-sm-2 col-form-label">차대번호</label>
-                <div class="col-sm-10">
+                <label for="company" class="col-sm-3 col-form-label">제조사</label>
+                <div class="col-sm-9">
+                    <select class="form-select" aria-label="Default select example" id="company" name="company">
+                        <option selected>선택</option>
+                        <c:forEach var="code" items="${codeList}">
+                            <option value="${code.code}">${code.codeName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="carNameCode" class="col-sm-3 col-form-label">차명</label>
+                <div class="col-sm-9">
+                    <select class="form-select" aria-label="Default select example" id="carNameCode" name="carNameCode"></select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="carFuel" class="col-sm-3 col-form-label">연료</label>
+                <div class="col-sm-9">
+                    <select class="form-select" aria-label="Default select example" id="carFuel"></select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="carNumber" class="col-sm-3 col-form-label">고유번호<small>(6자리)</small></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="carNumber">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="carIdentificationNumber" class="col-sm-3 col-form-label">고유번호<small>(6자리)</small></label>
+                <div class="col-sm-9">
                     <input type="text" class="form-control" id="carIdentificationNumber">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="carTypeCode" class="col-sm-2 col-form-label">차종</label>
-                <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" id="carTypeCode">
-                        <option selected>선택</option>
-                        <option value="소형">소형</option>
-                        <option value="준중형">준중형</option>
-                        <option value="중형">중형</option>
-                        <option value="준대형">준대형</option>
-                        <option value="대형">대형</option>
-                    </select>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="carNameCode" class="col-sm-2 col-form-label">차명</label>
-                <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" id="carNameCode">
-                        <option selected>선택</option>
-                        <option value="아반떼">아반떼</option>
-                        <option value="소나타">소나타</option>
-                        <option value="k4">k4</option>
-                        <option value="캐스퍼">캐스퍼</option>
-                        <option value="그랜저">그랜저</option>
-                        <option value="쏘렌토">쏘렌토</option>
-                    </select>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="carFuel" class="col-sm-2 col-form-label">연료</label>
-                <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" id="carFuel">
-                        <option selected>선택</option>
-                        <option value="디젤">디젤</option>
-                        <option value="휘발유">휘발유</option>
-                        <option value="전기">전기</option>
-                        <option value="하이브리드">하이브리드</option>
-                    </select>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="company" class="col-sm-2 col-form-label">제조사</label>
-                <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" id="company">
-                        <option selected>선택</option>
-                        <option value="현대">현대</option>
-                        <option value="기아">기아</option>
-                        <option value="제네시스">제네시스</option>
-                        <option value="쉐보레">쉐보레</option>
-                        <option value="르노코리아">르노코리아</option>
-                        <option value="KG모빌리티">KG모빌리티</option>
-                    </select>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="rentalCarBranchNo" class="col-sm-2 col-form-label">렌터카 지점</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="rentalCarBranchNo">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="rentalStatusCode" class="col-sm-2 col-form-label">렌트 상태</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="rentalStatusCode">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="defaultCost" class="col-sm-2 col-form-label">기본 대여료<br>(10분 단위)</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="defaultCost">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="fileMultiple" class="col-sm-2 col-form-label">차량사진</label>
-                <div class="col-sm-10"><input class="form-control" type="file" id="fileMultiple" multiple>
                 </div>
             </div>
             <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">등록하기</button>
