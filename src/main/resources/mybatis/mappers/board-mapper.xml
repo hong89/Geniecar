@@ -52,7 +52,7 @@
 	<insert id="insertBoard" parameterType="boardVo">
 		INSERT INTO BOARD
 		(
-			 NO
+			  NO
 			, TITLE
 			, CONTENT
 			, HIT
@@ -101,5 +101,21 @@
 		DELETE BOARD
 		WHERE NO = #{no}
 	</delete>
+	
+	<!-- 새 이미지 등록 -->
+	<insert id="insertBoardImage" parameterType="int">
+		INSERT INTO IMAGE_FILE
+		(
+			  FILE_NO
+			, SEQ
+			, REG_ID
+		)
+		VALUES
+		(
+			  SEQ_NO.NEXTVAL
+			, 1
+			, 'JIN'
+		)
+	</insert>
 
 </mapper>

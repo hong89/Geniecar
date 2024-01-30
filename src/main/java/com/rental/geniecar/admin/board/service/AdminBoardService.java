@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rental.geniecar.admin.board.dao.AdminBoardDao;
 import com.rental.geniecar.domain.board.BoardVo;
+import com.rental.geniecar.domain.common.FileVo;
 
 
 @Service
@@ -28,7 +29,6 @@ public class AdminBoardService {
 
 	public void insertBoard(BoardVo boardVo) {
 		boardDao.insertBoard(boardVo);
-		
 	}
 
 	public BoardVo selectNoticeDetail(int no) {
@@ -45,7 +45,10 @@ public class AdminBoardService {
 
 	public void deleteNotice(int no) {
 		boardDao.deleteNotice(no);
-		
+	}
+
+	public void insertBoardImage(FileVo fileNo) {
+		boardDao.insertBoardImage(fileNo);
 	}
 	
 
