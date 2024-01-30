@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rental.geniecar.admin.car.dao.AdminCarDao">
+
+	<select id="selectCarByFullCode" resultType="newCarVo" parameterType="String">
+        SELECT NO
+                ,CC.CODE_NAME AS CAR_NAME
+                ,NC.CAR_TYPE_CODE
+                ,NC.CAR_FUEL_CODE
+                ,(SELECT COMMON_CODE.CODE_NAME FROM GENIECAR.COMMON_CODE WHERE CODE =(SUBSTR(NC.CAR_FUEL_CODE,4,3))) AS FUEL_NAME
+        FROM NEW_CAR NC, COMMON_CODE CC
+        WHERE NC.CAR_NAME_CODE = CONCAT(CC.GROUP_CODE, CC.CODE)
+          AND NC.CAR_NAME_CODE = #{carNameCode}
+    </select>
+
+</mapper>

@@ -28,7 +28,7 @@ import com.rental.geniecar.domain.common.FileVo;
 
 import net.coobird.thumbnailator.Thumbnails;
 
-
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @RequestMapping("/admin/board/")
