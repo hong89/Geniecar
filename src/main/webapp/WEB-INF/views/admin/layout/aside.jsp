@@ -38,6 +38,10 @@
             <p><a href="/admin/business/qnaList.do">Q&A 목록</a></p>
             <p><a href="/admin/business/paymentList.do">결제 내역 목록</a></p>
         </li>
+        <li class="list-group-item"><p>차량 관리</p>
+            <p><a href="/admin/car/list.do">차량 목록</a></p>
+            <p><a href="/admin/car/register.do">차량 등록</a></p>
+        </li>
     </ul>
 </div>
 

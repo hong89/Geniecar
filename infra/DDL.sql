@@ -183,12 +183,3 @@ CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
     MOD_DATE                  DATE                         -- 수정_일시
 );
 
-CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
-(
-    RENTAL_DATE               DATE NOT NULL,            -- (대여)시작_날짜_시간
-    RETURN_DATE               DATE NOT NULL,            -- 반납_날짜_시간
-    CAR_IDENTIFICATION_NUMBER VARCHAR2 ( 17 ) NOT NULL, -- 차대번호
-    REGULAR_PRICE             NUMBER ( 10 ) NOT NULL,   -- 정가
-    SALE_RATE                 NUMBER ( 2 ) NOT NULL,    -- 할인율
-    FINAL_RESERVATION_PRICE   NUMBER ( 10 ) NOT NULL,   -- 최종_예약_금액 (정가/할인율=최종금액)
-);

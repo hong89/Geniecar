@@ -12,7 +12,7 @@
 
 
     <div id="registerForm">
-        <h3>차량 인수 등록</h3>
+        <h3>차량 등록</h3>
 
         <form name="frmEvent" action="/business/car/registerInsert.do">
             <div class="mb-3 row">
