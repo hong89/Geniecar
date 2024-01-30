@@ -3,7 +3,7 @@
 <mapper namespace="com.rental.geniecar.admin.board.dao.AdminBoardDao">
 	
 	<!-- 글 목록 가져오기 -->
-	<select id="selectBoardList" parameterType="com.rental.geniecar.domain.CommonCrudVo">
+	<select id="selectBoardList" parameterType="com.rental.geniecar.domain.board.CommonCrudVo">
 		/* selectBoardList */
 		SELECT NO
 			 , TITLE
