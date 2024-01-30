@@ -3,6 +3,7 @@ package com.rental.geniecar.admin.board.dao;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.rental.geniecar.domain.board.BoardVo;
+import com.rental.geniecar.domain.common.FileVo;
 
 @Mapper
 public interface AdminBoardDao {
@@ -20,6 +21,8 @@ public interface AdminBoardDao {
 	void updateNotice(BoardVo boardVo);
 
 	void deleteNotice(int no);
+
+	void insertBoardImage(FileVo fileVo);
 	
 	
 }

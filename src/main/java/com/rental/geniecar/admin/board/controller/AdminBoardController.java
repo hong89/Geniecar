@@ -11,7 +11,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
 import com.rental.geniecar.domain.board.BoardVo;
+import com.rental.geniecar.domain.common.FileVo;
+
+import net.coobird.thumbnailator.Thumbnails;
 
 
 
@@ -97,8 +99,11 @@ public class AdminBoardController {
     // JJ
     // 게시판 새 글 쓰기 (동작 확인 완료)
     @PostMapping("/insertBoard.do")
-    public String insertBoard(BoardVo boardVo) {
+    public String insertBoard(BoardVo boardVo, FileVo fileVo) {
     	boardService.insertBoard(boardVo);
+    	System.out.println("boardVo" + boardVo.getNo());
+    	boardService.insertBoardImage(fileVo);
+    	System.out.println("fileVo" + fileVo.getFileNo());
     	return "redirect:/admin/board/list.do?typeCode=NOTICE";
     }
     
