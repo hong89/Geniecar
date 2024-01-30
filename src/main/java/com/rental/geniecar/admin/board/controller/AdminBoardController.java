@@ -11,7 +11,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rental.geniecar.admin.board.service.AdminBoardService;
 import com.rental.geniecar.domain.board.BoardVo;
 
-
+import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @RequestMapping("/admin/board/")
