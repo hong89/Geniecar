@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.rental.geniecar.domain.board.CommonCrudVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,12 +48,12 @@ public class AdminBoardController {
 	// JJ
 	// 게시판 목록 보기
     @GetMapping("/list.do")
-    public String listNotice(BoardVo boardVo, Model model) {
+    public String listNotice(CommonCrudVo boardVo, Model model) {
     	
     	// 페이징 전처리
     	boardVo.setPageStartSet();
     	// 목록조회
-    	List<BoardVo> boardList = boardService.selectBoardList(boardVo);
+    	List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
     	// 목록 전체건수 조회
     	boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
     	// 페이징 후처리
@@ -81,11 +82,11 @@ public class AdminBoardController {
     // JJ
     // 게시판 FAQ 목록 보기
     @GetMapping("/faqList.do")
-    public String faqList(BoardVo boardVo, Model model) {
+    public String faqList(CommonCrudVo boardVo, Model model) {
     	// 페이징 전처리
     	boardVo.setPageStartSet();
     	// 목록조회
-    	List<BoardVo> boardList = boardService.selectBoardList(boardVo);
+    	List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
     	// 목록 전체건수 조회
     	boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
     	// 페이징 후처리

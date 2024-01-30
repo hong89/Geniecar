@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommonCrudVo {
+public class CommonCrudVo extends BoardVo {
 	private int pageNum;        // 페이지넘버
 	private int pageSize = 3;   // 페이지사이즈
 	private int startPage;      // 첫페이지

@@ -3,7 +3,7 @@
 <mapper namespace="com.rental.geniecar.admin.board.dao.AdminBoardDao">
 	
 	<!-- 글 목록 가져오기 -->
-	<select id="selectBoardList" parameterType="boardVo">
+	<select id="selectBoardList" parameterType="com.rental.geniecar.domain.CommonCrudVo">
 		/* selectBoardList */
 		SELECT NO
 			 , TITLE
@@ -112,7 +112,7 @@
 		)
 		VALUES
 		(
-			  SEQ_NO.NEXTVAL
+			  SEQ_IMAGE_FILE_NO.NEXTVAL
 			, 1
 			, 'JIN'
 		)

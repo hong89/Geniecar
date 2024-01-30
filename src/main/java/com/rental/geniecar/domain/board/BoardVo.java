@@ -7,7 +7,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BoardVo extends CommonCrudVo {
+public class BoardVo {
+    private int level;            // 글 레벨
     private int no;               // 시퀀스
     private int parentNo;         // 부모 번호
     private String title;         // 제목

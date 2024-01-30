@@ -2,6 +2,7 @@ package com.rental.geniecar.admin.board.service;
 
 import java.util.List;
 
+import com.rental.geniecar.domain.board.CommonCrudVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,12 +19,12 @@ public class AdminBoardService {
 	@Autowired
     private AdminBoardDao boardDao;
 
-	public List<BoardVo> selectBoardList(BoardVo boardVo) {
-		List<BoardVo> boardList = boardDao.selectBoardList(boardVo);
+	public List<CommonCrudVo> selectBoardList(CommonCrudVo boardVo) {
+		List<CommonCrudVo> boardList = boardDao.selectBoardList(boardVo);
 		return boardList;
 	}
 	
-	public int selectBoardListSize(BoardVo boardVo) {
+	public int selectBoardListSize(CommonCrudVo boardVo) {
 		return boardDao.selectBoardListSize(boardVo);
 	}
 
