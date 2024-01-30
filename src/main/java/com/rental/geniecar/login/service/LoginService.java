@@ -18,6 +18,7 @@ public class LoginService {
 	private final LoginDao loginDao;
 	
 	public MemberVo login (Map<String, String> map) {
+		
 		return loginDao.login(map);
 	}
 }

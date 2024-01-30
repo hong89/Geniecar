@@ -12,8 +12,15 @@
 		WHERE ID = #{id}
     </select>
     
+    <select id="selectAll" parameterType="String" resultType="memberVo">
+		SELECT * FROM MEMBER WHERE ID = #{id}
+    </select>
+    
     <update id="updateWithdrawalYn" parameterType="String">
 		UPDATE MEMBER SET WITHDRAWAL_YN ='Y' WHERE ID = #{id}
 	</update>
 	
+	<update id="updateMember" parameterType="memberVo">
+		UPDATE MEMBER SET HP = #{hp}, ZIP_CODE = #{zipCode}, ADDRESS = #{address}, ADDRESS_DETAIL = #{addressDetail} WHERE ID= #{id}
+	</update>
 </mapper>

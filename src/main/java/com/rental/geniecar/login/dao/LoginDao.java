@@ -10,4 +10,5 @@ import com.rental.geniecar.domain.member.MemberVo;
 public interface LoginDao {
 
 	public MemberVo login(Map<String, String> map);
+	public void updateLastLoginDate(String id);
 }

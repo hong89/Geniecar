@@ -87,10 +87,17 @@ public class MyPageController {
 	}
 	//ruddud
 	@GetMapping("/member/modify.do")
-	public String memberModify(){
-		
+	public String memberModify(HttpSession session, Model model){
+		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		model.addAttribute("member", membervo);
         return "mypage/member/modify";
     }
+	@PostMapping("/member/domodify.do")
+	public String domodify(HttpSession session, MemberVo vo) {
+		session.removeAttribute("memberInfo");
+		session.setAttribute("memberInfo", memberService.updateMember(vo));
+		return "redirect:/mypage/member/modify.do";
+	}
 	//ruddud
 	@GetMapping("/member/password.do")
 	public String memberPassword(){

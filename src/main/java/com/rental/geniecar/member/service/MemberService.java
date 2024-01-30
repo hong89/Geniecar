@@ -27,4 +27,8 @@ public class MemberService {
 	public void leaveMember(String id) {
 		memberDao.updateWithdrawalYn(id);
 	}
+	public MemberVo updateMember(MemberVo vo) {
+		memberDao.updateMember(vo);
+		return memberDao.selectAll(vo.getId());
+	}
 }

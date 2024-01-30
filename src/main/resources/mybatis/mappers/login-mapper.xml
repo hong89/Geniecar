@@ -6,4 +6,7 @@
 		SELECT * FROM MEMBER WHERE ID = #{id} AND PW = #{pw} AND WITHDRAWAL_YN='N'
 	</select>
 
+	<update id="updateLastLoginDate" parameterType="String">
+		UPDATE MEMBER SET LAST_LOGIN_DATE = SYSDATE WHERE ID = #{id}
+	</update>
 </mapper>
