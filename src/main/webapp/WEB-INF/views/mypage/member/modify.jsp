@@ -81,10 +81,10 @@
     }
 
     function oninputPhone(target) {
-                    target.value = target.value
-                        .replace(/[^0-9]/g, '')
-                        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
-                }
+        target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+    }
 </script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -233,8 +233,7 @@
                     <div class="col-6 row ">
                         <input type="button" class="btn text-white col-auto ms-3 me-1" style="background: #41087c;"
                                     onclick="execDaumPostcode()" value="우편번호 찾기">
-                        <input type="text" id="zipCode" name="zipCode" class="form-control col"
-                             value="${member.zipCode}">
+                        <input type="text" id="zipCode" name="zipCode" class="form-control col" value="${member.zipCode}" readonly="readonly">
                     </div>
                 </div>
                 <div class="row p-1 m-2">
@@ -242,8 +241,7 @@
                         <label for="address" class="col-form-label">주소<span>*</span></label>
                     </div>
                     <div class="col-6">
-                        <input type="text" id="address" name="address" class="form-control"
-                             value="${member.address}">
+                        <input type="text" id="address" name="address" class="form-control" value="${member.address}" readonly="readonly">
                     </div>
                 </div>
                 <div class="row p-1 m-2">

@@ -57,20 +57,23 @@ public class LoginController {
 		session.removeAttribute("memberInfo");
 		return "redirect:/main/index.do";
     }
+	//ruddud
 	@GetMapping("/findId.do")
 	public String findId() {
 		return "login/findId";
 	}
-	
+	//ruddud
 	@PostMapping("/resultFindId.do")
 	public String resultFindId(@RequestParam Map map, Model model) {
 		model.addAttribute("msg", loginService.findId(map));
 		return "login/resultFindId";
 	}
+	//ruddud
 	@GetMapping("/findPw.do")
 	public String findPw() {
 		return"login/findPw";
 	}
+	//ruddud
 	@PostMapping("/resultFindPw.do")
 	public String resultFindPw(@RequestParam Map map, Model model) {
 		model.addAttribute("msg", loginService.findPw(map));

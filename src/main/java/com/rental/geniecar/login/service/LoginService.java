@@ -18,8 +18,12 @@ public class LoginService {
 	private final LoginDao loginDao;
 	
 	public MemberVo login (Map<String, String> map) {
-		
+		if(loginDao.login(map) != null && loginDao.login(map).getId()!=null) {
+		loginDao.updateLastLoginDate(loginDao.login(map).getId());
 		return loginDao.login(map);
+		} else {
+			return null;
+		}
 	}
 	public String findId (Map map) {
 		if(loginDao.findId(map) != null) {

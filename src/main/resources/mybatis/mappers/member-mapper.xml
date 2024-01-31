@@ -3,7 +3,7 @@
 <mapper namespace="com.rental.geniecar.member.dao.MemberDao">
 
 	<insert id="insertMember" parameterType="memberVo">
-		INSERT INTO MEMBER VALUES (#{id}, #{pw}, #{name}, #{gender}, #{birthday}, #{hp}, #{address}, #{addressDetail}, #{zipCode}, SYSDATE, SYSDATE, 'N', 'U')
+		INSERT INTO MEMBER(ID, PW, NAME, GENDER, BIRTHDAY, HP, ADDRESS, ADDRESS_DETAIL, ZIP_CODE, JOIN_DATE, LAST_LOGIN_DATE, WITHDRAWAL_YN, TYPE) VALUES (#{id}, #{pw}, #{name}, #{gender}, #{birthday}, #{hp}, #{address}, #{addressDetail}, #{zipCode}, SYSDATE, SYSDATE, 'N', 'U')
 	</insert>
 	
 	<select id="overlapped" parameterType="String" resultType="String">
@@ -12,7 +12,7 @@
 		WHERE ID = #{id}
     </select>
     
-    <select id="selectAll" parameterType="String" resultType="memberVo">
+    <select id="selectOne" parameterType="String" resultType="memberVo">
 		SELECT * FROM MEMBER WHERE ID = #{id}
     </select>
     
@@ -23,4 +23,8 @@
 	<update id="updateMember" parameterType="memberVo">
 		UPDATE MEMBER SET HP = #{hp}, ZIP_CODE = #{zipCode}, ADDRESS = #{address}, ADDRESS_DETAIL = #{addressDetail} WHERE ID= #{id}
 	</update>
+	
+	<select id="selectAll" resultType="memberVo">
+		SELECT * FROM MEMBER ORDER BY NAME
+    </select>
 </mapper>

@@ -13,9 +13,32 @@
     </script>
     
     <form action="/login/resultFindId.do" method="post">
-        <input type="text" id="name" name="name" class="form-control"  placeholder="이름">
-        <input type="text" id="hp" name="hp" class="form-control" oninput="oninputPhone(this)" maxlength="13" placeholder="전화번호">
-        <input type="submit">
+        <h3 class="mt-5 mb-4 text-center fw-bolder">아이디 찾기</h3>
+        <div class="row g-3 align-items-center join-container mb-3">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="name" class="col-form-label">이름</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="name" name="name" class="form-control">
+            </div>
+        </div>
+        <div class="row g-3 align-items-center join-container mb-3">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <label for="hp" class="col-form-label">전화번호</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="hp" name="hp" class="form-control" oninput="oninputPhone(this)" maxlength="13">
+            </div>
+        </div>
+        <div class="row g-3 align-items-center join-container mb-3">
+            <div class="col-4"></div>
+            <div class="col-auto">
+                <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">취소</button>
+                <button type="submit" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;">찾기</button>
+            </div>
+        </div>
     </form>
 
 

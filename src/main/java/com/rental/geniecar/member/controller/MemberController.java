@@ -34,7 +34,7 @@ public class MemberController {
 	
 	//ruddud
 	@PostMapping("/completeJoin.do")
-	public String doJoin(MemberVo member, Model model){
+	public String completeJoin(MemberVo member, Model model){
 		memberService.newMember(member);
 		model.addAttribute("name", member.getName());
 		return "member/completeJoin";

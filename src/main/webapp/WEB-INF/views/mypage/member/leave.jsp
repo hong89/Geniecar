@@ -184,7 +184,7 @@
             </form>
             <div class="btn-area row">
                 <div class="col-4"></div>
-                <button type="button" class="btn col">취소</button>
+                <button type="button" class="btn col" onclick="history.back()">취소</button>
                 <button type="submit" id ="submitBtn" class="btn col" style="background-color: #41087c; color: #f8f7fd;">탈퇴</button>
                 <div class="col-4"></div>
             </div>

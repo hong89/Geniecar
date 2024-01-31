@@ -1,5 +1,8 @@
 package com.rental.geniecar.member.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +32,13 @@ public class MemberService {
 	}
 	public MemberVo updateMember(MemberVo vo) {
 		memberDao.updateMember(vo);
-		return memberDao.selectAll(vo.getId());
+		return memberDao.selectOne(vo.getId());
+	}
+	public List<MemberVo> selectAll(){
+		List<MemberVo> memberList = memberDao.selectAll();
+		return memberList;
+	}
+	public MemberVo selectOne(String id) {
+		return memberDao.selectOne(id);
 	}
 }
