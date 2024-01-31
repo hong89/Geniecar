@@ -14,4 +14,7 @@ public class RentalCarVo {
     private String carFuelCode;               // 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
     private Date   deliveryDate;                // 출고일시
     private String company;                   // 제조사 (공통코드 FK) 현대, 기아 ...
+    private String carType;
+    private String carFuel;
+    private String companyName;
 }

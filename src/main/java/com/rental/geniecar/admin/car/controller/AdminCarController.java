@@ -29,6 +29,13 @@ public class AdminCarController {
         return "admin/car/list";
     }
 
+    @GetMapping("/stockList.do")
+    public String stockList(Model model) {
+        List<RentalCarVo> rentalCarList = adminCarService.selectStockList();
+        model.addAttribute("rentalCarList", rentalCarList);
+        return "admin/car/stockList";
+    }
+
     // hsh
     @ResponseBody
     @GetMapping("/selectCodeByGroupCode.do")

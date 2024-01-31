@@ -11,4 +11,6 @@ public interface AdminCarDao {
 
     List<NewCarVo> selectCarByFullCode(String carNameCode);
     void insertRentalCar(RentalCarVo rentalCarVo);
+
+    List<RentalCarVo> selectStockList();
 }

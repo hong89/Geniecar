@@ -4,27 +4,43 @@
 
 	<select id="selectCarByFullCode" resultType="newCarVo" parameterType="String">
         SELECT NO
-                ,CC.CODE_NAME AS CAR_NAME
-                ,NC.CAR_TYPE_CODE
-                ,NC.CAR_FUEL_CODE
-                ,(SELECT COMMON_CODE.CODE_NAME FROM GENIECAR.COMMON_CODE WHERE CODE =(SUBSTR(NC.CAR_FUEL_CODE,4,3))) AS FUEL_NAME
+              ,CC.CODE_NAME AS CAR_NAME
+              ,NC.CAR_TYPE_CODE
+              ,NC.CAR_FUEL_CODE
+              ,FN_COMM_NM(NC.CAR_FUEL_CODE) AS FUEL_NAME
         FROM NEW_CAR NC, COMMON_CODE CC
         WHERE NC.CAR_NAME_CODE = CONCAT(CC.GROUP_CODE, CC.CODE)
           AND NC.CAR_NAME_CODE = #{carNameCode}
     </select>
 
     <insert id="insertRentalCar" parameterType="rentalCarVo">
-        INSERT INTO RENTAL_CAR ( CAR_IDENTIFICATION_NUMBER
-                               , CAR_TYPE_CODE
-                               , CAR_NAME_CODE
-                               , CAR_FUEL_CODE
-                               , COMPANY)
-        VALUES ( #{carIdentificationNumber}
-               , #{carTypeCode}
-               , #{carNameCode}
-               , #{carFuelCode}
-               , #{company})
+        INSERT INTO RENTAL_CAR (
+             CAR_IDENTIFICATION_NUMBER
+           , CAR_TYPE_CODE
+           , CAR_NAME_CODE
+           , CAR_FUEL_CODE
+           , COMPANY
+        ) VALUES (
+            #{carIdentificationNumber}
+           , #{carTypeCode}
+           , #{carNameCode}
+           , #{carFuelCode}
+           , #{company}
+        )
     </insert>
+
+    <select id="selectStockList" resultType="rentalCarVo">
+        SELECT CAR_IDENTIFICATION_NUMBER
+             ,CAR_TYPE_CODE
+             ,FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
+             ,CAR_NAME_CODE
+             ,FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
+             ,CAR_FUEL_CODE
+             ,FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
+             ,COMPANY
+             ,FN_COMM_NAME(COMPANY) AS COMPANY_NAME
+        FROM RENTAL_CAR WHERE DELIVERY_DATE IS NULL
+    </select>
 
 </mapper>
 

@@ -22,15 +22,13 @@
         $('#company').on('change', function () {
             // 제조사를 변경하면 해당 제조사의 차량이 나오도록 처리
             var groupCode = $(this).val().substring(3, 6);
-            alert(groupCode)
             $.get("/admin/car/selectCodeByGroupCode.do", {groupCode: groupCode}, function (res) {
-                console.log(res);
                 var str = "<option selected>선택</option>";
                 $.each(res, function (i) {
                     str += "<option value='" + res[i].fullCode + "'>" + res[i].codeName + "</option>";
                 });
-                $('#carNameCode').empty().append(str);
-                $('#carFuelCode').empty().append("<option selected>선택</option>");
+                $('#carNameCode').html(str);
+                $('#carFuelCode').html("<option selected>선택</option>");
             });
         });
         // 차량이 선택되면 연료 가져올 수 있도록 처리
@@ -43,13 +41,13 @@
                 $.each(res, function (i) {
                     str += "<option value='" + res[i].carFuelCode + "'>" + res[i].fuelName + "</option>";
                 });
-                $('#carFuelCode').empty().append(str);
+                $('#carFuelCode').html(str);
                 $('#carTypeCode').val(res[0].carTypeCode);
             });
 
         });
 
-        $('#carNumber').on('change', function () {
+        $('#carNumber').on('blur', function () {
             if ($('#carNumber').val().length !== 6) {
                 alert("고유번호 6자리를 모두 입력해주세요.")
             } else {
@@ -70,7 +68,7 @@
             }
         });
 
-        $(document).on('click', '#frmSubmit', function(){
+        $('#frmSubmit').on('click', function(){
             $('#carIdentificationNumber').attr('disabled', false);
             $('#frmInsert').submit();
             return false;

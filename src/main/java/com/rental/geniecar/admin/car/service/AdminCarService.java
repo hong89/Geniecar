@@ -23,4 +23,8 @@ public class AdminCarService {
     public void insertRentalCar(RentalCarVo rentalCarVo){
         adminCarDao.insertRentalCar(rentalCarVo);
     };
+
+    public List<RentalCarVo> selectStockList() {
+        return adminCarDao.selectStockList();
+    }
 }
