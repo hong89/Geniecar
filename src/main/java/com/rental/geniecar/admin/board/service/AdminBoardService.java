@@ -18,6 +18,20 @@ public class AdminBoardService {
 	
 	@Autowired
     private AdminBoardDao boardDao;
+	
+	
+	// 이미지 경로 가져오기
+	private void setImageFilePath(List<FileVo> imageFiles, String savePath) {
+		for (FileVo imageFile : imageFiles) {
+			imageFile.setImageFilePath(savePath, imageFile.getSaveName());
+		}
+	}
+	// 이미지 리스트
+	public List<FileVo> selectImageFiles(int flieNo) {
+		List<FileVo> imageFiles = boardDao.selectImageFiles(flieNo);
+		setImageFilePath(imageFiles, "C:\\geniecar_images");
+		return imageFiles;
+	}
 
 	public List<CommonCrudVo> selectBoardList(CommonCrudVo boardVo) {
 		List<CommonCrudVo> boardList = boardDao.selectBoardList(boardVo);
@@ -51,7 +65,6 @@ public class AdminBoardService {
 	public void insertBoardImage(FileVo fileNo) {
 		boardDao.insertBoardImage(fileNo);
 	}
-	
 
 }
 

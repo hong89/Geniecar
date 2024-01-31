@@ -25,8 +25,17 @@
                 <label for="content" class="col-sm-2 col-form-label">내용</label>
                 <div class="col-sm-10"><textarea class="form-control" id="content" name="content" rows="20"
                                                  style="width: 100%;">${notice.content}</textarea>
+                    <!-- <c:if test="${not empty imageFiles}">
+                        <h3>첨부 이미지</h3>
+                        <c:forEach var="imageFile" items="${imageFiles}">
+                            <img src="${imageFile.imageFilePath}" alt="이미지" width="300" height="200">
+                        </c:forEach>
+                    </c:if> -->
                 </div>
             </div>
+            
+
+
             <button type="button" class="btn text-white" style="background: #41087c"
                     onclick="location.href='list.do?typeCode=${notice.typeCode}'">목록가기
             </button>
