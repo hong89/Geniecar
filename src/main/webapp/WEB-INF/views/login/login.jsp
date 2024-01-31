@@ -9,7 +9,7 @@
         }
 
         function result() {
-            alert("아이디나  비밀번호가 틀립니다. 다시 로그인해주세요");
+            alert("등록되지 않은 아이디이거나 아이디 도는 비밀번호를 잘못 입력하셨습니다.");
         }
     </script>
 </c:if>
@@ -21,9 +21,7 @@
     <!--------------------------------------------------상단---------------------------------------------------------->
 
     <div class="row">
-        <div class="col">
-        </div>
-
+        <div class="col"></div>
         <div class="col">
             <form action="/login/dologin.do" method="post">
                 <img class="mb-4" src="/images/common/logo-full-image.png" alt="지니카">
@@ -45,20 +43,20 @@
                 <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=cf11928680449247d8d486d6f2f78403&redirect_uri=http://localhost:8085/main/index.do">
                     <img src="/images/kakao_login_large_wide.png" class="w-100 mt-3">
                 </a>
+                <!-- //네이버 로그인 버튼 노출 영역 -->
                 <div id="naver_id_login"></div>
-                                <!-- //네이버 로그인 버튼 노출 영역 -->
-                                <script type="text/javascript">
-                                    var naver_id_login = new naver_id_login("4vXvpWdKFJd1iXo7QRxe", "YOUR_CALLBACK_URL");
-                                    var state = naver_id_login.getUniqState();
-                                    naver_id_login.setButton("white", 3, 40);
-                                    naver_id_login.setDomain("http://localhost:8085");
-                                    naver_id_login.setState(state);
-                                    naver_id_login.setPopup();
-                                    naver_id_login.init_naver_id_login();
-                                </script>
+                <script type="text/javascript">
+                    var naver_id_login = new naver_id_login("4vXvpWdKFJd1iXo7QRxe", "YOUR_CALLBACK_URL");
+                    var state = naver_id_login.getUniqState();
+                    naver_id_login.setButton("white", 3, 40);
+                    naver_id_login.setDomain("http://localhost:8085");
+                    naver_id_login.setState(state);
+                    naver_id_login.setPopup();
+                    naver_id_login.init_naver_id_login();
+                </script>
+                <div class="w-100 mt-3 text-center"><a href="/login/findId.do">아이디 찾기</a>/<a href="/login/findPw.do">비밀번호 찾기</a></div>
             </form>
         </div>
-        <div class="col">
-        </div>
+        <div class="col"></div>
         <!--------------------------------------------------하단---------------------------------------------------------->
     </div>

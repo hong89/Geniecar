@@ -11,4 +11,6 @@ public interface LoginDao {
 
 	public MemberVo login(Map<String, String> map);
 	public void updateLastLoginDate(String id);
+	public String findId(Map map);
+	public String findPw(Map map);
 }

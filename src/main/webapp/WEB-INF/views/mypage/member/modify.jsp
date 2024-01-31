@@ -220,7 +220,7 @@
                 </div>
                 <div class="row p-1 m-2">
                     <div class="col-2">
-                        <label for="hp" class="col-form-label">휴대폰 번호<span>*</span></label>
+                        <label for="hp" class="col-form-label">전화 번호<span>*</span></label>
                     </div>
                     <div class="col-6">
                         <input type="text" id="hp" name="hp" class="form-control" oninput="oninputPhone(this)" maxlength="13" value="${member.hp}">

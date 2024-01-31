@@ -126,7 +126,7 @@
             <div class="container-xl">
                 <!--------------------------------------------------상단---------------------------------------------------------->
 
-                <form action="/member/doJoin.do" method="post" name="doJoin">
+                <form action="/member/completeJoin.do" method="post" name="completeJoin">
                     <div class="row g-3 align-items-center join-container">
                         <div class="col-2"></div>
                         <div class="col-2">

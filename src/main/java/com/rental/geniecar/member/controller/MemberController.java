@@ -1,6 +1,7 @@
 package com.rental.geniecar.member.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,10 +33,11 @@ public class MemberController {
 	}
 	
 	//ruddud
-	@PostMapping("/doJoin.do")
-	public String doJoin(MemberVo member){
+	@PostMapping("/completeJoin.do")
+	public String doJoin(MemberVo member, Model model){
 		memberService.newMember(member);
-		return "member/completelyJoin";
+		model.addAttribute("name", member.getName());
+		return "member/completeJoin";
     }
 
 	//ruddud

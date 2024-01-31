@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +45,7 @@ public class LoginController {
 		}else{	
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>alert(\"등록되지 않은 아이디이거나 아아디 또는 비밀번호를 잘못 입력했습니다.\");history.back();</script>");
+			out.print("<script>alert(\"등록되지 않은 아이디이거나 아이디 도는 비밀번호를 잘못 입력하셨습니다.\");history.back();</script>");
 			out.flush();
 			out.close();
 		}
@@ -56,6 +57,24 @@ public class LoginController {
 		session.removeAttribute("memberInfo");
 		return "redirect:/main/index.do";
     }
-
+	@GetMapping("/findId.do")
+	public String findId() {
+		return "login/findId";
+	}
+	
+	@PostMapping("/resultFindId.do")
+	public String resultFindId(@RequestParam Map map, Model model) {
+		model.addAttribute("msg", loginService.findId(map));
+		return "login/resultFindId";
+	}
+	@GetMapping("/findPw.do")
+	public String findPw() {
+		return"login/findPw";
+	}
+	@PostMapping("/resultFindPw.do")
+	public String resultFindPw(@RequestParam Map map, Model model) {
+		model.addAttribute("msg", loginService.findPw(map));
+		return "login/resultFindPw";
+	}
 
 }
