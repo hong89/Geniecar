@@ -27,8 +27,8 @@ public class AdminBoardService {
 		}
 	}
 	// 이미지 리스트
-	public List<FileVo> selectImageFiles(int flieNo) {
-		List<FileVo> imageFiles = boardDao.selectImageFiles(flieNo);
+	public List<FileVo> selectImageFiles(int no) {
+		List<FileVo> imageFiles = boardDao.selectImageFiles(no);
 		setImageFilePath(imageFiles, "C:\\geniecar_images");
 		return imageFiles;
 	}

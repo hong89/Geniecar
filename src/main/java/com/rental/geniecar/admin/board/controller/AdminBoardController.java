@@ -37,6 +37,13 @@ import net.coobird.thumbnailator.Thumbnails;
 public class AdminBoardController {
 	private static final String UPLOAD_PATH = "C:\\geniecar_images";
 	
+	private void setImageFilePath(List<FileVo> imageFiles, String savePath) {
+		for (FileVo imageFile : imageFiles) {
+			imageFile.setImageFilePath(savePath, imageFile.getSaveName());
+			System.err.println("######## :: 이미지 경로확인 " + imageFile.getImageFilePath());
+		}
+	}
+	
 	@Autowired
 	private AdminBoardService boardService;
 	
@@ -70,12 +77,21 @@ public class AdminBoardController {
     @GetMapping("/detailNotice.do")
     public String detailNotice(@RequestParam int no, Model model) {
     	BoardVo notice = boardService.selectNoticeDetail(no);
+    	
+    	// 이미지 파일 정보 가져오기
+    	List<FileVo> imageFiles = boardService.selectImageFiles(no);
+    	
+    	// 이미지 경로
+    	setImageFilePath(imageFiles, "c:\\genicar_images");
+    	
     	model.addAttribute("notice", notice);
+    	model.addAttribute("imageFiles", imageFiles);
     	
     	return "admin/board/detailNotice";
     }
     
-    // 게시판 글 쓰기 폼
+
+	// 게시판 글 쓰기 폼
     @GetMapping("/register.do")
     public String register() {
         return "admin/board/register";
@@ -246,10 +262,5 @@ public class AdminBoardController {
 			out.write(buffer);
 			out.close();
 		}
-    
-    
-    
-    
-    
     
 }

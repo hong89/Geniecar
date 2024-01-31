@@ -1,8 +1,10 @@
 package com.rental.geniecar.domain.common;
 
+import java.io.File;
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.Setter;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -19,6 +21,8 @@ public class FileVo {
     private String imageFilePath;
     
     public void setImageFilePath(String savePath, String saveName) {
-    	this.imageFilePath = savePath + "/" + saveName;
+    	this.imageFilePath = savePath + File.separator + saveName;
     }
+
 }
+	

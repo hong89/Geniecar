@@ -83,10 +83,10 @@
 	</select>
 	
 	<!-- 이미지 상세 보기 -->
-	<select id="selectImageFiles" parameterType="int">
+	<select id="selectImageFiles" parameterType="int" resultType="com.rental.geniecar.domain.common.FileVo">
 		SELECT *
 		FROM IMAGE_FILE
-		WHERE File_NO = #{fileNo}		
+		WHERE File_NO = #{no}		
 	</select>
 	
 	
