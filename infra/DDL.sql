@@ -29,6 +29,7 @@ CREATE TABLE MEMBER -- 회원 테이블
     JOIN_DATE       DATE          NOT NULL,   -- 가입일
     LAST_LOGIN_DATE DATE          NOT NULL,   -- 마지막 로그인 일시
     WITHDRAWAL_YN   CHAR(1)       NOT NULL,   -- 탈퇴 여부
+    BRANCH_CODE     VARCHAR2(6),              -- 렌터카 지점 코드 (공통코드 FK) - 사업자인 경우에만 등록
     TYPE            CHAR(1)       NOT NULL    -- 회원 타입 (U: 사용자, B: 지점, A: 사이트 관리자)
 );
 
@@ -43,7 +44,7 @@ CREATE TABLE RENTAL_CAR -- 렌터 차량 테이블
 );
 
 ------------------------------------------------------------------------------------------------------------------------
-
+COMMIT;
 
 ------------------------------------------------------------------------------------------------------------------------
 DROP TABLE RENTAL_CAR_BRANCH;
