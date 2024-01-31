@@ -25,6 +25,8 @@ public interface AdminBoardDao {
 	void deleteNotice(int no);
 
 	void insertBoardImage(FileVo fileVo);
+
+	List<FileVo> selectImageFiles(int fileNo);
 	
 	
 }

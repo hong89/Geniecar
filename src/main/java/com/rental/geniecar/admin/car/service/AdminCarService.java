@@ -2,6 +2,7 @@ package com.rental.geniecar.admin.car.service;
 
 import com.rental.geniecar.admin.car.dao.AdminCarDao;
 import com.rental.geniecar.domain.car.NewCarVo;
+import com.rental.geniecar.domain.car.RentalCarVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,4 +19,8 @@ public class AdminCarService {
     public List<NewCarVo> selectCarByFullCode(String carNameCode) {
         return adminCarDao.selectCarByFullCode(carNameCode);
     }
+
+    public void insertRentalCar(RentalCarVo rentalCarVo){
+        adminCarDao.insertRentalCar(rentalCarVo);
+    };
 }

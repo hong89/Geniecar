@@ -16,4 +16,9 @@ public class FileVo {
     private int fileSize;      // 파일 크기
     private String regId;      // 등록자 (회원아이디 FK)
     private Date regDate;      // 등록일
+    private String imageFilePath;
+    
+    public void setImageFilePath(String savePath, String saveName) {
+    	this.imageFilePath = savePath + "/" + saveName;
+    }
 }

@@ -58,6 +58,7 @@
 			, HIT
 			, TYPE_CODE
 			, NOTICE_YN
+			, FILE_NO
 			, REG_ID
 
 		)
@@ -69,6 +70,7 @@
 			, '0'
 			, #{typeCode}
 			, 'N'
+			, 1
 			, 'JIN'	
 		)
 	</insert>
@@ -79,6 +81,14 @@
 		FROM BOARD
 		WHERE NO = #{no}		
 	</select>
+	
+	<!-- 이미지 상세 보기 -->
+	<select id="selectImageFiles" parameterType="int">
+		SELECT *
+		FROM IMAGE_FILE
+		WHERE File_NO = #{fileNo}		
+	</select>
+	
 	
 	<!-- 글 상세 폼 보기 -->
 	<select id="updateNoticeForm" parameterType="int">
@@ -103,19 +113,31 @@
 	</delete>
 	
 	<!-- 새 이미지 등록 -->
-	<insert id="insertBoardImage" parameterType="int">
+	<insert id="insertBoardImage" parameterType="FileVo">
 		INSERT INTO IMAGE_FILE
-		(
-			  FILE_NO
-			, SEQ
-			, REG_ID
-		)
-		VALUES
-		(
-			  SEQ_IMAGE_FILE_NO.NEXTVAL
-			, 1
-			, 'JIN'
-		)
+    	(
+          FILE_NO
+        , SEQ
+        , SAVE_PATH
+        , SAVE_NAME
+        , FILE_NAME
+        , EXTENSION
+        , FILE_SIZE
+        , REG_ID
+        , REG_DATE
+    	)
+    	VALUES
+    	(
+          SEQ_IMAGE_FILE_NO.NEXTVAL
+        , #{seq}
+        , #{savePath}
+        , #{saveName}
+        , #{fileName}
+        , #{extension}
+        , #{fileSize}
+        , 'JIN'
+        , SYSDATE
+    	)
 	</insert>
 
 </mapper>

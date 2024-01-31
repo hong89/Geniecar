@@ -14,7 +14,7 @@ CREATE TABLE COMMON_CODE -- 공통 코드 테이블
     MOD_DATE        DATE,                         -- 수정일시
     constraint COMMON_CODE_PK PRIMARY KEY (CODE, GROUP_CODE)
 );
-
+DROP TABLE MEMBER;
 CREATE TABLE MEMBER -- 회원 테이블
 (
     ID              VARCHAR2(20) PRIMARY KEY, -- 아이디
@@ -32,7 +32,7 @@ CREATE TABLE MEMBER -- 회원 테이블
     BRANCH_CODE     VARCHAR2(6),              -- 렌터카 지점 코드 (공통코드 FK) - 사업자인 경우에만 등록
     TYPE            CHAR(1)       NOT NULL    -- 회원 타입 (U: 사용자, B: 지점, A: 사이트 관리자)
 );
-
+DROP TABLE RENTAL_CAR;
 CREATE TABLE RENTAL_CAR -- 렌터 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17) PRIMARY KEY, -- 차대번호
