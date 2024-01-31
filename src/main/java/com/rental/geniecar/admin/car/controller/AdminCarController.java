@@ -3,12 +3,14 @@ package com.rental.geniecar.admin.car.controller;
 import com.rental.geniecar.admin.car.service.AdminCarService;
 import com.rental.geniecar.common.service.CommonService;
 import com.rental.geniecar.domain.car.NewCarVo;
+import com.rental.geniecar.domain.car.RentalCarVo;
 import com.rental.geniecar.domain.common.CommonCodeVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,6 +37,7 @@ public class AdminCarController {
         return ResponseEntity.ok(carNameCodes);
     }
 
+    // hsh
     @ResponseBody
     @GetMapping("/selectCarByFullCode.do")
     public ResponseEntity selectCarByFullCode(String carNameCode) {
@@ -48,6 +51,12 @@ public class AdminCarController {
         model.addAttribute("codeList", commonService.selectCommonCodes("COM"));
         return "admin/car/register";
     }
+
+    @PostMapping("/insertRentalCar.do")
+    public String insertRentalCar(RentalCarVo rentalCarVo){
+        adminCarService.insertRentalCar(rentalCarVo);
+        return "admin/car/list";
+    };
 
     @GetMapping("/modify.do")
     public String modify() {
