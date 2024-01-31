@@ -1,17 +1,19 @@
 package com.rental.geniecar.admin.board.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.rental.geniecar.domain.board.CommonCrudVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,21 +27,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
 import com.rental.geniecar.domain.board.BoardVo;
+import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
-
-import net.coobird.thumbnailator.Thumbnails;
 
 import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @RequestMapping("/admin/board/")
 public class AdminBoardController {
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\geniecar_images";
+	private static final String UPLOAD_PATH = "C:\\geniecar_images";
 	
 	@Autowired
 	private AdminBoardService boardService;
 	
-	// JJ 이미지 업로드 확인용 -----------
+	// JJ 이미지 업로드 확인용
 	@GetMapping("/uploadForm.do")
 	public String uploadForm() {
 		return "admin/board/uploadForm";
@@ -65,11 +66,12 @@ public class AdminBoardController {
     }
     
     // JJ
-    // 게시판 상세 보기
+    // 게시판 상세 보기 (여기 부분 확인 필요 fileNo)
     @GetMapping("/detailNotice.do")
     public String detailNotice(@RequestParam int no, Model model) {
     	BoardVo notice = boardService.selectNoticeDetail(no);
     	model.addAttribute("notice", notice);
+    	
     	return "admin/board/detailNotice";
     }
     
@@ -98,14 +100,56 @@ public class AdminBoardController {
     }
 
     // JJ
-    // 게시판 새 글 쓰기 (동작 확인 완료)
+    // 게시판 새 글 쓰기 (동작 확인 이미지 넣기)
     @PostMapping("/insertBoard.do")
-    public String insertBoard(BoardVo boardVo, FileVo fileVo) {
+    public String insertBoard(BoardVo boardVo, @RequestParam("file") MultipartFile[] files) {
     	boardService.insertBoard(boardVo);
-    	System.out.println("boardVo" + boardVo.getNo());
-    	boardService.insertBoardImage(fileVo);
-    	System.out.println("fileVo" + fileVo.getFileNo());
-    	return "redirect:/admin/board/list.do?typeCode=NOTICE";
+    	
+    	if(files != null && files.length > 0) {
+    		for(MultipartFile file : files) {
+    			try {
+                    FileVo fileVo = new FileVo();
+                    //fileVo.setRegId(boardVo.getRegId());  // 등록자 아이디 설정
+
+                    // 파일 정보 설정 확인
+                    fileVo.setFileName(file.getOriginalFilename());
+                    fileVo.setFileSize((int) file.getSize());
+                    fileVo.setRegDate(new Date(0));
+
+                    // 파일 저장 경로 및 유니크? 생성하기 (UUID 적용 (sysdate 미사용))
+                    String savePath = "C:\\geniecar_images";
+                    String saveName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+                    String fullPath = savePath + File.separator + saveName;
+
+                    // 파일 저장 하기
+                    File dest = new File(fullPath);
+                    file.transferTo(dest);
+
+                    // 파일 정보 설정 하기
+                    fileVo.setSavePath(savePath);
+                    fileVo.setSaveName(saveName);
+                    fileVo.setExtension(getFileExtension(file.getOriginalFilename()));
+
+                    // 파일 정보 DB에 저장하기
+                    boardService.insertBoardImage(fileVo);
+                    
+                    System.out.println("fileVo" + fileVo.getFileNo());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return "redirect:/admin/board/list.do?typeCode=NOTICE";
+    }
+    
+    // 파일 확장자 얻기
+    private String getFileExtension(String fileName) {
+        int dotIndex = fileName.lastIndexOf('.');
+        if (dotIndex == -1 || dotIndex == fileName.length() - 1) {
+            return "";
+        }
+        return fileName.substring(dotIndex + 1).toLowerCase();
     }
     
     // JJ
@@ -167,31 +211,31 @@ public class AdminBoardController {
 			MultipartFile mFile = multipartRequest.getFile(fileName);
 			String originalFileName = mFile.getOriginalFilename();
 			fileList.add(originalFileName);
-			File file = new File(CURR_IMAGE_REPO_PATH + "\\" + fileName);
+			File file = new File(UPLOAD_PATH + "\\" + fileName);
 			if(mFile.getSize() != 0) {
 				if(! file.exists()) {
 					if(file.getParentFile().mkdirs()) {
 						file.createNewFile();
 					}
 				}
-				mFile.transferTo(new File(CURR_IMAGE_REPO_PATH + "\\" + originalFileName));
+				mFile.transferTo(new File(UPLOAD_PATH + "\\" + originalFileName));
 			}
 		}
 		return fileList;
 	}
     
     
-    // JJ 이미지 업로드 확인용 (다운로드)
+    // JJ 이미지 다운로드 확인용
 	
 	@GetMapping("/download.do")
 	protected void download(@RequestParam("imageFileName") String imageFileName,
 					HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + "\\" + imageFileName;
+		String filePath = UPLOAD_PATH + "\\" + imageFileName;
 		File image = new File(filePath);
 		int lastIndex = imageFileName.lastIndexOf(".");
 		String fileName = imageFileName.substring(0, lastIndex);
-		File thumbnail = new File(CURR_IMAGE_REPO_PATH+"\\"+"thumbnail"+"\\"+fileName+".jpg");
+		File thumbnail = new File(UPLOAD_PATH +"\\" +"thumbnail" + "\\" + fileName + ".jpg");
 		if (image.exists()) {
 			Thumbnails.of(image).size(300,300).outputFormat("jpg").toOutputStream(out);
 		} else {
