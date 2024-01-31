@@ -69,13 +69,14 @@
                 $('#carIdentificationNumber').val(carIdentifiedNum.join(''));
             }
         });
+
+        $(document).on('click', '#frmSubmit', function(){
+            $('#carIdentificationNumber').attr('disabled', false);
+            $('#frmInsert').submit();
+            return false;
+        });
     });
 
-    function frmSubmit() {
-        $('#carIdentificationNumber').enabled();
-        $('#frmInsert').submit();
-        return false;
-    }
 </script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -149,12 +150,11 @@
             <div class="mb-3 row">
                 <label for="carIdentificationNumber" class="col-sm-3 col-form-label">차대번호</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="carIdentificationNumber" name="carIdentificationNumber"
-                           disabled
+                    <input type="text" class="form-control" id="carIdentificationNumber" name="carIdentificationNumber" disabled
                            style="background: #f8f7fd">
                 </div>
             </div>
-            <button type="button" class="btn text-white" style="background: #41087c" onclick="frmSubmit();">등록하기</button>
+            <button type="button" class="btn text-white" style="background: #41087c" id="frmSubmit">등록하기</button>
 
         </form>
     </div>
