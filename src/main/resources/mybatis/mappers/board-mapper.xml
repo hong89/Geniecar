@@ -22,7 +22,7 @@
 			        , TYPE_CODE
 			        , NOTICE_YN
 			        , HASH_TAG
-			        , TO_CHAR(SYSDATE, 'yyyy-mm-dd') AS REG_DATE
+			        , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
 			        , ROW_NUMBER() OVER(ORDER BY NO DESC)
 			          AS RN
  		         FROM BOARD
