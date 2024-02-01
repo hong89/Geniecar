@@ -1,6 +1,7 @@
 package com.rental.geniecar.admin.board.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Date;
@@ -29,8 +30,6 @@ import com.rental.geniecar.admin.board.service.AdminBoardService;
 import com.rental.geniecar.domain.board.BoardVo;
 import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
-
-import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @RequestMapping("/admin/board/")
@@ -82,7 +81,7 @@ public class AdminBoardController {
     	List<FileVo> imageFiles = boardService.selectImageFiles(no);
     	
     	// 이미지 경로
-    	setImageFilePath(imageFiles, "c:\\genicar_images");
+    	setImageFilePath(imageFiles, "C:\\geniecar_images");
     	
     	model.addAttribute("notice", notice);
     	model.addAttribute("imageFiles", imageFiles);
@@ -245,22 +244,33 @@ public class AdminBoardController {
 	
 	@GetMapping("/download.do")
 	protected void download(@RequestParam("imageFileName") String imageFileName,
-					HttpServletResponse response) throws Exception {
-		OutputStream out = response.getOutputStream();
-		String filePath = UPLOAD_PATH + "\\" + imageFileName;
-		File image = new File(filePath);
-		int lastIndex = imageFileName.lastIndexOf(".");
-		String fileName = imageFileName.substring(0, lastIndex);
-		File thumbnail = new File(UPLOAD_PATH +"\\" +"thumbnail" + "\\" + fileName + ".jpg");
-		if (image.exists()) {
-			Thumbnails.of(image).size(300,300).outputFormat("jpg").toOutputStream(out);
-		} else {
-			return;
-		}
-		
-		byte[] buffer = new byte[1024 * 8];
-			out.write(buffer);
-			out.close();
-		}
+	                HttpServletResponse response) throws Exception {
+	    OutputStream out = response.getOutputStream();
+	    String filePath = UPLOAD_PATH + "\\" + imageFileName;
+	    File image = new File(filePath);
+	    int lastIndex = imageFileName.lastIndexOf(".");
+	    String fileName = imageFileName.substring(0, lastIndex);
+	    File thumbnail = new File(UPLOAD_PATH +"\\" +"thumbnail" + "\\" + fileName + ".jpg");
+	    
+	    if (image.exists()) {
+	        // 파일을 직접 읽어와서 출력 스트림으로 전송
+	        FileInputStream fis = new FileInputStream(image);
+	        byte[] buffer = new byte[1024 * 8];
+	        int length;
+	        while ((length = fis.read(buffer)) > 0) {
+	            out.write(buffer, 0, length);
+	        }
+	        fis.close();
+	        
+	        // 브라우저에게 파일 타입을 알려주는 헤더 설정
+	        response.setHeader("Content-Type", "application/octet-stream");
+	        // 브라우저에게 파일을 다운로드로 처리하도록 설정
+	        response.setHeader("Content-Disposition", "attachment; filename=\"" + imageFileName + "\"");
+	    } else {
+	        return;
+	    }
+	    
+	    out.close();
+	}
     
 }
