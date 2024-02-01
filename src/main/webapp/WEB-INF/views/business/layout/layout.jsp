@@ -51,7 +51,7 @@
         }
 
         #content {
-            width: 70%;
+            width: 79%;
             padding: 5px;
             margin-right: 5px;
             float: left;

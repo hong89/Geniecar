@@ -5,14 +5,12 @@ import com.rental.geniecar.common.service.CommonService;
 import com.rental.geniecar.domain.car.NewCarVo;
 import com.rental.geniecar.domain.car.RentalCarVo;
 import com.rental.geniecar.domain.common.CommonCodeVo;
+import com.rental.geniecar.domain.common.Pagination;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,14 +23,38 @@ public class AdminCarController {
     private final AdminCarService adminCarService;
 
     @GetMapping("/list.do")
-    public String list() {
+    public String list(Model model) {
+        //adminCarService.selectCarList();
         return "admin/car/list";
     }
 
+    //hsh
+    @GetMapping("/changeBranch.do")
+    public String changeBranch(Model model) {
+        List<CommonCodeVo> locations = commonService.selectCommonCodes("LOC");
+        model.addAttribute("locations", locations);
+        List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
+        model.addAttribute("companies", companies);
+        return "admin/car/changeBranch";
+    }
+
+    //hsh
     @GetMapping("/stockList.do")
-    public String stockList(Model model) {
-        List<RentalCarVo> rentalCarList = adminCarService.selectStockList();
+    public String stockList(
+            Model model,
+            @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+            @RequestParam(value = "cntPerPage", required = false, defaultValue = "20") int cntPerPage,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize) {
+
+        int listCnt = adminCarService.totalCount();
+        Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+        pagination.setTotalRecordCount(listCnt);
+        List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
+
+        List<RentalCarVo> rentalCarList = adminCarService.selectStockList(pagination);
         model.addAttribute("rentalCarList", rentalCarList);
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("companies", companies);
         return "admin/car/stockList";
     }
 
@@ -59,11 +81,27 @@ public class AdminCarController {
         return "admin/car/register";
     }
 
+    //hsh
     @PostMapping("/insertRentalCar.do")
-    public String insertRentalCar(RentalCarVo rentalCarVo){
+    public String insertRentalCar(RentalCarVo rentalCarVo) {
         adminCarService.insertRentalCar(rentalCarVo);
         return "admin/car/list";
-    };
+    }
+
+    //hsh
+    @PostMapping("/insertBranchesCar.do")
+    public String insertBranchesCar(@RequestParam List<String> checkCar, @RequestParam String branches) {
+        adminCarService.insertRentalCarBranchesCar(checkCar, branches);
+        return "admin/car/list";
+    }
+
+    //hsh
+    @GetMapping("/selectRentalCars.do")
+    public ResponseEntity selectRentalCars(String code){
+        List<RentalCarVo> carList = adminCarService.selectRentalCars(code);
+        return ResponseEntity.ok(carList);
+    }
+
 
     @GetMapping("/modify.do")
     public String modify() {

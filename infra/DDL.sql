@@ -68,23 +68,25 @@ CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블 (사업자 회원�
     MOD_DATE          DATE                          -- 수정일시
 );
 
+DROP TABLE RENTAL_CAR_BRANCHES_CAR;
 CREATE TABLE RENTAL_CAR_BRANCHES_CAR -- 렌터카 지점별 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17),                  -- 차대번호 (자동차 FK) - 복합키 처리
-    RENTAL_CAR_BRANCH_NO      NUMBER(10),                    -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
+    RENTAL_CAR_BRANCH_NO      VARCHAR2(6),                    -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
     --RENTAL_STATUS_CODE        VARCHAR2(6) NOT NULL,        -- 렌트 상태 코드 (공통코드 FK) - 수리중, 가능, 폐차, 장기렌트 등등
     IMPORT_CAR_YN             CHAR(1)   DEFAULT 'N',         -- 본사 -> 대리점 인수 전('N'), 인수 완료 ('Y')
     DEFAULT_COST              NUMBER(6),                     -- 기본 대여료 (10분 단위)
     DEFAULT_SALE_RATE         NUMBER(2) DEFAULT 50 NOT NULL, -- 기본 할인율
     WEEK_SALE_RATE            NUMBER(2) DEFAULT 60 NOT NULL, -- 일주일 할인율
     MONTH_SALE_RATE           NUMBER(2) DEFAULT 70 NOT NULL, -- 월 할인율
-    RENTAL_ABLE_STATUS        CHAR(1)              NOT NULL, -- 렌트 가능 상태 (Y 가능, N 불가능)
+    RENTAL_ABLE_STATUS        CHAR(1) DEFAULT 'N'  NOT NULL, -- 렌트 가능 상태 (Y 가능, N 불가능)
     REG_ID                    VARCHAR2(20)         NOT NULL, -- 등록자 (회원아이디 FK)
     REG_DATE                  DATE                 NOT NULL, -- 등록일시
     MOD_ID                    VARCHAR2(20),                  -- 수정자 (회원아이디 FK)
     MOD_DATE                  DATE,                          -- 수정일시
     CONSTRAINT BRANCH_CAR_PK PRIMARY KEY (CAR_IDENTIFICATION_NUMBER, RENTAL_CAR_BRANCH_NO)
 );
+SELECT * FROM RENTAL_CAR_BRANCHES_CAR;
 
 CREATE TABLE COUPON -- 쿠폰 테이블
 (
