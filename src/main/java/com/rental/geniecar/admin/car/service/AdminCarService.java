@@ -30,8 +30,8 @@ public class AdminCarService {
         return adminCarDao.selectStockList(pagination);
     }
 
-    public int totalCount(){
-        return adminCarDao.totalCount();
+    public int totalCount(Pagination pagination){
+        return adminCarDao.totalCount(pagination);
     };
 
     public List<RentalCarVo> selectRentalCars(String code) {

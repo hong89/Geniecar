@@ -16,7 +16,7 @@ public interface AdminCarDao {
 
     List<RentalCarVo> selectStockList(Pagination pagination);
 
-    int totalCount();
+    int totalCount(Pagination pagination);
 
     List<RentalCarVo> selectRentalCars(String code);
 

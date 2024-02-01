@@ -42,21 +42,16 @@ public class AdminCarController {
 
     //hsh
     @GetMapping("/stockList.do")
-    public String stockList(
-            Model model,
-            @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
-            @RequestParam(value = "cntPerPage", required = false, defaultValue = "20") int cntPerPage,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize) {
+    public String stockList(Pagination pagination, Model model) {
 
-        int listCnt = adminCarService.totalCount();
-        Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-        pagination.setTotalRecordCount(listCnt);
         List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
-
+        pagination.setTotalRecordCount(adminCarService.totalCount(pagination));
         List<RentalCarVo> rentalCarList = adminCarService.selectStockList(pagination);
+
         model.addAttribute("rentalCarList", rentalCarList);
         model.addAttribute("pagination", pagination);
         model.addAttribute("companies", companies);
+
         return "admin/car/stockList";
     }
 

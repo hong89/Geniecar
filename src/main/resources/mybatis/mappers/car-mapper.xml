@@ -29,6 +29,13 @@
         )
     </insert>
 
+    <sql id="commonStockListPagingWhereQuery" >
+        DELIVERY_DATE IS NULL
+        <if test="keyword != null and keyword != ''.toString()">
+            AND COMPANY = #{keyword}
+        </if>
+    </sql>
+
     <select id="selectStockList" resultType="rentalCarVo" parameterType="com.rental.geniecar.domain.common.Pagination">
         SELECT RN
              , CAR_IDENTIFICATION_NUMBER
@@ -42,14 +49,15 @@
              , FN_COMM_NAME(COMPANY)       AS COMPANY_NAME
         FROM (SELECT ROW_NUMBER() OVER (ORDER by CAR_TYPE_CODE) AS RN
            , RENTAL_CAR.*
-              FROM RENTAL_CAR WHERE DELIVERY_DATE IS NULL)
+              FROM RENTAL_CAR WHERE <include refid="commonStockListPagingWhereQuery" />)
         <if test="firstRecordIndex != null and lastRecordIndex != null">
         WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
         </if>
     </select>
 
-    <select id="totalCount" resultType="int">
+    <select id="totalCount" resultType="int" parameterType="com.rental.geniecar.domain.common.Pagination">
         SELECT COUNT(*) FROM RENTAL_CAR
+        WHERE <include refid="commonStockListPagingWhereQuery" />
     </select>
 
     <select id="selectRentalCars" resultType="rentalCarVo" parameterType="String">
