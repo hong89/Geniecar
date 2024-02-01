@@ -23,4 +23,5 @@ public class MemberVo {
     private Date lastLoginDate;           // 마지막 로그인 일시
     private String withdrawalYn;          // 탈퇴 여부
     private String type;                  // 회원 타입 (U: 사용자 B: 지점 A: 사이트 관리자)
+    private String branchCode;
 }

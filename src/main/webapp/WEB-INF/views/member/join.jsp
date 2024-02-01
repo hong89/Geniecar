@@ -6,7 +6,7 @@
         .join-container>div {
             padding: 10px;
         }
-    
+        
     </style>
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -20,9 +20,14 @@
                     return false;
                 } else {
                     document.getElementById("1").style.display ='none';
-                    document.getElementById("2").style.display ='block';
+                    document.getElementById("3").style.display ='block';
                     return false;
                 }
+            });
+            $('[id=backBtn]').click(function () {
+                document.getElementById("3").style.display ='none';
+                document.getElementById("1").style.display ='block';
+            
             });
         })
         
@@ -96,7 +101,7 @@
         }
 
         $(function () {
-            $('#submitBtn').click(function () {
+            $('#userSubmitBtn').click(function () {
                 var pw = $('[name=pw]').val();
                 var pwCheck = $('[name=pwCheck]').val();
                 var name = $('[name=name]').val();
@@ -104,6 +109,8 @@
                 var birthday = $('[name=birthday]').val();
                 var hp = $('[name=hp]').val();
                 var zipCode = $('[name=zipCode]').val();
+                var address = $('[name=address]').val();
+                var addressDetail = $('[name=addressDetail]').val();
 
                 if (!$.trim($('[name=id]').val())) {
                     alert('아이디를 중복체크 해주세요.');
@@ -154,209 +161,213 @@
     <div class="container-xl">
         <!--------------------------------------------------상단---------------------------------------------------------->
 
-        <form action="/member/completeJoin.do" method="post" name="completeJoin">
-            <div id="1" style="display:block">
-                <h3 class="mt-5 mb-4 text-center fw-bolder">이용 약관 동의</h3>
+            <h1 class="mt-3 mb-4 text-center fw-bolder">회원가입</h1>
+            <div id="1" style="display:block" class="p-3">
+                <section class = "mb-3 d-flex justify-content-center">
+                    <ul class="list-group list-group-horizontal ">
+                        <li class="list-group-item border-0 d-flex align-items-center flex-column bd-highlight mb-3">
+                            <img src="/images/icons/ico-chk-on.png" width="50" class="p-2 bd-highlight">약관 동의
+                        </li>
+                        <li class="list-group-item border-0 d-flex align-items-center flex-column bd-highlight mb-3">
+                            <img src="/images/icons/ico-chk-off.png" width="50" class="p-2 bd-highlight">정보입력
+                        </li>
+                        <li class="list-group-item border-0 d-flex align-items-center flex-column bd-highlight mb-3">
+                            <img src="/images/icons/ico-chk-off.png" width="50" class="p-2 bd-highlight">회원가입 완료
+                        </li>
+                    </ul>
+                </section>
+                <section class="ps-4 pe-4">
+                    <div class="p-4 mb-5" style="background-color: #f8f7fd; color: #23093d; ">
+                        <h4 class="fw-bolder ps-3">서비스 약관 동의</h4>
+                    </div>
+                    <div class = "text-center mb-3">
+                        <input type="checkbox" id ="checkTerms" >
+                        <label for="checkTerms" class="col-form-label fs-5">전체동의</label>
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              지니카 회원사 약관(필수)
+                            </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >
+                              필수입력정보 수집동의(필수)
+                            </button>
+                          </h2>
+                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                          </div>
+                        </div>
+
+                    </div>
+                    <div class="position-relative mb-5 pb-5">
+                        <div class="position-absolute top-100 start-50 translate-middle">
+                            <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">취소</button>
+                            <button id ="nextBtn" class="btn text-white" style="background-color: #41087c; width: 110px;">다음</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div id="3" style="display:none" class="p-3">
                 <div class = "mb-3 d-flex justify-content-center">
                     <ul class="list-group list-group-horizontal ">
                         <li class="list-group-item border-0 d-flex align-items-center flex-column bd-highlight mb-3">
-                            <img src="/images/icons/ico-chk-off02.png" class="p-2 bd-highlight">약관 동의
+                            <img src="/images/icons/ico-chk-on.png" width="50" class="p-2 bd-highlight">약관 동의
                         </li>
                         <li class="list-group-item border-0 d-flex align-items-center flex-column bd-highlight mb-3">
-                            <img src="/images/icons/ico-chk-off02.png" class="p-2 bd-highlight">정보입력
+                            <img src="/images/icons/ico-chk-on.png" width="50" class="p-2 bd-highlight">정보입력
                         </li>
                         <li class="list-group-item border-0 d-flex align-items-center flex-column bd-highlight mb-3">
-                            <img src="/images/icons/ico-chk-off02.png" class="p-2 bd-highlight">회원가입 완료
+                            <img src="/images/icons/ico-chk-off.png" width="50" class="p-2 bd-highlight">회원가입 완료
                         </li>
                     </ul>
                 </div>
-                <div class = "text-center mb-3">
-                    <input type="checkbox" id ="checkTerms" >
-                    <label for="checkTerms" class="col-form-label">전체동의</label>
+                <div class="p-4 mb-5" style="background-color: #f8f7fd; color: #23093d; ">
+                    <h4 class="fw-bolder ps-3">회원 정보입력</h4>
                 </div>
-                <div class="accordion  mb-5 p-3" id="accordionExample">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Accordion Item #1
-                        </button>
-                      </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <form action="/member/completeJoin.do" method="post" name="completeJoin">
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label for="id" class="col-form-label">아이디</label>
                         </div>
-                      </div>
-                    </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Accordion Item #2
-                        </button>
-                      </h2>
-                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <div class="col-auto">
+                            <input type="text" id="_id" class="form-control">
+                            <input type="hidden" name="id" id="id" />
                         </div>
-                      </div>
-                    </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Accordion Item #3
-                        </button>
-                      </h2>
-                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <div class="col-2">
+                            <button type="button" class="btn text-white" onClick="fn_overlapped()"
+                                style="background: #41087c; width: 110px;">중복확인</button>
                         </div>
-                      </div>
                     </div>
-                  </div>     
-                <div class="position-relative mb-5 pb-5">
-                    <div class="position-absolute top-100 start-50 translate-middle">
-                        <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">취소</button>
-                        <button id ="nextBtn" class="btn text-white"  style="background: #41087c; width: 110px;">다음</button>
+
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label for="pw" class="col-form-label">비밀번호</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="password" id="pw" name="pw" class="form-control"
+                                aria-describedby="passwordHelpInline">
+                        </div>
+                        <div class="col-auto">
+                            <span id="passwordHelpInline" class="form-text">
+                                8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
+                            </span>
+                        </div>
                     </div>
-                </div>
-                
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label for="pwCheck" class="col-form-label">비밀번호 확인</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="password" id="pwCheck" name="pwCheck" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label for="name" class="col-form-label">이름</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="name" name="name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center join-container" id="onlyb" style="display:none" >
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label for="" class="col-form-label">지점</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="" name="" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label class="col-form-label">성별</label>
+                        </div>
+                        <div class="col-auto">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" value="M">
+                                <label class="form-check-label">M</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" value="F">
+                                <label class="form-check-label">F</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label for="birthday" class="col-form-label">생년월일</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="date" id="birthday" name="birthday" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label for="hp" class="col-form-label">전화번호</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="hp" name="hp" class="form-control" oninput="oninputPhone(this)" maxlength="13">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label for="zipCode" class="col-form-label">주소</label>
+                        </div>
+                        <div class="col-auto row">
+                            <input type="button" class="btn text-white col-4 me-1" style="background: #41087c;"
+                                onclick="execDaumPostcode()" value="우편번호 찾기"><input type="address" id="zipCode"
+                                name="zipCode" class="form-control col" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label for="address" class="col-form-label"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="address" id="address" name="address" class="form-control" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-2"></div>
+                        <div class="col-2">
+                            <label for="addressDetail" class="col-form-label"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="address" id="addressDetail" name="addressDetail" class="form-control">
+                        </div>
+                    </div>
+                    <div class="position-relative mb-5 pb-5">
+                        <div class="col-4"></div>
+                        <div class="position-absolute top-100 start-50 translate-middle">
+                            <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" id="backBtn">뒤로가기</button>
+                            <button type="submit" class="btn text-white" id="userSubmitBtn" style="background: #41087c; width: 110px;">가입하기</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div id="2" style="display:none">
-                <h3 class="mt-5 mb-4 text-center fw-bolder">회원 정보 입력</h3>
-                <div class = "mb-3 d-flex justify-content-center">
-                    <ul class="list-group list-group-horizontal ">
-                        <li class="list-group-item border-0 d-flex align-items-center flex-column bd-highlight mb-3">
-                            <img src="/images/icons/ico-chk-off02.png" class="p-2 bd-highlight">약관 동의
-                        </li>
-                        <li class="list-group-item border-0 d-flex align-items-center flex-column bd-highlight mb-3">
-                            <img src="/images/icons/ico-chk-off02.png" class="p-2 bd-highlight">정보입력
-                        </li>
-                        <li class="list-group-item border-0 d-flex align-items-center flex-column bd-highlight mb-3">
-                            <img src="/images/icons/ico-chk-off02.png" class="p-2 bd-highlight">회원가입 완료
-                        </li>
-                    </ul>
-                </div>
-                <div class="row g-3 align-items-center join-container">
-                    <div class="col-2"></div>
-                    <div class="col-2">
-                        <label for="id" class="col-form-label">아이디</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="text" id="_id" class="form-control">
-                        <input type="hidden" name="id" id="id" />
-                    </div>
-                    <div class="col-2">
-                        <button type="button" class="btn text-white" onClick="fn_overlapped()"
-                            style="background: #41087c; width: 110px;">중복확인</button>
-                    </div>
-                </div>
-
-                <div class="row g-3 align-items-center join-container">
-                    <div class="col-2"></div>
-                    <div class="col-2">
-                        <label for="pw" class="col-form-label">비밀번호</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="password" id="pw" name="pw" class="form-control"
-                            aria-describedby="passwordHelpInline">
-                    </div>
-                    <div class="col-auto">
-                        <span id="passwordHelpInline" class="form-text">
-                            8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
-                        </span>
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center join-container">
-                    <div class="col-2"></div>
-                    <div class="col-2">
-                        <label for="pwCheck" class="col-form-label">비밀번호 확인</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="password" id="pwCheck" name="pwCheck" class="form-control">
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center join-container">
-                    <div class="col-2"></div>
-                    <div class="col-2">
-                        <label for="name" class="col-form-label">이름</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="text" id="name" name="name" class="form-control">
-                    </div>
-                </div>
-
-                <div class="row g-3 align-items-center join-container">
-                    <div class="col-2"></div>
-                    <div class="col-2">
-                        <label class="col-form-label">성별</label>
-                    </div>
-                    <div class="col-auto">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" value="M">
-                            <label class="form-check-label">M</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" value="F">
-                            <label class="form-check-label">F</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center join-container">
-                    <div class="col-2"></div>
-                    <div class="col-2">
-                        <label for="birthday" class="col-form-label">생년월일</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="date" id="birthday" name="birthday" class="form-control">
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center join-container">
-                    <div class="col-2"></div>
-                    <div class="col-2">
-                        <label for="hp" class="col-form-label">전화번호</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="text" id="hp" name="hp" class="form-control" oninput="oninputPhone(this)" maxlength="13">
-                    </div>
-                </div>
-
-                <div class="row g-3 align-items-center join-container">
-                    <div class="col-2"></div>
-                    <div class="col-2">
-                        <label for="zipCode" class="col-form-label">주소</label>
-                    </div>
-                    <div class="col-auto row">
-                        <input type="button" class="btn text-white col-4 me-1" style="background: #41087c;"
-                            onclick="execDaumPostcode()" value="우편번호 찾기"><input type="address" id="zipCode"
-                            name="zipCode" class="form-control col" readonly="readonly">
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center join-container">
-                    <div class="col-2"></div>
-                    <div class="col-2">
-                        <label for="address" class="col-form-label"></label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="address" id="address" name="address" class="form-control" readonly="readonly">
-                    </div>
-                </div>
-                <div class="row g-3 align-items-center join-container">
-                    <div class="col-2"></div>
-                    <div class="col-2">
-                        <label for="addressDetail" class="col-form-label"></label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="address" id="addressDetail" name="addressDetail" class="form-control">
-                    </div>
-                </div>
-                <div class="position-relative mb-5 pb-5">
-                    <div class="col-4"></div>
-                    <div class="position-absolute top-100 start-50 translate-middle">
-                        <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">취소</button>
-                        <button type="submit" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;">가입하기</button>
-                    </div>
-                </div>
-            </div>
-        </form>
 
 
         <!--------------------------------------------------하단---------------------------------------------------------->
