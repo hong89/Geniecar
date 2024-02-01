@@ -94,7 +94,7 @@ public class AdminCarController {
     @PostMapping("/insertBranchesCar.do")
     public String insertBranchesCar(@RequestParam List<String> checkCar, @RequestParam String branches) {
         adminCarService.insertRentalCarBranchesCar(checkCar, branches);
-        return "admin/car/list";
+        return "redirect:list.do";
     }
 
     //hsh

@@ -13,21 +13,22 @@
                 <thead>
                 <tr>
                     <td class="col"><strong>지점</strong></td>
-                    <td class="col"><strong>차대번호</strong></td>
                     <td class="col"><strong>차량명</strong></td>
                     <td class="col"><strong>차량타입</strong></td>
                     <td class="col"><strong>연료</strong></td>
                     <td class="col"><strong>회사</strong></td>
+                    <td class="col"><strong>차대번호</strong></td>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="car" items="${carList}">
                     <tr>
-                        <td class="text-center">${car.carIdentificationNumber}</td>
+                        <td class="text-center">${car.branch}</td>
                         <td class="text-center">${car.carName}</td>
                         <td class="text-center">${car.carType}</td>
                         <td class="text-center">${car.carFuel}</td>
                         <td class="text-center">${car.company}</td>
+                        <td class="text-center"><small>${car.carIdentificationNumber}</small></td>
                     </tr>
                 </c:forEach>
                 </tbody>
