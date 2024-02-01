@@ -29,17 +29,74 @@
         )
     </insert>
 
-    <select id="selectStockList" resultType="rentalCarVo">
+    <select id="selectStockList" resultType="rentalCarVo" parameterType="com.rental.geniecar.domain.common.Pagination">
+        SELECT RN
+             , CAR_IDENTIFICATION_NUMBER
+             , CAR_TYPE_CODE
+             , FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
+             , CAR_NAME_CODE
+             , FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
+             , CAR_FUEL_CODE
+             , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
+             , COMPANY
+             , FN_COMM_NAME(COMPANY)       AS COMPANY_NAME
+        FROM (SELECT ROW_NUMBER() OVER (ORDER by CAR_TYPE_CODE) AS
+    RN
+           , RENTAL_CAR.*
+              FROM RENTAL_CAR WHERE DELIVERY_DATE IS NULL)
+        <if test="firstRecordIndex != null and lastRecordIndex != null">
+        WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+        </if>
+    </select>
+
+    <select id="totalCount" resultType="int">
+        SELECT COUNT(*) FROM RENTAL_CAR
+    </select>
+
+    <select id="selectRentalCars" resultType="rentalCarVo" parameterType="String">
         SELECT CAR_IDENTIFICATION_NUMBER
-             ,CAR_TYPE_CODE
-             ,FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
-             ,CAR_NAME_CODE
-             ,FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
-             ,CAR_FUEL_CODE
-             ,FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
-             ,COMPANY
-             ,FN_COMM_NAME(COMPANY) AS COMPANY_NAME
-        FROM RENTAL_CAR WHERE DELIVERY_DATE IS NULL
+             , CAR_TYPE_CODE
+             , FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
+             , CAR_NAME_CODE
+             , FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
+             , CAR_FUEL_CODE
+             , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
+             , COMPANY
+             , FN_COMM_NAME(COMPANY)       AS COMPANY_NAME
+        FROM RENTAL_CAR
+        WHERE CAR_NAME_CODE = #{code}
+        AND DELIVERY_DATE IS NULL
+    </select>
+
+    <insert id="insertRentalCarBranch" parameterType="String">
+        INSERT INTO RENTAL_CAR_BRANCHES_CAR
+        ( CAR_IDENTIFICATION_NUMBER
+        , RENTAL_CAR_BRANCH_NO
+        , REG_ID
+        , REG_DATE)
+        VALUES ( #{car}
+               , #{branch}
+               , 'SYSTEM'
+               , SYSDATE)
+    </insert>
+
+    <update id="updateRentalCar" parameterType="String">
+        UPDATE RENTAL_CAR
+        SET DELIVERY_DATE = SYSDATE
+        WHERE CAR_IDENTIFICATION_NUMBER = #{car}
+    </update>
+
+    <select id="selectBranchesCarList" resultType="com.rental.geniecar.domain.branch.BranchRentalCarVo">
+        SELECT FN_COMM_NAME(RCBC.RENTAL_CAR_BRANCH_NO)
+             , RC.CAR_IDENTIFICATION_NUMBER
+             , FN_COMM_NAME(RC.CAR_NAME_CODE)
+             , FN_COMM_NAME(RC.CAR_TYPE_CODE)
+             , FN_COMM_NAME(RC.CAR_FUEL_CODE)
+             , FN_COMM_NAME(RC.COMPANY)
+             , TO_DATE(DELIVERY_DATE,'YY-MM-DD')
+        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR RC
+        WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
+        ORDER BY DELIVERY_DATE DESC
     </select>
 
 </mapper>
