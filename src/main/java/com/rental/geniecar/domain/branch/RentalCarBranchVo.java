@@ -9,6 +9,7 @@ import java.util.Date;
 public class RentalCarBranchVo {
 
     private int no;                   // 렌터카 지점 NO (시퀀스)
+    private String branchCode;        // 렌터카 지점명
     private String branchName;        // 렌터카 지점명
     private String regionCode;        // 지역 코드 (공통코드 FK)
     private String roadAddress;       // 도로명 주소
