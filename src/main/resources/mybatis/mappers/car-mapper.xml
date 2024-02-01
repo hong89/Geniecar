@@ -86,6 +86,19 @@
         WHERE CAR_IDENTIFICATION_NUMBER = #{car}
     </update>
 
+    <select id="selectBranchesCarList" resultType="com.rental.geniecar.domain.branch.BranchRentalCarVo">
+        SELECT FN_COMM_NAME(RCBC.RENTAL_CAR_BRANCH_NO)
+             , RC.CAR_IDENTIFICATION_NUMBER
+             , FN_COMM_NAME(RC.CAR_NAME_CODE)
+             , FN_COMM_NAME(RC.CAR_TYPE_CODE)
+             , FN_COMM_NAME(RC.CAR_FUEL_CODE)
+             , FN_COMM_NAME(RC.COMPANY)
+             , TO_DATE(DELIVERY_DATE,'YY-MM-DD')
+        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR RC
+        WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
+        ORDER BY DELIVERY_DATE DESC
+    </select>
+
 </mapper>
 
 

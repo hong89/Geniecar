@@ -1,6 +1,7 @@
 package com.rental.geniecar.admin.car.service;
 
 import com.rental.geniecar.admin.car.dao.AdminCarDao;
+import com.rental.geniecar.domain.branch.BranchRentalCarVo;
 import com.rental.geniecar.domain.car.NewCarVo;
 import com.rental.geniecar.domain.car.RentalCarVo;
 import com.rental.geniecar.domain.common.Pagination;
@@ -42,5 +43,9 @@ public class AdminCarService {
             adminCarDao.insertRentalCarBranch(car, branches);
             adminCarDao.updateRentalCar(car);
         }
+    }
+
+    public List<BranchRentalCarVo> selectBranchesCarList() {
+        return adminCarDao.selectBranchesCarList();
     }
 }

@@ -1,5 +1,6 @@
 package com.rental.geniecar.admin.car.dao;
 
+import com.rental.geniecar.domain.branch.BranchRentalCarVo;
 import com.rental.geniecar.domain.car.NewCarVo;
 import com.rental.geniecar.domain.car.RentalCarVo;
 import com.rental.geniecar.domain.common.Pagination;
@@ -22,4 +23,6 @@ public interface AdminCarDao {
     void insertRentalCarBranch(String car, String branch);
 
     void updateRentalCar(String car);
+
+    List<BranchRentalCarVo> selectBranchesCarList();
 }

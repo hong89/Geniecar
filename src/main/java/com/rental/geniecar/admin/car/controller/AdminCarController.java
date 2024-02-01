@@ -2,6 +2,7 @@ package com.rental.geniecar.admin.car.controller;
 
 import com.rental.geniecar.admin.car.service.AdminCarService;
 import com.rental.geniecar.common.service.CommonService;
+import com.rental.geniecar.domain.branch.BranchRentalCarVo;
 import com.rental.geniecar.domain.car.NewCarVo;
 import com.rental.geniecar.domain.car.RentalCarVo;
 import com.rental.geniecar.domain.common.CommonCodeVo;
@@ -24,7 +25,8 @@ public class AdminCarController {
 
     @GetMapping("/list.do")
     public String list(Model model) {
-        //adminCarService.selectCarList();
+        List<BranchRentalCarVo> carList = adminCarService.selectBranchesCarList();
+        model.addAttribute("carList",carList);
         return "admin/car/list";
     }
 
