@@ -68,7 +68,7 @@
             }
         });
 
-        $('#frmSubmit').on('click', function(){
+        $('#frmSubmit').on('click', function () {
             $('#carIdentificationNumber').attr('disabled', false);
             $('#frmInsert').submit();
             return false;
@@ -80,81 +80,86 @@
     <!--------------------------------------------------상단---------------------------------------------------------->
 
 
-    <div id="registerForm">
-        <h3>차량 등록</h3>
+    <div class="p-5">
+        <div class="inner-type2">
+            <section class="text-center">
+                <h1 class="pb-5 tit">차량 등록</h1>
+            </section>
 
-        <form name="frmInsert" action="/admin/car/insertRentalCar.do" id="frmInsert" method="post">
-            <div class="mb-3 row">
-                <label for="company" class="col-sm-3 col-form-label">제조사</label>
-                <div class="col-sm-9">
-                    <select class="form-select" aria-label="Default select example" id="company" name="company">
-                        <option selected>선택</option>
-                        <c:forEach var="code" items="${codeList}">
-                            <option value="${code.fullCode}">${code.codeName}</option>
-                        </c:forEach>
-                    </select>
+            <form name="frmInsert" action="/admin/car/insertRentalCar.do" id="frmInsert" method="post">
+                <div class="mb-3 row">
+                    <label for="company" class="col-sm-3 col-form-label">제조사</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" aria-label="Default select example" id="company" name="company">
+                            <option selected>선택</option>
+                            <c:forEach var="code" items="${codeList}">
+                                <option value="${code.fullCode}">${code.codeName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="carNameCode" class="col-sm-3 col-form-label">차명</label>
-                <div class="col-sm-9">
-                    <select class="form-select" aria-label="Default select example" id="carNameCode"
-                            name="carNameCode">
-                        <option selected>선택</option>
-                    </select>
+                <div class="mb-3 row">
+                    <label for="carNameCode" class="col-sm-3 col-form-label">차명</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" aria-label="Default select example" id="carNameCode"
+                                name="carNameCode">
+                            <option selected>선택</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <input type="hidden" class="form-control" id="carTypeCode" name="carTypeCode">
-            <div class="mb-3 row">
-                <label for="carFuelCode" class="col-sm-3 col-form-label">연료</label>
-                <div class="col-sm-9">
-                    <select class="form-select" aria-label="Default select example" id="carFuelCode"
-                            name="carFuelCode">
-                        <option selected>선택</option>
-                    </select>
+                <input type="hidden" class="form-control" id="carTypeCode" name="carTypeCode">
+                <div class="mb-3 row">
+                    <label for="carFuelCode" class="col-sm-3 col-form-label">연료</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" aria-label="Default select example" id="carFuelCode"
+                                name="carFuelCode">
+                            <option selected>선택</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="createYear" class="col-sm-3 col-form-label">생산년도</label>
-                <div class="col-sm-9">
-                    <select class="form-select" aria-label="Default select example" id="createYear">
-                        <option selected>선택</option>
-                        <option value="K">2021</option>
-                        <option value="L">2022</option>
-                        <option value="M">2023</option>
-                        <option value="O">2024</option>
-                    </select>
+                <div class="mb-3 row">
+                    <label for="createYear" class="col-sm-3 col-form-label">생산년도</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" aria-label="Default select example" id="createYear">
+                            <option selected>선택</option>
+                            <option value="K">2021</option>
+                            <option value="L">2022</option>
+                            <option value="M">2023</option>
+                            <option value="O">2024</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="factory" class="col-sm-3 col-form-label">생산공장</label>
-                <div class="col-sm-9">
-                    <select class="form-select" aria-label="Default select example" id="factory">
-                        <option selected>선택</option>
-                        <option value="A">아산</option>
-                        <option value="C">전주</option>
-                        <option value="U">울산</option>
-                        <option value="M">인도</option>
-                    </select>
+                <div class="mb-3 row">
+                    <label for="factory" class="col-sm-3 col-form-label">생산공장</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" aria-label="Default select example" id="factory">
+                            <option selected>선택</option>
+                            <option value="A">아산</option>
+                            <option value="C">전주</option>
+                            <option value="U">울산</option>
+                            <option value="M">인도</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="carNumber" class="col-sm-3 col-form-label">고유번호<small>(6자리)</small></label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="carNumber" minlength="6" maxlength="6"
-                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                <div class="mb-3 row">
+                    <label for="carNumber" class="col-sm-3 col-form-label">고유번호<small>(6자리)</small></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="carNumber" minlength="6" maxlength="6"
+                               oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="carIdentificationNumber" class="col-sm-3 col-form-label">차대번호</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="carIdentificationNumber" name="carIdentificationNumber" disabled
-                           style="background: #f8f7fd">
+                <div class="mb-3 row">
+                    <label for="carIdentificationNumber" class="col-sm-3 col-form-label">차대번호</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="carIdentificationNumber"
+                               name="carIdentificationNumber" disabled
+                               style="background: #f8f7fd">
+                    </div>
                 </div>
-            </div>
-            <button type="button" class="btn text-white" style="background: #41087c" id="frmSubmit">등록하기</button>
+                <button type="button" class="btn text-white" style="background: #41087c" id="frmSubmit">등록하기</button>
 
-        </form>
+            </form>
+        </div>
     </div>
 
 

@@ -5,13 +5,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Pagination {
+public class Pagination extends SearchVo {
     // 현재페이지
-    private int currentPage;
+    private int currentPage = 1;
     // 페이지당 출력할 페이지 갯수
-    private int cntPerPage;
+    private int cntPerPage = 20;
     // 화면 하단 페이지 사이즈 1~10, 10~20 20~30 ...
-    private int pageSize;
+    private int pageSize = 10;
     // 전체 데이터 개수
     private int totalRecordCount;
     // 전체 페이지 개수
@@ -29,25 +29,6 @@ public class Pagination {
     // 다음 페이지 존재 여부
     private boolean hasNextPage;
 
-    public Pagination(int currentPage, int cntPerPage, int pageSize) {
-        //강제입력방지
-        if (currentPage < 1) {
-            currentPage = 1;
-        }
-        //10,20,30개 단위 이외 처리 방지
-        if (cntPerPage != 10 && cntPerPage != 20 && cntPerPage != 30) {
-            cntPerPage = 10;
-        }
-        // 하단 페이지 갯수 10개로 제한
-        if (pageSize != 5) {
-            pageSize = 5;
-        }
-        this.currentPage = currentPage;
-        this.cntPerPage = cntPerPage;
-        this.pageSize = pageSize;
-
-    }
-
     public void setTotalRecordCount(int totalRecordCount) {
         this.totalRecordCount = totalRecordCount;
 
@@ -59,7 +40,7 @@ public class Pagination {
     private void calculation() {
 
         // 전체 페이지 수 (현재 페이지 번호가 전체 페이지 수보다 크면 현재 페이지 번호에 전체 페이지 수를 저장)
-        totalPageCount = ((totalRecordCount - 1) / this.getCntPerPage()) + 1;
+        totalPageCount = getTotalRecordCount() / getCntPerPage() + 1;
         if (this.getCurrentPage() > totalPageCount) {
             this.setCurrentPage(totalPageCount);
         }

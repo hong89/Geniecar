@@ -29,6 +29,13 @@
         )
     </insert>
 
+    <sql id="commonStockListPagingWhereQuery" >
+        DELIVERY_DATE IS NULL
+        <if test="keyword != null and keyword != ''.toString()">
+            AND COMPANY = #{keyword}
+        </if>
+    </sql>
+
     <select id="selectStockList" resultType="rentalCarVo" parameterType="com.rental.geniecar.domain.common.Pagination">
         SELECT RN
              , CAR_IDENTIFICATION_NUMBER
@@ -40,17 +47,17 @@
              , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
              , COMPANY
              , FN_COMM_NAME(COMPANY)       AS COMPANY_NAME
-        FROM (SELECT ROW_NUMBER() OVER (ORDER by CAR_TYPE_CODE) AS
-    RN
+        FROM (SELECT ROW_NUMBER() OVER (ORDER by CAR_TYPE_CODE) AS RN
            , RENTAL_CAR.*
-              FROM RENTAL_CAR WHERE DELIVERY_DATE IS NULL)
+              FROM RENTAL_CAR WHERE <include refid="commonStockListPagingWhereQuery" />)
         <if test="firstRecordIndex != null and lastRecordIndex != null">
         WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
         </if>
     </select>
 
-    <select id="totalCount" resultType="int">
+    <select id="totalCount" resultType="int" parameterType="com.rental.geniecar.domain.common.Pagination">
         SELECT COUNT(*) FROM RENTAL_CAR
+        WHERE <include refid="commonStockListPagingWhereQuery" />
     </select>
 
     <select id="selectRentalCars" resultType="rentalCarVo" parameterType="String">
@@ -87,13 +94,13 @@
     </update>
 
     <select id="selectBranchesCarList" resultType="com.rental.geniecar.domain.branch.BranchRentalCarVo">
-        SELECT FN_COMM_NAME(RCBC.RENTAL_CAR_BRANCH_NO)
+        SELECT FN_COMM_NAME(RCBC.RENTAL_CAR_BRANCH_NO) AS BRANCH
              , RC.CAR_IDENTIFICATION_NUMBER
-             , FN_COMM_NAME(RC.CAR_NAME_CODE)
-             , FN_COMM_NAME(RC.CAR_TYPE_CODE)
-             , FN_COMM_NAME(RC.CAR_FUEL_CODE)
-             , FN_COMM_NAME(RC.COMPANY)
-             , TO_DATE(DELIVERY_DATE,'YY-MM-DD')
+             , FN_COMM_NAME(RC.CAR_NAME_CODE) AS CAR_NAME
+             , FN_COMM_NAME(RC.CAR_TYPE_CODE) AS CAR_TYPE
+             , FN_COMM_NAME(RC.CAR_FUEL_CODE) AS CAR_FUEL
+             , FN_COMM_NAME(RC.COMPANY) AS COMPANY
+             , DELIVERY_DATE
         FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR RC
         WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
         ORDER BY DELIVERY_DATE DESC

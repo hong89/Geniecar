@@ -12,6 +12,14 @@ public class BusinessCarController {
     public String list(){
         return "business/car/list";
     }
+
+    //hsh
+    @GetMapping("/assignList.do")
+    public String assignList(){
+        return "business/car/assignList";
+    }
+
+    //hsh
     @GetMapping("/register.do")
     public String register(){
         return "business/car/register";

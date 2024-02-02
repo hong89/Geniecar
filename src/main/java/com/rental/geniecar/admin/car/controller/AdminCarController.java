@@ -23,14 +23,19 @@ public class AdminCarController {
     private final CommonService commonService;
     private final AdminCarService adminCarService;
 
+    // hsh
     @GetMapping("/list.do")
-    public String list(Model model) {
+    public String list(Pagination pagination, Model model) {
+        List<CommonCodeVo> branches = commonService.selectCommonCodes("LOC");
+        model.addAttribute("branches", branches);
+        pagination.setTotalRecordCount(adminCarService.totalCount(pagination));
+        model.addAttribute("pagination", pagination);
         List<BranchRentalCarVo> carList = adminCarService.selectBranchesCarList();
         model.addAttribute("carList",carList);
         return "admin/car/list";
     }
 
-    //hsh
+    // hsh
     @GetMapping("/changeBranch.do")
     public String changeBranch(Model model) {
         List<CommonCodeVo> locations = commonService.selectCommonCodes("LOC");
@@ -40,23 +45,18 @@ public class AdminCarController {
         return "admin/car/changeBranch";
     }
 
-    //hsh
+    // hsh
     @GetMapping("/stockList.do")
-    public String stockList(
-            Model model,
-            @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
-            @RequestParam(value = "cntPerPage", required = false, defaultValue = "20") int cntPerPage,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "5") int pageSize) {
+    public String stockList(Pagination pagination, Model model) {
 
-        int listCnt = adminCarService.totalCount();
-        Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-        pagination.setTotalRecordCount(listCnt);
         List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
-
+        pagination.setTotalRecordCount(adminCarService.totalCount(pagination));
         List<RentalCarVo> rentalCarList = adminCarService.selectStockList(pagination);
+
         model.addAttribute("rentalCarList", rentalCarList);
         model.addAttribute("pagination", pagination);
         model.addAttribute("companies", companies);
+
         return "admin/car/stockList";
     }
 
@@ -94,7 +94,7 @@ public class AdminCarController {
     @PostMapping("/insertBranchesCar.do")
     public String insertBranchesCar(@RequestParam List<String> checkCar, @RequestParam String branches) {
         adminCarService.insertRentalCarBranchesCar(checkCar, branches);
-        return "admin/car/list";
+        return "redirect:list.do";
     }
 
     //hsh
