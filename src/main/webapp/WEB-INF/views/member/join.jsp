@@ -147,20 +147,8 @@
                     return false;
                 }
 
-                //$('[name=doJoin]').submit();
-                $.ajax({
-                type: "post",
-                async: false,
-                url: "/member/completeJoin.do",
-                dataType: "text",
-                data:,
-                success: function (data, Status) {
-                    
-                },
-                error: function (data, Status) {
-                    alert("에러가 발생했습니다.");
-                }
-            });
+                $('[name=doJoin]').submit();
+
             });
         })
         

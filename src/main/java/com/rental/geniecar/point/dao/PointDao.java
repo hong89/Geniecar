@@ -9,4 +9,5 @@ public interface PointDao {
 
 	public void createNewPoint(String memberId);
 	public PointVo selectAll(String memberId);
+	public void delete(String memberId);
 }

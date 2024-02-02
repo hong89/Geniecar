@@ -29,6 +29,7 @@
         background-color: #41087c !important;
         color: white;
     }
+
 </style>
 
 <div class="container-xl">
@@ -49,8 +50,8 @@
             <p>업계최초 고객만족도 3관왕! 변함없는 1위의 지니카의 서비스를 경험하세요!</p>
         </section>
     </div>
-    <div class="mb-5">
-        <ul class="nav nav-pills nav-fill mb-3 sticky-top bg-light" id="pills-tab" role="tablist">
+    <div class="mb-5 sticky-xl-top">
+        <ul class="nav nav-pills nav-fill mb-3 bg-light" id="pills-tab" role="tablist">
             <li class="nav-item p-3">
                 <a class="nav-link active" aria-current="page" href="#no1">
                     <img alt="" src="/images/icons/ico-pannel01.png"/>
@@ -199,7 +200,7 @@
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                      aria-labelledby="pills-home-tab">
-                    <ul class="nav nav-pills nav-fill mb-3" id="pills-tab2" role="tablist">
+                    <ul class="nav nav-pills justify-content-center mb-3" id="pills-tab2" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="SwitchNumber1-tab" data-bs-toggle="pill"
                                     data-bs-target="#SwitchNumber1" type="button" role="tab"
@@ -1735,7 +1736,7 @@
 
                 <div class="tab-pane fade show" id="pills-profile" role="tabpane2"
                      aria-labelledby="pills-profile-tab">
-                    <ul class="nav nav-pills nav-fill mb-3" id="pills-tab3" role="tablist">
+                    <ul class="nav nav-pills justify-content-center mb-3" id="pills-tab3" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="SwitchNumber11-tab"
                                     data-bs-toggle="pill" data-bs-target="#SwitchNumber11" type="button"

@@ -29,6 +29,7 @@ public class MemberService {
 	}
 	public void leaveMember(String id) {
 		memberDao.updateWithdrawalYn(id);
+		pointDao.delete(id);
 	}
 	public MemberVo updateMember(MemberVo vo) {
 		memberDao.updateMember(vo);

@@ -10,4 +10,8 @@
 	<select id="selectAll">
 		SELECT * FROM POINT WHERE MEMBER_ID = #{memberId}
 	</select>
+	
+	<delete id="delete" parameterType="String">
+		DELETE POINT WHERE MEMBER_ID = #{memberId}
+	</delete>
 </mapper>

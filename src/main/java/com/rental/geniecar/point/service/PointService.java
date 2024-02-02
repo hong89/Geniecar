@@ -18,4 +18,7 @@ public class PointService {
 	public PointVo secletAll(String memberId) {
 		return pointDao.selectAll(memberId);
 	}
+	public void delete(String id) {
+		pointDao.delete(id);
+	}
 }
