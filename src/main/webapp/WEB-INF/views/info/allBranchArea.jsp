@@ -18,12 +18,12 @@
     #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
     #placesList .item span {display: block;margin-top:4px;}
     #placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-    #placesList .item .info{padding:10px 0 10px 55px;}
+    #placesList .item .info{padding:10px 0 10px 15px;}
     #placesList .info .gray {color:#8a8a8a;}
     #placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
     #placesList .info .tel {color:#41087c;}
-    #placesList .item .markerbg {float:left;width:60px; height:56px;margin:10px 0 0 10px;background:url(/images/common/Marker1.png) no-repeat;}
-    #placesList .item .marker_1 {background-position: 10px;}
+    #placesList .item .markerbg {float:left;width:60px; height:85px;margin:10px 0 0 10px;background:url(/images/common/Marker1.png) no-repeat;}
+    #placesList .item .marker_1 {background-position: 10px 5px;}
   
     #pagination {margin:10px auto;text-align: center;}
     #pagination a {display:inline-block;margin-right:10px;}
@@ -77,6 +77,9 @@
                         <option value="260">제주</option>
                     </select>
                 </div>
+                <input type="hidden" id="keyword" value="">
+                <button onclick="searchPlaces()">검색</button>
+
             </form>
             <hr/>
             <div class="map_wrap row">
@@ -85,7 +88,7 @@
                         <div class="option">
                             <div>
                                 <form onsubmit="searchPlaces(); return false;">
-                                    키워드 : <input type="text" value="지니카" id="keyword" size="15">
+                                    지역,지점명 : <input type="text" value="지니카" id="keyword" size="15">
 
                                     <button type="submit" class="btn" style="background-color: #41087c; color: white;">검색하기</button>
                                 </form>
@@ -103,6 +106,9 @@
 
             <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64380934726f3db60587abc2f327cbf4&libraries=services"></script>
             <script>
+            // 셀렉트 검색
+
+
             // 마커를 담을 배열입니다
             var markers = [];
             
@@ -133,6 +139,7 @@
                     alert('키워드를 입력해주세요!');
                     return false;
                 }
+                keyword += " 렌터카";
             
                 // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
                 ps.keywordSearch( keyword, placesSearchCB); 

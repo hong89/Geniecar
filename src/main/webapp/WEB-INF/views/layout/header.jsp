@@ -93,7 +93,7 @@
                 </c:if>
                 <c:if test="${!null}">
                     <button type="button" class="btn text-white" style="background: #41087c"
-                            onclick="location.href='#'">관리자전용
+                            onclick="location.href='/admin/main/index.do'">관리자전용
                     </button>
                 </c:if>
             </div>
