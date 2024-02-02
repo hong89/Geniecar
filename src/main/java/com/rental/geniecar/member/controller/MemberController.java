@@ -35,7 +35,6 @@ public class MemberController {
 	//ruddud
 	@PostMapping("/completeJoin.do")
 	public String completeJoin(MemberVo member, Model model){
-		System.out.println("일반 유저 회원가입");
 		memberService.newMember(member);
 		model.addAttribute("name", member.getName());
 		return "member/completeJoin";
@@ -44,8 +43,7 @@ public class MemberController {
 	//ruddud
     @GetMapping("/businessJoin.do")
     public String businessJoin(MemberVo member){
-    	System.out.println("사업자 회원가입");
-    	System.out.println(member);
+    	
         return "member/businessJoin";
     }
 

@@ -147,15 +147,27 @@
                     return false;
                 }
 
-                $('[name=doJoin]').submit();
-
+                //$('[name=doJoin]').submit();
+                $.ajax({
+                type: "post",
+                async: false,
+                url: "/member/completeJoin.do",
+                dataType: "text",
+                data:,
+                success: function (data, Status) {
+                    
+                },
+                error: function (data, Status) {
+                    alert("에러가 발생했습니다.");
+                }
+            });
             });
         })
         
         function oninputPhone(target) {
         target.value = target.value
             .replace(/[^0-9]/g, '')
-            .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+            .replace(/(^02.{0}|^01.{1}|[0-9]{2,3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
         }
     </script>
     <div class="container-xl">
@@ -285,13 +297,13 @@
                             <input type="text" id="name" name="name" class="form-control">
                         </div>
                     </div>
-                    <div class="row g-3 align-items-center join-container" id="onlyb" style="display:none" >
+                    <div class="row g-3 align-items-center join-container" id="onlyb">
                         <div class="col-2"></div>
                         <div class="col-2">
-                            <label for="" class="col-form-label">지점</label>
+                            <label for="branchCode" class="col-form-label">지점</label>
                         </div>
                         <div class="col-auto">
-                            <input type="text" id="" name="" class="form-control">
+                            <input type="text" id="branchCode" name="branchCode" class="form-control">
                         </div>
                     </div>
 

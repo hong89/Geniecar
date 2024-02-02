@@ -21,11 +21,11 @@ public class AdminMemberController {
 	
     @GetMapping("/userList.do")
     public String userList(Model model) {
-  
-    	List<MemberVo> userList = memberService.selectAll();
+    	List<MemberVo> userList = memberService.selectAllUser();
     	model.addAttribute("userList",userList);
         return "admin/member/userList";
     }
+    
     @GetMapping("/userDetail.do")
     public String userDetail(String id, Model model) {
     	model.addAttribute("user", memberService.selectOne(id));
@@ -33,8 +33,14 @@ public class AdminMemberController {
     }
 
     @GetMapping("/businessList.do")
-    public String businessList() {
+    public String businessList(Model model) {
+    	model.addAttribute("businessList", memberService.selectAllBusiness());
         return "admin/member/businessList";
     }
 
+    @GetMapping("businessDetail.do")
+    public String businessDetail(String id, Model model) {
+    	model.addAttribute("business", memberService.selectOne(id));
+    	return "admin/member/businessDetail";
+    }
 }
