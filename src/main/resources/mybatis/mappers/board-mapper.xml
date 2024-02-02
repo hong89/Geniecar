@@ -115,9 +115,6 @@
 	
 	<!-- 새 이미지 등록 -->
 	<insert id="insertBoardImage" parameterType="fileVo">
-		<selectKey resultType="int" keyProperty="fileNo" order="BEFORE">
-			select SEQ_IMAGE_FILE_NO.NEXTVAL from dual
-		</selectKey>
 		INSERT INTO IMAGE_FILE
     	(
           FILE_NO
@@ -143,5 +140,9 @@
         , SYSDATE
     	)
 	</insert>
+
+	<select id="selectNewFileNo" resultType="int">
+		select SEQ_IMAGE_FILE_NO.NEXTVAL from dual
+	</select>
 
 </mapper>

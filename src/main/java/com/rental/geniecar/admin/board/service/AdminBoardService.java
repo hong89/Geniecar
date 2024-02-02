@@ -43,10 +43,17 @@ public class AdminBoardService {
 	}
 
 	public void insertBoard(BoardVo boardVo, List<FileVo> fileList) {
-		for(FileVo fileVo : fileList)
-		boardDao.insertBoardImage(fileVo);
-		boardVo.setFileNo(fileVo.getFileNo());
+
+		int newFileNo = boardDao.selectNewFileNo();
+		for(int i = 0; i < fileList.size(); i++){
+			FileVo fileVo = fileList.get(i);
+			fileVo.setSeq(i+1);
+			fileVo.setFileNo(newFileNo);
+			boardDao.insertBoardImage(fileVo);
+		}
+		boardVo.setFileNo(newFileNo);
 		boardDao.insertBoard(boardVo);
+
 	}
 
 	public BoardVo selectNoticeDetail(int no) {

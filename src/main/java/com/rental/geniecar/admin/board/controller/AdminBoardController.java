@@ -78,10 +78,10 @@ public class AdminBoardController {
         BoardVo notice = boardService.selectNoticeDetail(no);
 
         // 이미지 파일 정보 가져오기
-        List<FileVo> imageFiles = boardService.selectImageFiles(no);
+        List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
 
         // 이미지 경로
-        setImageFilePath(imageFiles, "C:\\geniecar_images");
+        setImageFilePath(imageFiles, UPLOAD_PATH);
 
         model.addAttribute("notice", notice);
         model.addAttribute("imageFiles", imageFiles);
@@ -118,9 +118,10 @@ public class AdminBoardController {
     // 게시판 새 글 쓰기 (동작 확인 이미지 넣기)
     @PostMapping("/insertBoard.do")
     public String insertBoard(BoardVo boardVo, @RequestParam("file") MultipartFile[] files) {
+        List<FileVo> fileList = new ArrayList<>();
         try {
             if (files != null && files.length > 0) {
-                List<FileVo> fileList = null;
+
                 for (MultipartFile file : files) {
                     FileVo fileVo = new FileVo();
                     //fileVo.setRegId(boardVo.getRegId());  // 등록자 아이디 설정

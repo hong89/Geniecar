@@ -27,6 +27,8 @@ public interface AdminBoardDao {
 	void insertBoardImage(FileVo fileVo);
 
 	List<FileVo> selectImageFiles(int fileNo);
+
+	int selectNewFileNo();
 	
 	
 }
