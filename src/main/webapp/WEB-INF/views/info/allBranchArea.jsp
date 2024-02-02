@@ -77,9 +77,7 @@
                         <option value="260">제주</option>
                     </select>
                 </div>
-                <input type="hidden" id="keyword" value="">
-                <button onclick="searchPlaces()">검색</button>
-
+        
             </form>
             <hr/>
             <div class="map_wrap row">
@@ -106,9 +104,6 @@
 
             <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64380934726f3db60587abc2f327cbf4&libraries=services"></script>
             <script>
-            // 셀렉트 검색
-
-
             // 마커를 담을 배열입니다
             var markers = [];
             
@@ -253,7 +248,7 @@
             
             // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
             function addMarker(position, idx, title) {
-                var imageSrc = '/images/common/Marker.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+                var imageSrc = '/images/common/Marker3.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
                     imageSize = new kakao.maps.Size(30, 47),  // 마커 이미지의 크기
                     imgOptions =  {
                         offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
