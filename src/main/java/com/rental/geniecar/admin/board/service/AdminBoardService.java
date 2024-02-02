@@ -42,7 +42,10 @@ public class AdminBoardService {
 		return boardDao.selectBoardListSize(boardVo);
 	}
 
-	public void insertBoard(BoardVo boardVo) {
+	public void insertBoard(BoardVo boardVo, List<FileVo> fileList) {
+		for(FileVo fileVo : fileList)
+		boardDao.insertBoardImage(fileVo);
+		boardVo.setFileNo(fileVo.getFileNo());
 		boardDao.insertBoard(boardVo);
 	}
 
@@ -62,9 +65,6 @@ public class AdminBoardService {
 		boardDao.deleteNotice(no);
 	}
 
-	public void insertBoardImage(FileVo fileNo) {
-		boardDao.insertBoardImage(fileNo);
-	}
 
 }
 

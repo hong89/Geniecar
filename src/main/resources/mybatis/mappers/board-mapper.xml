@@ -60,18 +60,19 @@
 			, NOTICE_YN
 			, FILE_NO
 			, REG_ID
-
+			, REG_DATE
 		)
 		VALUES
 		(
 			  SEQ_BOARD_NO.NEXTVAL
 			, #{title}
 			, #{content}
-			, '0'
+			, 0
 			, #{typeCode}
 			, 'N'
-			, 1
+			, #{fileNo}
 			, 'JIN'	
+			, SYSDATE
 		)
 	</insert>
 	
@@ -83,10 +84,10 @@
 	</select>
 	
 	<!-- 이미지 상세 보기 -->
-	<select id="selectImageFiles" parameterType="int" resultType="com.rental.geniecar.domain.common.FileVo">
+	<select id="selectImageFiles" parameterType="int" resultType="fileVo">
 		SELECT *
 		FROM IMAGE_FILE
-		WHERE File_NO = #{no}		
+		WHERE FILE_NO = #{no}
 	</select>
 	
 	
@@ -113,7 +114,10 @@
 	</delete>
 	
 	<!-- 새 이미지 등록 -->
-	<insert id="insertBoardImage" parameterType="FileVo">
+	<insert id="insertBoardImage" parameterType="fileVo">
+		<selectKey resultType="int" keyProperty="fileNo" order="BEFORE">
+			select SEQ_IMAGE_FILE_NO.NEXTVAL from dual
+		</selectKey>
 		INSERT INTO IMAGE_FILE
     	(
           FILE_NO
@@ -128,7 +132,7 @@
     	)
     	VALUES
     	(
-          SEQ_IMAGE_FILE_NO.NEXTVAL
+          #{fileNo}
         , #{seq}
         , #{savePath}
         , #{saveName}
