@@ -34,11 +34,15 @@ public class MemberService {
 		memberDao.updateMember(vo);
 		return memberDao.selectOne(vo.getId());
 	}
-	public List<MemberVo> selectAll(){
-		List<MemberVo> memberList = memberDao.selectAll();
+	public List<MemberVo> selectAllUser(){
+		List<MemberVo> memberList = memberDao.selectAllUser();
 		return memberList;
 	}
 	public MemberVo selectOne(String id) {
 		return memberDao.selectOne(id);
+	}
+	public List<MemberVo> selectAllBusiness() {
+		List<MemberVo> memberList = memberDao.selectAllBusiness();
+		return memberList;
 	}
 }
