@@ -20,7 +20,7 @@
     <ul class="list-group">
         <li class="list-group-item"><p>차량 등록</p>
             <p><a href="/business/car/list.do">차량 목록</a></p>
-            <p><a href="/business/car/register.do">차량 인수 등록</a></p>
+            <p><a href="/business/car/assignList.do">차량 인수 등록</a></p>
         </li>
         <li class="list-group-item"><p>예약 목록</p>
             <p><a href="/business/rental/shortRent.do">단기 렌터카</a></p>

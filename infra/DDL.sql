@@ -72,7 +72,7 @@ DROP TABLE RENTAL_CAR_BRANCHES_CAR;
 CREATE TABLE RENTAL_CAR_BRANCHES_CAR -- 렌터카 지점별 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17),                  -- 차대번호 (자동차 FK) - 복합키 처리
-    RENTAL_CAR_BRANCH_NO      VARCHAR2(6),                    -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
+    RENTAL_CAR_BRANCH_NO      VARCHAR2(6),                   -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
     --RENTAL_STATUS_CODE        VARCHAR2(6) NOT NULL,        -- 렌트 상태 코드 (공통코드 FK) - 수리중, 가능, 폐차, 장기렌트 등등
     IMPORT_CAR_YN             CHAR(1)   DEFAULT 'N',         -- 본사 -> 대리점 인수 전('N'), 인수 완료 ('Y')
     DEFAULT_COST              NUMBER(6),                     -- 기본 대여료 (10분 단위)
