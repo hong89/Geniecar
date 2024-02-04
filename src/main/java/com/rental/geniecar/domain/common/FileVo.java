@@ -3,6 +3,8 @@ package com.rental.geniecar.domain.common;
 import java.io.File;
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +25,16 @@ public class FileVo {
     public void setImageFilePath(String savePath, String saveName) {
     	this.imageFilePath = savePath + File.separator + saveName;
     }
+    
+    private MultipartFile editImageFile;
+    
+	public void setEditImageFile(MultipartFile editImageFile) {
+		this.editImageFile = editImageFile;
+	}
+	
+	public MultipartFile getEditImageFile() {
+		return editImageFile;
+	}
 
 }
 	

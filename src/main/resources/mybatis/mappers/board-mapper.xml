@@ -108,9 +108,31 @@
 		WHERE NO = #{no}		
 	</update>
 	
+	<!-- 이미지 수정 -->
+	<update id="updateImageFile">
+    <![CDATA[
+        UPDATE IMAGE_FILE
+        SET
+            SEQ       = #{seq},
+            SAVE_PATH = #{savePath},
+            SAVE_NAME = #{saveName},
+            FILE_NAME = #{fileName},
+            EXTENSION = #{extension},
+            FILE_SIZE = #{fileSize},
+            REG_ID    = 'JIN',
+            REG_DATE  = #{regDate}
+	    WHERE FILE_NO = #{fileNo}
+    	]]>
+	</update>
+	
 	<delete id="deleteNotice" parameterType="int">
 		DELETE BOARD
 		WHERE NO = #{no}
+	</delete>
+	
+	<delete id="deleteImage" parameterType="int">
+		DELETE IMAGE_FILE
+		WHERE FILE_NO = #{fileNo}
 	</delete>
 	
 	<!-- 새 이미지 등록 -->
@@ -143,6 +165,10 @@
 
 	<select id="selectNewFileNo" resultType="int">
 		select SEQ_IMAGE_FILE_NO.NEXTVAL from dual
+	</select>
+	
+	<select id="findByFileNo" parameterType="int" resultType="com.rental.geniecar.domain.common.FileVo">
+		SELECT * FROM IMAGE_FILE WHERE FILE_NO = #{fileNo}
 	</select>
 
 </mapper>
