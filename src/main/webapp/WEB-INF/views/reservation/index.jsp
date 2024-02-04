@@ -40,11 +40,6 @@
 
     .locations {
         padding: 10px;
-        cursor : pointer;
-    }
-
-    .rental-car-branch {
-        cursor: pointer;
     }
 
     #searchCarTemplate {
@@ -55,14 +50,23 @@
         padding: 7px;
     }
 
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
     .rental-start-calendar th, .rental-start-calendar td {
         width: 1%;
         text-align: center;
         padding: 10px;
     }
 
-    .days{
+    .days {
         cursor: pointer;
+    }
+
+    .date-inactive {
+        color: #ddd;
+        cursor: default;
     }
 </style>
 <script>
@@ -179,10 +183,10 @@
                     <div class="card-body">
                         <div class="row">
                             <c:forEach var="location" items="${locationList}">
-                                <div class="col-6 locations text-center" data-location-code="${location.fullCode}">
-                                        ${location.codeName}
-                                </div>
-                            </c:forEach>
+        <div class="col-6 locations cursor-pointer text-center" data-location-code="${location.fullCode}">
+        ${location.codeName}
+        </div>
+    </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -195,6 +199,7 @@
                 </div>
             </div>
         </div>
+
     </script>
     <%--지점 목록 영역 끝--%>
 
@@ -203,13 +208,14 @@
         <div class="row">
             {{#locations}}
             <div class="col-4" style="padding: 5px 10px 10px 20px">
-                <span class="rental-car-branch" data-no="{{no}}">
+                <span class="cursor-pointer" data-no="{{no}}">
                     <img src="/images/icons/location-dot-solid.svg" width="15px"/>
                     &nbsp;&nbsp;{{branchName}}
                 </span>
             </div>
             {{/locations}}
         </div>
+
     </script>
     <%--지점 목록 영역 끝--%>
 
@@ -223,12 +229,14 @@
             };
 
             //step1. 지역 목록 출력
-            var template = $('#locationTemplate').html();
             var data = {"locations": []};
-            var rendered = Mustache.render(template, data);
-            $('#containerArea').html(rendered);
+            //var template = $('#locationTemplate').html();
+            /*var rendered = Mustache.render(template, data);
+            $('#containerArea').html(rendered);*/
 
-
+            var dateTemplate = $('#dateTemplate').html();
+            var dateRendered = Mustache.render(dateTemplate, data);
+            $('#containerArea').html(dateRendered);
 
             //TODO 같은 지역 클릭 시 이벤트 발생되지 않도록 구현 필요
             //step1. 지점 목록 출력
@@ -244,24 +252,126 @@
             //TODO 지점 스타일 적용 시 태그 변경될 수 있으니 같이 변경 필요
             $('#containerArea').on('click', '#branchListArea span', function () {
                 rentalForm.rentalPlace = rentalForm.returnPlace = rentalForm.rentalCarBranchNo = $(this).data('no');
-                $('#rentalPlace').empty().append($(this).text());
-                $('#returnPlace').empty().append($(this).text());
+                $('#rentalPlace').text($(this).text());
+                $('#returnPlace').text($(this).text());
                 var dateTemplate = $('#dateTemplate').html();
                 var dateRendered = Mustache.render(dateTemplate, data);
                 $('#containerArea').html(dateRendered);
             });
 
             //TODO 뒤로 가기
-            $('#containerArea').on('click', '#backBtn', function(){
-                if(currentStep == 1){
+            $('#containerArea').on('click', '#backBtn', function () {
+                if (currentStep == 1) {
 
-                }else if(currentStep == 2){
+                } else if (currentStep == 2) {
 
-                }else{ //step == 3
+                } else { //step == 3
 
                 }
                 return false;
             });
+
+            moment.locale();
+
+            var reservationDateObj = {
+                today: moment().format('YYYY-MM-DD'),
+                leftDate: {
+                    yearMonth: '',
+                    startDay: '',
+                    daysInMonth: 0,
+                    list: [],
+                },
+
+                rightDate: {
+                    yearMonth: '',
+                    startDay: '',
+                    daysInMonth: 0,
+                    list: []
+                },
+                dateCalculator: function () {
+                    this.leftDate.list = []; //초기화
+                    this.rightDate.list = []; //초기화
+
+                    let _leftMoment = moment(this.today);
+                    let _rightMoment = _leftMoment.clone().add('1', 'M');
+
+                    this.leftDate.yearMonth = _leftMoment.format('YYYY.MM');
+                    this.leftDate.daysInMonth = _leftMoment.daysInMonth();
+                    this.leftDate.startDay = _leftMoment.clone().startOf('month').format('d');
+
+                    this.rightDate.yearMonth = _rightMoment.format('YYYY.MM');
+                    this.rightDate.daysInMonth = _rightMoment.daysInMonth();
+                    this.rightDate.startDay = _rightMoment.clone().startOf('month').format('d');
+                },
+                nextMonth: function () {
+                    var nextMonth = moment(this.today).add('1', 'M');
+                    //다음달은 6개월까지만 보여지도록
+                    if (nextMonth.diff(moment().format('YYYY-MM'), 'months') >= 7) return;
+
+                    this.today = moment(this.today).add('1', 'M');
+                    this.run();
+                },
+                beforeMonth: function () {
+                    //이번달 전은 보이지 않게
+                    if (moment().format('YYYY.MM') == this.leftDate.yearMonth) return;
+
+                    this.today = moment(this.today).subtract('1', 'M');
+                    this.run();
+                },
+                fillDate: function (date) {
+                    var isStart = false, currentDay = 0, isEnd = false;
+                    var isSameMonth = moment().format('YYYY.MM') == date.yearMonth;
+                    var today = Number(moment().format('DD'));
+
+                    for (var j = 0; j < 6; j++) {
+                        if (isEnd) break;
+                        date.list[j] = [];
+
+                        for (var i = 0; i < 7; i++) {
+                            if (currentDay >= date.daysInMonth) {
+                                isEnd = true;
+                                break;
+                            }
+                            if (!isStart && i == Number(date.startDay)) isStart = true;
+
+                            var dayInfo = {
+                                date: isStart ? ++currentDay : '',
+                                className: isSameMonth && isStart && currentDay < today ? 'date-inactive' : '' //이전 날짜 음영처리
+                            }
+                            date.list[j].push(dayInfo);
+                        }
+                    }
+                },
+                run: function () {
+                    this.dateCalculator();
+
+                    this.fillDate(this.leftDate);
+                    this.fillDate(this.rightDate);
+
+                    var calendarTemplate = $('#calendarTemplate').html();
+                    var calendarRendered = Mustache.render(calendarTemplate, reservationDateObj);
+                    $('#calendarArea').html(calendarRendered);
+                },
+            }
+
+            reservationDateObj.run(); //달력 모듈 실행
+
+            //달력 왼쪽 클릭 시
+            $('#containerArea').on('click', '#dateLeftBtn', function () {
+                reservationDateObj.beforeMonth();
+            });
+
+            //달력 오른쪽 클릭 시
+            $('#containerArea').on('click', '#dateRightBtn', function () {
+                reservationDateObj.nextMonth();
+            });
+
+            //달력 날짜 클릭 시
+            $('#containerArea').on('click', '.days > td', function(){
+
+            });
+
+
 
         });
     </script>
@@ -271,7 +381,7 @@
         <%--첫번째 달력--%>
         <div class="col p-2">
             <div class="rental-start-calendar">
-                <h4 class="text-center p-2"><img src="/images/icons/chevron-left.svg" id="dateLeftBtn" />{{leftDate.yearMonth}}</h4>
+                <h4 class="text-center p-2"><img src="/images/icons/chevron-left.svg" id="dateLeftBtn" class="cursor-pointer" />{{leftDate.yearMonth}}</h4>
                 <table>
                     <thead>
                     <tr class="weekdays">
@@ -288,7 +398,7 @@
                     {{#leftDate.list}}
                         <tr class="days">
                             {{#.}}
-                                <td data-column="{{.}}">{{.}}</td>
+                                <td data-day="{{date}}" class="{{className}}">{{date}}</td>
                             {{/.}}
                         </tr>
                     {{/leftDate.list}}
@@ -300,7 +410,7 @@
         <%--두번째 달력--%>
         <div class="col p-2">
             <div class="rental-start-calendar">
-                <h4 class="text-center p-2">{{rightDate.yearMonth}}<img src="/images/icons/chevron-right.svg" id="dateRightBtn" /></h4>
+                <h4 class="text-center p-2">{{rightDate.yearMonth}}<img src="/images/icons/chevron-right.svg" id="dateRightBtn" class="cursor-pointer" /></h4>
                 <table>
                     <thead>
                     <tr class="weekdays">
@@ -317,7 +427,7 @@
                     {{#rightDate.list}}
                         <tr class="days">
                             {{#.}}
-                                <td data-column="{{.}}">{{.}}</td>
+                                <td data-day="{{date}}" class="{{className}}">{{date}}</td>
                             {{/.}}
                         </tr>
                     {{/rightDate.list}}
@@ -325,6 +435,7 @@
                 </table>
             </div>
         </div>
+
     </script>
 
     <%--달력 끝--%>
@@ -341,41 +452,102 @@
                     <div class="col-11">
                         <div class="card mb-3" style="background: #f8f7fd;">
                             <div class="card-body">
-                                <div class="row" id="calendarArea">
+                                <div class="row" id="calendarArea" style="height: 367px !important;">
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-1"></div>
-                    <div class="col-5 text-center card mb-3"
+                    <div class="col-5 text-center card mb-3" id="startRentalDate" data-date=""
                          style="height: 50px; background: #f8f7fd; margin-left:10px; width: 460px; padding-top: 10px;">
                         대여일을 선택해주세요
                     </div>
-                    <div class="col-5 text-center card mb-3"
+                    <div class="col-5 text-center card mb-3" id="returnRentalDate" data-date=""
                          style="height: 50px; background: #f8f7fd; margin-left:30px; width: 460px; padding-top: 10px;">
                         반납일을 선택해주세요
                     </div>
 
                     <div class="col-1"></div>
-                    <div class="col-2 text-center card mb-3"
-                         style="height: 50px; background: #f8f7fd; margin-left:10px; width: 220px; padding-top: 10px;">
-                        시간 선택
-                    </div>
-                    <div class="col-2 text-center card mb-3"
-                         style="height: 50px; background: #f8f7fd; margin-left:20px; width: 220px; padding-top: 10px;">
-                        분 선택
-                    </div>
-                    <div class="col-2 text-center card mb-3"
-                         style="height: 50px; background: #f8f7fd; margin-left:30px; width: 220px; padding-top: 10px;">
-                        시간 선택
-                    </div>
-                    <div class="col-2 text-center card mb-3"
-                         style="height: 50px; background: #f8f7fd; margin-left:20px; width: 220px; padding-top: 10px;">
-                        분 선택
-                    </div>
-                    <div class="col-1"></div>
-                    <div class="col-11"><p class="text-center">총 x일 x시간 x분 대여</p></div>
+                    <select class="form-select" aria-label="Default select example" disabled="disabled"
+                            style="height: 50px; margin-left:10px; width: 220px;">
+                        <option selected>선택</option>
+                        <%--<option value="00">00시</option>
+                        <option value="01">01시</option>
+                        <option value="02">02시</option>
+                        <option value="03">03시</option>
+                        <option value="04">04시</option>
+                        <option value="05">05시</option>
+                        <option value="06">06시</option>
+                        <option value="07">07시</option>--%>
+                        <option value="08">08시</option>
+                        <option value="09">09시</option>
+                        <option value="10">10시</option>
+                        <option value="11">11시</option>
+                        <option value="12">12시</option>
+                        <option value="13">13시</option>
+                        <option value="14">14시</option>
+                        <option value="15">15시</option>
+                        <option value="16">16시</option>
+                        <option value="17">17시</option>
+                        <option value="18">18시</option>
+                        <option value="19">19시</option>
+                        <option value="20">20시</option>
+                        <option value="21">21시</option>
+                        <option value="22">22시</option>
+                        <%--<option value="23">23시</option>--%>
+                    </select>
+                    <select class="form-select" aria-label="Default select example" disabled="disabled"
+                            style="height: 50px; margin-left:20px; width: 220px;">
+                        <option selected>선택</option>
+                        <option value="00">00분</option>
+                        <option value="10">10분</option>
+                        <option value="20">20분</option>
+                        <option value="30">30분</option>
+                        <option value="40">40분</option>
+                        <option value="50">50분</option>
+                    </select>
+                    <select class="form-select" aria-label="Default select example" disabled="disabled"
+                            style="height: 50px; margin-left:30px; width: 220px;">
+                        <option selected>선택</option>
+                        <%--<option value="00">00시</option>
+                        <option value="01">01시</option>
+                        <option value="02">02시</option>
+                        <option value="03">03시</option>
+                        <option value="04">04시</option>
+                        <option value="05">05시</option>
+                        <option value="06">06시</option>
+                        <option value="07">07시</option>--%>
+                        <option value="08">08시</option>
+                        <option value="09">09시</option>
+                        <option value="10">10시</option>
+                        <option value="11">11시</option>
+                        <option value="12">12시</option>
+                        <option value="13">13시</option>
+                        <option value="14">14시</option>
+                        <option value="15">15시</option>
+                        <option value="16">16시</option>
+                        <option value="17">17시</option>
+                        <option value="18">18시</option>
+                        <option value="19">19시</option>
+                        <option value="20">20시</option>
+                        <option value="21">21시</option>
+                        <option value="22">22시</option>
+                        <%--<option value="23">23시</option>--%>
+                    </select>
+                    <select class="form-select" aria-label="Default select example" disabled="disabled"
+                            style="height: 50px; margin-left:20px; width: 220px;">
+                        <option selected>선택</option>
+                        <option value="00">00분</option>
+                        <option value="10">10분</option>
+                        <option value="20">20분</option>
+                        <option value="30">30분</option>
+                        <option value="40">40분</option>
+                        <option value="50">50분</option>
+                    </select>
+                    <div class="col-1 mt-3"></div>
+                    <div class="col-11 mt-3"><p class="text-center">총 x일 x시간 x분 대여</p></div>
+
                 </div>
             </div>
         </div>
