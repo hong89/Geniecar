@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -16,6 +15,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -129,10 +130,13 @@ public class AdminBoardController {
                     // 파일 정보 설정 확인
                     fileVo.setFileName(file.getOriginalFilename());
                     fileVo.setFileSize((int) file.getSize());
-
-                    // 파일 저장 경로 및 유니크? 생성하기 (UUID 적용 (sysdate 미사용))
+                    
+                    System.err.println("###### 파일이름 ::" + fileVo.getFileName());
+                    
+                    // 파일 저장 경로
                     String savePath = "C:\\geniecar_images";
-                    String saveName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+                    String saveName = (fileVo.getFileName() != "") ? UUID.randomUUID().toString() + "_" + file.getOriginalFilename() : null;
+                    System.err.println("UUID 생성" + saveName);
                     String fullPath = savePath + File.separator + saveName;
 
                     // 파일 저장 하기
@@ -149,7 +153,9 @@ public class AdminBoardController {
                 }
                 // 파일과 이미지 정보 DB에 저장하기
                 boardService.insertBoard(boardVo, fileList);
+         
             }
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -173,7 +179,31 @@ public class AdminBoardController {
     public String updateNoticeForm(@RequestParam int no, Model model) {
         BoardVo notice = boardService.selectNoticeDetail(no);
         model.addAttribute("notice", notice);
+        
+        List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
+        model.addAttribute("imageFiles", imageFiles);
+        
         return "admin/board/updateNoticeForm";
+    }
+    
+    // JJ
+    // 이미지 수정
+    @PostMapping("/updateImage")
+    public ResponseEntity<String> updateImage(@RequestParam int fileNo, @RequestParam("editImageFile") MultipartFile editImageFile) {
+        try {
+        	System.err.println("#########fileNo: " + fileNo);
+            System.err.println("#########editImageFile: " + editImageFile.getOriginalFilename());
+        	
+        	FileVo fileVo = new FileVo();
+        	fileVo.setFileNo(fileNo);
+        	fileVo.setEditImageFile(editImageFile);
+        	
+            boardService.updateImageFile(fileVo);
+            
+            return new ResponseEntity<>("이미지 수정이 성공했습니다.", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("이미지 수정 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     // JJ
@@ -183,14 +213,18 @@ public class AdminBoardController {
         boardService.updateNotice(boardVo);
         BoardVo notice = boardService.selectNoticeDetail(boardVo.getNo());
         model.addAttribute("notice", notice);
+        
+        List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
+        model.addAttribute("imageFiles", imageFiles);
+        
         return "admin/board/updateNoticeForm";
     }
 
     // JJ
     // 게시판 내용 삭제하기
     @GetMapping("/deleteNotice.do")
-    public String deleteNotice(int no) {
-        boardService.deleteNotice(no);
+    public String deleteNotice(@RequestParam int no, @RequestParam int fileNo) {
+        boardService.deleteNotice(no, fileNo);
         return "redirect:/admin/board/list.do?typeCode=NOTICE";
     }
 

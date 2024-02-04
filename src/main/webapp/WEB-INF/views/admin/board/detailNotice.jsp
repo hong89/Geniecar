@@ -25,17 +25,23 @@
                 <label for="content" class="col-sm-2 col-form-label">내용</label>
                 <div class="col-sm-10"><textarea class="form-control" id="content" name="content" rows="20"
                                                  style="width: 100%;">${notice.content}</textarea>
-                    <c:if test="${not empty imageFiles}">
-                        <h3>첨부 이미지</h3>
-                        <c:forEach var="imageFile" items="${imageFiles}">
-                            <img src="${imageFile.imageFilePath}" alt="images" width="300" height="200">
-                        </c:forEach>
-                    </c:if>
                 </div>
             </div>
-            
+            <c:if test="${not empty imageFiles}">
+                <c:forEach var="imageFile" items="${imageFiles}">
+                    <c:if test="${not empty imageFile.saveName}">
+                        <div class="mb-3 row">
+                            <label for="images" class="col-sm-2 col-form-label">이미지</label>
+                            <div class="col-sm-10">
+                                <img class="form-control" src="/downloadFile/${imageFile.saveName}" alt="images" width="300" height="500">
+                            </div>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </c:if>
+        </div>
 
-
+        <div>
             <button type="button" class="btn text-white" style="background: #41087c"
                     onclick="location.href='list.do?typeCode=${notice.typeCode}'">목록가기
             </button>
@@ -43,7 +49,7 @@
                     onclick="location.href='updateNoticeForm.do?no=${notice.no}'">수정하기
             </button>
             <button type="button" class="btn text-white" style="background: #41087c"
-                    onclick="location.href='deleteNotice.do?no=${notice.no}'">삭제하기
+                    onclick="location.href='deleteNotice.do?no=${notice.no}&fileNo=${notice.fileNo}'">삭제하기
             </button>
         </div>
     </div>
