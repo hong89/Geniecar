@@ -32,4 +32,8 @@
     <select id="selectAllBusiness" resultType="memberVo">
 		SELECT * FROM MEMBER WHERE TYPE ='B' ORDER BY NAME
     </select>
+    
+    <select id="selectWaiting" resultType="memberVo">
+		SELECT * FROM MEMBER WHERE BRANCH_CODE IS NOT NUll and type = 'U'
+	</select>
 </mapper>

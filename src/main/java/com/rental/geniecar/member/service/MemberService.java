@@ -46,4 +46,8 @@ public class MemberService {
 		List<MemberVo> memberList = memberDao.selectAllBusiness();
 		return memberList;
 	}
+	public List<MemberVo> selectWaitingApproval(){
+		List<MemberVo> waitingList = memberDao.selectWaiting();
+		return waitingList;
+	}
 }

@@ -11,10 +11,54 @@
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
+        
         $(function () {
-            $('[id=nextBtn]').click(function () {
+            window.onpageshow = function (event) {
+                if (event.persisted) {
+                    window.location.reload();
+                }
+            };
+        })
 
-                var checkTerms = $('input:checkbox[id="checkTerms"]:checked').val();
+        $(function () {
+            const checkAllTerms = document.querySelector("#checkAllTerms");
+            let checkTerm = document.querySelectorAll("[name=checkTerm]");
+            const agreements = {
+                termsOfService: false,
+                privacyPolicy: false,
+            };
+            checkAllTerms.addEventListener('click', (e) => {
+                const { checked } = e.target;
+                if (checked) {
+                    checkTerm.forEach((item) => {
+                        item.checked = true;
+                        agreements[item.id] = true;
+                    });
+                } else {
+                    checkTerm.forEach((item) => {
+                        item.checked = false;
+                        agreements[item.id] = false;
+                    });
+                }
+            });
+            checkTerm.forEach((item) => item.addEventListener('input', toggleCheckbox));
+            function toggleCheckbox(e) {
+                const { checked , id } = e.target;
+                agreements[id] = checked;
+                checkAllStatus();
+            }
+            function checkAllStatus() {
+                const { termsOfService, privacyPolicy} = agreements;
+                if (termsOfService && privacyPolicy) {
+                    checkAllTerms.checked = true;
+                } else {
+                    checkAllTerms.checked = false;
+                }
+            }
+        })
+        $(function() {
+            $('[id=nextBtn]').click(function () {
+                var checkTerms = $('input:checkbox[id="checkAllTerms"]:checked').val();
                 if(checkTerms == null||checkTerms != 'on'){
                     alert("이용 약관에 동의해주세요.");
                     return false;
@@ -24,11 +68,62 @@
                     return false;
                 }
             });
+
             $('[id=backBtn]').click(function () {
                 document.getElementById("3").style.display ='none';
                 document.getElementById("1").style.display ='block';
             
             });
+        })
+        $(function () {
+            $('#submitBtn').click(function () {
+                var pw = $('[name=pw]').val();
+                var pwCheck = $('[name=pwCheck]').val();
+                var name = $('[name=name]').val();
+                var gender = $('input:radio[name="gender"]:checked').val();
+                var birthday = $('[name=birthday]').val();
+                var hp = $('[name=hp]').val();
+                var zipCode = $('[name=zipCode]').val();
+                var address = $('[name=address]').val();
+                var addressDetail = $('[name=addressDetail]').val();
+
+                if (!$.trim($('[name=id]').val())) {
+                    alert('아이디를 중복체크 해주세요.');
+                    return false;
+                } else if (pw == '' || pw == null) {
+                    alert("비밀번호를 입력해주세요");
+                    return false;
+                } else if (pwCheck == '' || pwCheck == null) {
+                    alert("비밀번호 확인을 입력해주세요");
+                    return false;
+                } else if (pw != pwCheck) {
+                    alert("비밀번호가 일치하지 않습니다.");
+                    return false;
+                } else if (name == '' || name == null) {
+                    alert("이름을 입력해주세요");
+                    return false;
+                } else if (gender == null) {
+                    alert("성별을 입력해주세요");
+                    return false;
+                } else if (birthday == '' || birthday == null) {
+                    alert("생일을 입력해주세요");
+                    return false;
+                } else if (hp == '' || hp == null) {
+                    alert("전화번호를 입력해주세요");
+                    return false;
+                } else if (zipCode == '' || zipCode == null) {
+                    alert("우편번호를 입력해주세요");
+                    return false;
+                }else if (address == '' || address == null) {
+                    alert("주소를 입력해주세요");
+                    return false;
+                }else if (addressDetail == '' || addressDetail == null) {
+                    alert("나머지 주소를 입력해주세요");
+                    return false;
+                }
+                $('[name=doJoin]').submit();                
+            });
+
         })
         
         function execDaumPostcode() {
@@ -100,58 +195,6 @@
             });
         }
 
-        $(function () {
-            $('#userSubmitBtn').click(function () {
-                var pw = $('[name=pw]').val();
-                var pwCheck = $('[name=pwCheck]').val();
-                var name = $('[name=name]').val();
-                var gender = $('input:radio[name="gender"]:checked').val();
-                var birthday = $('[name=birthday]').val();
-                var hp = $('[name=hp]').val();
-                var zipCode = $('[name=zipCode]').val();
-                var address = $('[name=address]').val();
-                var addressDetail = $('[name=addressDetail]').val();
-
-                if (!$.trim($('[name=id]').val())) {
-                    alert('아이디를 중복체크 해주세요.');
-                    return false;
-                } else if (pw == '' || pw == null) {
-                    alert("비밀번호를 입력해주세요");
-                    return false;
-                } else if (pwCheck == '' || pwCheck == null) {
-                    alert("비밀번호 확인을 입력해주세요");
-                    return false;
-                } else if (pw != pwCheck) {
-                    alert("비밀번호가 일치하지 않습니다.");
-                    return false;
-                } else if (name == '' || name == null) {
-                    alert("이름을 입력해주세요");
-                    return false;
-                } else if (gender == null) {
-                    alert("성별을 입력해주세요");
-                    return false;
-                } else if (birthday == '' || birthday == null) {
-                    alert("생일을 입력해주세요");
-                    return false;
-                } else if (hp == '' || hp == null) {
-                    alert("전화번호를 입력해주세요");
-                    return false;
-                } else if (zipCode == '' || zipCode == null) {
-                    alert("우편번호를 입력해주세요");
-                    return false;
-                }else if (address == '' || address == null) {
-                    alert("주소를 입력해주세요");
-                    return false;
-                }else if (addressDetail == '' || addressDetail == null) {
-                    alert("나머지 주소를 입력해주세요");
-                    return false;
-                }
-
-                $('[name=doJoin]').submit();
-
-            });
-        })
-        
         function oninputPhone(target) {
         target.value = target.value
             .replace(/[^0-9]/g, '')
@@ -180,15 +223,15 @@
                     <div class="p-4 mb-5" style="background-color: #f8f7fd; color: #23093d; ">
                         <h4 class="fw-bolder ps-3">서비스 약관 동의</h4>
                     </div>
-                    <div class = "text-center mb-3">
-                        <input type="checkbox" id ="checkTerms" >
-                        <label for="checkTerms" class="col-form-label fs-5">전체동의</label>
+                    <div class = "me-2 mb-3">
+                        <input type="checkbox" id ="checkAllTerms" >
+                        <label for="checkAllTerms" class="col-form-label fs-5">전체동의</label>
                     </div>
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                           <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              지니카 회원사 약관(필수)
+                                <input type="checkbox" class="me-2" name="checkTerm" id="termsOfService"><strong>회원사 약관(필수)</strong>
                             </button>
                           </h2>
                           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -200,7 +243,7 @@
                         <div class="accordion-item">
                           <h2 class="accordion-header" id="headingTwo">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >
-                              필수입력정보 수집동의(필수)
+                                <input type="checkbox" class="me-2" name="checkTerm" id="privacyPolicy"><strong>필수입력정보 수집동의(필수)</strong>
                             </button>
                           </h2>
                           <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -236,7 +279,7 @@
                 <div class="p-4 mb-5" style="background-color: #f8f7fd; color: #23093d; ">
                     <h4 class="fw-bolder ps-3">회원 정보입력</h4>
                 </div>
-                <form action="/member/completeJoin.do" method="post" name="completeJoin">
+                <form action="/member/completeJoin.do" method="post" name="Join" autocomplete="on">
                     <div class="row g-3 align-items-center join-container">
                         <div class="col-2"></div>
                         <div class="col-2">
@@ -294,7 +337,6 @@
                             <input type="text" id="branchCode" name="branchCode" class="form-control">
                         </div>
                     </div>
-
                     <div class="row g-3 align-items-center join-container">
                         <div class="col-2"></div>
                         <div class="col-2">
@@ -363,7 +405,7 @@
                         <div class="col-4"></div>
                         <div class="position-absolute top-100 start-50 translate-middle">
                             <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" id="backBtn">뒤로가기</button>
-                            <button type="submit" class="btn text-white" id="userSubmitBtn" style="background: #41087c; width: 110px;">가입하기</button>
+                            <button type="submit" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;">가입하기</button>
                         </div>
                     </div>
                 </form>

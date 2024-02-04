@@ -17,4 +17,5 @@ public interface MemberDao {
 	public void updateMember(MemberVo vo);
 	public List<MemberVo> selectAllUser();
 	public List<MemberVo> selectAllBusiness();
+	public List<MemberVo> selectWaiting();
 }

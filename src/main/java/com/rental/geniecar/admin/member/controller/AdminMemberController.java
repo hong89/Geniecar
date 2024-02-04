@@ -43,4 +43,11 @@ public class AdminMemberController {
     	model.addAttribute("business", memberService.selectOne(id));
     	return "admin/member/businessDetail";
     }
+    @GetMapping("/waitingList.do")
+    public String waitingList(Model model) {
+    	List<MemberVo> waitingList = memberService.selectWaitingApproval();
+    	model.addAttribute("waitingList",waitingList);
+        return "admin/member/waitingList";
+    }
+    
 }

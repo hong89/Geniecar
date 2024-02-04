@@ -26,14 +26,19 @@ public class LoginService {
 		}
 	}
 	public String findId (Map map) {
-		if(loginDao.findId(map) != null) {
-			return "회원님의 아이디는 " +loginDao.findId(map) +" 입니다.";
+		String id = loginDao.findId(map);
+		if(id != null) {
+			String resultid = id.substring(0,4);
+			for (int i =0 ; i<id.length()-4;i++) {
+				resultid += "*";
+			}
+			return resultid;
 		} else {
-			return "일치하는 정보가 없습니다.";
+			return null;
 		}
 	}
 	public String findPw(Map map) {
-		if(loginDao.findId(map) != null) {
+		if(loginDao.findPw(map) != null) {
 			return "회원님의 비밀번호는 " +loginDao.findPw(map) +" 입니다.";
 		} else {
 			return "일치하는 정보가 없습니다.";

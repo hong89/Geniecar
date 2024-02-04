@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.login.service.LoginService;
@@ -64,9 +65,8 @@ public class LoginController {
 	}
 	//ruddud
 	@PostMapping("/resultFindId.do")
-	public String resultFindId(@RequestParam Map map, Model model) {
-		model.addAttribute("msg", loginService.findId(map));
-		return "login/resultFindId";
+	public @ResponseBody String resultFindId(@RequestParam Map member) {
+		return loginService.findId(member);
 	}
 	//ruddud
 	@GetMapping("/findPw.do")
