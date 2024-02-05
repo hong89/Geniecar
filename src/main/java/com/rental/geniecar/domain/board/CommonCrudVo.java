@@ -6,16 +6,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CommonCrudVo extends BoardVo {
-	private int pageNum;        // 페이지넘버
-	private int pageSize = 3;   // 페이지사이즈
-	private int startPage;      // 첫페이지
-	private int currentPage;    // 현재페이지
+	private int pageNum;         // 페이지넘버
+	private int pageSize = 10;   // 페이지사이즈
+	private int startPage;       // 첫페이지
+	private int currentPage;     // 현재페이지
 	
-	private int totalPageCount; // 총페이지
-	private int pageCount;      // 총페이지
-	private int pageBlock = 5;  // 한페이지불럭수
-	private int startPageBlock; // 한페이지불럭수
-	private int endPageBlock;   // 한페이지불럭수
+	private int totalPageCount;  // 총페이지
+	private int pageCount;       // 총페이지
+	private int pageBlock = 10;  // 한페이지불럭수
+	private int startPageBlock;  // 한페이지불럭수
+	private int endPageBlock;    // 한페이지불럭수
 	
 	public void setPageStartSet() {
 		if(this.getPageNum() == 0) {

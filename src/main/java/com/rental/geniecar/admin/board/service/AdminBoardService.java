@@ -73,7 +73,6 @@ public class AdminBoardService {
 		boardDao.updateNotice(boardVo);
 	}
 	
-	@Transactional
 	public void deleteNotice(int no, int fileNo) {
 		boardDao.deleteNotice(no);
 		boardDao.deleteImage(fileNo);
@@ -83,7 +82,6 @@ public class AdminBoardService {
 		return boardDao.findByFileNo(fileNo);
 	}
 	
-	@Transactional
 	public void updateImageFile(FileVo fileVo) {
 		try {
 		int fileNo = fileVo.getFileNo();
@@ -94,15 +92,7 @@ public class AdminBoardService {
 
         List<FileVo> existingFile = boardDao.findByFileNo(fileNo);
         FileVo newFileVo = new FileVo();
-	    
-	    if (existingFile  != null) {
-	    	
-	        System.out.println("File Name: " + ((FileVo) existingFile) .getSaveName());
-	        System.out.println("File Size: " + editImageFile.getSize());
-	        
-	        newFileVo.setSeq(((FileVo) existingFile).getSeq());
-	        newFileVo.setSavePath(((FileVo) existingFile).getSavePath());
-	    }
+
 	    
 	    String saveDirectory = UPLOAD_PATH;
 	    

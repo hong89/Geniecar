@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script>
-    function editImage(fileNo, currentFileName) {
+    function editImage(fileNo, seq, currentFileName) {
         $('#editImageModal').modal('show');
         $('#currentFileName').val(currentFileName);
         $('#fileNo').val(fileNo);
@@ -16,7 +16,7 @@
 
         $.ajax({
             type: 'POST',
-            url: '/admin/board/updateImage',
+            url: '/admin/board/updateImage.do',
             data: formData,
             processData: false,
             contentType: false,
@@ -64,7 +64,8 @@
                             <label for="images" class="col-sm-2 col-form-label">이미지</label>
                             <div class="col-sm-10">
                                 <img class="form-control" src="/downloadFile/${imageFile.saveName}" alt="images" width="300" height="500">
-                                <button type="button" class="btn text-white" style="background: #41087c" onclick="editImage(${imageFile.fileNo}, '${imageFile.saveName}')">이미지 수정</button>
+                                <button type="button" class="btn text-white" style="background: #41087c" onclick="editImage(${imageFile.fileNo}, ${imageFile.seq}, '${imageFile.saveName}')">이미지 수정</button>
+                                
                             </div>
                         </div>
                     </c:if>
