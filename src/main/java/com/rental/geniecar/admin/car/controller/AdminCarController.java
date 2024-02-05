@@ -87,7 +87,7 @@ public class AdminCarController {
     @PostMapping("/insertRentalCar.do")
     public String insertRentalCar(RentalCarVo rentalCarVo) {
         adminCarService.insertRentalCar(rentalCarVo);
-        return "admin/car/list";
+        return "redirect:stockList.do";
     }
 
     //hsh
