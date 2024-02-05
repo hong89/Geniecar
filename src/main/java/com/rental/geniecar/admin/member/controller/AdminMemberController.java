@@ -1,3 +1,4 @@
+
 package com.rental.geniecar.admin.member.controller;
 
 import java.util.List;
@@ -6,7 +7,9 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.member.service.MemberService;
@@ -21,7 +24,7 @@ public class AdminMemberController {
 	
     @GetMapping("/userList.do")
     public String userList(Model model) {
-    	List<MemberVo> userList = memberService.selectAllUser();
+    	List<MemberVo> userList = memberService.selectAll("U");
     	model.addAttribute("userList",userList);
         return "admin/member/userList";
     }
@@ -34,7 +37,7 @@ public class AdminMemberController {
 
     @GetMapping("/businessList.do")
     public String businessList(Model model) {
-    	model.addAttribute("businessList", memberService.selectAllBusiness());
+    	model.addAttribute("businessList", memberService.selectAll("B"));
         return "admin/member/businessList";
     }
 
@@ -49,5 +52,13 @@ public class AdminMemberController {
     	model.addAttribute("waitingList",waitingList);
         return "admin/member/waitingList";
     }
-    
+    @GetMapping("/approvla.do")
+    public String approvla(String id) {
+    	memberService.updateType(id);
+    	 return "admin/member/waitingList";
+    }
+    @GetMapping("/kick.do")
+    public @ResponseBody int kick(String id) {
+    	return memberService.kick(id);
+    }
 }

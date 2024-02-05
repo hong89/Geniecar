@@ -22,7 +22,6 @@ public class MemberService {
 	
 	public void newMember(MemberVo vo) {
 		memberDao.insertMember(vo);
-		pointDao.createNewPoint(vo.getId());
 	}
 	public String overlapped(String id) {
 		return memberDao.overlapped(id);
@@ -35,19 +34,19 @@ public class MemberService {
 		memberDao.updateMember(vo);
 		return memberDao.selectOne(vo.getId());
 	}
-	public List<MemberVo> selectAllUser(){
-		List<MemberVo> memberList = memberDao.selectAllUser();
-		return memberList;
+	public List<MemberVo> selectAll(String type){
+		return memberDao.selectAll(type);
 	}
 	public MemberVo selectOne(String id) {
 		return memberDao.selectOne(id);
 	}
-	public List<MemberVo> selectAllBusiness() {
-		List<MemberVo> memberList = memberDao.selectAllBusiness();
-		return memberList;
-	}
 	public List<MemberVo> selectWaitingApproval(){
-		List<MemberVo> waitingList = memberDao.selectWaiting();
-		return waitingList;
+		return memberDao.selectWaiting();
+	}
+	public void updateType(String id) {
+		memberDao.updateType(id);
+	}
+	public int kick(String id) {
+		return memberDao.updateWithdrawal(id);
 	}
 }

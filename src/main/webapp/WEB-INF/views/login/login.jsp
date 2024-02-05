@@ -42,6 +42,7 @@
                     naver_id_login.init_naver_id_login();
                 </script>
                 <div class="w-100 mt-3 text-center"><a href="/login/findId.do">아이디 찾기</a>/<a href="/login/findPw.do">비밀번호 찾기</a></div>
+                <div class="w-100 mt-3 text-center"><a href="/member/join.do">회원가입</a>/<a href="/member/businessJoin.do">사업자 회원가입</a></div>
             </form>
         </div>
         <div class="col"></div>
