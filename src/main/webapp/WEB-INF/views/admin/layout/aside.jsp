@@ -24,9 +24,13 @@
             <p><a href="/admin/rental/commuteRent.do">출퇴근 렌터카 관리</a></p>
         </li>
         <li class="list-group-item"><p>게시판 관리</p>
+            <p><a href="/admin/board/register.do">게시판 등록</a></p>
             <p><a href="/admin/board/list.do?typeCode=NOTICE">공지사항 목록</a></p>
-            <p><a href="/admin/board/register.do">공지사항 등록</a></p>
             <p><a href="/admin/board/faqList.do?typeCode=FAQ">FAQ 목록</a></p>
+            <p><a href="/admin/board/faqList.do?typeCode=EVENT">이벤트 목록</a></p>
+            <p><a href="/admin/board/faqList.do?typeCode=EVENTWINNER">당첨자 목록</a></p>
+            <p><a href="/admin/board/faqList.do?typeCode=CONSULTING">1:1 상담 목록</a></p>
+            <p><a href="/admin/board/faqList.do?typeCode=REVIEW">후기 목록</a></p>
         </li>
         <li class="list-group-item"><p>회원 관리</p>
             <p><a href="/admin/member/userList.do">회원 목록</a></p>

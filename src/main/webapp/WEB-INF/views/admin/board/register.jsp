@@ -21,6 +21,9 @@
                         <option value="NOTICE">공지사항</option>
                         <option value="FAQ">FAQ</option>
                         <option value="EVENT">EVENT</option>
+                        <option value="EVENTWINNER">EVENTWINNER</option>
+                        <option value="CONSULTING">CONSULTING</option>
+                        <option value="REVIEW">REVIEW</option>
                     </select>
                 </div>
             </div>

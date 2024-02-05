@@ -56,8 +56,8 @@
                    aria-expanded="false">고객 지원</a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/info/noticeNewsMain.do?typeCode=NOTICE">공지사항</a></li>
-                    <li><a class="dropdown-item" href="/carlife/eventMain.do">이벤트</a></li>
-                    <li><a class="dropdown-item" href="/customer/question.do">1:1 고객센터</a></li>
+                    <li><a class="dropdown-item" href="/carlife/eventMain.do?typeCode=EVENT">이벤트</a></li>
+                    <li><a class="dropdown-item" href="/customer/question.do?typeCode=CONSULTING">1:1 고객센터</a></li>
                     <li><a class="dropdown-item" href="/customer/faq.do?typeCode=FAQ">자주하는 질문</a></li>
                 </ul>
             </li>

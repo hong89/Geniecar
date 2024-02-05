@@ -2,6 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+    // 검색수행
+    function fn_search(i_page) {
+        var page = i_page;
+        if (page == null || page == '' || page == 'undefined') {
+            page = 1;
+        }
+        location.href = "/carlife/winnerEventMain.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
+    }
+</script>
+
 <style>
     .nav-pills .nav-link.active,
     .nav-pills .show > .nav-link {
@@ -18,14 +29,14 @@
              class="position-absolute end-0">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/main/index.do">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">CAR뮤니티</li>
+                <li class="breadcrumb-item active" aria-current="page">고객 지원</li>
                 <li class="breadcrumb-item active" aria-current="page">이벤트</li>
-                <li class="breadcrumb-item active" aria-current="page">당첨자발표</li>
+                <li class="breadcrumb-item active" aria-current="page">당첨자 발표</li>
             </ol>
         </nav>
     </div>
 
-    <div class="carLife-container">
+    <div class="pt-5">
         <div class="inner-type2">
             <section class="text-center">
                 <h1 class="tit">당첨자 발표</h1>
@@ -33,66 +44,70 @@
             </section>
 
             <nav class="mt-5 nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link" href="/carlife/eventMain.do">진행중 이벤트</a>
-                <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page"
-                   href="/carlife/winnerEventMain.do">당첨자 발표</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="/carlife/eventMain.do?typeCode=EVENT">진행중 이벤트</a>
+                <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="/carlife/winnerEventMain.do?typeCode=EVENTWINNER">당첨자 발표</a>
             </nav>
 
-            <!-- 이벤트 리스트 -->
-            <div class="tab-cont tab-normal">
-                <div>
-                    <!-- 검색 -->
-                    <form class="p-5 row row-cols-lg-auto g-3 align-items-center justify-content-center"
-                          style="text-align: center;">
-                        <div class="col-3">
-                            <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                            <select class="form-select" id="inlineFormSelectPref">
-                                <option value="1">전체</option>
-                                <option value="2">제목</option>
-                                <option value="3">내용</option>
-                            </select>
-                        </div>
-                        <div class="col-3">
-                            <label class="visually-hidden" for="inlineFormInputGroupUsername">Use</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="inlineFormInputGroupUsername"
-                                       placeholder="검색어를 입력해주세요.">
+            <div class="pt-5">
+                <table class="table caption-top">
+                    <tr>
+                        <td class="text-center">
+                            <div class="mx-auto" style="max-width: 500px;">
+                                <div class="d-flex">
+                                    <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." style="flex: 1; margin-right: 10px;">
+                                    <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
+                                    <button type="button" class="btn text-white" onclick="javascript:fn_search(1)" style="background-color: #41087c;">검색</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-3">
-                            <button type="submit" class="btn btn-primary" style="background-color: #41087c;">검색</button>
-                        </div>
-                    </form>
-
-                    <table class="table caption-top">
-                        <thead>
-                        <tr>
-                            <td scope="col"><strong>No</strong></td>
-                            <td align="center" scope="col"><strong>제목</strong></td>
-                            <td align="center" scope="col"><strong>작성일</strong></td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td align="center"><a href="#">2023 고객만족도 설문조사 4분기 이벤트 당첨자발표</a></td>
-                            <td align="center">2024.01.11</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td align="center"><a href="#">2023 고객만족도 설문조사 3분기 이벤트 당첨자발표</a></td>
-                            <td align="center">2023.10.10</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td align="center"><a href="#">2023 고객만족도 설문조사 2분기 이벤트 당첨자발표</a></td>
-                            <td align="center">2023.07.01</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        </td>
+                </table>
             </div>
+            <div class="pt-5">
+                <table class="table caption-top">
+                    <thead>
+                    <tr>
+                        <td align="center" scope="col"><strong>No</strong></td>
+                        <td align="center" scope="col"><strong>제목</strong></td>
+                        <td align="center" scope="col"><strong>작성일</strong></td>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <c:forEach var="notice" items="${boardList}">
+                        <tr>
+                            <td align="center">${notice.no}</td>
+                            <td align="left"><a href="/info/noticeDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
+                            </td>
+                            <td align="center">${notice.regDate}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <c:if test="${boardVo.startPageBlock > boardVo.pageBlock}">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                    <c:forEach begin="${boardVo.startPageBlock}" end="${boardVo.endPageBlock}" step="1"
+                               varStatus="status">
+                        <li class="page-item"><a class="page-link" href="#"
+                                                 onclick="javascript:fn_search('${status.index}')">${status.index}</a>
+                        </li>
+                    </c:forEach>
+                    <c:if test="${boardVo.endPageBlock < boardVo.pageCount}">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                </ul>
+            </nav>
         </div>
     </div>
     <!--------------------------------------------------하단---------------------------------------------------------->

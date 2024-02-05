@@ -44,7 +44,16 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/question.do")
-	public String question() {
+	public String question(CommonCrudVo boardVo, Model model) {
+		
+		 boardVo.setPageStartSet();
+	        List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
+	        boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+	        boardVo.setPageEndSet();
+
+	        model.addAttribute("boardList", boardList);
+	        model.addAttribute("boardVo", boardVo);
+	        
 		return "customer/question";
 	}
 	

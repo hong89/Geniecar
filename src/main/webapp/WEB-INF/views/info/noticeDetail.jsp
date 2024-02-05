@@ -24,7 +24,7 @@
             <div class="mb-3 row">
                 <label for="content" class="col-sm-2 col-form-label">내용</label>
                 <div class="col-sm-10"><textarea class="form-control" id="content" name="content" rows="20"
-                                                 style="width: 100%;" readonly><pre>${notice.content}</pre></textarea>
+                                                 style="width: 100%;" readonly>${notice.content}</textarea>
                 </div>
             </div>
             <c:if test="${not empty imageFiles}">
