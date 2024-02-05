@@ -3,6 +3,24 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--복사해서 사용하세요--%>
 <div class="container-xl">
+    <script>
+        function fn_kick() {
+            var id = $("#id").val();
+            $.ajax({
+                type: "get",
+                url: "/admin/member/kick.do",
+                dataType: "text",
+                data: { id: id },
+                success: function (data, Status) {
+                    alert("완료되었습니다.");
+                    document.location.reload();
+                },
+                error: function (data, Status) {
+                    alert("에러가 발생했습니다.");
+                }
+            });
+        }
+    </script>
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="p-5">
         <section class="text-center">
@@ -12,6 +30,7 @@
             <div class="row p-1 m-2">
                 <div class="col-2">
                     <label for="id" class="">아이디</label>
+                    <input type="hidden" name="id" id="id" value="${user.id}"/>
                 </div>
                 <div class="col-auto">
                     <p class="">${user.id}</p>
@@ -89,10 +108,17 @@
                     <p class=""><fmt:formatDate value="${user.lastLoginDate}" pattern="yyyy-MM-dd hh:mm:ss" /></p>
                 </div>
             </div>
+            <div class="row p-1 m-2">
+                <div class="col-2">
+                    <label for="joinDate" class="">탈퇴여부</label>
+                </div>
+                <div class="col-auto">
+                    <p class="">${user.withdrawalYn}</p>
+                </div>
+            </div>
             <div class="d-flex justify-content-center mt-4">
                 <button class="btn me-2" style="border:1px solid #41087c;" onclick='location.href="/admin/member/userList.do"'>목록으로</button>
-                <button class="btn me-2" style="border:1px solid #41087c;" onclick=''>강퇴</button> 
-            </div>
+                <button class="btn me-2" style="border:1px solid #41087c;" onclick='fn_kick()'>강퇴</button> 
         </section>
     </div>
 

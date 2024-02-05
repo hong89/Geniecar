@@ -25,15 +25,19 @@
 		UPDATE MEMBER SET HP = #{hp}, ZIP_CODE = #{zipCode}, ADDRESS = #{address}, ADDRESS_DETAIL = #{addressDetail} WHERE ID= #{id}
 	</update>
 	
-	<select id="selectAllUser" resultType="memberVo">
-		SELECT * FROM MEMBER WHERE TYPE ='U' ORDER BY NAME
-    </select>
-    
-    <select id="selectAllBusiness" resultType="memberVo">
-		SELECT * FROM MEMBER WHERE TYPE ='B' ORDER BY NAME
+	<select id="selectAll" resultType="memberVo" parameterType="String">
+		SELECT * FROM MEMBER WHERE TYPE =#{type} ORDER BY NAME
     </select>
     
     <select id="selectWaiting" resultType="memberVo">
 		SELECT * FROM MEMBER WHERE BRANCH_CODE IS NOT NUll and type = 'U'
 	</select>
+	
+	<update id="updateType" parameterType="String">
+		UPDATE MEMBER SET TYPE = 'B' WHERE ID = #{id}
+	</update>
+	
+	<update id="updateWithdrawal">
+		UPDATE MEMBER SET WITHDRAWAL_YN = 'K' WHERE ID = #{id}
+	</update>
 </mapper>

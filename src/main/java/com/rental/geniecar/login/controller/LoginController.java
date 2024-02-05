@@ -38,15 +38,26 @@ public class LoginController {
 	public void dologin(@RequestParam Map<String, String> loginMap, HttpSession session, HttpServletResponse response) throws IOException {
 
 		MemberVo memberVo=loginService.login(loginMap);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
 		if(memberVo!= null && memberVo.getId()!=null){
-			session.setAttribute("isLogOn", true);
-			session.setAttribute("memberInfo",memberVo);	
-			response.sendRedirect("/main/index.do");
+			
+			if(memberVo.getWithdrawalYn().equals("N")) {
+				session.setAttribute("isLogOn", true);
+				session.setAttribute("memberInfo",memberVo);	
+				response.sendRedirect("/main/index.do");	
+			} else if(memberVo.getWithdrawalYn().equals("K")) {
+				out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요');history.back();</script>");
+				out.flush();
+				out.close();
+			} else {	
+				out.print("<script>alert(\"등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력하셨습니다.\");history.back();</script>");
+				out.flush();
+				out.close();
+			}
 		}else{	
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("<script>alert(\"등록되지 않은 아이디이거나 아이디 도는 비밀번호를 잘못 입력하셨습니다.\");history.back();</script>");
+			out.print("<script>alert(\"등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력하셨습니다.\");history.back();</script>");
 			out.flush();
 			out.close();
 		}
@@ -75,9 +86,8 @@ public class LoginController {
 	}
 	//ruddud
 	@PostMapping("/resultFindPw.do")
-	public String resultFindPw(@RequestParam Map map, Model model) {
-		model.addAttribute("msg", loginService.findPw(map));
-		return "login/resultFindPw";
+	public @ResponseBody String resultFindPw(@RequestParam Map member) {
+		return loginService.findPw(member);
 	}
 
 }

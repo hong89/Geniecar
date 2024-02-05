@@ -22,14 +22,12 @@
                 }else if(hp == '' || hp == null) {
                     alert("전화번호를 입력해주세요");
                     return false;
-                }
-                var postData = {'name':name, 'hp':hp};
-                
+                }                
                 $.ajax({
                     type: "post",
                     url: "/login/resultFindId.do",
                     dataType: "text",
-                    data : postData,
+                    data : $("#findid").serialize(),
                     success : function (text) {
                         if(text == ''){
                             $("#result").html("일치하는 정보가 없습니다.");
@@ -49,7 +47,7 @@
     <section class="row p-3">
         <div class="col"></div>
         <div class="col">
-
+            <form name = "findid" id ="findid" method="post">
                 <div class="row mb-5">
                     <div class="col text-center">
                         <label for="name" class="col-form-label">이름</label>
@@ -67,9 +65,10 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">취소</button>
-                    <button type="submit" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;" onclick="fn_submit()">찾기</button>
+                    <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">뒤로가기</button>
+                    <button type="button" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;" onclick="fn_submit()">찾기</button>
                 </div>
+            </form>
             <div id="result" class="mt-5"></div>
         </div>
         <div class="col"></div>

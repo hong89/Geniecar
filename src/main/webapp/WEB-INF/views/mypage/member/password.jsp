@@ -34,6 +34,30 @@
         color: #41087c;
     }
 </style>
+<script>
+    $(function() {
+        $('#btnSubmit').click(function () {
+            var currentPw = $('#currentPw').val();
+            var password1 = $('#password1').val();
+            var password2 = $('#password2').val();
+            if (currentPw === "") {
+                alert("현재 비밀번호를 입력하세요");
+                $("#currentPw").focus();
+                return false;
+            }else if (password1 === "") {
+                alert("새 비밀번호를 입력하세요");
+                $("#password1").focus();
+                return false;
+            }else if(password2 === "") {
+                alert("새 비밀번호 확인을 입력하세요");
+                $("#password2").focus();
+                return false;
+            }
+
+            
+        });
+    })
+</script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="pb-5 position-relative">
@@ -136,6 +160,33 @@
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">비밀번호 변경</h2>
             </div>
+            <form name = "passwordForm" id ="passwordForm">
+                <div class="row p-1 m-2">
+                    <div class="col-2">
+                        <label for="currentPw" class="col-form-label">현재 비밀번호</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="password" id="currentPw" name="currentPw" class="form-control">
+                    </div>
+                </div>
+                <div class="row p-1 m-2">
+                    <div class="col-2">
+                        <label for="password1" class="col-form-label">새 비밀번호</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="password" id="password1" name="password1" class="form-control">
+                    </div>
+                </div>
+                <div class="row p-1 m-2">
+                    <div class="col-2">
+                        <label for="password2" class="col-form-label">새 비밀번호 확인</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="password" id="password2" name="password2" class="form-control">
+                    </div>
+                </div>
+                <button type="button" id ="btnSubmit">변경하기</button>
+            </form>
         </article>
     </div>
 

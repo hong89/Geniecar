@@ -31,7 +31,8 @@
                     </c:forEach>
                 </tbody>
             </table>
-        </section>
+        </section>    
+        <button type="button" class="btn" style="border: 1px solid #41087c;" onclick="location.href='/admin/member/waitingList.do'">승인대기목록</button>
     </div>
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>

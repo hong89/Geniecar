@@ -3,7 +3,7 @@
 <mapper namespace="com.rental.geniecar.login.dao.LoginDao">
 
 	<select id="login" resultType="memberVo" parameterType="java.util.Map">
-		SELECT * FROM MEMBER WHERE ID = #{id} AND PW = #{pw} AND WITHDRAWAL_YN='N'
+		SELECT * FROM MEMBER WHERE ID = #{id} AND PW = #{pw} 
 	</select>
 
 	<update id="updateLastLoginDate" parameterType="String">
@@ -11,10 +11,10 @@
 	</update>
 	
 	<select id="findId" parameterType="java.util.Map" resultType="String">
-        SELECT ID FROM MEMBER WHERE NAME = #{name} AND HP = #{hp}
+        SELECT ID FROM MEMBER WHERE NAME = #{name} AND HP = #{hp} AND WITHDRAWAL_YN='N'
     </select>
     
     <select id="findPw" parameterType="java.util.Map" resultType="String">
-        SELECT ID FROM MEMBER WHERE ID = #{id} AND NAME = #{name} AND HP = #{hp}
+        SELECT PW FROM MEMBER WHERE ID = #{id} AND NAME = #{name} AND HP = #{hp} AND WITHDRAWAL_YN='N'
     </select>
 </mapper>

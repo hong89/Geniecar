@@ -15,7 +15,8 @@ public interface MemberDao {
 	public MemberVo selectOne(String id);
 	public void updateWithdrawalYn(String id);
 	public void updateMember(MemberVo vo);
-	public List<MemberVo> selectAllUser();
-	public List<MemberVo> selectAllBusiness();
+	public List<MemberVo> selectAll(String type);
 	public List<MemberVo> selectWaiting();
+	public void updateType(String id);
+	public int updateWithdrawal(String id);
 }

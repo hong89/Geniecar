@@ -112,9 +112,6 @@
                     <a href="/mypage/coupon.do" class="nav-link">할인쿠폰</a>
                 </li>
                 <li class="nav-item mb-4">
-                    <a href="/mypage/creditCard.do" class="nav-link">결제카드</a>
-                </li>
-                <li class="nav-item mb-4">
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
                 </li>
                 <li class="nav-item mb-4">
