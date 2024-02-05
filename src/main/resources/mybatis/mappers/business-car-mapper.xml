@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rental.geniecar.business.car.dao.BusinessCarDao">
+
+    <select id="selectBranchesCarByBranchCode" parameterType="String" resultType="com.rental.geniecar.domain.branch.BranchCarVo">
+        SELECT RCBC.CAR_IDENTIFICATION_NUMBER
+             , FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS BRANCH
+             , FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
+             , FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
+             , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
+             , FN_COMM_NAME(COMPANY) AS COMPANY
+             , DELIVERY_DATE
+             , RENTAL_ABLE_STATUS
+             , DEFAULT_COST
+        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR RC
+        WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
+          AND RENTAL_CAR_BRANCH_NO = #{branchCode}
+    </select>
+
+
+</mapper>
+
+
+
+
+
