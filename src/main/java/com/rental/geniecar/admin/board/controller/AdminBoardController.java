@@ -80,7 +80,8 @@ public class AdminBoardController {
 
         // 이미지 파일 정보 가져오기
         List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
-
+        
+        System.out.println(imageFiles.toString());
         // 이미지 경로
         setImageFilePath(imageFiles, UPLOAD_PATH);
 
@@ -188,7 +189,8 @@ public class AdminBoardController {
     
     // JJ
     // 이미지 수정
-    @PostMapping("/updateImage")
+    @PostMapping("/updateImage.do")
+    // editImageFile 여기 값 다있나 확인 // 있으면 업데이트 해서 xml까지 잘 가는지 확인 
     public ResponseEntity<String> updateImage(@RequestParam int fileNo, @RequestParam("editImageFile") MultipartFile editImageFile) {
         try {
         	System.err.println("#########fileNo: " + fileNo);

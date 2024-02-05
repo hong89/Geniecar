@@ -35,7 +35,7 @@
          WHERE RN >= #{startPage} 
            AND RN < #{startPage} + #{pageSize} 
 		]]>	         
-	  ORDER BY RN DESC
+	  ORDER BY RN ASC
 	</select>
 	
 	<select id="selectBoardListSize" parameterType="boardVo">
@@ -113,7 +113,6 @@
     <![CDATA[
         UPDATE IMAGE_FILE
         SET
-            SEQ       = #{seq},
             SAVE_PATH = #{savePath},
             SAVE_NAME = #{saveName},
             FILE_NAME = #{fileName},
@@ -121,7 +120,7 @@
             FILE_SIZE = #{fileSize},
             REG_ID    = 'JIN',
             REG_DATE  = #{regDate}
-	    WHERE FILE_NO = #{fileNo}
+	    WHERE FILE_NO = #{fileNo} AND SEQ = #{seq}
     	]]>
 	</update>
 	
