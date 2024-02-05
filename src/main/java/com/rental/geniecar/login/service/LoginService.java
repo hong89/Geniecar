@@ -38,10 +38,15 @@ public class LoginService {
 		}
 	}
 	public String findPw(Map map) {
-		if(loginDao.findPw(map) != null) {
-			return "회원님의 비밀번호는 " +loginDao.findPw(map) +" 입니다.";
+		String pw = loginDao.findPw(map);
+		if(pw != null) {
+			String resultpw = pw.substring(0,4);
+			for (int i =0 ; i<pw.length()-4;i++) {
+				resultpw += "*";
+			}
+			return resultpw;
 		} else {
-			return "일치하는 정보가 없습니다.";
+			return null;
 		}
 	}
 }

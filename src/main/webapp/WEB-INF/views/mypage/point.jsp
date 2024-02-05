@@ -69,7 +69,7 @@
             <div class="myInfos-area">
                 <div class="border-bottom mb-5 row">
                     <h3 class="mb-4 col">
-                        <strong class="name" id='commonMemberName'>홍경영님</strong>
+                        <strong class="name" id='commonMemberName'>${member.name}님</strong>
                         <span>일반회원&nbsp;</span>
                     </h3>
                     <div class="btns text-end col">
@@ -80,7 +80,7 @@
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0</a>
+                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0P</a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
@@ -150,8 +150,8 @@
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">포인트 사용내역</h2>
             </div>
-            <div class="p-5">
-                잔여포인틍 이ㅣ아아<br><br><br><br><br><br>><br>
+            <div class="p-5 m-3" style="background-color: #f8f7fd;">
+                <h4 class="fw-bold">잔여포인트  <span style="color: #41087c;">0P</span> </h4>
             </div>
             <div class="p-3">
                 <ul class="nav nav-bars nav-pills border-bottom" id="myTab" role="tablist">
@@ -177,21 +177,69 @@
                 <div class="tab-pane fade show active p-3" id="contact1" role="tabpanel" aria-labelledby="contact-tab1">
                     <table class="table table-bordered align-middle text-center p-3 mt-3 mb-3">
                         <thead bgcolor="#f8f7fd" class="p-3">
-                        <th style="width: 55.4%;">사용 내역</th>
-                        <th style="width: 22.3%;"> 적립일/사용일</th>
-                        <th>포인트</th>
+                            <th style="width: 55.4%;">내역</th>
+                            <th style="width: 22.3%;"> 적립일/사용일</th>
+                            <th>포인트</th>
                         </thead>
                         <tbody class="p-3">
-                        <tr>
-                            <td colspan="3"><br><br><br>포인트 적립 및 사용 내역이 없습니다.<br><br><br></td>
-                        </tr>
+                            <c:forEach var="point" items="${pointList }">
+                                <tr>
+                                    <td>${point.history}</td>
+                                    <td><fmt:formatDate value="${point.regDate}" pattern="yyyy-MM-dd" /></td>
+                                    <td>${point.point}</td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                     <p>총 대여 포인트가 50,000 이상 적립된 경우, 지니카 전국 어느 지점에서나 차량 대여 시, 잔여 포인트 사용 가능합니다.
                         (단, 편도 반납수수료, 유류비 등 기타 비용제외)</p>
                 </div>
-                <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact-tab2">.2..</div>
-                <div class="tab-pane fade" id="contact3" role="tabpanel" aria-labelledby="contact-tab3">.3..</div>
+                <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact-tab2">
+                    <table class="table table-bordered align-middle text-center p-3 mt-3 mb-3">
+                        <thead bgcolor="#f8f7fd" class="p-3">
+                            <th style="width: 55.4%;">사용 내역</th>
+                            <th style="width: 22.3%;"> 적립일</th>
+                            <th>포인트</th>
+                        </thead>
+                        <tbody class="p-3">
+                            <c:forEach var="point" items="${pointList }">
+                                <c:if test="${point.increase eq '+'}">
+                                    <tr>
+                                        <td>${point.history}
+                                        </td>
+                                        <td><fmt:formatDate value="${point.regDate}" pattern="yyyy-MM-dd" /></td>
+                                        <td>${point.point}</td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                    <p>총 대여 포인트가 50,000 이상 적립된 경우, 지니카 전국 어느 지점에서나 차량 대여 시, 잔여 포인트 사용 가능합니다.
+                        (단, 편도 반납수수료, 유류비 등 기타 비용제외)</p>
+                </div>
+                <div class="tab-pane fade" id="contact3" role="tabpanel" aria-labelledby="contact-tab3">
+                    <table class="table table-bordered align-middle text-center p-3 mt-3 mb-3">
+                        <thead bgcolor="#f8f7fd" class="p-3">
+                            <th style="width: 55.4%;">사용 내역</th>
+                            <th style="width: 22.3%;">사용일</th>
+                            <th>포인트</th>
+                        </thead>
+                        <tbody class="p-3">
+                            <c:forEach var="point" items="${pointList }">
+                                <c:if test="${point.increase eq '-'}">
+                                    <tr>
+                                        <td>${point.history}
+                                        </td>
+                                        <td><fmt:formatDate value="${point.regDate}" pattern="yyyy-MM-dd" /></td>
+                                        <td>${point.point}</td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                    <p>총 대여 포인트가 50,000 이상 적립된 경우, 지니카 전국 어느 지점에서나 차량 대여 시, 잔여 포인트 사용 가능합니다.
+                        (단, 편도 반납수수료, 유류비 등 기타 비용제외)</p>
+                </div>
             </div>
         </article>
     </div>

@@ -18,7 +18,6 @@
                     <td align="center" scope="col"><strong>지점코드</strong></td>
                     <td align="center" scope="col"><strong>가입일</strong></td>
                     <td align="center" scope="col"><strong>승인</strong></td>
-                    <td align="center" scope="col"><strong>반려</strong></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,8 +28,7 @@
                             <td align="center"><a href="/admin/member/businessDetail.do?id=${business.id}">${business.name }</a></td>
                             <td align="center">${business.branchCode}</td>
                             <td align="center"><fmt:formatDate value="${business.joinDate}" pattern="yyyy-MM-dd" /></td>
-                            <td align="center" scope="col"><strong>승인</strong></td>
-                            <td align="center" scope="col"><strong>반려</strong></td>
+                            <td align="center" scope="col"><a href="/admin/member/approvla.do?id=${business.id}"<strong>승인</strong></td>
                         </tr>
                     </c:forEach>
                 </tbody>

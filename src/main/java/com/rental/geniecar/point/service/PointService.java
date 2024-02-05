@@ -1,5 +1,7 @@
 package com.rental.geniecar.point.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +17,7 @@ public class PointService {
 
 	private final PointDao pointDao;
 	
-	public PointVo secletAll(String memberId) {
+	public List<PointVo> secletAll(String memberId) {
 		return pointDao.selectAll(memberId);
 	}
 	public void delete(String id) {

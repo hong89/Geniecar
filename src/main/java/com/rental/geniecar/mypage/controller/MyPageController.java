@@ -2,6 +2,7 @@ package com.rental.geniecar.mypage.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,9 +33,7 @@ public class MyPageController {
 	@GetMapping("/main.do")
 	public String index(Model model, HttpSession session){
 		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
-		PointVo point = pointService.secletAll(membervo.getId());
 		model.addAttribute("member", membervo);
-		model.addAttribute("point", point);
         return "mypage/main";
     }
 	//ruddud
@@ -69,8 +68,10 @@ public class MyPageController {
     }
 	//ruddud
 	@GetMapping("/point.do")
-	public String point(){
-		
+	public String point(Model model, HttpSession session){
+		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		List<PointVo> pointList = pointService.secletAll(membervo.getId());
+		model.addAttribute("pointList", pointList);
         return "mypage/point";
     }
 	//ruddud
