@@ -11,4 +11,5 @@ CommonDao {
 
     List<CommonCodeVo> selectCommonCodes(String groupCode);
 
+    List<CommonCodeVo> selectCommonSubCodes(String groupCode);
 }

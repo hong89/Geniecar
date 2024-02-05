@@ -45,7 +45,11 @@ public class AdminCarService {
         }
     }
 
-    public List<BranchRentalCarVo> selectBranchesCarList() {
-        return adminCarDao.selectBranchesCarList();
+    public List<BranchRentalCarVo> selectBranchesCarList(Pagination pagination) {
+        return adminCarDao.selectBranchesCarList(pagination);
+    }
+
+    public int branchesTotalCount(Pagination pagination) {
+        return adminCarDao.branchesTotalCount(pagination);
     }
 }

@@ -26,13 +26,28 @@ public class AdminCarController {
     // hsh
     @GetMapping("/list.do")
     public String list(Pagination pagination, Model model) {
-        List<CommonCodeVo> branches = commonService.selectCommonCodes("LOC");
+        List<CommonCodeVo> branches = commonService.selectCommonSubCodes("LOC");
+        pagination.setTotalRecordCount(adminCarService.branchesTotalCount(pagination));
+        List<BranchRentalCarVo> carList = adminCarService.selectBranchesCarList(pagination);
+
         model.addAttribute("branches", branches);
-        pagination.setTotalRecordCount(adminCarService.totalCount(pagination));
         model.addAttribute("pagination", pagination);
-        List<BranchRentalCarVo> carList = adminCarService.selectBranchesCarList();
         model.addAttribute("carList",carList);
         return "admin/car/list";
+    }
+
+    // hsh
+    @GetMapping("/stockList.do")
+    public String stockList(Pagination pagination, Model model) {
+        List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
+        pagination.setTotalRecordCount(adminCarService.totalCount(pagination));
+        List<RentalCarVo> rentalCarList = adminCarService.selectStockList(pagination);
+
+        model.addAttribute("rentalCarList", rentalCarList);
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("companies", companies);
+
+        return "admin/car/stockList";
     }
 
     // hsh
@@ -43,21 +58,6 @@ public class AdminCarController {
         List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
         model.addAttribute("companies", companies);
         return "admin/car/changeBranch";
-    }
-
-    // hsh
-    @GetMapping("/stockList.do")
-    public String stockList(Pagination pagination, Model model) {
-
-        List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
-        pagination.setTotalRecordCount(adminCarService.totalCount(pagination));
-        List<RentalCarVo> rentalCarList = adminCarService.selectStockList(pagination);
-
-        model.addAttribute("rentalCarList", rentalCarList);
-        model.addAttribute("pagination", pagination);
-        model.addAttribute("companies", companies);
-
-        return "admin/car/stockList";
     }
 
     // hsh

@@ -19,4 +19,7 @@ public class CommonService {
         return commonDao.selectCommonCodes(groupCode);
     }
 
+    public List<CommonCodeVo> selectCommonSubCodes(String groupCode) {
+        return commonDao.selectCommonSubCodes(groupCode);
+    }
 }

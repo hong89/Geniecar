@@ -24,5 +24,8 @@ public interface AdminCarDao {
 
     void updateRentalCar(String car);
 
-    List<BranchRentalCarVo> selectBranchesCarList();
+    List<BranchRentalCarVo> selectBranchesCarList(Pagination pagination);
+
+    int branchesTotalCount(Pagination pagination);
+
 }

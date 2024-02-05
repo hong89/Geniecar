@@ -49,7 +49,8 @@
              , FN_COMM_NAME(COMPANY)       AS COMPANY_NAME
         FROM (SELECT ROW_NUMBER() OVER (ORDER by CAR_TYPE_CODE) AS RN
            , RENTAL_CAR.*
-              FROM RENTAL_CAR WHERE <include refid="commonStockListPagingWhereQuery" />)
+              FROM RENTAL_CAR
+              WHERE <include refid="commonStockListPagingWhereQuery" />)
         <if test="firstRecordIndex != null and lastRecordIndex != null">
         WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
         </if>
@@ -94,16 +95,32 @@
     </update>
 
     <select id="selectBranchesCarList" resultType="com.rental.geniecar.domain.branch.BranchRentalCarVo">
-        SELECT FN_COMM_NAME(RCBC.RENTAL_CAR_BRANCH_NO) AS BRANCH
-             , RC.CAR_IDENTIFICATION_NUMBER
-             , FN_COMM_NAME(RC.CAR_NAME_CODE) AS CAR_NAME
-             , FN_COMM_NAME(RC.CAR_TYPE_CODE) AS CAR_TYPE
-             , FN_COMM_NAME(RC.CAR_FUEL_CODE) AS CAR_FUEL
-             , FN_COMM_NAME(RC.COMPANY) AS COMPANY
-             , DELIVERY_DATE
-        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR RC
+        SELECT RN
+        , FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS BRANCH
+        , CAR_IDENTIFICATION_NUMBER
+        , FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
+        , FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
+        , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
+        , FN_COMM_NAME(COMPANY) AS COMPANY
+        , DELIVERY_DATE
+        FROM (SELECT ROW_NUMBER() OVER (ORDER BY DELIVERY_DATE DESC) AS RN, RC.*, RCBC.RENTAL_CAR_BRANCH_NO
+        FROM RENTAL_CAR RC, RENTAL_CAR_BRANCHES_CAR RCBC
         WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
-        ORDER BY DELIVERY_DATE DESC
+        <if test="keyword != null and keyword != ''.toString()">
+            AND RENTAL_CAR_BRANCH_NO = #{keyword}
+        </if>)
+        <if test="firstRecordIndex != null and lastRecordIndex != null">
+            WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+        </if>
+
+    </select>
+
+    <select id="branchesTotalCount" resultType="int" parameterType="com.rental.geniecar.domain.common.Pagination">
+        SELECT COUNT(*)
+        FROM RENTAL_CAR_BRANCHES_CAR
+        <if test="keyword != null and keyword != ''.toString()">
+        WHERE RENTAL_CAR_BRANCH_NO = #{keyword}
+        </if>
     </select>
 
 </mapper>

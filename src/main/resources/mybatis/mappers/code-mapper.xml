@@ -14,5 +14,9 @@
 		FROM COMMON_CODE WHERE GROUP_CODE = #{groupCode}
 	</select>
 
-
+	<select id="selectCommonSubCodes" resultType="commonCodeVo" parameterType="java.lang.String">
+		SELECT CONCAT(GROUP_CODE, CODE) AS FULL_CODE
+			 , CODE_NAME
+		FROM COMMON_CODE WHERE GROUP_CODE IN (SELECT CODE FROM COMMON_CODE WHERE GROUP_CODE = #{groupCode})
+	</select>
 </mapper>

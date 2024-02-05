@@ -26,12 +26,12 @@
             <table class="pt-5 table caption-top">
                 <thead>
                 <tr>
-                    <td class="col"><strong>지점</strong></td>
-                    <td class="col"><strong>차량명</strong></td>
-                    <td class="col"><strong>차량타입</strong></td>
-                    <td class="col"><strong>연료</strong></td>
-                    <td class="col"><strong>회사</strong></td>
-                    <td class="col"><strong>차대번호</strong></td>
+                    <td class="col-2"><strong>지점</strong></td>
+                    <td class="col-2"><strong>차량명</strong></td>
+                    <td class="col-2"><strong>차량타입</strong></td>
+                    <td class="col-2"><strong>연료</strong></td>
+                    <td class="col-2"><strong>회사</strong></td>
+                    <td class="col-2"><strong>차대번호</strong></td>
                 </tr>
                 </thead>
                 <tbody>
