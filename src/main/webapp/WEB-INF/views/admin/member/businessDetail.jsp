@@ -118,7 +118,7 @@
             </div>
             <div class="d-flex justify-content-center mt-4">
                 <button class="btn me-2" style="border:1px solid #41087c;" onclick='location.href="/admin/member/businessList.do"'>목록으로</button>
-                <button class="btn me-2" style="border:1px solid #41087c;" onclick='fn_kick()'>강퇴</button> 
+                <button class="btn me-2" style="border:1px solid #41087c;" onclick='fn_kick()'>내보내기</button> 
             </div>
         </section>
     </div>

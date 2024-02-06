@@ -19,4 +19,5 @@ public interface MemberDao {
 	public List<MemberVo> selectWaiting();
 	public void updateType(String id);
 	public int updateWithdrawal(String id);
+	public Map myReservation(String id);
 }
