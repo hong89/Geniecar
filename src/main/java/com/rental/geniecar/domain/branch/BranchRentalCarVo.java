@@ -10,6 +10,7 @@ import java.util.Date;
 public class BranchRentalCarVo {
     private String carIdentificationNumber;   // 차대번호
     private String branch;                    // 렌터카 지점명
+    private String branchCode;                // 렌터카 지점 코드
     private String locationBranch;            // 렌터카 지역명
     private String carType;                   // 차종 이름
     private String carName;                   // 차량 이름

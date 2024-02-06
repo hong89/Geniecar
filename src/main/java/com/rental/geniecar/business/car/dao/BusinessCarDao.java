@@ -9,4 +9,7 @@ import java.util.List;
 public interface BusinessCarDao {
     List<BranchCarVo> selectBranchesCarByBranchCode(String branchCode);
 
+    List<BranchCarVo> selectAssignCarByBranchCode(String branchCode);
+
+    void modifyRentalCarBranchesCar(String carNumber, String branchCode, String memberId);
 }

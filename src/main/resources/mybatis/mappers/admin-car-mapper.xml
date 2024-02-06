@@ -80,10 +80,12 @@
         INSERT INTO RENTAL_CAR_BRANCHES_CAR
         ( CAR_IDENTIFICATION_NUMBER
         , RENTAL_CAR_BRANCH_NO
+        , RENTAL_ABLE_STATUS
         , REG_ID
         , REG_DATE)
         VALUES ( #{car}
                , #{branch}
+               , 'W'
                , 'SYSTEM'
                , SYSDATE)
     </insert>

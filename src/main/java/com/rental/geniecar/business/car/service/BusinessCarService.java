@@ -18,4 +18,11 @@ public class BusinessCarService {
         return businessCarDao.selectBranchesCarByBranchCode(branchCode);
     }
 
+    public List<BranchCarVo> selectAssignCarByBranchCode(String branchCode) {
+        return businessCarDao.selectAssignCarByBranchCode(branchCode);
+    }
+
+    public void modifyRentalCarBranchesCar(String carNumber, String branchCode, String memberId) {
+        businessCarDao.modifyRentalCarBranchesCar(carNumber, branchCode, memberId);
+    }
 }

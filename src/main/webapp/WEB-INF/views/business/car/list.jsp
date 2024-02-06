@@ -33,8 +33,11 @@
                                 <c:when test="${car.rentalAbleStatus == 'Y'}">
                                     사용가능
                                 </c:when>
-                                <c:otherwise>
+                                <c:when test="${car.rentalAbleStatus == 'N'}">
                                     사용중
+                                </c:when>
+                                <c:otherwise>
+                                    대기
                                 </c:otherwise>
                             </c:choose>
                         </td>

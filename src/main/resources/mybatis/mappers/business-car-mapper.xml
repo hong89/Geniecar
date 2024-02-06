@@ -17,7 +17,27 @@
           AND RENTAL_CAR_BRANCH_NO = #{branchCode}
     </select>
 
-
+    <select id="selectAssignCarByBranchCode" parameterType="String" resultType="com.rental.geniecar.domain.branch.BranchCarVo">
+        SELECT RCBC.CAR_IDENTIFICATION_NUMBER
+             , FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS BRANCH
+             , RENTAL_CAR_BRANCH_NO AS BRANCH_CODE
+             , FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
+             , FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
+             , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
+             , FN_COMM_NAME(COMPANY) AS COMPANY
+             , DELIVERY_DATE
+             , IMPORT_CAR_YN
+             , RENTAL_ABLE_STATUS
+             , DEFAULT_COST
+        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR RC
+        WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
+          AND RENTAL_CAR_BRANCH_NO = #{branchCode} AND RENTAL_ABLE_STATUS = 'W'
+    </select>
+    <update id="modifyRentalCarBranchesCar" parameterType="String">
+        UPDATE RENTAL_CAR_BRANCHES_CAR
+        SET RENTAL_ABLE_STATUS = 'Y', IMPORT_CAR_YN = 'Y', MOD_ID = #{memberId}, MOD_DATE = SYSDATE
+        WHERE CAR_IDENTIFICATION_NUMBER = #{carNumber} AND RENTAL_CAR_BRANCH_NO = #{branchCode}
+    </update>
 </mapper>
 
 

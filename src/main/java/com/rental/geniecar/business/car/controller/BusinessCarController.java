@@ -3,10 +3,12 @@ package com.rental.geniecar.business.car.controller;
 import com.rental.geniecar.business.car.service.BusinessCarService;
 import com.rental.geniecar.domain.branch.BranchCarVo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class BusinessCarController {
     //hsh
     @GetMapping("/assignList.do")
     public String assignList(Model model, String branchCode){
-        List<BranchCarVo> rentalCarList = businessCarService.selectBranchesCarByBranchCode("SEO001");
+        List<BranchCarVo> rentalCarList = businessCarService.selectAssignCarByBranchCode("SEO001");
         model.addAttribute("rentalCarList", rentalCarList);
         return "business/car/assignList";
     }
@@ -36,9 +38,11 @@ public class BusinessCarController {
     public String register(){
         return "business/car/register";
     }
-    @GetMapping("/modify.do")
-    public String modify(){
-        return "business/car/modify";
+    @ResponseBody
+    @GetMapping("/modifyRentalCarBranchesCar.do")
+    public ResponseEntity modifyRentalCarBranchesCar(String carNumber, String branchCode, String memberId){ // 로그인 아이디
+        businessCarService.modifyRentalCarBranchesCar(carNumber, branchCode, "hong");
+        return ResponseEntity.ok("성공");
     }
     @GetMapping("/remove.do")
     public String remove(){

@@ -135,7 +135,7 @@ CREATE TABLE BOARD -- 게시판 테이블
     TITLE      NVARCHAR2(100)        NOT NULL, -- 제목
     CONTENT    CLOB                  NOT NULL, -- 내용
     HIT        NUMBER(8) DEFAULT 0   NOT NULL, -- 조회수
-    TYPE_CODE  VARCHAR2(6)           NOT NULL, -- 게시판 타입 코드 (공통코드 FK)
+    TYPE_CODE  VARCHAR2(20)          NOT NULL, -- 게시판 타입
     NOTICE_YN  CHAR(1)   DEFAULT 'N' NOT NULL, -- 공지 유무
     HASH_TAG   VARCHAR2(200),                  -- 해시 태그 (해도 되고 안해도 되고)
     FILE_NO    NUMBER(20),                     -- 파일 번호
@@ -192,3 +192,16 @@ CREATE TABLE NEW_CAR -- 차량 테이블
     DEFAULT_COST  NUMBER(6)   NOT NULL,  -- 기본 대여료 (10분 단위)
     COMPANY       VARCHAR2(6) NOT NULL   -- 제조사 (공통코드 FK) 현대, 기아 ...
 );
+-------------------------------------------------------------------------------------------------------- 2/6 테이블 추가
+CREATE SEQUENCE SEQ_LICENSE_NO INCREMENT BY 1 START WITH 1000001 MINVALUE 1000001 MAXVALUE 9999999 NOCYCLE;
+CREATE TABLE LICENSE
+(
+    NO                 NUMBER(7) PRIMARY KEY,  --  NO (시퀀스)
+    MEMBER_ID          VARCHAR2(20)  NOT NULL, -- 회원 아이디
+    LICENSE_GRADE_CODE VARCHAR2(10)  NOT NULL, -- 면허 종류
+    LICENSE_NUMBER     NUMBER(12)    NOT NULL, -- 면허 번호
+    DRIVER_NAME        NVARCHAR2(20) NOT NULL, -- 이름
+    DRIVER_BIRTH       DATE          NOT NULL, -- 생년월일
+    LICENSE_TEST_DATE  DATE          NOT NULL, -- 만료일자
+    LICENSE_ISSUE_DATE DATE          NOT NULL  -- 발급일자
+)
