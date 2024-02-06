@@ -36,6 +36,28 @@
                 <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="/carlife/eventMain.do?typeCode=EVENT">진행중 이벤트</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="/carlife/winnerEventMain.do?typeCode=EVENTWINNER">당첨자 발표</a>
             </nav>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4 P-5">
+                <c:forEach var="notice" items="${boardList}">
+                <div class="col">
+                  <div class="card h-100">
+                        <c:forEach var="imageFile" items="${imageFiles}">
+                            <c:if test="${not empty imageFile.saveName}">
+                                <img class="form-control" src="/downloadFile/${imageFile.saveName}" alt="images" width="300" height="500">
+                            </c:if>
+                        </c:forEach>
+                    
+                    <div class="card-body">
+                      <h5 class="card-title">${notice.title}</h5>
+                      <p class="card-text">${notice.content}</p>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">${notice.regDate}</small>
+                    </div>
+                  </div>
+                </div>
+                </c:forEach>
+              </div>
            
             <div class="pt-5">
                 <table class="table caption-top">

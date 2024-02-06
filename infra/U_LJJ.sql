@@ -80,7 +80,7 @@ CREATE TABLE BOARD -- 게시판 테이블
     NO         NUMBER(20) PRIMARY KEY,       -- 시퀀스
     PARENT_NO  NUMBER(20),                   -- 부모 번호
     TITLE      NVARCHAR2(100) NOT NULL,      -- 제목
-    CONTENT    CLOB,                -- 내용
+    CONTENT    CLOB NOT NULL,                -- 내용
     HIT        NUMBER(8) DEFAULT 0 NOT NULL, -- 조회수
     TYPE_CODE  VARCHAR2(20) NOT NULL,        -- 게시판 타입 코드 (공통코드 FK)
     NOTICE_YN  CHAR(1) DEFAULT 'N' NOT NULL, -- 공지 유무

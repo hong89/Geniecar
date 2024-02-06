@@ -15,24 +15,16 @@
             <section class="text-center">
                 <h1 class="tit pb-5">공지사항 상세 내용</h1>
             </section>
-            <div class="mb-3 row">
-                <label for="title" class="col-sm-2 col-form-label">제목</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="title" name="title" value="${notice.title}" readonly>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="content" class="col-sm-2 col-form-label">내용</label>
-                <div class="col-sm-10"><textarea class="form-control" id="content" name="content" rows="20"
-                                                 style="width: 100%;" readonly>${notice.content}</textarea>
-                </div>
-            </div>
+            <p style="font-size:20px;">
+                <strong>${notice.title}</strong>
+                <span style="float: right; font-size:15px;">${notice.regDate}</span>
+            </p><hr/>
+            <pre>${notice.content}</pre> 
             <c:if test="${not empty imageFiles}">
                 <c:forEach var="imageFile" items="${imageFiles}">
                     <c:if test="${not empty imageFile.saveName}">
                         <div class="mb-3 row">
-                            <label for="images" class="col-sm-2 col-form-label">이미지</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-12">
                                 <img class="form-control responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="300px" height="500px" aria-readonly="true">
                             </div>
                         </div>

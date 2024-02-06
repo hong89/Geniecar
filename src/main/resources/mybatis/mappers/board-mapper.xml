@@ -67,11 +67,11 @@
 			  SEQ_BOARD_NO.NEXTVAL
 			, #{title}
 			, #{content}
-			, 0
+			, #{hit}
 			, #{typeCode}
 			, 'N'
 			, #{fileNo}
-			, 'JIN'	
+			, 'ADMIN'	
 			, SYSDATE
 		)
 	</insert>
@@ -157,7 +157,7 @@
         , #{fileName}
         , #{extension}
         , #{fileSize}
-        , 'JIN'
+        , 'ADMIN'
         , SYSDATE
     	)
 	</insert>

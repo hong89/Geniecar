@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,7 +120,12 @@ public class AdminBoardController {
     // JJ
     // 게시판 새 글 쓰기 (동작 확인 이미지 넣기)
     @PostMapping("/insertBoard.do")
-    public String insertBoard(BoardVo boardVo, @RequestParam("file") MultipartFile[] files) {
+    public String insertBoard(HttpServletRequest request, BoardVo boardVo, @RequestParam("file") MultipartFile[] files) {
+    	String regId = (String) request.getSession().getAttribute("userId");
+    	boardVo.setRegId(regId);
+    	System.err.println("########: 아이디 확인 :" + boardVo.getRegId());
+    	System.err.println("########: 공지 여부 확인 :" + boardVo.getNoticeYn());
+    	
         List<FileVo> fileList = new ArrayList<>();
         try {
             if (files != null && files.length > 0) {
