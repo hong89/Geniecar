@@ -57,7 +57,6 @@
 			, CONTENT
 			, HIT
 			, TYPE_CODE
-			, NOTICE_YN
 			, FILE_NO
 			, REG_ID
 			, REG_DATE
@@ -69,9 +68,8 @@
 			, #{content}
 			, #{hit}
 			, #{typeCode}
-			, 'N'
 			, #{fileNo}
-			, 'ADMIN'	
+			, #{regId}	
 			, SYSDATE
 		)
 	</insert>

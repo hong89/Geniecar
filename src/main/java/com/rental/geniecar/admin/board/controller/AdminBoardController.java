@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -12,8 +13,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +35,7 @@ import com.rental.geniecar.admin.board.service.AdminBoardService;
 import com.rental.geniecar.domain.board.BoardVo;
 import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
+import com.rental.geniecar.domain.member.MemberVo;
 
 @Controller
 @RequestMapping("/admin/board/")
@@ -120,11 +124,22 @@ public class AdminBoardController {
     // JJ
     // 게시판 새 글 쓰기 (동작 확인 이미지 넣기)
     @PostMapping("/insertBoard.do")
-    public String insertBoard(HttpServletRequest request, BoardVo boardVo, @RequestParam("file") MultipartFile[] files) {
-    	String regId = (String) request.getSession().getAttribute("userId");
-    	boardVo.setRegId(regId);
-    	System.err.println("########: 아이디 확인 :" + boardVo.getRegId());
-    	System.err.println("########: 공지 여부 확인 :" + boardVo.getNoticeYn());
+    public String insertBoard(HttpServletRequest request, HttpSession session, BoardVo boardVo, @RequestParam("file") MultipartFile[] files, ServletResponse response) throws IOException {
+    	
+    	MemberVo memberInfo = (MemberVo) session.getAttribute("memberInfo");
+    	
+    	if (memberInfo != null) {
+            String regId = memberInfo.getId();
+            boardVo.setRegId(regId);
+        } else {
+            String alertMessage = "로그인이 필요합니다. 로그인 페이지로 이동합니다.";
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('" + alertMessage + "'); window.location.href='/login/login.do';</script>");
+            out.flush();
+            out.close();
+            return null;
+        }
     	
         List<FileVo> fileList = new ArrayList<>();
         try {
