@@ -38,6 +38,10 @@
         SET RENTAL_ABLE_STATUS = 'Y', IMPORT_CAR_YN = 'Y', MOD_ID = #{memberId}, MOD_DATE = SYSDATE
         WHERE CAR_IDENTIFICATION_NUMBER = #{carNumber} AND RENTAL_CAR_BRANCH_NO = #{branchCode}
     </update>
+
+    <!--<update id="modifyRentalCarCostUpdate" parameterType="String">
+
+    </update>-->
 </mapper>
 
 

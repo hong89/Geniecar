@@ -27,7 +27,7 @@ public class BusinessCarController {
 
     //hsh
     @GetMapping("/assignList.do")
-    public String assignList(Model model, String branchCode){
+    public String assignList(Model model, String branchCode){   // 대리점 코드 필수
         List<BranchCarVo> rentalCarList = businessCarService.selectAssignCarByBranchCode("SEO001");
         model.addAttribute("rentalCarList", rentalCarList);
         return "business/car/assignList";
@@ -38,9 +38,10 @@ public class BusinessCarController {
     public String register(){
         return "business/car/register";
     }
+
     @ResponseBody
     @GetMapping("/modifyRentalCarBranchesCar.do")
-    public ResponseEntity modifyRentalCarBranchesCar(String carNumber, String branchCode, String memberId){ // 로그인 아이디
+    public ResponseEntity modifyRentalCarBranchesCar(String carNumber, String branchCode, String memberId){  // 로그인 아이디
         businessCarService.modifyRentalCarBranchesCar(carNumber, branchCode, "hong");
         return ResponseEntity.ok("성공");
     }

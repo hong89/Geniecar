@@ -24,5 +24,6 @@ public class BusinessCarService {
 
     public void modifyRentalCarBranchesCar(String carNumber, String branchCode, String memberId) {
         businessCarDao.modifyRentalCarBranchesCar(carNumber, branchCode, memberId);
+        businessCarDao.modifyRentalCarCostUpdate(carNumber);
     }
 }
