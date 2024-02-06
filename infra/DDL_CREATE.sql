@@ -1,8 +1,9 @@
 CREATE TABLE COMMON_CODE -- 공통 코드 테이블
 (
-    CODE            CHAR(3),                      -- 코드
+    FULL_CODE       VARCHAR2(6) PRIMARY KEY,      -- 그룹 코드 + 코드
+    CODE            CHAR(3)             NOT NULL, -- 코드
     CODE_NAME       NVARCHAR2(50)       NOT NULL, -- 코드 이름
-    GROUP_CODE      CHAR(3),                      -- 그룹 코드 (코드의 상위 코드)
+    GROUP_CODE      CHAR(3)             NOT NULL, -- 그룹 코드 (코드의 상위 코드)
     GROUP_CODE_NAME NVARCHAR2(50),                -- 그룹 코드 이름
     DESCRIPTION     NVARCHAR2(200),               -- 코드 설명
     CODE_SORT       NUMBER(3),                    -- 화면에 보이는 순서
@@ -10,8 +11,7 @@ CREATE TABLE COMMON_CODE -- 공통 코드 테이블
     REG_ID          VARCHAR2(20)        NOT NULL, -- 등록자
     REG_DATE        DATE                NOT NULL, -- 등록일시
     MOD_ID          VARCHAR2(20),                 -- 수정자
-    MOD_DATE        DATE,                         -- 수정일시
-    constraint COMMON_CODE_PK PRIMARY KEY (CODE, GROUP_CODE)
+    MOD_DATE        DATE                         -- 수정일시
 );
 
 CREATE TABLE MEMBER -- 회원 테이블
@@ -48,6 +48,8 @@ CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블 (사업자 회원�
     NO                NUMBER(10) PRIMARY KEY,       -- 렌터카 지점 NO (시퀀스)
     BRANCH_CODE       VARCHAR2(6)         NOT NULL, -- 렌터카 지점 코드 (공통코드 FK)
     REGION_CODE       VARCHAR2(6)         NOT NULL, -- 지역 코드 (공통코드 FK)
+    LATITUDE          VARCHAR2(13)        NOT NULL, -- 위도
+    LONGITUDE         VARCHAR2(13)        NOT NULL, -- 경도
     ROAD_ADDRESS      NVARCHAR2(200)      NOT NULL, -- 도로명 주소
     STREET_ADDRESS    NVARCHAR2(200)      NOT NULL, -- 지번 주소
     OPENING_TIME      VARCHAR2(100)       NOT NULL, -- 영업 시간
@@ -60,6 +62,7 @@ CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블 (사업자 회원�
     MOD_ID            VARCHAR2(20),                 -- 수정자 (회원아이디 FK)
     MOD_DATE          DATE                          -- 수정일시
 );
+
 CREATE TABLE RENTAL_CAR_BRANCHES_CAR -- 렌터카 지점별 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17),                   -- 차대번호 (자동차 FK) - 복합키 처리
@@ -204,4 +207,4 @@ CREATE TABLE LICENSE
     DRIVER_BIRTH       DATE          NOT NULL, -- 생년월일
     LICENSE_TEST_DATE  DATE          NOT NULL, -- 만료일자
     LICENSE_ISSUE_DATE DATE          NOT NULL  -- 발급일자
-)
+);
