@@ -40,4 +40,7 @@
 	<update id="updateWithdrawal">
 		UPDATE MEMBER SET WITHDRAWAL_YN = 'K' WHERE ID = #{id}
 	</update>
+	<select id="myReservation" parameterType="String" resultType="Map">
+		SELECT * FROM RENTAL_CAR_RESERVATION WHERE RESERVATION_MEMBER_ID = #{id}
+	</select>
 </mapper>

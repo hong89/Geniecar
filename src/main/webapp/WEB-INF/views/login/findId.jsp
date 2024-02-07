@@ -66,7 +66,7 @@
                 </div>
                 <div class="text-center">
                     <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">뒤로가기</button>
-                    <button type="button" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;" onclick="fn_submit()">찾기</button>
+                    <button type="button" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;">찾기</button>
                 </div>
             </form>
             <div id="result" class="mt-5"></div>

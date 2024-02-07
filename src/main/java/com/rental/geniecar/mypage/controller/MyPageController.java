@@ -1,11 +1,7 @@
 package com.rental.geniecar.mypage.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -44,13 +40,14 @@ public class MyPageController {
     }
 	//ruddud
 	@GetMapping("/reservationDetail.do")
-	public String reservationDetail(){
-		
+	public String reservationDetail(Model model){
+		model.addAttribute("my", memberService.myReservation("zxc"));
+		System.out.println("============================ " + model + " =========================");
         return "mypage/reservationDetail";
     }
 	//ruddud
 	@GetMapping("/reservationMonth.do")
-	public String reservationMonth(){
+	public String reservationMonth(Model model){
 		
         return "mypage/reservationMonth";
     }
@@ -113,16 +110,10 @@ public class MyPageController {
         return "mypage/member/leave";
     }
 	@PostMapping("/leave.do")
-	public void Leave(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		if(request.getParameter("confirm").equals("on")) {
-			memberService.leaveMember(request.getParameter("id"));
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.print("<script>alert('탈퇴가 완료되었습니다.');location.replace('/main/index.do')</script>");
-			session.setAttribute("isLogOn", false);
-			session.removeAttribute("memberInfo");
-			out.flush();
-			out.close();
-		}
-    }
+	public String  Leave(String id,HttpSession session) {
+		memberService.leaveMember(id);
+		session.setAttribute("isLogOn", false);
+		session.removeAttribute("memberInfo");
+		return "redirect:/main/index.do";
+	}
 }

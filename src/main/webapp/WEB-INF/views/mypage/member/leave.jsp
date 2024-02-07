@@ -37,14 +37,17 @@
 <script>
     $(function () {
         $('#submitBtn').click(function () {
-            var confirm = $('input:checkbox[name="confirm"]:checked').val();
-            if(confirm == null||confirm != 'on'){
+            var check = $('input:checkbox[name="check"]:checked').val();
+            if(check == null||check != 'on'){
                 alert("탈퇴하시기 전 유의사항을 확인해주세요.");
                 return false;
-            } else {
-                window.confirm("지니카를 탈퇴하시겠습니까?");
+            } else if(check === 'on') {
+                if(confirm("탈퇴하시겠습니까?")){
+                    $("#leave").submit();
+                }else{
+                    alert("오류");
+                }
             }
-            $('[name=leave]').submit();
         });
     })
 </script>
@@ -165,15 +168,15 @@
                 <li>자진탈퇴 (회원자격상실제외) 후 신규가입은 48시간 이후 가능합니다.</li>
                 <li class="fw-bolder" style="color: #905dbe;">그래도 탈퇴를 원하시면 아래의 사항을 기재하여 주시기 바랍니다. 감사합니다.</li>
             </ul>
-            <form action="/mypage/leave.do" method="post" name="leave">
+            <form method="post" name="leave" id="leave" action="/mypage/leave.do">
                 <div class="section-form type3 mb-3">
                     <div class="row">
                         <ul class="agree-list">
                             <li>
                                 <div class="box-type2">
                                     <div class="chk-icon-box text-center">
-                                        <input type="checkbox" id="confirm" name="confirm"/>
-                                        <label for="confirm"> 위 유의사항을 모두 확인하였고 회원탈퇴에 동의합니다. </label>
+                                        <input type="checkbox" id="check" name="check"/>
+                                        <label for="check"> 위 유의사항을 모두 확인하였고 회원탈퇴에 동의합니다. </label>
                                         <input type="hidden" name="id" value="${member.id}" />
                                     </div>
                                 </div>
@@ -185,7 +188,7 @@
             <div class="btn-area row">
                 <div class="col-4"></div>
                 <button type="button" class="btn col" onclick="history.back()">취소</button>
-                <button type="submit" id ="submitBtn" class="btn col" style="background-color: #41087c; color: #f8f7fd;">탈퇴</button>
+                <button type="button" id ="submitBtn" class="btn col" style="background-color: #41087c; color: #f8f7fd;">탈퇴</button>
                 <div class="col-4"></div>
             </div>
         </article>

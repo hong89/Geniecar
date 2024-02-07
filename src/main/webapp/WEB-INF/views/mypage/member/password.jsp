@@ -52,8 +52,11 @@
                 alert("새 비밀번호 확인을 입력하세요");
                 $("#password2").focus();
                 return false;
+            } else if (password1 !== password2) {
+                alert("비밀번호가 일치하지 않습니다.");
+                return false;
             }
-
+            $('#passwordForm').submit();
             
         });
     })
@@ -185,7 +188,8 @@
                         <input type="password" id="password2" name="password2" class="form-control">
                     </div>
                 </div>
-                <button type="button" id ="btnSubmit">변경하기</button>
+                <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">취소</button>
+                <button type="" class="btn text-white" id="btnSubmit" style="background: #41087c; width: 110px;">변경하기</button>
             </form>
         </article>
     </div>

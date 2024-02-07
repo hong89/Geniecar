@@ -49,4 +49,7 @@ public class MemberService {
 	public int kick(String id) {
 		return memberDao.updateWithdrawal(id);
 	}
+	public Map myReservation(String id) {
+		return memberDao.myReservation(id);
+	}
 }
