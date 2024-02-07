@@ -2,6 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+    function changeColor(element) {
+        var links = document.querySelectorAll('.nav-link');
+        links.forEach(function (link) {
+            link.classList.remove('clicked');
+        });
+
+        element.classList.add('clicked');
+    }
+</script>
+
 <style>
     .breadcrumb-item a {
         text-decoration: none;
@@ -24,9 +35,14 @@
         color: #41087c;
     }
 
-    .nav-pills .nav-link.active,
+    /* .nav-pills .nav-link.active,
     .nav-pills .show > .nav-link {
         background-color: #41087c !important;
+        color: white;
+    } */
+
+    .nav-link.clicked {
+        background-color: #41087c;
         color: white;
     }
 
@@ -53,43 +69,42 @@
     <div class="mb-5 sticky-xl-top">
         <ul class="nav nav-pills nav-fill mb-3 bg-light" id="pills-tab" role="tablist">
             <li class="nav-item p-3">
-                <a class="nav-link active" aria-current="page" href="#no1">
-                    <img alt="" src="/images/icons/ico-pannel01.png"/>
+                <a class="nav-link" href="#no1" onclick="changeColor(this)"><img alt="" src="/images/icons/ico-pannel01.png"/>
                     <p>대여 자격</p>
                 </a>
             </li>
             <li class="nav-item p-3">
-                <a class="nav-link" href="#no2"><img src="/images/icons/ico-pannel02.png"/>
+                <a class="nav-link" href="#no2" onclick="changeColor(this)"><img src="/images/icons/ico-pannel02.png"/>
                     <p>요금 안내</p>
                 </a>
             </li>
             <li class="nav-item p-3">
-                <a class="nav-link" href="#no3"><img src="/images/icons/ico-pannel03.png"/>
+                <a class="nav-link" href="#no3" onclick="changeColor(this)"><img src="/images/icons/ico-pannel03.png"/>
                     <p>추가 요금</p>
                 </a>
             </li>
             <li class="nav-item p-3">
-                <a class="nav-link" href="#no4"><img src="/images/icons/ico-pannel04.png"/>
+                <a class="nav-link" href="#no4" onclick="changeColor(this)"><img src="/images/icons/ico-pannel04.png"/>
                     <p>대여 절차</p>
                 </a>
             </li>
             <li class="nav-item p-3">
-                <a class="nav-link" href="#no5"><img src="/images/icons/ico-pannel05.png"/>
+                <a class="nav-link" href="#no5" onclick="changeColor(this)"><img src="/images/icons/ico-pannel05.png"/>
                     <p>반납 절차</p>
                 </a>
             </li>
             <li class="nav-item p-3">
-                <a class="nav-link" href="#no6"><img src="/images/icons/ico-pannel06.png"/>
+                <a class="nav-link" href="#no6" onclick="changeColor(this)"><img src="/images/icons/ico-pannel06.png"/>
                     <p>보험 및 보상</p>
                 </a>
             </li>
             <li class="nav-item p-3">
-                <a class="nav-link" href="#no7"><img src="/images/icons/ico-pannel07.png"/>
+                <a class="nav-link" href="#no7" onclick="changeColor(this)"><img src="/images/icons/ico-pannel07.png"/>
                     <p>자차손해면책제도</p>
                 </a>
             </li>
             <li class="nav-item p-3">
-                <a class="nav-link" href="#no8"><img src="/images/icons/ico-pannel08.png"/>
+                <a class="nav-link" href="#no8" onclick="changeColor(this)"><img src="/images/icons/ico-pannel08.png"/>
                     <p>기타안내</p>
                 </a>
             </li>

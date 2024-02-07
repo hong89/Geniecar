@@ -26,20 +26,18 @@
         <li class="list-group-item"><p>게시판 관리</p>
             <p><a href="/admin/board/register.do">게시판 등록</a></p>
             <p><a href="/admin/board/list.do?typeCode=NOTICE">공지사항 목록</a></p>
-            <p><a href="/admin/board/faqList.do?typeCode=FAQ">FAQ 목록</a></p>
-            <p><a href="/admin/board/faqList.do?typeCode=EVENT">이벤트 목록</a></p>
-            <p><a href="/admin/board/faqList.do?typeCode=EVENTWINNER">당첨자 목록</a></p>
-            <p><a href="/admin/board/faqList.do?typeCode=CONSULTING">1:1 상담 목록</a></p>
-            <p><a href="/admin/board/faqList.do?typeCode=REVIEW">후기 목록</a></p>
+            <p><a href="/admin/board/list.do?typeCode=FAQ">FAQ 목록</a></p>
+            <p><a href="/admin/board/list.do?typeCode=EVENT">이벤트 목록</a></p>
+            <p><a href="/admin/board/list.do?typeCode=EVENTWINNER">당첨자 목록</a></p>
         </li>
         <li class="list-group-item"><p>회원 관리</p>
             <p><a href="/admin/member/userList.do">회원 목록</a></p>
             <p><a href="/admin/member/businessList.do">사업자 목록</a></p>
         </li>
         <li class="list-group-item"><p>사업자 관리</p>
-            <p><a href="/admin/business/eventList.do">사업자 이벤트 목록</a></p>
-            <p><a href="/admin/business/reviewList.do">이용 후기 목록</a></p>
-            <p><a href="/admin/business/qnaList.do">Q&A 목록</a></p>
+            <p><a href="/admin/business/reviewList.do?typeCode=REVIEW">이용 후기 목록</a></p>
+            <p><a href="/admin/business/qnaList.do?typeCode=CONSULTING">1:1 문의 목록</a></p>
+            <p><a href="/admin/business/qnaList.do?typeCode=CONSULTING">1:1 상담 목록</a></p>
             <p><a href="/admin/business/paymentList.do">결제 내역 목록</a></p>
         </li>
         <li class="list-group-item"><p>차량 관리</p>

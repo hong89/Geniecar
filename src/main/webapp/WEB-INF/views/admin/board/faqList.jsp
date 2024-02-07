@@ -17,12 +17,11 @@
     <div class="pt-5">
         <div class="inner-type2">
             <section class="text-center">
-                <h1 class="tit">FAQ 목록</h1>
+                <h1 class="tit">${boardVo.typeCode} 목록</h1>
             </section>
             <div class="pt-5">
                 <table class="table caption-top">
                     <tr>
-                        <th>제목</th>
                         <td>
                             <input type="text" id="title" name="title" value="${boardVo.title}">
                             <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
@@ -78,9 +77,6 @@
                 </ul>
             </nav>
         </div>
-
     </div>
-
-
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>

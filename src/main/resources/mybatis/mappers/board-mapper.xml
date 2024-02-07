@@ -57,7 +57,6 @@
 			, CONTENT
 			, HIT
 			, TYPE_CODE
-			, NOTICE_YN
 			, FILE_NO
 			, REG_ID
 			, REG_DATE
@@ -67,11 +66,10 @@
 			  SEQ_BOARD_NO.NEXTVAL
 			, #{title}
 			, #{content}
-			, 0
+			, #{hit}
 			, #{typeCode}
-			, 'N'
 			, #{fileNo}
-			, 'JIN'	
+			, #{regId}	
 			, SYSDATE
 		)
 	</insert>
@@ -157,7 +155,7 @@
         , #{fileName}
         , #{extension}
         , #{fileSize}
-        , 'JIN'
+        , 'ADMIN'
         , SYSDATE
     	)
 	</insert>
