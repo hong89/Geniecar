@@ -35,11 +35,11 @@
         color: #41087c;
     }
 
-    /* .nav-pills .nav-link.active,
-    .nav-pills .show > .nav-link {
+    .nav-pills .nav-link.active,
+    .nav-pills .show {
         background-color: #41087c !important;
         color: white;
-    } */
+    }
 
     .nav-link.clicked {
         background-color: #41087c;
