@@ -12,4 +12,6 @@ public interface BusinessCarDao {
     List<BranchCarVo> selectAssignCarByBranchCode(String branchCode);
 
     void modifyRentalCarBranchesCar(String carNumber, String branchCode, String memberId);
+
+    void modifyRentalCarCostUpdate(String carNumber);
 }
