@@ -32,7 +32,7 @@ public class AdminCarController {
 
         model.addAttribute("branches", branches);
         model.addAttribute("pagination", pagination);
-        model.addAttribute("carList",carList);
+        model.addAttribute("carList", carList);
         return "admin/car/list";
     }
 
@@ -96,18 +96,23 @@ public class AdminCarController {
         adminCarService.insertRentalCarBranchesCar(checkCar, branches);
         return "redirect:list.do";
     }
+    //hsh
+    @PostMapping("/insertNewCar.do")
+    public String insertNewCar() {
+        return "redirect:list.do";
+    }
 
     //hsh
     @GetMapping("/selectRentalCars.do")
-    public ResponseEntity selectRentalCars(String code){
+    public ResponseEntity selectRentalCars(String code) {
         List<RentalCarVo> carList = adminCarService.selectRentalCars(code);
         return ResponseEntity.ok(carList);
     }
 
 
-    @GetMapping("/modify.do")
-    public String modify() {
-        return "admin/car/modify";
+    @GetMapping("/newCarRegister.do")
+    public String newCarRegister() {
+        return "admin/car/newCarRegister";
     }
 
     @GetMapping("/remove.do")
