@@ -41,8 +41,7 @@ public class MyPageController {
 	//ruddud
 	@GetMapping("/reservationDetail.do")
 	public String reservationDetail(Model model){
-		model.addAttribute("my", memberService.myReservation("zxc"));
-		System.out.println("============================ " + model + " =========================");
+
         return "mypage/reservationDetail";
     }
 	//ruddud

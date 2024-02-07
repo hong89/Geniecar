@@ -85,13 +85,12 @@
                 </button>
                 <button type="button" class="btn text-white" style="background: #41087c"
                         onclick="location.href='/mypage/main.do'">마이페이지
-                </button>
-                <c:if test="${null}">
+                <c:if test="${memberInfo.type eq 'B'}">
                     <button type="button" class="btn text-white" style="background: #41087c"
                             onclick="location.href='#'">사업자전용
                     </button>
                 </c:if>
-                <c:if test="${!null}">
+                <c:if test="${memberInfo.type eq 'A'}">
                     <button type="button" class="btn text-white" style="background: #41087c"
                             onclick="location.href='/admin/main/index.do'">관리자전용
                     </button>

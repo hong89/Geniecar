@@ -6,135 +6,85 @@
         text-decoration: none;
         color: #41087c;
     }
-
-    .mypage-header {
-        background-color: #41087c;
-        color: #f8f7fd;
-    }
-
-    ul {
-        list-style: none;
-    }
-
-    .btn-goLink {
-        color: #f8f7fd;
-    }
-
-    .underline {
-        color: #f8f7fd;
-    }
-
-    aside {
-        width: 300px;
-        background-color: #f8f7fd;
-    }
-
-    aside .nav-link {
-
-        color: #41087c;
+    span{
+        color: red;
     }
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
+
     <div class="pb-5 position-relative">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb"
              class="position-absolute top-0 end-0">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/main/index.do">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">마이페이지</li>
+                <li class="breadcrumb-item active" aria-current="page">상담신청</li>
             </ol>
         </nav>
     </div>
-
-    <div id="mypageheader" class="mb-5">
-        <section class="text-center pb-4">
-            <h1 class="fw-bolder">마이페이지</h1>
-            <p>지니카 회원을 위한 다양한 혜택이 준비되어 있습니다.</p>
-        </section>
-        <div class="mypage-header p-5">
-            <div class="myInfos-area">
-                <div class="border-bottom mb-5 row">
-                    <h3 class="mb-4 col">
-                        <strong class="name" id='commonMemberName'>홍경영님</strong>
-                        <span>일반회원&nbsp;</span>
-                    </h3>
+    <div>
+        <section class="pb-4">
+            <h1 class="fw-bolder text-center pb-5 mb-5">상담신청</h1>
+            <p class="text-end"><span>*는 필수입력입니다.</span></p>
+            <div class="mt-4 mb-4 p-4" style="background-color: #f8f7fd; color: #23093d;">
+                <h4 class ="fw-bold">예약자 정보 입력</h4>
+            </div>
+            <form>
+                <div class="row p-1 m-3 text-center">
+                    <div class="col-2">
+                        <label for="name" class="col-form-label">이름<span>*</span></label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="name" name="name" class="form-control" placeholder="이름을 입력하세요">
+                    </div>
                 </div>
-                <ul class="row text-center">
-                    <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
-                        <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0</a>
-                    </li>
-                    <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
-                        <p>할인쿠폰</p>
-                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">0장</a>
-                    </li>
-                    <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
-                        <p>결제 내역</p>
-                        <a href="/mypage/carSeller.do" class="underline"
-                           id="commonMyCarSellCount">0건</a>
-                    </li>
-                    <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel06.png">
-                        <p>1:1 문의</p>
-                        <a href="/mypage/rentCarConsulting.do" class="underline"
-                           id="commonRentalConsultCount">0건</a>
-                    </li>
-                </ul>
+                <div class="row p-1 m-3 text-center">
+                    <div class="col-2">
+                        <label for="hp" class="col-form-label">연락처<span>*</span></label>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" id="hp" name="hp" class="form-control" oninput="oninputPhone(this)" maxlength="13" placeholder="휴대전화번호를(-없이) 입력하세요">
+                    </div>
+                </div>
+                <div class="row p-1 m-3 text-center">
+                    <div class="col-2">
+                        <label for="email" class="col-form-label">이메일<span>*</span></label>
+                    </div>
+                    <div class="col-6">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="이메일을 입력하세요">
+                    </div>
+                </div>
+                <div class="row p-1 m-3 text-center">
+                    <div class="col-2">
+                        <label for="purpose" class="col-form-label">사용목적<span>*</span></label>
+                    </div>
+                    <div class="col-6">
+                        <textarea style ="resize: none; height: 150px;" id="purpose" name="purpose" class="form-control" placeholder="차량사용 목적을 입력하세요" maxlength="200" ></textarea>
+                    </div>
+                </div>
+                <div class="row p-1 m-3 text-center">
+                    <div class="col-2">
+                        <label for="purpose" class="col-form-label">희망대여지역<span>*</span></label>
+                    </div>
+                    <div class="col-6 row">
+                        <select class="form-select col">
+                            <option >희망지역(시/도)선택</option>
+                            <option>희망지역(구/시)선택</option>
+                        </select>
+                        <select class="form-select col">
+                            <option>희망지역(구/시)선택</option>
+                            <option>희망지역(시/도)선택</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="text-center text-center">
+                    <button class = "btn"  style="border: 1px solid #41087c;">취소</button>
+                    <button class="btn text-white" style="background-color: #41087c;">다음</button>
+                </div>
+            </form>
+            <div class="mt-4 mb-4 p-4" style="background-color: #f8f7fd; color: #23093d;">
+                <h4 class ="fw-bold">개인정보 수집이용 동의</h4>
             </div>
-        </div>
-    </div>
-    <div class="d-flex flex-row bd-highlight mb-3">
-        <aside class="p-3 fs-5">
-            <ul class="nav flex-column">
-                <li class="nav-item mb-4">
-                    <a href="/mypage/reservation.do" class="nav-link" data-link-area="마이페이지"
-                       data-link-name="메뉴" data-link-text="단기렌터카 예약">렌터카 예약</a>
-                </li>
-                <li class="nav-item mb-4">
-                    <a href="/mypage/point.do" class="nav-link">포인트</a>
-                </li>
-                <li class="nav-item mb-4">
-                    <a href="/mypage/coupon.do" class="nav-link">할인쿠폰</a>
-                </li>
-                <li class="nav-item mb-4">
-                    <a href="/mypage/license.do" class="nav-link">운전면허증</a>
-                </li>
-                <li class="nav-item mb-4">
-                    <a href="/customer/question.do" class="nav-link">1:1 문의</a>
-                </li>
-                <li class="nav-item mb-4">
-                    <a href="#" class="nav-link">회원</a>
-                    <ul>
-                        <li class="nav-item mb-4">
-                            <a href="/mypage/member/modify.do" class="nav-link">회원정보 변경</a>
-                        </li>
-                        <li class="nav-item mb-4">
-                            <a href="/mypage/member/password.do" class="nav-link">비밀번호 변경</a>
-                        </li>
-                        <li class="nav-item mb-4">
-                            <a href="/mypage/member/leave.do" class="nav-link">회원탈퇴</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </aside>
-        <article class="p-5 container-fluid">
-            <div class="border-bottom pb-5">
-                <h2 class="fw-bolder">렌터카 상담</h2>
-            </div>
-            <div class="border-bottom pb-5 text-center">
-                <h5><br><br><br><br>렌터카 상담 내역 1건 있습니다.<br><br><br><br></h5>
-            </div>
-            등록하신 상담 이력은 30일간 제공됩니다.
-            <div class="p-5" style="text-align: center;">
-                <a href="/mypage/rentCarConsultingDetail.do" class="btn btn-purple"
-                   style="background-color: #41087c; color:white;">상담 내역 확인</a>
-            </div>
-        </article>
-    </div>
-
+        </section>
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>

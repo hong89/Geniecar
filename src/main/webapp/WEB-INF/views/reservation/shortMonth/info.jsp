@@ -35,10 +35,10 @@
         </nav>
     </div>
     <div>
-        <section class="text-center pb-4">
+        <div class="text-center pb-4">
             <h1 class="fw-bolder">월단기렌터카안내</h1>
             <p>일정기간 차량이 필요할 때!</p>
-        </section>
+        </div>
         <div class="mb-5"
              style="min-height: 140px; background-repeat: no-repeat;background-position: 0 0;background-image:url('/images/bg-shortMonthlyInfo.png'); background-size: auto;">
             <p class="text-white pt-5 p-4">

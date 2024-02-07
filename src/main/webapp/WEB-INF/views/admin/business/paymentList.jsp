@@ -2,117 +2,63 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
+
+
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
-    <div class="p-5">
-        <div class="inner-type2">
-            <section class="text-center">
-                <h1 class="pb-5 tit">결제 내역 목록</h1>
-            </section>
-            <table class="pt-5 table caption-top">
-                <thead>
-                <tr>
-                    <td align="center" scope="col">No.</td>
-                    <td align="center" scope="col"><strong>모델명</strong></td>
-                    <td align="center" scope="col"><strong>작성자</strong></td>
-                    <td align="center" scope="col"><strong>결제종류</strong></td>
-                    <td align="center" scope="col"><strong>결제일</strong></td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td align="center">10</td>
-                    <td align="center"><a href="#">제네시스</a></td>
-                    <td align="center">최윤서</td>
-                    <td align="center">단기</td>
-                    <td align="center">2023.12.31</td>
-                </tr>
-                <tr>
-                    <td align="center">9</td>
-                    <td align="center"><a href="#">카니발</a></td>
-                    <td align="center">강화순</td>
-                    <td align="center">단기</td>
-                    <td align="center">2023.11.28</td>
-                </tr>
-                <tr>
-                    <td align="center">8</td>
-                    <td align="center"><a href="#">모닝</a></td>
-                    <td align="center">임재원</td>
-                    <td align="center">단기</td>
-                    <td align="center">2023.10.25</td>
-                </tr>
-                <tr>
-                    <td align="center">7</td>
-                    <td align="center"><a href="#">렉서스</a></td>
-                    <td align="center">박혜영</td>
-                    <td align="center">단기</td>
-                    <td align="center">2023.09.14</td>
-                </tr>
-                <tr>
-                    <td align="center">10</td>
-                    <td align="center"><a href="#">토레스</a></td>
-                    <td align="center">한상미</td>
-                    <td align="center">월 단기</td>
-                    <td align="center">2023.12.31</td>
-                </tr>
-                <tr>
-                    <td align="center">9</td>
-                    <td align="center"><a href="#">올란도</a></td>
-                    <td align="center">강지은</td>
-                    <td align="center">월 단기</td>
-                    <td align="center">2023.11.28</td>
-                </tr>
-                <tr>
-                    <td align="center">8</td>
-                    <td align="center"><a href="#">소나타</a></td>
-                    <td align="center">이세용</td>
-                    <td align="center">월 단기</td>
-                    <td align="center">2023.10.25</td>
-                </tr>
-                <tr>
-                    <td align="center">10</td>
-                    <td align="center"><a href="#">스파크</a></td>
-                    <td align="center">김재화</td>
-                    <td align="center">출퇴근</td>
-                    <td align="center">2023.12.31</td>
-                </tr>
-                <tr>
-                    <td align="center">9</td>
-                    <td align="center"><a href="#">제네시스</a></td>
-                    <td align="center">안승권</td>
-                    <td align="center">출퇴근</td>
-                    <td align="center">2023.11.28</td>
-                </tr>
-                <tr>
-                    <td align="center">8</td>
-                    <td align="center"><a href="#">소나타</a></td>
-                    <td align="center">신유진</td>
-                    <td align="center">출퇴근</td>
-                    <td align="center">2023.10.25</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+
+        <h2 class="text-center mb-4 pt-5">쿠폰 생성 페이지</h2>
+        <form>
+            <div class="mb-3 row">
+                <label for="couponNumber" class="col-sm-4 col-form-label">쿠폰 번호</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="couponNumber" placeholder="쿠폰 번호" required>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="couponName" class="col-sm-4 col-form-label">쿠폰 이름</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="couponName" placeholder="쿠폰 이름" required>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="usableArea" class="col-sm-4 col-form-label">사용 가능 지역</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="usableArea" placeholder="사용 가능 지역" required>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="couponType" class="col-sm-4 col-form-label">쿠폰 유형</label>
+                <div class="col-sm-8">
+                    <select class="form-select" id="couponType" required>
+                        <option value="할인">할인</option>
+                        <option value="적립">적립</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="expirationDate" class="col-sm-4 col-form-label">만료 날짜</label>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" id="expirationDate" placeholder="만료 날짜" required>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="couponValue" class="col-sm-4 col-form-label">쿠폰 가액</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="couponValue" placeholder="쿠폰 가액" required>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="maxDiscountAmount" class="col-sm-4 col-form-label">최대 할인 금액</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="maxDiscountAmount" placeholder="최대 할인 금액" required>
+                </div>
+            </div>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn text-white" style="background-color: #41087c; width: 110px;">쿠폰 생성</button>
+            </div>
+        </form>
 
 
     <!--------------------------------------------------하단---------------------------------------------------------->

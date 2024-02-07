@@ -82,7 +82,7 @@
             <div class="myInfos-area">
                 <div class="border-bottom mb-5 row">
                     <h3 class="mb-4 col">
-                        <strong class="name" id='commonMemberName'>홍경영님</strong>
+                        <strong class="name" id='commonMemberName'>${member.name}님</strong>
                         <span>일반회원&nbsp;</span>
                     </h3>
                     <div class="btns text-end col">
@@ -93,7 +93,7 @@
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0</a>
+                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0P</a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
@@ -108,7 +108,7 @@
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel06.png">
-                        <p>렌터카 상담</p>
+                        <p>1:1상담</p>
                         <a href="/mypage/rentCarConsulting.do" class="underline"
                            id="commonRentalConsultCount">0건</a>
                     </li>
@@ -123,14 +123,6 @@
                     <a href="/mypage/reservation.do" class="nav-link" data-link-area="마이페이지"
                        data-link-name="메뉴" data-link-text="단기렌터카 예약">단기렌터카 예약</a>
                 </li>
-                <li class="nav-item mb-4">
-                    <a href="/mypage/reservationMonth.do" class="nav-link" data-link-area="마이페이지"
-                       data-link-name="메뉴" data-link-text="월간단기렌터카 예약">월간단기렌터카 예약</a>
-                </li>
-                <li class="nav-item mb-4">
-                    <a href="/mypage/rentCarConsulting.do" class="nav-link">렌터카 상담 </a>
-                </li>
-
                 <li class="nav-item mb-4">
                     <a href="/mypage/point.do" class="nav-link">포인트</a>
                 </li>
@@ -188,8 +180,10 @@
                         <input type="password" id="password2" name="password2" class="form-control">
                     </div>
                 </div>
-                <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">취소</button>
-                <button type="" class="btn text-white" id="btnSubmit" style="background: #41087c; width: 110px;">변경하기</button>
+                <div class="text-center m">
+                    <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">취소</button>
+                    <button type="" class="btn text-white" id="btnSubmit" style="background: #41087c; width: 110px;">변경하기</button>
+                </div>
             </form>
         </article>
     </div>
