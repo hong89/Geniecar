@@ -11,7 +11,7 @@ CREATE TABLE COMMON_CODE -- 공통 코드 테이블
     REG_ID          VARCHAR2(20)        NOT NULL, -- 등록자
     REG_DATE        DATE                NOT NULL, -- 등록일시
     MOD_ID          VARCHAR2(20),                 -- 수정자
-    MOD_DATE        DATE                         -- 수정일시
+    MOD_DATE        DATE                          -- 수정일시
 );
 
 CREATE TABLE MEMBER -- 회원 테이블
@@ -42,8 +42,8 @@ CREATE TABLE RENTAL_CAR -- 렌터 차량 테이블
     COMPANY                   VARCHAR2(6) NOT NULL      -- 제조사 (공통코드 FK) 현대, 기아 ...
 );
 
-CREATE SEQUENCE SEQ_CAR_BRANCH_NO INCREMENT BY 1 START WITH 1000000001 MINVALUE 1000000001 MAXVALUE 9999999999 NOCYCLE;
-CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블 (사업자 회원가입시 사용)
+CREATE SEQUENCE SEQ_CAR_BRANCH_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 9999999999 NOCYCLE;
+CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블
 (
     NO                NUMBER(10) PRIMARY KEY,       -- 렌터카 지점 NO (시퀀스)
     BRANCH_CODE       VARCHAR2(6)         NOT NULL, -- 렌터카 지점 코드 (공통코드 FK)
@@ -63,11 +63,21 @@ CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블 (사업자 회원�
     MOD_DATE          DATE                          -- 수정일시
 );
 
+CREATE SEQUENCE SEQ_NEW_CAR_NO INCREMENT BY 1 START WITH 1000001 MINVALUE 1000001 MAXVALUE 9999999 NOCYCLE;
+CREATE TABLE NEW_CAR -- 차량 테이블
+(
+    NO            NUMBER(7) PRIMARY KEY, -- 차량 NO (시퀀스)
+    CAR_NAME_CODE VARCHAR2(6) NOT NULL,  -- 차량명코드 (공통코드 FK) 소나타, 스파크, k9 ..
+    CAR_TYPE_CODE VARCHAR2(6) NOT NULL,  -- 차종코드 (공통코드 FK) 소형 준중형 중형 준대형 대형 ...
+    CAR_FUEL_CODE VARCHAR2(6) NOT NULL,  -- 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
+    DEFAULT_COST  NUMBER(6)   NOT NULL,  -- 기본 대여료 (10분 단위)
+    COMPANY       VARCHAR2(6) NOT NULL   -- 제조사 (공통코드 FK) 현대, 기아 ...
+);
+
 CREATE TABLE RENTAL_CAR_BRANCHES_CAR -- 렌터카 지점별 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17),                   -- 차대번호 (자동차 FK) - 복합키 처리
     RENTAL_CAR_BRANCH_NO      VARCHAR2(6),                    -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
-    --RENTAL_STATUS_CODE        VARCHAR2(6) NOT NULL,        -- 렌트 상태 코드 (공통코드 FK) - 수리중, 가능, 폐차, 장기렌트 등등
     IMPORT_CAR_YN             CHAR(1)   DEFAULT 'N',          -- 본사 -> 대리점 인수 전('N'), 인수 완료 ('Y')
     DEFAULT_COST              NUMBER(6),                      -- 기본 대여료 (10분 단위)
     DEFAULT_SALE_RATE         NUMBER(2) DEFAULT 50  NOT NULL, -- 기본 할인율
@@ -83,12 +93,11 @@ CREATE TABLE RENTAL_CAR_BRANCHES_CAR -- 렌터카 지점별 차량 테이블
 
 CREATE TABLE COUPON -- 쿠폰 테이블
 (
-    SERIAL_NO      VARCHAR2(14) PRIMARY KEY, -- 쿠폰 번호 (FORMAT: OOOO-OOO0O-OO0OO)
+    SERIAL_NO      VARCHAR2(14) PRIMARY KEY, -- 쿠폰 번호 (FORMAT: OOOO-OOOOO-OOOOO)
     NAME           VARCHAR2(100) NOT NULL,   -- 쿠폰명
     ABLE_REGION    VARCHAR2(6)   NOT NULL,   -- 사용 가능 지역 (공통코드 FK)
-    TYPE           VARCHAR2(6)   NOT NULL,   -- 쿠폰 유형 (공통코드 FK)
+    TYPE           VARCHAR2(20)  NOT NULL,   -- 쿠폰 유형
     EXPIRED_DATE   DATE          NOT NULL,   -- 만료 날짜
-    USED_DATE      DATE,                     -- 사용 날짜 (날짜 존재 시 사용 완료)
     COUPON_VALUE   NUMBER(7)     NOT NULL,   -- 쿠폰가액 (금액 OR 할인율)
     MAXIMUM_AMOUNT NUMBER(7),                -- 최대 할인 금액 (NULL 이면 제한 없음)
     REG_ID         VARCHAR2(20)  NOT NULL,   -- 생성자 (회원아이디 FK)
@@ -97,18 +106,19 @@ CREATE TABLE COUPON -- 쿠폰 테이블
 
 CREATE TABLE MEMBER_COUPONS -- 회원 보유 쿠폰 테이블
 (
-    MEMBER_ID         VARCHAR2(20),  -- 회원아이디 (회원아이디 FK) 복합키
-    COUPONE_SERIAL_NO VARCHAR2(14),  -- 쿠폰 번호 (쿠폰 FK) 복합키
-    ISSUER_ID         VARCHAR2(20),  -- 발급자 (시스템이 주는 경우도 케이스도 생각하여 NULL 허용)
-    ISSUER_DATE       DATE NOT NULL, -- 발급일
-    CONSTRAINT MEMBER_COUPONS_PK PRIMARY KEY (MEMBER_ID, COUPONE_SERIAL_NO)
+    MEMBER_ID         VARCHAR2(20),          -- 회원아이디 (회원아이디 FK) 복합키
+    COUPONS_SERIAL_NO VARCHAR2(14),          -- 쿠폰 번호 (쿠폰 FK) 복합키
+    ISSUER_ID         VARCHAR2(20) NOT NULL, -- 발급자 (시스템이 주는 경우 'SYSTEM'으로 처리)
+    ISSUER_DATE       DATE         NOT NULL, -- 발급일
+    USED_DATE         DATE,                  -- 사용 날짜 (날짜 존재 시 사용 완료)
+    CONSTRAINT MEMBER_COUPONS_PK PRIMARY KEY (MEMBER_ID, COUPONS_SERIAL_NO)
 );
 
 CREATE SEQUENCE SEQ_POINT_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 99999999999999999999 NOCYCLE;
 CREATE TABLE POINT -- 포인트 테이블
 (
     NO              NUMBER(20) PRIMARY KEY,  -- 시퀀스
-    POINT           NUMBER(6),               --포인트
+    POINT           NUMBER(6),               -- 포인트
     INCREASE        CHAR(1)        NOT NULL, -- 증감 ('+' 이면 적립 or '-' 이면 사용)
     HISTORY         NVARCHAR2(100) NOT NULL, -- 내역
     REG_DATE        DATE,                    -- 적립일시/사용일시
@@ -130,7 +140,7 @@ CREATE TABLE CONSULT -- 상담 테이블
     STATUS_YN   CHAR(1) DEFAULT 'N'      -- 상담 완료 여부
 );
 
-CREATE SEQUENCE SEQ_BOARD_NO INCREMENT BY 1 START WITH 1000000001 MINVALUE 1000000001 MAXVALUE 9999999999 NOCYCLE;
+CREATE SEQUENCE SEQ_BOARD_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 99999999999999999999 NOCYCLE;
 CREATE TABLE BOARD -- 게시판 테이블
 (
     NO         NUMBER(20) PRIMARY KEY,         -- 시퀀스
@@ -141,16 +151,16 @@ CREATE TABLE BOARD -- 게시판 테이블
     TYPE_CODE  VARCHAR2(20)          NOT NULL, -- 게시판 타입
     NOTICE_YN  CHAR(1)   DEFAULT 'N' NOT NULL, -- 공지 유무
     HASH_TAG   VARCHAR2(200),                  -- 해시 태그 (해도 되고 안해도 되고)
-    FILE_NO    NUMBER(20),                     -- 파일 번호
+    FILE_NO    NUMBER(20),                     -- 파일 번호 (파일 시퀀스 FK)
     START_DATE DATE,                           -- 시작일자 (이벤트에 사용)
     END_DATE   DATE,                           -- 종료일자 (이벤트에 사용)
-    REG_ID     VARCHAR2(20)          NOT NULL, -- 작성자
+    REG_ID     VARCHAR2(20)          NOT NULL, -- 작성자 (회원아이디 FK)
     REG_DATE   DATE      DEFAULT SYSDATE,      -- 작성일시
-    MOD_ID     VARCHAR2(20),                   -- 수정자
+    MOD_ID     VARCHAR2(20),                   -- 수정자 (회원아이디 FK)
     MOD_DATE   DATE                            -- 수정일시
 );
 
-CREATE SEQUENCE SEQ_IMAGE_FILE_NO INCREMENT BY 1 START WITH 1000000001 MINVALUE 1000000001 MAXVALUE 9999999999 NOCYCLE;
+CREATE SEQUENCE SEQ_IMAGE_FILE_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 99999999999999999999 NOCYCLE;
 CREATE TABLE IMAGE_FILE -- 파일 테이블
 (
     FILE_NO   NUMBER(20),            -- 파일 시퀀스 (복합키)
@@ -165,6 +175,7 @@ CREATE TABLE IMAGE_FILE -- 파일 테이블
     CONSTRAINT FILE_FK PRIMARY KEY (FILE_NO, SEQ)
 );
 
+CREATE SEQUENCE SEQ_RESERVATION_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 99999999 NOCYCLE;
 CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
 (
     RESERVATION_NO            VARCHAR2(20) PRIMARY KEY, -- 예약번호
@@ -184,23 +195,12 @@ CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
     MOD_DATE                  DATE                      -- 수정_일시
 );
 
--------------------------------------------------------------------------------------------------------- 1/30 테이블 추가
-CREATE SEQUENCE SEQ_NEW_CAR_NO INCREMENT BY 1 START WITH 1000001 MINVALUE 1000001 MAXVALUE 9999999 NOCYCLE;
-CREATE TABLE NEW_CAR -- 차량 테이블
-(
-    NO            NUMBER(7) PRIMARY KEY, -- 차량 NO (시퀀스)
-    CAR_NAME_CODE VARCHAR2(6) NOT NULL,  -- 차량명코드 (공통코드 FK) 소나타, 스파크, k9 ..
-    CAR_TYPE_CODE VARCHAR2(6) NOT NULL,  -- 차종코드 (공통코드 FK) 소형 준중형 중형 준대형 대형 ...
-    CAR_FUEL_CODE VARCHAR2(6) NOT NULL,  -- 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
-    DEFAULT_COST  NUMBER(6)   NOT NULL,  -- 기본 대여료 (10분 단위)
-    COMPANY       VARCHAR2(6) NOT NULL   -- 제조사 (공통코드 FK) 현대, 기아 ...
-);
 -------------------------------------------------------------------------------------------------------- 2/6 테이블 추가
-CREATE SEQUENCE SEQ_LICENSE_NO INCREMENT BY 1 START WITH 1000001 MINVALUE 1000001 MAXVALUE 9999999 NOCYCLE;
+CREATE SEQUENCE SEQ_LICENSE_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 99999999999999999999 NOCYCLE;
 CREATE TABLE LICENSE
 (
-    NO                 NUMBER(7) PRIMARY KEY,  --  NO (시퀀스)
-    MEMBER_ID          VARCHAR2(20)  NOT NULL, -- 회원 아이디
+    NO                 NUMBER(20) PRIMARY KEY,  -- NO (시퀀스)
+    MEMBER_ID          VARCHAR2(20)  NOT NULL, -- 등록자 (회원아이디 FK)
     LICENSE_GRADE_CODE VARCHAR2(10)  NOT NULL, -- 면허 종류
     LICENSE_NUMBER     NUMBER(12)    NOT NULL, -- 면허 번호
     DRIVER_NAME        NVARCHAR2(20) NOT NULL, -- 이름
