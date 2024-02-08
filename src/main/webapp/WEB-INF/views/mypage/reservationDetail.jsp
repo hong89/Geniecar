@@ -65,18 +65,15 @@
             <div class="myInfos-area">
                 <div class="border-bottom mb-5 row">
                     <h3 class="mb-4 col">
-                        <strong class="name" id='commonMemberName'>홍경영님</strong>
+                        <strong class="name" id='commonMemberName'>${member.name}님</strong>
                         <span>일반회원&nbsp;</span>
                     </h3>
-                    <div class="btns text-end col">
-                        <a href="/mypage/license.do" class="btn-goLink me-3">운전면허증</a>
-                    </div>
                 </div>
                 <ul class="row text-center">
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0</a>
+                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0P</a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
@@ -91,7 +88,7 @@
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel06.png">
-                        <p>렌터카 상담</p>
+                        <p>1:1문의</p>
                         <a href="/mypage/rentCarConsulting.do" class="underline"
                            id="commonRentalConsultCount">0건</a>
                     </li>
@@ -104,16 +101,8 @@
             <ul class="nav flex-column">
                 <li class="nav-item mb-4">
                     <a href="/mypage/reservation.do" class="nav-link" data-link-area="마이페이지"
-                       data-link-name="메뉴" data-link-text="단기렌터카 예약">단기렌터카 예약</a>
+                       data-link-name="메뉴" data-link-text="렌터카 예약">렌터카 예약</a>
                 </li>
-                <li class="nav-item mb-4">
-                    <a href="/mypage/reservationMonth.do" class="nav-link" data-link-area="마이페이지"
-                       data-link-name="메뉴" data-link-text="월간단기렌터카 예약">월간단기렌터카 예약</a>
-                </li>
-                <li class="nav-item mb-4">
-                    <a href="/mypage/rentCarConsulting.do" class="nav-link">렌터카 상담 </a>
-                </li>
-
                 <li class="nav-item mb-4">
                     <a href="/mypage/point.do" class="nav-link">포인트</a>
                 </li>

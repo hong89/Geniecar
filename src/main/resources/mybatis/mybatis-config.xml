@@ -22,5 +22,6 @@
         <typeAlias type="com.rental.geniecar.domain.branch.RentalCarReservationVo" alias="rentalCarReservationVo" />
         <typeAlias type="com.rental.geniecar.domain.car.RentalCarVo" alias="rentalCarVo" />
         <typeAlias type="com.rental.geniecar.domain.car.NewCarVo" alias="newCarVo" />
+        <typeAlias type="com.rental.geniecar.domain.member.LicenseVo" alias="licenseVo" />
     </typeAliases>
 </configuration>
