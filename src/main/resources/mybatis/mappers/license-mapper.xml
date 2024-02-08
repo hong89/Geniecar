@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rental.geniecar.member.dao.MemberDao">
+
+	<select id="selectLicense" resultType="licenseVo">
+		SELECT MEMBER_ID, LICENSE_GRADE_CODE, LICENSE_NUMBER, DRIVER_NAME, DRIVER_BIRTH, LICENSE_TEST_DATE, LICENSE_ISSUE_DATE
+		 FROM LICENSE WHERE MEMBER_ID = #{memberId}
+	</select>
+
+	<insert id="">
+		
+	</insert>
+</mapper>

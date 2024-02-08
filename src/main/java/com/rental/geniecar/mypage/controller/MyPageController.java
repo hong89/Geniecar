@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.domain.member.PointVo;
 import com.rental.geniecar.member.service.MemberService;
@@ -34,8 +35,9 @@ public class MyPageController {
     }
 	//ruddud
 	@GetMapping("/reservation.do")
-	public String reservation(){
-		
+	public String reservation(Model model, HttpSession session){
+		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		model.addAttribute("member", membervo);
         return "mypage/reservation";
     }
 	//ruddud
@@ -66,20 +68,25 @@ public class MyPageController {
 	@GetMapping("/point.do")
 	public String point(Model model, HttpSession session){
 		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		model.addAttribute("member", membervo);
 		List<PointVo> pointList = pointService.secletAll(membervo.getId());
 		model.addAttribute("pointList", pointList);
         return "mypage/point";
     }
 	//ruddud
 	@GetMapping("/coupon.do")
-	public String coupon(){
-		
+	public String coupon(Model model, HttpSession session){
+		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		model.addAttribute("member", membervo);
         return "mypage/coupon";
     }
 	//ruddud
 	@GetMapping("/license.do")
-	public String license() {
-		
+	public String license(Model model, HttpSession session) {
+		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		LicenseVo license =  memberService.selectLicense(membervo.getId());
+		model.addAttribute("member", membervo);
+		model.addAttribute("license", license);
 		return "mypage/license";
 	}
 	//ruddud

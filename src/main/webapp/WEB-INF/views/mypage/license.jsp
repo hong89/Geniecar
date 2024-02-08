@@ -33,7 +33,7 @@
 
         color: #41087c;
     }
-    #LicenseGradeCode{
+    #licenseGradeCode{
         position: absolute;
         top:30px;
         left: 40px;
@@ -52,22 +52,22 @@
         width: 180px;
         height: 175px;
     }
-    #licenseNumber{
+    #inputLicenseNumber{
         position: absolute;
         top:90px;
         left:225px;
         height: 40px;
     }
-    #LicenseNumber1{
+    #licenseNumber1{
         height: 40px;
     }
-    #LicenseNumber2{
+    #licenseNumber2{
         width: 70px; height: 40px;
     }
-    #LicenseNumber3{
+    #licenseNumber3{
         width: 160px;height: 40px;
     }
-    #LicenseNumber4{
+    #licenseNumber4{
         width: 70px;height: 40px;
     }
     #labelName{
@@ -129,7 +129,14 @@
         const reg = /\D/g;
         event.target.value = event.target.value.replace(reg, "");
     }
-    
+    $(function() {
+        var licenseNumber = $('#licenseNumber').val();
+        var licenseNumber1 = licenseNumber.substring(0, 2);
+        var licenseNumber2 = licenseNumber.substring(2, 4);
+        var licenseNumber3 = licenseNumber.substring(4, 10);
+        var licenseNumber4 = licenseNumber.substring(10, 12);
+    })
+
 </script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -152,7 +159,7 @@
             <div class="myInfos-area">
                 <div class="border-bottom mb-5 row">
                     <h3 class="mb-4 col">
-                        <strong class="name" id='commonMemberName'>홍경영님</strong>
+                        <strong class="name" id='commonMemberName'>${member.name}님</strong>
                         <span>일반회원&nbsp;</span>
                     </h3>
                 </div>
@@ -175,7 +182,7 @@
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel06.png">
-                        <p>렌터카 상담</p>
+                        <p>1:1문의</p>
                         <a href="/mypage/rentCarConsulting.do" class="underline"
                            id="commonRentalConsultCount">0건</a>
                     </li>
@@ -188,7 +195,7 @@
             <ul class="nav flex-column">
                 <li class="nav-item mb-4">
                     <a href="/mypage/reservation.do" class="nav-link" data-link-area="마이페이지"
-                       data-link-name="메뉴" data-link-text="단기렌터카 예약">단기렌터카 예약</a>
+                       data-link-name="메뉴" data-link-text="단기렌터카 예약">렌터카 예약</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/point.do" class="nav-link">포인트</a>
@@ -224,21 +231,21 @@
             </div>
             <form>
                 <div class="border rounded-3 row p-4 m-5" style="width: 670px; height: 422px; position: relative;">
-                    <div id="LicenseGradeCode">
-                        <select name="" id="" class="border rounded-1" style="height: 40px;">
-                            <option value="" selected>선택</option>
-                            <option value="">1종대형</option>
-                            <option value="">1종보통</option>
-                            <option value="">2종보통</option>
-                            <option value="">2종오토</option>
+                    <div id="licenseGradeCode">
+                        <select name="licenseGradeCode" id="" class="border rounded-1" style="height: 40px;" value = "">
+                            <option value="">선택 </option>
+                            <option value="1종대형">1종대형</option>
+                            <option value="1종보통">1종보통</option>
+                            <option value="2종보통">2종보통</option>
+                            <option value="2종오토">2종오토</option>
                         </select>
                     </div>
                     <div id ="license">
                          <h4>자동차운전면허증(Driver's License)</h4>
                     </div>
                     <img src ="/images/blank-profile.png" id="imgProfil">
-                    <div class = "" id="licenseNumber">   
-                        <select id="LicenseNumber1" class="border rounded-1">
+                    <div class = "" id="inputLicenseNumber">   
+                        <select id="licenseNumber1" class="border rounded-1" >
                             <option value="" selected="selected">선택</option>
                             <option value="11" >11</option>
                             <option value="12" >12</option>
@@ -275,32 +282,34 @@
                             <option value="대전" >대전</option>
                             <option value="울산" >울산</option>
                         </select>
-                        <input type="text" name="LicenseNumber2" id="LicenseNumber2" value="" maxlength="2" class="border rounded-1" oninput="onlyNumber()">
-                        <input type="password" name="LicenseNumber3" id="LicenseNumber3" value="" maxlength="6" class="border rounded-1" oninput="onlyNumber()">
-                        <input type="text" name="LicenseNumber4" id="LicenseNumber4" value="" maxlength="2" class="border rounded-1" oninput="onlyNumber()">
+                        <input type="text" name="licenseNumber2" id="licenseNumber2" value="" maxlength="2" class="border rounded-1" oninput="onlyNumber()">
+                        <input type="password" name="licenseNumber3" id="licenseNumber3" value="" maxlength="6" class="border rounded-1" oninput="onlyNumber()">
+                        <input type="text" name="licenseNumber4" id="licenseNumber4" value="" maxlength="2" class="border rounded-1" oninput="onlyNumber()">
+                        <input type="hidden" name="licenseNumber" id="licenseNumber" value="${license.licenseNumber}">
                     </div>
                     <div id="">
                         <label for="name" id="labelName">이름</label>
                         <div class="">
-                            <input type="text" id="inputName" name = "name" value="" class="border rounded-1">
+                            <input type="text" id="inputName" name = "name" value="${license.driverName}" class="border rounded-1">
+                            <input type="hidden" name="memberId" value="${member.id}">
                         </div>
                     </div>
                     <div id="">
                         <label for="birthday" id="labelBirthday">생년월일</label>
                         <div class="">
-                            <input id="inputBirthday" name = "birthday" value="" class="border rounded-1" placeholder=" YYMMDD" maxlength="6" oninput="onlyNumber()">
+                            <input id="inputBirthday" name = "birthday" value="${license.driverBirth}" class="border rounded-1" placeholder=" YYYYMMDD" maxlength="8" oninput="onlyNumber()">
                         </div>
                     </div>
                     <div id="">
-                        <label for="expirationDate" id="labelExpirationDate">만료일자</label>
+                        <label for="licenseTestDate" id="labelExpirationDate">만료일자</label>
                         <div class="">
-                            <input id="inputExpirationDate" name = "expirationDate" value="" class="border rounded-1" placeholder=" YYYYMMDD" maxlength="8" oninput="onlyNumber()">
+                            <input id="inputExpirationDate" name = "licenseTestDate" value="${license.licenseTestDate}" class="border rounded-1" placeholder=" YYYYMMDD" maxlength="8" oninput="onlyNumber()" > 
                         </div>
                     </div>
                     <div id="">
-                        <label for="issueDate" id="labelIssueDate" >발급일자</label>
+                        <label for="licenseIssueDate" id="labelIssueDate" >발급일자</label>
                         <div class="">
-                            <input id="inputIssueDate" name = "issueDate" value="" class="border rounded-1" placeholder=" YYYYMMDD" maxlength="8" oninput="onlyNumber()">
+                            <input id="inputIssueDate" name = "licenseIssueDate" value="${license.licenseIssueDate}" class="border rounded-1" placeholder=" YYYYMMDD" maxlength="8" oninput="onlyNumber()">
                         </div>
                     </div>  
                 </div>

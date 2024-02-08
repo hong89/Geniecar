@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.member.dao.MemberDao;
 import com.rental.geniecar.point.dao.PointDao;
@@ -51,5 +52,8 @@ public class MemberService {
 	}
 	public Map myReservation(String id) {
 		return memberDao.myReservation(id);
+	}
+	public LicenseVo selectLicense(String id) {
+		return memberDao.selectLicense(id);
 	}
 }

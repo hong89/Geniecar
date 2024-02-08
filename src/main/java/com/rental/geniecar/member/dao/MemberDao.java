@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
 
 @Mapper
@@ -20,4 +21,5 @@ public interface MemberDao {
 	public void updateType(String id);
 	public int updateWithdrawal(String id);
 	public Map myReservation(String id);
+	public LicenseVo selectLicense(String id);
 }
