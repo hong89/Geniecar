@@ -16,17 +16,45 @@
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="pt-5">
         <div class="inner-type2">
+            <c:set var="selectTypeCode" value=""/>
+                <c:choose>
+                    <c:when test="${boardVo.typeCode eq 'NOTICE'}"> 
+                        <c:set var="selectTypeCode" value="공지사항"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'FAQ'}"> 
+                        <c:set var="selectTypeCode" value="FAQ"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'EVENT'}"> 
+                        <c:set var="selectTypeCode" value="이벤트"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'EVENTWINNER'}"> 
+                        <c:set var="selectTypeCode" value="이벤트 당첨자"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'CONSULTING'}"> 
+                        <c:set var="selectTypeCode" value="상담 신청"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'QNA'}"> 
+                        <c:set var="selectTypeCode" value="1:1 문의"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'REVIEW'}"> 
+                        <c:set var="selectTypeCode" value="이용 후기"/>
+                    </c:when>
+                </c:choose>
             <section class="text-center">
-                <h1 class="tit">공지사항 목록</h1>
+                <h1 class="tit">${selectTypeCode} 목록</h1>
             </section>
             <div class="pt-5">
                 <table class="table caption-top">
                     <tr>
-                        <td>
-                            <input type="text" id="title" name="title" value="${boardVo.title}">
-                            <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
+                        <td class="text-center">
+                            <div class="mx-auto" style="max-width: 500px;">
+                                <div class="d-flex">
+                                    <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." style="flex: 1; margin-right: 10px;">
+                                    <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
+                                    <button type="button" class="btn text-white" onclick="javascript:fn_search(1)" style="background-color: #41087c;">검색</button>
+                                </div>
+                            </div>
                         </td>
-                        <td><input type="button" value="검색" onclick="javascript:fn_search(1)"></td>
                     </tr>
                 </table>
             </div>
@@ -43,7 +71,7 @@
                     <tbody>
                     <c:forEach var="notice" items="${boardList}">
                         <tr>
-                            <td align="center">${notice.no}</td>
+                            <td align="center">${notice.rn}</td>
                             <td align="left"><a href="/admin/board/detailNotice.do?no=${notice.no}">${notice.title}</a>
                             </td>
                             <td align="center">${notice.regDate}</td>

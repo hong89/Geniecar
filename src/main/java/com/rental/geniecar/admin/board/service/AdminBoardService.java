@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,7 +59,6 @@ public class AdminBoardService {
 		}
 		boardVo.setFileNo(newFileNo);
 		boardDao.insertBoard(boardVo);
-
 	}
 
 	public BoardVo selectNoticeDetail(int no) {
@@ -69,7 +69,16 @@ public class AdminBoardService {
 		return boardDao.updateNoticeForm(no);
 	}
 
-	public void updateNotice(BoardVo boardVo) {
+	public void updateNotice(BoardVo boardVo, List<FileVo> fileList) {
+		
+		int newFileNo = boardDao.selectNewFileNo();
+		for(int i = 0; i < fileList.size(); i++){
+			FileVo fileVo = fileList.get(i);
+			fileVo.setSeq(i+1);
+			fileVo.setFileNo(newFileNo);
+			boardDao.insertBoardImage(fileVo);
+		}
+		boardVo.setFileNo(newFileNo);
 		boardDao.updateNotice(boardVo);
 	}
 	
@@ -82,44 +91,73 @@ public class AdminBoardService {
 		return boardDao.findByFileNo(fileNo);
 	}
 	
-	public void updateImageFile(FileVo fileVo) {
+	public void updateImageFile(FileVo fileVo, MultipartFile newImageFile) {
 		try {
-		int fileNo = fileVo.getFileNo();
-        MultipartFile editImageFile = fileVo.getEditImageFile();
-        
-        System.err.println("fileNo in updateImageFile: " + fileNo);
-        System.err.println("editImageFile in updateImageFile: " + editImageFile.getOriginalFilename());
+			if (newImageFile == null || newImageFile.isEmpty()) {
+				throw new IllegalArgumentException("새로운 이미지 파일이 없습니다.");
+			}
+			
+			 // 이미지 파일 업로드 및 정보 업데이트
+	        String saveName = saveImage(newImageFile);
+	        
+	        FileVo newFileVo = new FileVo();
+	        newFileVo.setSaveName(saveName);
+	        newFileVo.setFileNo(fileVo.getFileNo()); // 기존 파일 번호
 
-        List<FileVo> existingFile = boardDao.findByFileNo(fileNo);
-        FileVo newFileVo = new FileVo();
-
-	    
-	    String saveDirectory = UPLOAD_PATH;
-	    
-	    try {
-	        // 새로운 이미지 저장
-	        String newFileName = UUID.randomUUID().toString() + "_" + editImageFile.getOriginalFilename();
-	        editImageFile.transferTo(new File(saveDirectory, newFileName));
-
-	        // 새로운 파일 정보 설정
-	        newFileVo.setSaveName(newFileName);
-	    } catch (IOException e) {
-	        // 이미지 저장 실패
+	        // 파일 정보를 업데이트합니다.
+	        Integer fileNo = fileVo.getFileNo();
+	        if (fileNo != null && fileNo > 0) {
+	            boardDao.updateImageFile(newFileVo);
+	        } else {
+	            boardDao.insertBoardImage(newFileVo);
+	        }
+			
+		} catch (Exception e) {
 	        e.printStackTrace();
-	        throw new RuntimeException("이미지 저장에 실패했습니다!!");
+	        throw new RuntimeException("이미지 업데이트 중 오류 발생: " + e.getMessage());
 	    }
-	    
-	    if (existingFile  != null) {
-	    	boardDao.updateImageFile(newFileVo);
-	    } else {
-	    	boardDao.insertBoardImage(newFileVo);
+        
+	}
+	private String saveImage(MultipartFile newImageFile) {
+		try {
+	        // 저장할 경로 설정
+	        String saveDirectory = "C:\\geniecar_images";
+
+	        // 새로운 파일 이름 생성
+	        String originalFilename = newImageFile.getOriginalFilename();
+	        String extension = FilenameUtils.getExtension(originalFilename); // 파일 확장자
+	        String newFilename = UUID.randomUUID().toString() + "." + extension;
+
+	        // 저장할 파일 객체 생성
+	        File dest = new File(saveDirectory, newFilename);
+
+	        // 파일 저장
+	        newImageFile.transferTo(dest);
+
+	        // 저장된 파일 이름(또는 경로) 반환
+	        return newFilename;
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        throw new RuntimeException("이미지 저장 중 오류가 발생했습니다: " + e.getMessage());
 	    }
-	
-    } catch (Exception e) {
-    	e.printStackTrace();
-    	throw new RuntimeException("########## 이미지 업데이트중 오류 발생되었습니다.");
-    }
-}
+	}
+	public List<FileVo> selectImageFilesByTypeCode(String typeCode) {
+		List<FileVo> imageFiles = boardDao.selectImageFilesByTypeCode(typeCode);
+		return imageFiles;
+	}
+	public List<FileVo> selectImageFilesByNo(int no) {
+		return boardDao.selectImageFilesByNo(no);
+	}
+	public void insertImageFiles(List<FileVo> fileList) {
+		for (FileVo fileVo : fileList) {
+			boardDao.insertBoardImage(fileVo);
+		}
+		
+	}
+	public void updateImageFile(FileVo fileVo) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

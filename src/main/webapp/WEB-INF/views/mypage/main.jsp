@@ -116,7 +116,10 @@
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
                 </li>
                 <li class="nav-item mb-4">
-                    <a href="/customer/question.do" class="nav-link">1:1 고객센터</a>
+                    <a href="/mypage/consult.do" class="nav-link">상담 신청</a>
+                </li>
+                <li class="nav-item mb-4">
+                    <a href="/mypage/qna.do" class="nav-link">1:1 문의</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="#" class="nav-link">회원</a>

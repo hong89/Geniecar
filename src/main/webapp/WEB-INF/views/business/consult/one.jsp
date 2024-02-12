@@ -2,105 +2,110 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+    // 검색수행
+    function fn_search(i_page) {
+        var page = i_page;
+        if (page == null || page == '' || page == 'undefined') {
+            page = 1;
+        }
+        location.href = "/admin/board/list.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
+    }
+</script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
-    <div class="p-5">
+    <div class="pt-5">
         <div class="inner-type2">
+            <c:set var="selectTypeCode" value=""/>
+                <c:choose>
+                    <c:when test="${boardVo.typeCode eq 'NOTICE'}"> 
+                        <c:set var="selectTypeCode" value="공지사항"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'FAQ'}"> 
+                        <c:set var="selectTypeCode" value="FAQ"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'EVENT'}"> 
+                        <c:set var="selectTypeCode" value="이벤트"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'EVENTWINNER'}"> 
+                        <c:set var="selectTypeCode" value="이벤트 당첨자"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'CONSULTING'}"> 
+                        <c:set var="selectTypeCode" value="상담 신청"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'QNA'}"> 
+                        <c:set var="selectTypeCode" value="1:1 문의"/>
+                    </c:when>
+                    <c:when test="${boardVo.typeCode eq 'REVIEW'}"> 
+                        <c:set var="selectTypeCode" value="이용 후기"/>
+                    </c:when>
+                </c:choose>
             <section class="text-center">
-                <h1 class="pb-5 tit">1:1 상담 내역</h1>
+                <h1 class="tit">${selectTypeCode} 목록</h1>
             </section>
-            <table class="pt-5 table caption-top">
-                <thead>
-                <tr>
-                    <td align="center" scope="col">No.</td>
-                    <td align="center" scope="col"><strong>1:1 상담 내용</strong></td>
-                    <td align="center" scope="col"><strong>신청인</strong></td>
-                    <td align="center" scope="col"><strong>등록일</strong></td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td align="center">10</td>
-                    <td align="center"><a href="#">1:1 상담 신청 드립니다.</a></td>
-                    <td align="center">진민경</td>
-                    <td align="center">2023.12.31</td>
-                </tr>
-                <tr>
-                    <td align="center">9</td>
-                    <td align="center"><a href="#">1:1 상담 신청 드립니다.</a></td>
-                    <td align="center">오상기</td>
-                    <td align="center">2023.11.28</td>
-                </tr>
-                <tr>
-                    <td align="center">8</td>
-                    <td align="center"><a href="#">1:1 상담 신청 드립니다.</a></td>
-                    <td align="center">홍성혜</td>
-                    <td align="center">2023.10.25</td>
-                </tr>
-                <tr>
-                    <td align="center">7</td>
-                    <td align="center"><a href="#">1:1 상담 신청 드립니다.</a></td>
-                    <td align="center">홍경영</td>
-                    <td align="center">2023.09.14</td>
-                </tr>
-                <tr>
-                    <td align="center">6</td>
-                    <td align="center"><a href="#">1:1 상담 신청 드립니다.</a></td>
-                    <td align="center">이재진</td>
-                    <td align="center">2023.05.31</td>
-                </tr>
-                <tr>
-                    <td align="center">5</td>
-                    <td align="center"><a href="#">1:1 상담 신청 드립니다.</a></td>
-                    <td align="center">이다인</td>
-                    <td align="center">2023.05.31</td>
-                </tr>
-                <tr>
-                    <td align="center">4</td>
-                    <td align="center"><a href="#">1:1 상담 신청 드립니다.</a></td>
-                    <td align="center">김대일</td>
-                    <td align="center">2023.04.31</td>
-                </tr>
-                <tr>
-                    <td align="center">3</td>
-                    <td align="center"><a href="#">1:1 상담 신청 드립니다.</a></td>
-                    <td align="center">한아름</td>
-                    <td align="center">2024.03.11</td>
-                </tr>
-                <tr>
-                    <td align="center">2</td>
-                    <td align="center"><a href="#">1:1 상담 신청 드립니다.</a></td>
-                    <td align="center">이유빈</td>
-                    <td align="center">2023.02.10</td>
-                </tr>
-                <tr>
-                    <td align="center">1</td>
-                    <td align="center"><a href="#">1:1 상담 신청 드립니다.</a></td>
-                    <td align="center">정태영</td>
-                    <td align="center">2023.01.01</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div>
+            <div class="pt-5">
+                <table class="table caption-top">
+                    <tr>
+                        <td class="text-center">
+                            <div class="mx-auto" style="max-width: 500px;">
+                                <div class="d-flex">
+                                    <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." style="flex: 1; margin-right: 10px;">
+                                    <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
+                                    <button type="button" class="btn text-white" onclick="javascript:fn_search(1)" style="background-color: #41087c;">검색</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="pt-5">
+                <table class="table caption-top">
+                    <thead>
+                    <tr>
+                        <td align="center" scope="col"><strong>No.</strong></td>
+                        <td align="center" scope="col"><strong>제목</strong></td>
+                        <td align="center" scope="col"><strong>작성일</strong></td>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <c:forEach var="notice" items="${boardList}">
+                        <tr>
+                            <td align="center">${notice.no}</td>
+                            <td align="left"><a href="/admin/board/detailNotice.do?no=${notice.no}">${notice.title}</a>
+                            </td>
+                            <td align="center">${notice.regDate}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+                    <c:if test="${boardVo.startPageBlock > boardVo.pageBlock}">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                    <c:forEach begin="${boardVo.startPageBlock}" end="${boardVo.endPageBlock}" step="1"
+                               varStatus="status">
+                        <li class="page-item"><a class="page-link" href="#"
+                                                 onclick="javascript:fn_search('${status.index}')">${status.index}</a>
+                        </li>
+                    </c:forEach>
+                    <c:if test="${boardVo.endPageBlock < boardVo.pageCount}">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
                 </ul>
             </nav>
         </div>
+
     </div>
 
 

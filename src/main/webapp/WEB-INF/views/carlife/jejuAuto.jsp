@@ -142,7 +142,7 @@
 
                         <section class="pt-5">
                             <div class="explain-header">
-                                <h2 class="tit-size-big">롯데렌터카 제주오토하우스 대여절차 안내</h2>
+                                <h2 class="tit-size-big">지니카 제주오토하우스 대여절차 안내</h2>
                                 <hr/>
                             </div>
                             <div class="row">
@@ -230,7 +230,7 @@
                                             </li>
                                             <li>
                                                 <span class="bul">4</span>
-                                                렌터카 하우스 1번 주차구역 중 4번 에서 롯데렌터카 셔틀버스에 탑승하세요.
+                                                렌터카 하우스 1번 주차구역 중 4번 에서 지니카 셔틀버스에 탑승하세요.
                                                 <ul class="list-type-col3">
                                                     <li class="mt-20 ml-5">
                                                         <strong>셔틀버스 운영시간</strong>
@@ -415,7 +415,7 @@
                                                     </li>
                                                     <li>제주시내 대중교통 우선차로제 시행으로 위반시 과태료 부과됩니다.</li>
                                                     <li>제주공항 여객청사 1층은 버스정류장이 있어 잠시 정차만 하여도 즉시 단속이 될 수 있습니다.</li>
-                                                    <li>반납시 지점 검색은 <span style="color:red;">751-8000(롯데렌터카 오토하우스)</span>로
+                                                    <li>반납시 지점 검색은 <span style="color:red;">751-8000(지니카 오토하우스)</span>로
                                                         해주시고, 차량에 두고 내리신 유실물은 없는지 꼭 챙겨주세요!
                                                     </li>
                                                 </ul>
@@ -434,9 +434,9 @@
                             <div class="accordion" id="accordionExample">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button"
+                                        <button class="accordion-button collapsed" type="button" style="background-color:#f8f7fd; box-shadow: none;"
                                                 data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                                aria-expanded="true" aria-controls="collapseOne">
+                                                aria-expanded="false" aria-controls="collapseOne">
                                             <span class="ico-q">Q.&nbsp;</span>차가 시끄럽고 속도가 안나는 느낌이에요.
                                         </button>
                                     </h2>
@@ -450,7 +450,7 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button"
+                                        <button class="accordion-button collapsed" type="button" style="background-color:#f8f7fd; box-shadow: none;"
                                                 data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                                                 aria-expanded="false" aria-controls="collapseTwo">
                                             <span class="ico-q">Q.&nbsp;</span>차에서 계속 “띵~띵~" 경고음이 나요. 왜 이러죠?
@@ -466,7 +466,7 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button collapsed" type="button"
+                                        <button class="accordion-button collapsed" type="button" style="background-color:#f8f7fd; box-shadow: none;"
                                                 data-bs-toggle="collapse" data-bs-target="#collapseThree"
                                                 aria-expanded="false" aria-controls="collapseThree">
                                             <span class="ico-q">Q.&nbsp;</span>주행 중 갑자기 계기판에 타이어 공기압 경고등이 떴어요!
@@ -509,7 +509,7 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFour">
-                                        <button class="accordion-button collapsed" type="button"
+                                        <button class="accordion-button collapsed" type="button" style="background-color:#f8f7fd; box-shadow: none;"
                                                 data-bs-toggle="collapse" data-bs-target="#collapseFour"
                                                 aria-expanded="false" aria-controls="collapseFour">
                                             <span class="ico-q">Q.&nbsp;</span>차에 블루투스 연결은 어떻게 하나요?
@@ -544,7 +544,7 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFive">
-                                        <button class="accordion-button collapsed" type="button"
+                                        <button class="accordion-button collapsed" type="button" style="background-color:#f8f7fd; box-shadow: none;"
                                                 data-bs-toggle="collapse" data-bs-target="#collapseFive"
                                                 aria-expanded="false" aria-controls="collapseFive">
                                             <span class="ico-q">Q.&nbsp;</span>차량 대여 중 추가 운전자 등록은 어떻게 하나요?
@@ -554,11 +554,11 @@
                                          aria-labelledby="headingFive"
                                          data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p>지점방문 없이 롯데렌터카 APP 또는 홈페이지에서 즉시 추가할 수 있습니다. </p>
+                                            <p>지점방문 없이 지니카 APP 또는 홈페이지에서 즉시 추가할 수 있습니다. </p>
                                             <ul class="lst num-type2">
                                                 <li>
                                                     <span class="bul">1</span>
-                                                    롯데렌터카 APP 또는홈페이지에 접속합니다.
+                                                    지니카 APP 또는홈페이지에 접속합니다.
                                                 </li>
                                                 <li>
                                                     <span class="bul">2</span>

@@ -32,7 +32,7 @@
                 <p class="txt">지니카의 다양한 이벤트를 지금 바로 만나보세요!</p>
             </section>
 
-            <nav class="mt-5 nav nav-pills flex-column flex-sm-row">
+            <nav class="my-5 nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="/carlife/eventMain.do?typeCode=EVENT">진행중 이벤트</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="/carlife/winnerEventMain.do?typeCode=EVENTWINNER">당첨자 발표</a>
             </nav>
@@ -41,47 +41,26 @@
                 <c:forEach var="notice" items="${boardList}">
                 <div class="col">
                   <div class="card h-100">
-                        <c:forEach var="imageFile" items="${imageFiles}">
+                    <a href="/carlife/eventDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
+                        <c:forEach var="imageFile" items="${notice.imageFiles}">
                             <c:if test="${not empty imageFile.saveName}">
-                                <img class="form-control" src="/downloadFile/${imageFile.saveName}" alt="images" width="300" height="500">
+                                <img class="form-control" src="/downloadFile/${imageFile.saveName}" alt="images" width="300" height="200">
                             </c:if>
                         </c:forEach>
-                    
                     <div class="card-body">
-                      <h5 class="card-title">${notice.title}</h5>
+                      <h5 class="card-title">${notice.title}</h5><hr/>
                       <p class="card-text">${notice.content}</p>
                     </div>
-                    <div class="card-footer">
-                      <small class="text-muted">${notice.regDate}</small>
+                    <div class="card-footer">이벤트 기간 :&nbsp;
+                      <small class="text-muted">${notice.startDate} ~ ${notice.endDate}</small>
                     </div>
+                    </a>
                   </div>
                 </div>
                 </c:forEach>
               </div>
            
-            <div class="pt-5">
-                <table class="table caption-top">
-                    <thead>
-                    <tr>
-                        <td align="center" scope="col"><strong>No</strong></td>
-                        <td align="center" scope="col"><strong>제목</strong></td>
-                        <td align="center" scope="col"><strong>작성일</strong></td>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <c:forEach var="notice" items="${boardList}">
-                        <tr>
-                            <td align="center">${notice.no}</td>
-                            <td align="left"><a href="/info/noticeDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
-                            </td>
-                            <td align="center">${notice.regDate}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-            <nav aria-label="Page navigation example">
+            <nav class="p-5" aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <c:if test="${boardVo.startPageBlock > boardVo.pageBlock}">
                         <li class="page-item">
@@ -107,52 +86,5 @@
             </nav>
         </div>
     </div>
-
-    <div class="carLife-container">
-        <div class="inner-type2">
-
-            <div class="tab-cont tab-normal">
-                <div class="pt-5 row" style="text-align: center;">
-                    <div class="col">
-                        <a href="/carlife/eventDetail.do" style="text-decoration: none; color: #41087c;">
-                            <img alt="" src="/images/events/evt1.jpg">
-                            <p class="tit"><strong>지니카 이용객 전용 eSIM 최저가 이벤트</strong></p>
-                            <span class="date">2023.11.28 ~ 2024.02.29</span></a>
-                    </div>
-                    <div class="col">
-                        <a href="/carlife/eventDetail.do" style="text-decoration: none; color: #41087c;">
-                            <img alt="" src="/images/events/evt2.jpg">
-                            <p class="tit"><strong>대한민국 No.1 지니카와 골프코스를!</strong></p>
-                            <span class="date">2023.12.01 ~ 2024.05.31</span></a>
-                    </div>
-                    <div class="col">
-                        <a href="/carlife/eventDetail.do" style="text-decoration: none; color: #41087c;">
-                            <img alt="" src="/images/events/evt3.jpg">
-                            <p class="tit"><strong>지니카에서 따뜻한 커피와 함께 포근한 여행 되세요!</strong></p>
-                            <span class="date">2023.11.28 ~ 2024.02.29</span></a>
-                    </div>
-                    <div class="col">
-                        <a href="/carlife/eventDetail.do" style="text-decoration: none; color: #41087c;">
-                            <img alt="" src="/images/events/evt4.jpg">
-                            <p class="tit"><strong>공항철도 이용한다면 지니카 회원전용 특별할인!</strong></p>
-                            <span class="date">2023.10.01 ~ 2024.03.31</span></a>
-                    </div>
-                    <div class="col">
-                        <a href="/carlife/eventDetail.do" style="text-decoration: none; color: #41087c;">
-                            <img alt="" src="/images/events/evt5.jpg">
-                            <p class="tit"><strong>제주 자연을 품은 프라이빗한 공간에서 즐기는 펫캉스!</strong></p>
-                            <span class="date">2024.01.19 ~ 2024.12.31</span></a>
-                    </div>
-                    <div class="col">
-                        <a href="/carlife/eventDetail.do" style="text-decoration: none; color: #41087c;">
-                            <img alt="" src="/images/events/evt6.jpg">
-                            <p class="tit"><strong>지니카 회원전용 아이스크림 홈런 무료체험 이벤트</strong></p>
-                            <span class="date">2023.07.17 ~ 2024.07.16</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>

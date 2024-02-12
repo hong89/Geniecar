@@ -39,5 +39,11 @@ public interface AdminBoardDao {
 	
 	void updateImageFile(FileVo fileVo);
 
+	List<FileVo> selectImageFilesByTypeCode(String typeCode);
+
+	List<FileVo> selectImageFilesByNo(int no);
+
+	void insertImageFile(FileVo fileVo);
+
 	
 }

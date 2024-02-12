@@ -19,9 +19,8 @@
              class="position-absolute end-0">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/main/index.do">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">단기렌터카</li>
-                <li class="breadcrumb-item active" aria-current="page">출퇴근렌터카</li>
-                <li class="breadcrumb-item active" aria-current="page">출퇴근렌터카 상품 안내</li>
+                <li class="breadcrumb-item active" aria-current="page">단기 렌터카 상품</li>
+                <li class="breadcrumb-item active" aria-current="page">출퇴근 렌터카</li>
             </ol>
         </nav>
     </div>
@@ -29,7 +28,7 @@
     <div class="content1">
         <h3>출퇴근 렌터카</h3><br/>
         <a href="/carlife/commuteRent.do">
-            <img class="mb-4" src="/images/commuteRent.png" alt="출퇴근 페이지">
+            <img class="mb-4" src="/images/commuteRent.png" width="1000px" height="Auto" alt="출퇴근 페이지">
         </a>
     </div>
 

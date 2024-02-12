@@ -20,10 +20,11 @@
                     <select class="form-select" id="typeCode" name="typeCode">
                         <option value="NOTICE">공지사항</option>
                         <option value="FAQ">FAQ</option>
-                        <option value="EVENT">EVENT</option>
-                        <option value="EVENTWINNER">EVENTWINNER</option>
-                        <option value="CONSULTING">CONSULTING</option>
-                        <option value="REVIEW">REVIEW</option>
+                        <option value="EVENT">이벤트</option>
+                        <option value="EVENTWINNER">이벤트 당첨자</option>
+                        <option value="CONSULTING">상담 신청</option>
+                        <option value="QNA">1:1 문의</option>
+                        <option value="REVIEW">이용 후기</option>
                     </select>
                 </div>
             </div>
@@ -43,6 +44,18 @@
                 <label for="fileMultiple" class="col-sm-2 col-form-label">파일</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="file" id="fileMultiple" name="file" multiple>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="title" class="col-sm-2 col-form-label">이벤트 시작일</label>
+                <div class="col-sm-2">
+                    <input type="date" class="form-control" id="startDate" name="startDate">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="title" class="col-sm-2 col-form-label">이벤트 종료일</label>
+                <div class="col-sm-2">
+                    <input type="date" class="form-control" id="endDate" name="endDate">
                 </div>
             </div>
             <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">등록하기</button>

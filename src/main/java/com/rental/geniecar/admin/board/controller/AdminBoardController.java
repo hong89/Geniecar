@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
 import com.rental.geniecar.domain.board.BoardVo;
@@ -124,9 +125,10 @@ public class AdminBoardController {
     // JJ
     // 게시판 새 글 쓰기 (동작 확인 이미지 넣기)
     @PostMapping("/insertBoard.do")
-    public String insertBoard(HttpServletRequest request, HttpSession session, BoardVo boardVo, @RequestParam("file") MultipartFile[] files, ServletResponse response) throws IOException {
+    public String insertBoard(HttpServletRequest request, HttpSession session, BoardVo boardVo, @RequestParam("file") MultipartFile[] files, ServletResponse response, @RequestParam(value = "returnUrl", required = false) String returnUrl, RedirectAttributes redirectAttributes) throws IOException {
     	
     	MemberVo memberInfo = (MemberVo) session.getAttribute("memberInfo");
+    	String typeCode = request.getParameter("typeCode");
     	
     	if (memberInfo != null) {
             String regId = memberInfo.getId();
@@ -175,15 +177,18 @@ public class AdminBoardController {
                 }
                 // 파일과 이미지 정보 DB에 저장하기
                 boardService.insertBoard(boardVo, fileList);
-         
             }
             
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        return "redirect:/admin/board/list.do?typeCode=NOTICE";
+        if (returnUrl != null && !returnUrl.isEmpty()) {
+            return "redirect:" + returnUrl;
+        } else {
+        	redirectAttributes.addAttribute("typeCode", typeCode);
+        	return "redirect:/admin/board/list.do";
+        }
+        
     }
 
     // 파일 확장자 얻기
@@ -221,7 +226,7 @@ public class AdminBoardController {
         	fileVo.setFileNo(fileNo);
         	fileVo.setEditImageFile(editImageFile);
         	
-            boardService.updateImageFile(fileVo);
+            boardService.updateImageFile(fileVo, editImageFile);
             
             return new ResponseEntity<>("이미지 수정이 성공했습니다.", HttpStatus.OK);
         } catch (Exception e) {
@@ -232,15 +237,96 @@ public class AdminBoardController {
     // JJ
     // 게시판 수정 적용
     @PostMapping("/updateNotice.do")
-    public String updateNotice(BoardVo boardVo, Model model) {
-        boardService.updateNotice(boardVo);
-        BoardVo notice = boardService.selectNoticeDetail(boardVo.getNo());
-        model.addAttribute("notice", notice);
+    public String updateNotice(HttpServletRequest request, HttpSession session, BoardVo boardVo, @RequestParam("file") MultipartFile[] files, ServletResponse response, Model model) throws IOException {
         
-        List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
-        model.addAttribute("imageFiles", imageFiles);
+        // 기존 게시물 정보 가져오기
+        BoardVo originalNotice = boardService.selectNoticeDetail(boardVo.getNo());
         
-        return "admin/board/updateNoticeForm";
+        System.err.println("##### fileNum " + files.length);
+        
+        // 이미지 업데이트
+        /*
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                // 이미지 파일 업로드 및 정보 업데이트
+                String saveName = saveImage(file);
+                FileVo fileVo = new FileVo();
+                fileVo.setSaveName(saveName);
+                fileVo.setFileNo(originalNotice.getFileNo());
+                boardService.updateImageFile(fileVo); 
+            }
+        }
+        */
+        List<FileVo> fileList = new ArrayList<>();
+        try {
+            if (files != null && files.length > 0) {
+                for (MultipartFile file : files) {
+                    if (!file.isEmpty()) {
+                    	System.err.println("####### fileName " + file.getOriginalFilename());
+                    	
+                    	
+                        FileVo fileVo = new FileVo();
+                        // 파일 정보 설정
+                        String savePath = "C:\\geniecar_images";
+                        fileVo.setFileName(file.getOriginalFilename());
+                        fileVo.setFileSize((int) file.getSize());
+                        fileVo.setExtension(getFileExtension(file.getOriginalFilename()));
+                        // 파일 저장 경로 및 이름 설정
+                        String saveName = (fileVo.getFileName() != "") ? UUID.randomUUID().toString() + "_" + file.getOriginalFilename() : null;
+                        String fullPath = savePath + File.separator + saveName;
+                        
+                        // 파일 저장
+                        File dest = new File(fullPath);
+                        System.err.println("####### fullPath " + fullPath);
+                        file.transferTo(dest);
+                        
+                        // 파일 정보 설정
+                        fileVo.setSavePath(savePath);
+                        fileVo.setSaveName(saveName);
+                        fileVo.setExtension(getFileExtension(file.getOriginalFilename()));
+                        fileVo.setRegId(originalNotice.getRegId());
+                        fileVo.setRegDate(originalNotice.getRegDate());
+                        fileList.add(fileVo);
+                    }
+                }
+            }
+            /*    
+            if (!fileList.isEmpty()) {
+            	boardVo.setRegId(originalNotice.getRegId());
+            	boardVo.setRegDate(originalNotice.getRegDate());
+              	boardService.insertBoard(boardVo, fileList);
+            }
+            */
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }
+        
+        boardVo.setRegId(originalNotice.getRegId());
+        boardVo.setRegDate(originalNotice.getRegDate());
+
+        // 게시물 정보 업데이트
+        boardService.updateNotice(boardVo, fileList);
+        
+        // 수정된 게시물 정보 조회
+        BoardVo updatedNotice = boardService.selectNoticeDetail(boardVo.getNo());
+        model.addAttribute("notice", updatedNotice);
+        
+        // 수정된 이미지 파일 목록 조회
+        List<FileVo> updatedImageFiles = boardService.selectImageFiles(originalNotice.getFileNo());
+        model.addAttribute("imageFiles", updatedImageFiles);
+        
+        return "redirect:/admin/board/list.do?typeCode=" + boardVo.getTypeCode();
+        //return "redirect:/admin/board/detailNotice.do?no=" + boardVo.getNo();
+        //return "admin/board/updateNoticeForm";
+    }
+
+	// 이미지 저장 및 파일명 반환 메서드
+    private String saveImage(MultipartFile file) throws IOException {
+        String saveName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+        String fullPath = UPLOAD_PATH + File.separator + saveName;
+        File dest = new File(fullPath);
+        file.transferTo(dest);
+        return saveName;
     }
 
     // JJ

@@ -37,70 +37,38 @@
         </nav>
     </div>
 
-    <form id="defaultFrm" name="defaultFrm"
-          action="/hp/kor/carLife/eventDetail.do?pageIndex=1&amp;contSeq=597&amp;listType=ongoing" method="get">
-        <input type="hidden" name="contSeq" id="contSeq"/>
-        <input type="hidden" name="listType" id="listType" value="ongoing"/>
-        <main id="wrap" data-id="template-container">
-            <div class="carLife-container">
-                <div class="inner-type2">
-                    <section class="text-center">
-                        <h2 class="tit">지니카 이벤트</h2>
-                        <p class="txt">지니카의 다양한 이벤트를 지금 바로 만나보세요!</p>
-                    </section>
-                    <div class="ntc-view-header">
-                        <div class="top-row">
-                            <span class="flag-purple">제휴</span>
-                        </div>
-                        <div class="bot-row">
-                            <div class="ntc-tit-container">
-                                <p class="ntc-tit">
-                                    지니카 이용객 전용 eSIM최저가 이벤트
-                                </p>
-                            </div>
-                            <span class="ntc-date">2024-01-05</span>
-                        </div>
-                    </div>
-                    <hr/>
-
-                    <div class="text-center">
-                        <div class="mb-4">
-                            <a href="https://esimeasy.co.kr/partnership/link/v1/main/C7FEA16F4D924DB7 "><img
-                                    src="/images/eventDetail.png" alt="" width="1000" height="2155"></a>
-                        </div>
-                    </div>
-
-                    <div class="ntc-view-footer">
-                        <ul class="ntc-list">
-                            <li>
-                                <a href="#">
-                                    <strong>이전 글</strong>
-                                    지니카에서 따듯한 커피와 함께 포근한 여행 되세요!
-                                    <span class="ntc-date" style="float: right;">
-                                    2024.01.15
-                                </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <strong>다음 글</strong>
-                                    대한민국 No.1 지니카와 베트남 No.1 골프 코스 스카이레이크 제휴할인(~20%할인)
-                                    <span class="ntc-date" style="float: right;">
-                                    2023.12.12
-                                </span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="pt-5" style="text-align: center;">
-                            <a href="/carlife/eventMain.do" class="btn btn-purple"
-                               style="background-color: #41087c; color:white;">목록</a>
-                        </div>
-                    </div>
-                </div>
+    <div class="pt-5">
+        <div class="inner-type2">
+            <section class="text-center">
+                <h1 class="tit pb-5">이벤트 상세 내용</h1>
+            </section>
+            <p style="font-size:20px;">
+                <strong>${notice.title}</strong>
+                <span style="float: right; font-size:15px;">${notice.regDate}</span>
+            </p><hr/>
+            <pre>${notice.content}</pre>
+            <div class="m-2 card-footer">이벤트 기간 :&nbsp;
+                <small class="text-muted">${notice.startDate} ~ ${notice.endDate}</small>
             </div>
-        </main>
-        <input type="hidden" id="sessionMemberNo" name="sessionMemberNo" value="">
-    </form>
+            <c:if test="${not empty imageFiles}">
+                <c:forEach var="imageFile" items="${imageFiles}">
+                    <c:if test="${not empty imageFile.saveName}">
+                        <div class="mb-3 row">
+                            <div class="col-sm-12">
+                                <img class="form-control responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="300px" height="500px" aria-readonly="true">
+                            </div>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </c:if>
+        </div>
+        <div>
+            <div class="p-5" style="text-align: center;">
+                <a href="javascript:history.back();" class="btn text-white"
+                   style="background-color: #41087c;">목록으로 돌아가기</a>
+            </div>
+        </div>
+    </div>
 
 
     <!--------------------------------------------------하단---------------------------------------------------------->

@@ -28,7 +28,7 @@
             <p><a href="/admin/board/list.do?typeCode=NOTICE">공지사항 목록</a></p>
             <p><a href="/admin/board/list.do?typeCode=FAQ">FAQ 목록</a></p>
             <p><a href="/admin/board/list.do?typeCode=EVENT">이벤트 목록</a></p>
-            <p><a href="/admin/board/list.do?typeCode=EVENTWINNER">당첨자 목록</a></p>
+            <p><a href="/admin/board/list.do?typeCode=EVENTWINNER">이벤트 당첨자 목록</a></p>
         </li>
         <li class="list-group-item"><p>회원 관리</p>
             <p><a href="/admin/member/userList.do">회원 목록</a></p>
@@ -36,8 +36,8 @@
         </li>
         <li class="list-group-item"><p>사업자 관리</p>
             <p><a href="/admin/business/reviewList.do?typeCode=REVIEW">이용 후기 목록</a></p>
-            <p><a href="/admin/business/qnaList.do?typeCode=CONSULTING">1:1 문의 목록</a></p>
-            <p><a href="/admin/business/qnaList.do?typeCode=CONSULTING">1:1 상담 목록</a></p>
+            <p><a href="/admin/business/consultList.do?typeCode=CONSULTING">상담 신청 목록</a></p>
+            <p><a href="/admin/business/qnaList.do?typeCode=QNA">1:1 문의 목록</a></p>
             <p><a href="/admin/business/paymentList.do">결제 내역 목록</a></p>
         </li>
         <li class="list-group-item"><p>차량 관리</p>

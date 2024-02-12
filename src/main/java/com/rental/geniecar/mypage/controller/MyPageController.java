@@ -4,12 +4,18 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.rental.geniecar.admin.board.service.AdminBoardService;
+import com.rental.geniecar.domain.board.BoardVo;
+import com.rental.geniecar.domain.board.CommonCrudVo;
+import com.rental.geniecar.domain.common.FileVo;
 import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.domain.member.PointVo;
@@ -22,6 +28,16 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/mypage")
 @RequiredArgsConstructor
 public class MyPageController {
+	private static final String UPLOAD_PATH = "C:\\geniecar_images";
+	
+	private void setImageFilePath(List<FileVo> imageFiles, String savePath) {
+        for (FileVo imageFile : imageFiles) {
+            imageFile.setImageFilePath(savePath, imageFile.getSaveName());
+        }
+    }
+	
+	@Autowired
+    private AdminBoardService boardService;
 
 	private final MemberService memberService;
 	private final PointService pointService;
@@ -122,4 +138,61 @@ public class MyPageController {
 		session.removeAttribute("memberInfo");
 		return "redirect:/main/index.do";
 	}
+	// JJ
+	// 상담 신청
+	@GetMapping("/consult.do")
+	public String consult(Model model, HttpSession session){
+		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		model.addAttribute("member", membervo);
+	    return "mypage/consult";
+	}
+	// JJ
+	// 1:1 문의
+	@GetMapping("/qna.do")
+	public String qna(CommonCrudVo boardVo, Model model, HttpSession session){
+		List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
+		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		
+		for (CommonCrudVo notice : boardList) {
+	        if (notice instanceof BoardVo) {
+	            int no = ((BoardVo) notice).getNo();
+	            List<FileVo> imageFiles = boardService.selectImageFilesByNo(no);
+	            ((BoardVo) notice).setImageFiles(imageFiles);
+	        }
+	    }
+		
+		boardVo.setPageStartSet();
+        boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+        boardVo.setPageEndSet();
+        
+        model.addAttribute("member", membervo);
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("boardVo", boardVo);
+        
+        return "mypage/qna";
+    }
+	
+	// JJ
+	// 1:1문의 작성폼
+	@GetMapping("/qnaRegister.do")
+	public String qnaRegister() {
+	    return "mypage/qnaRegister";
+	}
+	
+	// JJ
+	// 1:1문의 상세보기
+	@GetMapping("/qnaDetail.do")
+	public String qnaDetail(@RequestParam int no, Model model) {
+		BoardVo notice = boardService.selectNoticeDetail(no);
+		
+	    List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
+ 
+	    setImageFilePath(imageFiles, UPLOAD_PATH);
+
+	    model.addAttribute("notice", notice);
+	    model.addAttribute("imageFiles", imageFiles);
+		
+		return "mypage/qnaDetail";
+	}
+	
 }

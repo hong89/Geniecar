@@ -25,7 +25,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/main/index.do">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">고객 지원</li>
-                <li class="breadcrumb-item active" aria-current="page">1:1 고객 센터</li>
+                <li class="breadcrumb-item active" aria-current="page">1:1 문의</li>
             </ol>
         </nav>
     </div>
@@ -33,7 +33,7 @@
     <div class="pt-5">
         <div class="inner-type2">
             <section class="text-center">
-                <h1 class="tit">1:1 고객 센터 (문의사항으로 변경?? 1:1상담과는 별개?)</h1>
+                <h1 class="tit">1:1 문의</h1>
             </section>
             <div class="pt-5">
                 <table class="table caption-top">

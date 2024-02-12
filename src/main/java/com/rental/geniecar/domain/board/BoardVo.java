@@ -1,6 +1,9 @@
 package com.rental.geniecar.domain.board;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.rental.geniecar.domain.common.FileVo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,4 +27,13 @@ public class BoardVo {
     private Date regDate;         // 작성일시
     private String modId;         // 수정자
     private Date modDate;         // 수정일시
+    private int rn;               // 로우넘
+    private List<FileVo> imageFiles;
+    
+    public List<FileVo> getImageFiles(){
+    	return imageFiles;
+    }
+    public void setImageFiles(List<FileVo> imageFiles) {
+    	this.imageFiles = imageFiles;
+    }
 }

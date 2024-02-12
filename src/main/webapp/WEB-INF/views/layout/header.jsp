@@ -29,13 +29,6 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/reservation/shortMonth/info.do">월 단기 렌터카</a></li>
                     <li><a class="dropdown-item" href="/carlife/commuteRent.do">출퇴근 렌터카</a></li>
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button"
-                   aria-expanded="false">단기 렌터카 안내</a>
-                <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/reservation/shortInfo/pay.do">대여 및 요금 안내</a></li>
                     <li><a class="dropdown-item" href="/reservation/shortInfo/checkIn.do">체크인 서비스</a></li>
                     <li><a class="dropdown-item" href="/reservation/shortInfo/service.do">부가 서비스</a></li>
@@ -57,9 +50,13 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/info/noticeNewsMain.do?typeCode=NOTICE">공지사항</a></li>
                     <li><a class="dropdown-item" href="/carlife/eventMain.do?typeCode=EVENT">이벤트</a></li>
-                    <li><a class="dropdown-item" href="/customer/question.do?typeCode=CONSULTING">1:1 고객센터</a></li>
-                    <li><a class="dropdown-item" href="/customer/faq.do?typeCode=FAQ">자주하는 질문</a></li>
+                    <li><a class="dropdown-item" href="/customer/faq.do?typeCode=FAQ">FAQ</a></li>
                 </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link text-dark" href="/customer/reviewMain.do?typeCode=REVIEW" role="button"
+                   aria-expanded="false">이용후기</a>
             </li>
         </ul>
 
@@ -87,7 +84,7 @@
                         onclick="location.href='/mypage/main.do'">마이페이지
                 <c:if test="${memberInfo.type eq 'B'}">
                     <button type="button" class="btn text-white" style="background: #41087c"
-                            onclick="location.href='#'">사업자전용
+                            onclick="location.href='/business/main/index.do'">사업자전용
                     </button>
                 </c:if>
                 <c:if test="${memberInfo.type eq 'A'}">

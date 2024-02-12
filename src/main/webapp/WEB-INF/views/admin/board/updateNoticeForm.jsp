@@ -3,31 +3,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script>
-    function editImage(fileNo, seq, currentFileName) {
-        $('#editImageModal').modal('show');
-        $('#currentFileName').val(currentFileName);
-        $('#fileNo').val(fileNo);
-    }
+    function handleFileSelect(event, imagePreviewId) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
 
-    function submitEditImageForm() {
-        var formData = new FormData(document.getElementById('editImageForm'));
-        formData.append("fileNo", $('#fileNo').val());
-        alert('fileNo: ' + $('#fileNo').val());
+        reader.onload = function (e) {
+            const previewImage = document.getElementById(imagePreviewId);
+            previewImage.src = e.target.result;
+            previewImage.style.display = 'block'; // 이미지 미리보기 표시
+        };
 
-        $.ajax({
-            type: 'POST',
-            url: '/admin/board/updateImage.do',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                $('#editImageModal').modal('hide');
-                location.reload();
-            },
-            error: function () {
-                alert('이미지 수정를 수정할 수 없습니다.');
-            }
-        });
+        reader.readAsDataURL(file);
     }
 </script>
 
@@ -38,71 +24,77 @@
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
-    <form name="updateNotice" action="/admin/board/updateNotice.do" method="post" enctype="multipart/form-data">
-        <div class="pt-5">
-            <div class="inner-type2">
-                <section class="text-center">
-                    <h1 class="tit">내용 수정하기</h1>
-                </section>
-                <div class="mb-3 row">
-                    <label for="title" class="col-sm-2 col-form-label">제목</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="title" name="title" value="${notice.title}">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="content" class="col-sm-2 col-form-label">내용</label>
-                    <div class="col-sm-10"><textarea class="form-control" id="content" name="content" rows="20"
-                                                     style="width: 100%;">${notice.content}</textarea>
-                    </div>
+
+    <div id="registerForm">
+        <h3>등록하기</h3>
+
+        <form name="registerForm" action="/admin/board/updateNotice.do" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="no" value="${notice.no}">
+            <section class="text-center">
+                <h1 class="tit">내용 수정하기</h1>
+            </section>
+            <div class="mb-3 row">
+                <label for="title" class="col-sm-2 col-form-label">구분</label>
+                <div class="col-sm-10">
+                    <select class="form-select" id="typeCode" name="typeCode">
+                        <option value="NOTICE">공지사항</option>
+                        <option value="FAQ">FAQ</option>
+                        <option value="EVENT">이벤트</option>
+                        <option value="EVENTWINNER">이벤트 당첨자</option>
+                        <option value="CONSULTING">상담 신청</option>
+                        <option value="QNA">1:1 문의</option>
+                        <option value="REVIEW">이용후기</option>
+                    </select>
                 </div>
             </div>
-            <c:if test="${not empty imageFiles}">
-                <c:forEach var="imageFile" items="${imageFiles}">
+            <div class="mb-3 row">
+                <label for="title" class="col-sm-2 col-form-label">제목</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="title" name="title" value="${notice.title}">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="content" class="col-sm-2 col-form-label">내용</label>
+                <div class="col-sm-10"><textarea class="form-control" id="content" name="content" rows="20"
+                                                 style="width: 100%;">${notice.content}</textarea>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="fileMultiple" class="col-sm-2 col-form-label">파일</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="file" id="fileMultiple" name="file" multiple>
+                </div>
+            </div>
+
+			<c:if test="${not empty imageFiles}">
+                <c:forEach var="imageFile" items="${imageFiles}" varStatus="loop">
                     <c:if test="${not empty imageFile.saveName}">
                         <div class="mb-3 row">
-                            <label for="images" class="col-sm-2 col-form-label">이미지</label>
-                            <div class="col-sm-10">
-                                <img class="form-control" src="/downloadFile/${imageFile.saveName}" alt="images" width="300" height="500">
-                                <button type="button" class="btn text-white" style="background: #41087c" onclick="editImage(${imageFile.fileNo}, ${imageFile.seq}, '${imageFile.saveName}')">이미지 수정</button>
-                                
+                            <label for="images" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10 text-center" style="position: relative;">
+                                <img id="imagePreview_${loop.index}" src="/downloadFile/${imageFile.saveName}" alt="이미지 미리보기" width="300" height="200" style="display: block; margin: 0 auto; float: left;">
+                                <!-- <input type="file" id="fileInput_${loop.index}" style="display: none;" onchange="handleFileSelect(event, 'imagePreview_${loop.index}')" class="btn text-white" style="background: #41087c;"> -->
+                                <input type="file" id="fileInput_${loop.index}" style="display: none;" onchange="" class="btn text-white" style="background: #41087c;">
+                                <button type="button" class="btn text-white" style="background: #41087c; position: absolute; top: 80px; left: 400px;  transform: translateX(-50%);" onclick="document.getElementById('fileInput_${loop.index}').click();">이미지 변경</button>
                             </div>
                         </div>
                     </c:if>
                 </c:forEach>
             </c:if>
-        </div>
-        <button type="button" class="btn text-white" style="background: #41087c"
+            
+            <button type="button" class="btn text-white" style="background: #41087c"
                 onclick="location.href='list.do?typeCode=${notice.typeCode}'">목록가기
-        </button>
-        <input type="hidden" name="no" value="${notice.no}">
-        <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">수정적용</button>
-        <!-- <button type="button" class="btn text-white" style="background: #41087c" onclick="location.href='updateNoticeForm.do?no=${notice.no}'">수정적용</button> -->
-        <button type="button" class="btn text-white" style="background: #41087c"
-                onclick="location.href='deleteNotice.do?no=${notice.no}'">삭제하기
-        </button>
+            </button>
+            <input type="hidden" name="no" value="${notice.no}">
+            <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">수정적용</button>
+            <!-- <button type="button" class="btn text-white" style="background: #41087c" onclick="location.href='updateNoticeForm.do?no=${notice.no}'">수정적용</button> -->
+            <button type="button" class="btn text-white" style="background: #41087c"
+                    onclick="location.href='deleteNotice.do?no=${notice.no}'">삭제하기
+            </button>
+
         </form>
-  
-        <div class="modal fade" id="editImageModal" tabindex="-1" aria-labelledby="editImageModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editImageModalLabel">이미지 수정</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                  
-                        <form id="editImageForm" action="/admin/board/updateImage" method="post" enctype="multipart/form-data">
-                            <input type="hidden" id="fileNo" name="fileNo" value="">
-                            <div class="mb-3">
-                                <label for="editImageFile" class="form-label">이미지 선택</label>
-                                <input type="file" class="form-control" id="editImageFile" name="editImageFile">
-                            </div>
-                            <button type="button" class="btn btn-primary" onclick="submitEditImageForm()">이미지 수정</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>

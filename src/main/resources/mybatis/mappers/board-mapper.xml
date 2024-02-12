@@ -12,6 +12,8 @@
 			 , TYPE_CODE
 			 , NOTICE_YN
 			 , HASH_TAG
+			 , START_DATE
+			 , END_DATE
 			 , REG_DATE
 			 , RN
   		  FROM 
@@ -22,6 +24,8 @@
 			        , TYPE_CODE
 			        , NOTICE_YN
 			        , HASH_TAG
+			        , START_DATE
+					, END_DATE
 			        , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
 			        , ROW_NUMBER() OVER(ORDER BY NO DESC)
 			          AS RN
@@ -58,6 +62,8 @@
 			, HIT
 			, TYPE_CODE
 			, FILE_NO
+			, START_DATE
+			, END_DATE
 			, REG_ID
 			, REG_DATE
 		)
@@ -69,6 +75,8 @@
 			, #{hit}
 			, #{typeCode}
 			, #{fileNo}
+			, #{startDate}
+			, #{endDate}
 			, #{regId}	
 			, SYSDATE
 		)
@@ -100,9 +108,16 @@
 	<update id="updateNotice" parameterType="boardVo">
 		UPDATE BOARD
 		SET 
-			  TITLE = #{title}
-			, CONTENT = #{content}
-			, MOD_DATE =#{modDate}
+			  NO         = #{no}
+			, TITLE      = #{title}
+			, CONTENT    = #{content}
+			, HIT        = #{hit}
+			, TYPE_CODE  = #{typeCode}
+			, FILE_NO    = #{fileNo}
+			, START_DATE = #{startDate}
+			, END_DATE   = #{endDate}
+			<!--, MOD_ID     = #{regId}-->
+			, MOD_DATE   = SYSDATE
 		WHERE NO = #{no}		
 	</update>
 	
@@ -111,13 +126,12 @@
     <![CDATA[
         UPDATE IMAGE_FILE
         SET
-            SAVE_PATH = #{savePath},
-            SAVE_NAME = #{saveName},
-            FILE_NAME = #{fileName},
-            EXTENSION = #{extension},
-            FILE_SIZE = #{fileSize},
-            REG_ID    = 'JIN',
-            REG_DATE  = #{regDate}
+              SAVE_PATH = #{savePath}
+            , SAVE_NAME = #{saveName}
+            , FILE_NAME = #{fileName}
+            , EXTENSION = #{extension}
+            , FILE_SIZE = #{fileSize}
+            , REG_ID    = #{regId}
 	    WHERE FILE_NO = #{fileNo} AND SEQ = #{seq}
     	]]>
 	</update>
@@ -166,6 +180,20 @@
 	
 	<select id="findByFileNo" parameterType="int" resultType="com.rental.geniecar.domain.common.FileVo">
 		SELECT * FROM IMAGE_FILE WHERE FILE_NO = #{fileNo}
+	</select>
+	
+	<select id="selectImageFilesByTypeCode" parameterType="String" resultType="fileVo">
+		SELECT IMAGE_FILE.* 
+    	FROM IMAGE_FILE
+    	JOIN BOARD ON IMAGE_FILE.FILE_NO = BOARD.FILE_NO 
+    	WHERE BOARD.NO = #{no}
+	</select>
+	
+	<select id="selectImageFilesByNo" parameterType="int" resultType="fileVo">
+		SELECT IMAGE_FILE.* 
+    	FROM IMAGE_FILE
+    	JOIN BOARD ON IMAGE_FILE.FILE_NO = BOARD.FILE_NO 
+    	WHERE BOARD.NO = #{no}
 	</select>
 
 </mapper>

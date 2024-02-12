@@ -27,15 +27,10 @@
             <p><a href="/business/rental/monthRent.do">월단기 렌터카</a></p>
             <p><a href="/business/rental/commuteRent.do">출퇴근 렌터카</a></p>
         </li>
-        <li class="list-group-item"><p>이벤트</p>
-            <p><a href="/business/event/list.do">이벤트 목록</a></p>
-            <p><a href="/business/event/register.do">이벤트 등록</a></p>
-        </li>
         <li class="list-group-item"><p>상담 내역</p>
-            <p><a href="/business/consult/one.do">1:1 내역</a></p>
-            <p><a href="/business/consult/review.do">이용 후기 확인</a></p>
-            <p><a href="/business/consult/consult.do">상담 내역</a></p>
-            <p><a href="/business/consult/register.do">상담 내역 등록</a></p>
+            <p><a href="/business/consult/consult.do?typeCode=CONSULTING">상담 문의 목록</a></p>
+            <p><a href="/business/consult/one.do?typeCode=QNA">1:1 문의 목록</a></p>
+            <p><a href="/business/consult/review.do?typeCode=REVIEW">이용 후기 목록</a></p>
         </li>
         <li class="list-group-item"><p>주문 결제</p>
             <p><a href="/business/payment/shortRent.do">단기 결제 내역</a></p>

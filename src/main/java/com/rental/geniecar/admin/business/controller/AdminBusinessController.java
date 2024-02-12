@@ -1,24 +1,82 @@
 package com.rental.geniecar.admin.business.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.rental.geniecar.admin.board.service.AdminBoardService;
+import com.rental.geniecar.domain.board.CommonCrudVo;
+import com.rental.geniecar.domain.common.FileVo;
 
 @Controller
 @RequestMapping("/admin/business/")
 public class AdminBusinessController {
-    @GetMapping("/eventList.do")
-    public String eventList() {
-        return "admin/business/eventList";
+	private static final String UPLOAD_PATH = "C:\\geniecar_images";
+
+	private void setImageFilePath(List<FileVo> imageFiles, String savePath) {
+	    for (FileVo imageFile : imageFiles) {
+	        imageFile.setImageFilePath(savePath, imageFile.getSaveName());
+	    }
+	}
+
+	@Autowired
+	private AdminBoardService boardService;
+	
+    @GetMapping("/consultList.do")
+    public String consultList(CommonCrudVo boardVo, Model model) {
+    	
+    	// 페이징 전처리
+        boardVo.setPageStartSet();
+        // 목록조회
+        List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
+        // 목록 전체건수 조회
+        boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+        // 페이징 후처리
+        boardVo.setPageEndSet();
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("boardVo", boardVo);
+    	
+        return "admin/business/consultList";
     }
 
     @GetMapping("/reviewList.do")
-    public String reviewList() {
+    public String reviewList(CommonCrudVo boardVo, Model model) {
+    	
+    	// 페이징 전처리
+        boardVo.setPageStartSet();
+        // 목록조회
+        List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
+        // 목록 전체건수 조회
+        boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+        // 페이징 후처리
+        boardVo.setPageEndSet();
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("boardVo", boardVo);
+    	
         return "admin/business/reviewList";
     }
 
     @GetMapping("/qnaList.do")
-    public String qnaList() {
+    public String qnaList(CommonCrudVo boardVo, Model model) {
+    	
+    	// 페이징 전처리
+        boardVo.setPageStartSet();
+        // 목록조회
+        List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
+        // 목록 전체건수 조회
+        boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+        // 페이징 후처리
+        boardVo.setPageEndSet();
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("boardVo", boardVo);
+    	
         return "admin/business/qnaList";
     }
 
