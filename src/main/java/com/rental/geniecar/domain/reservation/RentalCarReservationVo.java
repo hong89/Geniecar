@@ -1,4 +1,4 @@
-package com.rental.geniecar.domain.branch;
+package com.rental.geniecar.domain.reservation;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,11 +10,14 @@ import java.util.Date;
 public class RentalCarReservationVo {
     private String reservationNo;                // 예약번호
     private String rentalPlace;                  // 대여_장소 (공통코드 FK)
+    private String rentalPlaceName;              // 대여_장소명
     private String returnPlace;                  // 반납_장소 (공통코드 FK)
+    private String returnPlaceName;              // 반납_장소명
     private Date rentalDate;                     // (대여)시작_날짜_시간
     private Date returnDate;                     // 반납_날짜_시간
     private String carIdentificationNumber;      // 차대번호
-    private int rentalCarBranchNo;               // 렌터카_지점_NO
+    private String rentalCarBranchNo;               // 렌터카_지점_NO
+    private String rentalCarBranchName;             // 렌터카_지점명
     private String reservationMemberId;          // 예약자_ID (회원아이디 FK)
     private int regularPrice;                    // 정가
     private int saleRate;                        // 할인율

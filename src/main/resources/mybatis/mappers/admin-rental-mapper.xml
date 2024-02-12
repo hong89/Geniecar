@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rental.geniecar.admin.rental.dao.AdminRentalDao">
+
+	<select id="selectReservationList" resultType="rentalCarReservationVo" parameterType="com.rental.geniecar.domain.common.Pagination">
+		SELECT  RESERVATION_NO
+		, RENTAL_PLACE
+		, FN_COMM_NAME(RENTAL_PLACE) AS RENTAL_PLACE_NAME
+		, RETURN_PLACE
+		, FN_COMM_NAME(RETURN_PLACE) AS RETURN_PLACE_NAME
+		, RENTAL_DATE
+		, RETURN_DATE
+		, CAR_IDENTIFICATION_NUMBER
+		, RENTAL_CAR_BRANCH_NO
+		, FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS RENTAL_CAR_BRANCH_NAME
+		, RESERVATION_MEMBER_ID
+		, REGULAR_PRICE
+		, SALE_RATE
+		, FINAL_RESERVATION_PRICE
+		, REG_ID
+		, REG_DATE
+		, MOD_ID
+		, MOD_DATE
+		FROM (SELECT ROW_NUMBER() OVER (ORDER by RCR.RENTAL_DATE) AS RN
+		, RCR.*
+		FROM RENTAL_CAR_RESERVATION RCR
+		WHERE RENTAL_DATE &gt; SYSDATE )
+		<if test="firstRecordIndex != null and lastRecordIndex != null">
+			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+		</if>
+	</select>
+	
+	<select id="totalCount" parameterType="com.rental.geniecar.domain.common.Pagination" resultType="int">
+		SELECT COUNT(*) FROM RENTAL_CAR_RESERVATION
+	</select>
+
+</mapper>

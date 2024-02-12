@@ -1,0 +1,114 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<div class="container-xl">
+    <!--------------------------------------------------상단---------------------------------------------------------->
+    <div class="p-5">
+        <div class="inner-type2">
+            <section class="text-center">
+                <h1 class="pb-5 tit">단기 렌터카 예약 관리</h1>
+            </section>
+            <table class="pt-5 table caption-top">
+                <thead>
+                <tr>
+                    <td class="col"><strong>예약번호</strong></td>
+                    <td class="col"><strong>대여장소</strong></td>
+                    <td class="col"><strong>반납장소</strong></td>
+                    <td class="col"><strong>대여기간</strong></td>
+                    <td class="col"><strong>차량번호</strong></td>
+                    <td class="col"><strong>예약이름</strong></td>
+                    <td class="col"><strong>최종가격</strong></td>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="res" items="${reservationList}">
+                    <tr>
+                        <td class="col">${res.reservationNo}</td>
+                        <td class="col">${res.rentalPlaceName}</td>
+                        <td class="col">${res.returnPlaceName}</td>
+                        <td class="col">${res.rentalDate} / ${res.returnDate}</td>
+                        <td class="col">${res.carIdentificationNumber}</td>
+                        <td class="col">${res.reservationMemberId}</td>
+                        <td class="col">${res.finalReservationPrice}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <!--paginate -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+                            <span aria-hidden="true"
+                                  onclick="movePage(1);">&lt;&lt;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+                            <span aria-hidden="true" onclick="movePage(${pagination.currentPage} <c:if
+                                    test="${pagination.hasPreviousPage}">-1</c:if>);">&lt;</span>
+                        </a>
+                    </li>
+
+                    <c:forEach begin="${pagination.firstPage}" end="${pagination.lastPage}" var="idx">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0);"
+                               onclick="movePage(${idx},${pagination.cntPerPage}, ${pagination.pageSize});">
+                                <c:out value="${idx}"/>
+                            </a>
+                        </li>
+                    </c:forEach>
+
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Next" href="javascript:void(0);"
+                           onclick="movePage(${pagination.currentPage} <c:if
+                                   test="${pagination.hasNextPage == true}">+1</c:if>);">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Next" href="javascript:void(0);"
+                           onclick="movePage(${pagination.totalRecordCount});">
+                            <span aria-hidden="true">&gt;&gt;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /paginate -->
+            <!---->
+            <script>
+
+                $('#formSelect').on('change', function () {
+                    movePage(1);
+                });
+
+                //페이지 이동
+                function movePage(currentPage) {
+
+                    var url = "/admin/car/newCarList.do";
+                    var params = [];
+                    params.push("currentPage=" + (currentPage || 1));
+
+                    var formSelectVal = $('#formSelect').val();
+                    if (formSelectVal) {
+                        params.push("keyword=" + formSelectVal);
+                    }
+
+                    var queryParams = '';
+                    for (var i = 0; i < params.length; i++) {
+                        if (i == 0) queryParams = '?' + params[i];
+                        else queryParams += '&' + params[i]
+                    }
+                    location.href = url + queryParams;
+                }
+
+            </script>
+        </div>
+    </div>
+
+
+    <!--------------------------------------------------하단---------------------------------------------------------->
+</div>
