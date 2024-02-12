@@ -19,32 +19,24 @@
 </style>
 <script>
     $(function () {
-        $('#company').on('change', function () {
-            // 제조사를 변경하면 해당 제조사의 차량이 나오도록 처리
-            var groupCode = $(this).val().substring(3, 6);
-            $.get("/admin/car/selectCodeByGroupCode.do", {groupCode: groupCode}, function (res) {
-                var str = "<option selected>선택</option>";
-                $.each(res, function (i) {
-                    str += "<option value='" + res[i].fullCode + "'>" + res[i].codeName + "</option>";
-                });
-                $('#carNameCode').html(str);
-                $('#carFuelCode').html("<option selected>선택</option>");
-            });
-        });
-        // 차량이 선택되면 연료 가져올 수 있도록 처리
-        $(document).on('change', '#carNameCode', function () {
-            var carNameCode = $(this).val();
-            console.log(carNameCode)
-            $.get("/admin/car/selectCarByFullCode.do", {carNameCode: carNameCode}, function (res) {
-                console.log(res);
-                var str = "<option selected>선택</option>";
-                $.each(res, function (i) {
-                    str += "<option value='" + res[i].carFuelCode + "'>" + res[i].fuelName + "</option>";
-                });
-                $('#carFuelCode').html(str);
-                $('#carTypeCode').val(res[0].carTypeCode);
-            });
+        $('#company, #carFuelCode, #carTypeCode').on('change', function(){
+            var company = $('#company').val()
+            var carFuelCode = $('#carFuelCode').val()
+            var carTypeCode = $('#carTypeCode').val()
 
+            if(company && carFuelCode && carTypeCode){
+                var reqData = {company: company, carFuelCode: carFuelCode, carTypeCode: carTypeCode};
+                $.get("/admin/car/selectCarNameList.do", reqData, function (res) {
+                    var str = "<option selected>선택</option>";
+                    $.each(res, function (i) {
+                        str += "<option value='" + res[i].no + "'>" + res[i].carName + "</option>";
+                    });
+                    $('#carNo').html(str);
+                });
+            }else{
+                var str = "<option selected>선택</option>";
+                $('#carNo').html(str);
+            }
         });
 
         $('#carNumber').on('blur', function () {
@@ -60,10 +52,7 @@
                     , $('#createYear').val()  // 제조년도
                     , $('#factory').val()  // 공장
                     , $('#carNumber').val()  // 고유번호
-
                 ];
-
-
                 $('#carIdentificationNumber').val(carIdentifiedNum.join(''));
             }
         });
@@ -91,7 +80,7 @@
                     <label for="company" class="col-sm-3 col-form-label">제조사</label>
                     <div class="col-sm-9">
                         <select class="form-select" aria-label="Default select example" id="company" name="company">
-                            <option selected>선택</option>
+                            <option selected value="">선택</option>
                             <c:forEach var="code" items="${codeList}">
                                 <option value="${code.fullCode}">${code.codeName}</option>
                             </c:forEach>
@@ -99,21 +88,35 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="carNameCode" class="col-sm-3 col-form-label">차명</label>
-                    <div class="col-sm-9">
-                        <select class="form-select" aria-label="Default select example" id="carNameCode"
-                                name="carNameCode">
-                            <option selected>선택</option>
-                        </select>
-                    </div>
-                </div>
-                <input type="hidden" class="form-control" id="carTypeCode" name="carTypeCode">
-                <div class="mb-3 row">
                     <label for="carFuelCode" class="col-sm-3 col-form-label">연료</label>
                     <div class="col-sm-9">
                         <select class="form-select" aria-label="Default select example" id="carFuelCode"
                                 name="carFuelCode">
-                            <option selected>선택</option>
+                            <option selected value="">선택</option>
+                            <c:forEach var="fuelCode" items="${fuelCodeList}">
+                                <option value="${fuelCode.fullCode}">${fuelCode.codeName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="carTypeCode" class="col-sm-3 col-form-label">차종</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" aria-label="Default select example" id="carTypeCode"
+                                name="carTypeCode">
+                            <option selected value="">선택</option>
+                            <c:forEach var="segCode" items="${segCodeList}">
+                                <option value="${segCode.fullCode}">${segCode.codeName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="carNo" class="col-sm-3 col-form-label">차명</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" aria-label="Default select example" id="carNo"
+                                name="carNo">
+                            <option selected value="">선택</option>
                         </select>
                     </div>
                 </div>

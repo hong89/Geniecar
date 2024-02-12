@@ -41,9 +41,9 @@
             <p><a href="/admin/business/paymentList.do">결제 내역 목록</a></p>
         </li>
         <li class="list-group-item"><p>차량 관리</p>
-            <p><a href="/admin/car/newCarRegister.do">신차 등록</a></p>
-            <p><a href="/admin/car/register.do">차량 등록</a></p>
-            <p><a href="/admin/car/stockList.do">보유 목록</a></p>
+            <p><a href="/admin/car/newCarList.do">신차 목록</a></p>
+            <p><a href="/admin/car/register.do">렌터 차량 등록</a></p>
+            <p><a href="/admin/car/stockList.do">차량 보유 목록</a></p>
             <p><a href="/admin/car/list.do">지점별 차량 목록</a></p>
         </li>
     </ul>

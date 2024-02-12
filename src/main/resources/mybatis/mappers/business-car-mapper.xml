@@ -5,14 +5,14 @@
     <select id="selectBranchesCarByBranchCode" parameterType="String" resultType="com.rental.geniecar.domain.branch.BranchCarVo">
         SELECT RCBC.CAR_IDENTIFICATION_NUMBER
              , FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS BRANCH
-             , FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
-             , FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
-             , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
-             , FN_COMM_NAME(COMPANY) AS COMPANY
-             , DELIVERY_DATE
+             , RC.CAR_TYPE
+             , RC.CAR_NAME
+             , RC.CAR_FUEL
+             , RC.COMPANY
+             , RC.DELIVERY_DATE
              , RENTAL_ABLE_STATUS
              , DEFAULT_COST
-        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR RC
+        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR_VIEW RC
         WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
           AND RENTAL_CAR_BRANCH_NO = #{branchCode}
     </select>
@@ -29,7 +29,7 @@
              , IMPORT_CAR_YN
              , RENTAL_ABLE_STATUS
              , DEFAULT_COST
-        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR RC
+        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR_VIEW RC
         WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
           AND RENTAL_CAR_BRANCH_NO = #{branchCode} AND RENTAL_ABLE_STATUS = 'W'
     </select>
