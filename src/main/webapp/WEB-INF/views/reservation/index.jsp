@@ -4,6 +4,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js"></script>
 <script src="/js/lib/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>
 <script src="/js/calendar.js"></script>
 <style>
     .breadcrumb-item a {
@@ -64,15 +65,30 @@
         cursor: pointer;
     }
 
-    .date-inactive {
+    .prev-date, .date-inactive {
         color: #ddd;
         cursor: default;
     }
+
+    .selected-start-date{
+        color: #ff404b;
+        width: 38px;
+        height: 38px;
+    }
+
+    .on-rental-date{
+        color: #ff404b;
+        width: 38px;
+        height: 38px;
+    }
+
+    .selected-return-date{
+        color: #ff404b;
+        width: 38px;
+        height: 38px;
+    }
 </style>
 <script>
-    $(function () {
-
-    });
 </script>
 <!--------------------------------------------------상단---------------------------------------------------------->
 <div class="container-xl">
@@ -140,13 +156,13 @@
                                 <div class="col-3">
                                     <p class="card-text"><small><strong>대여장소</strong></small><br/>
                                         <img src="/images/icons/location-dot-solid.svg" width="15px"/>
-                                        <span id="rentalPlace">어디서 대여할까요?</span></p>
+                                        <span id="rentalPlace" class="cursor-pointer">어디서 대여할까요?</span></p>
 
                                 </div>
                                 <div class="col-3">
                                     <p class="card-text"><small><strong>반납장소</strong></small><br/>
                                         <img src="/images/icons/location-dot-solid.svg" width="15px"/>
-                                        <span id="returnPlace">어디로 반납할까요?</span></p>
+                                        <span id="returnPlace" class="cursor-pointer">어디로 반납할까요?</span></p>
 
                                 </div>
                                 <div class="col-4">
@@ -183,10 +199,10 @@
                     <div class="card-body">
                         <div class="row">
                             <c:forEach var="location" items="${locationList}">
-        <div class="col-6 locations cursor-pointer text-center" data-location-code="${location.fullCode}">
-        ${location.codeName}
-        </div>
-    </c:forEach>
+                                <div class="col-6 locations cursor-pointer text-center" data-location-code="${location.fullCode}">
+                                    ${location.codeName}
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -199,7 +215,6 @@
                 </div>
             </div>
         </div>
-
     </script>
     <%--지점 목록 영역 끝--%>
 
@@ -219,169 +234,15 @@
     </script>
     <%--지점 목록 영역 끝--%>
 
-    <script>
-        $(function () {
-            var currentStep = 1;
-            var rentalForm = {
-                rentalPlace: '',
-                returnPlace: '',
-                rentalCarBranchNo: '',
-            };
-
-            //step1. 지역 목록 출력
-            var data = {"locations": []};
-            //var template = $('#locationTemplate').html();
-            /*var rendered = Mustache.render(template, data);
-            $('#containerArea').html(rendered);*/
-
-            var dateTemplate = $('#dateTemplate').html();
-            var dateRendered = Mustache.render(dateTemplate, data);
-            $('#containerArea').html(dateRendered);
-
-            //TODO 같은 지역 클릭 시 이벤트 발생되지 않도록 구현 필요
-            //step1. 지점 목록 출력
-            $('#containerArea').on("click", ".locations", function () {
-                var locationCode = $(this).data('locationCode');
-                $.get("/reservation/selectBranch.do", {locationCode: locationCode}, function (res) {
-                    data.locations = res;
-                    $('#branchListArea').html(Mustache.render($('#branchTemplate').html(), data));
-                });
-            });
-
-            //step1. 지점 목록 클릭 시 달력 step2 페이지로 전환
-            //TODO 지점 스타일 적용 시 태그 변경될 수 있으니 같이 변경 필요
-            $('#containerArea').on('click', '#branchListArea span', function () {
-                rentalForm.rentalPlace = rentalForm.returnPlace = rentalForm.rentalCarBranchNo = $(this).data('no');
-                $('#rentalPlace').text($(this).text());
-                $('#returnPlace').text($(this).text());
-                var dateTemplate = $('#dateTemplate').html();
-                var dateRendered = Mustache.render(dateTemplate, data);
-                $('#containerArea').html(dateRendered);
-            });
-
-            //TODO 뒤로 가기
-            $('#containerArea').on('click', '#backBtn', function () {
-                if (currentStep == 1) {
-
-                } else if (currentStep == 2) {
-
-                } else { //step == 3
-
-                }
-                return false;
-            });
-
-            moment.locale();
-
-            var reservationDateObj = {
-                today: moment().format('YYYY-MM-DD'),
-                leftDate: {
-                    yearMonth: '',
-                    startDay: '',
-                    daysInMonth: 0,
-                    list: [],
-                },
-
-                rightDate: {
-                    yearMonth: '',
-                    startDay: '',
-                    daysInMonth: 0,
-                    list: []
-                },
-                dateCalculator: function () {
-                    this.leftDate.list = []; //초기화
-                    this.rightDate.list = []; //초기화
-
-                    let _leftMoment = moment(this.today);
-                    let _rightMoment = _leftMoment.clone().add('1', 'M');
-
-                    this.leftDate.yearMonth = _leftMoment.format('YYYY.MM');
-                    this.leftDate.daysInMonth = _leftMoment.daysInMonth();
-                    this.leftDate.startDay = _leftMoment.clone().startOf('month').format('d');
-
-                    this.rightDate.yearMonth = _rightMoment.format('YYYY.MM');
-                    this.rightDate.daysInMonth = _rightMoment.daysInMonth();
-                    this.rightDate.startDay = _rightMoment.clone().startOf('month').format('d');
-                },
-                nextMonth: function () {
-                    var nextMonth = moment(this.today).add('1', 'M');
-                    //다음달은 6개월까지만 보여지도록
-                    if (nextMonth.diff(moment().format('YYYY-MM'), 'months') >= 7) return;
-
-                    this.today = moment(this.today).add('1', 'M');
-                    this.run();
-                },
-                beforeMonth: function () {
-                    //이번달 전은 보이지 않게
-                    if (moment().format('YYYY.MM') == this.leftDate.yearMonth) return;
-
-                    this.today = moment(this.today).subtract('1', 'M');
-                    this.run();
-                },
-                fillDate: function (date) {
-                    var isStart = false, currentDay = 0, isEnd = false;
-                    var isSameMonth = moment().format('YYYY.MM') == date.yearMonth;
-                    var today = Number(moment().format('DD'));
-
-                    for (var j = 0; j < 6; j++) {
-                        if (isEnd) break;
-                        date.list[j] = [];
-
-                        for (var i = 0; i < 7; i++) {
-                            if (currentDay >= date.daysInMonth) {
-                                isEnd = true;
-                                break;
-                            }
-                            if (!isStart && i == Number(date.startDay)) isStart = true;
-
-                            var dayInfo = {
-                                date: isStart ? ++currentDay : '',
-                                className: isSameMonth && isStart && currentDay < today ? 'date-inactive' : '' //이전 날짜 음영처리
-                            }
-                            date.list[j].push(dayInfo);
-                        }
-                    }
-                },
-                run: function () {
-                    this.dateCalculator();
-
-                    this.fillDate(this.leftDate);
-                    this.fillDate(this.rightDate);
-
-                    var calendarTemplate = $('#calendarTemplate').html();
-                    var calendarRendered = Mustache.render(calendarTemplate, reservationDateObj);
-                    $('#calendarArea').html(calendarRendered);
-                },
-            }
-
-            reservationDateObj.run(); //달력 모듈 실행
-
-            //달력 왼쪽 클릭 시
-            $('#containerArea').on('click', '#dateLeftBtn', function () {
-                reservationDateObj.beforeMonth();
-            });
-
-            //달력 오른쪽 클릭 시
-            $('#containerArea').on('click', '#dateRightBtn', function () {
-                reservationDateObj.nextMonth();
-            });
-
-            //달력 날짜 클릭 시
-            $('#containerArea').on('click', '.days > td', function(){
-
-            });
-
-
-
-        });
-    </script>
-
     <%--달력 시작--%>
     <script type="x-tmpl-mustache" id="calendarTemplate" style="display: none">
         <%--첫번째 달력--%>
         <div class="col p-2">
             <div class="rental-start-calendar">
-                <h4 class="text-center p-2"><img src="/images/icons/chevron-left.svg" id="dateLeftBtn" class="cursor-pointer" />{{leftDate.yearMonth}}</h4>
+                <h4 class="text-center p-2 year-month" data-year-month="{{leftDate.yearMonth}}">
+                    <img src="/images/icons/chevron-left.svg" id="dateLeftBtn" class="cursor-pointer" />
+                    {{leftDate.yearMonth}}
+                </h4>
                 <table>
                     <thead>
                     <tr class="weekdays">
@@ -410,7 +271,10 @@
         <%--두번째 달력--%>
         <div class="col p-2">
             <div class="rental-start-calendar">
-                <h4 class="text-center p-2">{{rightDate.yearMonth}}<img src="/images/icons/chevron-right.svg" id="dateRightBtn" class="cursor-pointer" /></h4>
+                <h4 class="text-center p-2 year-month" data-year-month="{{rightDate.yearMonth}}">
+                    {{rightDate.yearMonth}}
+                    <img src="/images/icons/chevron-right.svg" id="dateRightBtn" class="cursor-pointer" />
+                </h4>
                 <table>
                     <thead>
                     <tr class="weekdays">
@@ -435,9 +299,7 @@
                 </table>
             </div>
         </div>
-
     </script>
-
     <%--달력 끝--%>
 
     <!-- 날짜 선택 영역 -->
@@ -469,17 +331,9 @@
                     </div>
 
                     <div class="col-1"></div>
-                    <select class="form-select" aria-label="Default select example" disabled="disabled"
+                    <select id="startDateSelectHour" class="form-select" aria-label="Default select example" disabled="disabled"
                             style="height: 50px; margin-left:10px; width: 220px;">
-                        <option selected>선택</option>
-                        <%--<option value="00">00시</option>
-                        <option value="01">01시</option>
-                        <option value="02">02시</option>
-                        <option value="03">03시</option>
-                        <option value="04">04시</option>
-                        <option value="05">05시</option>
-                        <option value="06">06시</option>
-                        <option value="07">07시</option>--%>
+                        <option selected value="">선택</option>
                         <option value="08">08시</option>
                         <option value="09">09시</option>
                         <option value="10">10시</option>
@@ -495,11 +349,9 @@
                         <option value="20">20시</option>
                         <option value="21">21시</option>
                         <option value="22">22시</option>
-                        <%--<option value="23">23시</option>--%>
                     </select>
-                    <select class="form-select" aria-label="Default select example" disabled="disabled"
+                    <select id="startDateSelectMinute" class="form-select" aria-label="Default select example" disabled="disabled"
                             style="height: 50px; margin-left:20px; width: 220px;">
-                        <option selected>선택</option>
                         <option value="00">00분</option>
                         <option value="10">10분</option>
                         <option value="20">20분</option>
@@ -507,17 +359,9 @@
                         <option value="40">40분</option>
                         <option value="50">50분</option>
                     </select>
-                    <select class="form-select" aria-label="Default select example" disabled="disabled"
+                    <select id="returnDateSelectHour" class="form-select" aria-label="Default select example" disabled="disabled"
                             style="height: 50px; margin-left:30px; width: 220px;">
-                        <option selected>선택</option>
-                        <%--<option value="00">00시</option>
-                        <option value="01">01시</option>
-                        <option value="02">02시</option>
-                        <option value="03">03시</option>
-                        <option value="04">04시</option>
-                        <option value="05">05시</option>
-                        <option value="06">06시</option>
-                        <option value="07">07시</option>--%>
+                        <option selected value="">선택</option>
                         <option value="08">08시</option>
                         <option value="09">09시</option>
                         <option value="10">10시</option>
@@ -533,11 +377,9 @@
                         <option value="20">20시</option>
                         <option value="21">21시</option>
                         <option value="22">22시</option>
-                        <%--<option value="23">23시</option>--%>
                     </select>
-                    <select class="form-select" aria-label="Default select example" disabled="disabled"
+                    <select id="returnDateSelectMinute" class="form-select" aria-label="Default select example" disabled="disabled"
                             style="height: 50px; margin-left:20px; width: 220px;">
-                        <option selected>선택</option>
                         <option value="00">00분</option>
                         <option value="10">10분</option>
                         <option value="20">20분</option>
@@ -546,7 +388,10 @@
                         <option value="50">50분</option>
                     </select>
                     <div class="col-1 mt-3"></div>
-                    <div class="col-11 mt-3"><p class="text-center">총 x일 x시간 x분 대여</p></div>
+                    <div class="col-11 mt-3"><p class="text-center">총
+                        <span id="rentalPeriodDay">0</span>일
+                        <span id="rentalPeriodHour">0</span>시간
+                        <span id="rentalPeriodMinute">0</span>분 대여</p></div>
 
                 </div>
             </div>
