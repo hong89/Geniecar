@@ -35,11 +35,12 @@ CREATE TABLE MEMBER -- 회원 테이블
 CREATE TABLE RENTAL_CAR -- 렌터 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17) PRIMARY KEY, -- 차대번호
-    CAR_TYPE_CODE             VARCHAR2(6) NOT NULL,     -- 차종코드 (공통코드 FK) 소형 준중형 중형 준대형 대형 ...
-    CAR_NAME_CODE             VARCHAR2(6) NOT NULL,     -- 차량명코드 (공통코드 FK) 소나타, 스파크, k9 ..
-    CAR_FUEL_CODE             VARCHAR2(6) NOT NULL,     -- 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
-    DELIVERY_DATE             DATE,                     -- 출고일시
-    COMPANY                   VARCHAR2(6) NOT NULL      -- 제조사 (공통코드 FK) 현대, 기아 ...
+    CAR_NO                    NUMBER(7) NOT NULL,
+    DELIVERY_DATE             DATE                      -- 출고일시
+--     CAR_TYPE_CODE             VARCHAR2(6) NOT NULL,     -- 차종코드 (공통코드 FK) 소형 준중형 중형 준대형 대형 ...
+--     CAR_NAME_CODE             VARCHAR2(6) NOT NULL,     -- 차량명코드 (공통코드 FK) 소나타, 스파크, k9 ..
+--     CAR_FUEL_CODE             VARCHAR2(6) NOT NULL,     -- 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
+--     COMPANY                   VARCHAR2(6) NOT NULL      -- 제조사 (공통코드 FK) 현대, 기아 ...
 );
 
 CREATE SEQUENCE SEQ_CAR_BRANCH_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 9999999999 NOCYCLE;
@@ -67,11 +68,12 @@ CREATE SEQUENCE SEQ_NEW_CAR_NO INCREMENT BY 1 START WITH 1000001 MINVALUE 100000
 CREATE TABLE NEW_CAR -- 차량 테이블
 (
     NO            NUMBER(7) PRIMARY KEY, -- 차량 NO (시퀀스)
-    CAR_NAME_CODE VARCHAR2(6) NOT NULL,  -- 차량명코드 (공통코드 FK) 소나타, 스파크, k9 ..
-    CAR_TYPE_CODE VARCHAR2(6) NOT NULL,  -- 차종코드 (공통코드 FK) 소형 준중형 중형 준대형 대형 ...
-    CAR_FUEL_CODE VARCHAR2(6) NOT NULL,  -- 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
-    DEFAULT_COST  NUMBER(6)   NOT NULL,  -- 기본 대여료 (10분 단위)
-    COMPANY       VARCHAR2(6) NOT NULL   -- 제조사 (공통코드 FK) 현대, 기아 ...
+--     CAR_NAME_CODE VARCHAR2(6) NOT NULL,  -- 차량명코드 (공통코드 FK) 소나타, 스파크, k9 ..
+    CAR_NAME      VARCHAR2(50) NOT NULL, -- 차량명
+    CAR_TYPE_CODE VARCHAR2(6)  NOT NULL, -- 차종코드 (공통코드 FK) 소형 준중형 중형 준대형 대형 ...
+    CAR_FUEL_CODE VARCHAR2(6)  NOT NULL, -- 연료코드 (공통코드 FK) 디젤, 휘발유, 전기 ..
+    DEFAULT_COST  NUMBER(6)    NOT NULL, -- 기본 대여료 (10분 단위)
+    COMPANY       VARCHAR2(6)  NOT NULL  -- 제조사 (공통코드 FK) 현대, 기아 ...
 );
 
 CREATE TABLE RENTAL_CAR_BRANCHES_CAR -- 렌터카 지점별 차량 테이블
