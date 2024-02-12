@@ -19,12 +19,12 @@
                 <div class="col-3">
                     <select class="form-select" id="formSelect" aria-label="Default select example">
                         <option value="" selected>선택</option>
-                        <%-- <c:forEach var="branch" items="${branches}">
-                             <option value="${branch.fullCode}"
-                                     <c:if test="${not empty param.keyword and param.keyword eq branch.fullCode}">selected</c:if>>
-                                     ${branch.codeName}
+                         <c:forEach var="com" items="${companies}">
+                             <option value="${com.fullCode}"
+                                     <c:if test="${not empty param.keyword and param.keyword eq com.fullCode}">selected</c:if>>
+                                     ${com.codeName}
                              </option>
-                         </c:forEach>--%>
+                         </c:forEach>
                     </select>
                 </div>
                 <div class="col-6"></div>
@@ -42,6 +42,7 @@
                     <td class="col-2"><strong>차량명</strong></td>
                     <td class="col-2"><strong>차량타입</strong></td>
                     <td class="col-2"><strong>연료</strong></td>
+                    <td class="col-1"><strong>가격</strong></td>
                     <td class="col-2"><strong>회사</strong></td>
                     <td class="col-1"><strong>수정</strong></td>
                     <td class="col-1"><strong>삭제</strong></td>
@@ -53,6 +54,7 @@
                         <td class="text-center">${car.carName}</td>
                         <td class="text-center">${car.typeName}</td>
                         <td class="text-center">${car.fuelName}</td>
+                        <td class="text-center">${car.defaultCost}원</td>
                         <td class="text-center">${car.companyName}</td>
                         <td class="text-center">
                             <button type="button" class="btn btn-sm modify-btn" style="background: #f8f7fd; border: 1px solid #41087c"

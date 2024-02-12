@@ -37,4 +37,6 @@ public interface AdminCarDao {
     int newCarTotalCount(Pagination pagination);
 
     void updateNewCar(NewCarVo newCarVo);
+
+    void deleteNewCar(int no);
 }

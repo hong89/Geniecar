@@ -88,4 +88,8 @@ public class AdminCarService {
     public void updateNewCar(NewCarVo newCarVo) {
         adminCarDao.updateNewCar(newCarVo);
     }
+
+    public void deleteNewCar(int no) {
+        adminCarDao.deleteNewCar(no);
+    }
 }

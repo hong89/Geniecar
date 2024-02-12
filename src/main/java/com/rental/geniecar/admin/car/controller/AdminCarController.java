@@ -137,8 +137,10 @@ public class AdminCarController {
     //hsh
     @GetMapping("/newCarList.do")
     public String newCarList(Pagination pagination, Model model) {
+        List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
         pagination.setTotalRecordCount(adminCarService.newCarTotalCount(pagination));
         List<NewCarVo> newCarList = adminCarService.selectNewCarList(pagination);
+        model.addAttribute("companies", companies);
         model.addAttribute("newCarList", newCarList);
         model.addAttribute("pagination", pagination);
         return "admin/car/newCarList";
@@ -147,6 +149,12 @@ public class AdminCarController {
     @PostMapping("/newCarModify.do")
     public String newCarModify(NewCarVo newCarVo){
         adminCarService.updateNewCar(newCarVo);
+        return "redirect:newCarList.do";
+    }
+
+    @GetMapping("/newCarDelete.do")
+    public String newCarDelete(@RequestParam int no) {
+        adminCarService.deleteNewCar(no);
         return "redirect:newCarList.do";
     }
 }

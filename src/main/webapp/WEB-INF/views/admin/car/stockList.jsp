@@ -11,15 +11,19 @@
                 <div class="row pb-5">
                     <div class="col-3">
                         <select class="form-select" id="formSelect" aria-label="Default select example">
-                            <option value="" selected >선택</option>
+                            <option value="" selected>선택</option>
                             <c:forEach var="com" items="${companies}">
-                            <option value="${com.fullCode}" <c:if test="${not empty param.keyword and param.keyword eq com.fullCode}">selected</c:if>>${com.codeName}</option>
+                                <option value="${com.fullCode}"
+                                        <c:if test="${not empty param.keyword and param.keyword eq com.fullCode}">selected</c:if>>
+                                        ${com.codeName}
+                                </option>
                             </c:forEach>
                         </select>
                     </div>
                     <div class="col-6"></div>
                     <div class="col-3">
-                        <button class="btn text-white" type="button" onclick="location.href='/admin/car/changeBranch.do'"
+                        <button class="btn text-white" type="button"
+                                onclick="location.href='/admin/car/changeBranch.do'"
                                 style="background: #41087c; width: 100%;">지점 배정하기
                         </button>
                     </div>
@@ -61,7 +65,8 @@
                     </li>
                     <li class="page-item">
                         <a class="page-link" href="javascript:void(0);" aria-label="Previous">
-                            <span aria-hidden="true" onclick="movePage(${pagination.currentPage} <c:if test="${pagination.hasPreviousPage}">-1</c:if>);">&lt;</span>
+                            <span aria-hidden="true" onclick="movePage(${pagination.currentPage} <c:if
+                                    test="${pagination.hasPreviousPage}">-1</c:if>);">&lt;</span>
                         </a>
                     </li>
 
@@ -69,14 +74,15 @@
                         <li class="page-item">
                             <a class="page-link" href="javascript:void(0);"
                                onclick="movePage(${idx},${pagination.cntPerPage}, ${pagination.pageSize});">
-                                <c:out value="${idx}" />
+                                <c:out value="${idx}"/>
                             </a>
                         </li>
                     </c:forEach>
 
                     <li class="page-item">
                         <a class="page-link" aria-label="Next" href="javascript:void(0);"
-                           onclick="movePage(${pagination.currentPage} <c:if test="${pagination.hasNextPage == true}">+1</c:if>);">
+                           onclick="movePage(${pagination.currentPage} <c:if
+                                   test="${pagination.hasNextPage == true}">+1</c:if>);">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
@@ -93,7 +99,7 @@
             <!---->
             <script>
 
-                $('#formSelect').on('change', function(){
+                $('#formSelect').on('change', function () {
                     movePage(1);
                 });
 
@@ -105,13 +111,13 @@
                     params.push("currentPage=" + (currentPage || 1));
 
                     var formSelectVal = $('#formSelect').val();
-                    if(formSelectVal){
+                    if (formSelectVal) {
                         params.push("keyword=" + formSelectVal);
                     }
 
                     var queryParams = '';
-                    for(var i = 0; i < params.length ; i++){
-                        if(i == 0) queryParams = '?' + params[i];
+                    for (var i = 0; i < params.length; i++) {
+                        if (i == 0) queryParams = '?' + params[i];
                         else queryParams += '&' + params[i]
                     }
 

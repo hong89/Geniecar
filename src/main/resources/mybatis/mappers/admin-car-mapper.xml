@@ -169,7 +169,10 @@
             , FN_COMM_NAME(COMPANY) AS COMPANY_NAME
         FROM (SELECT ROW_NUMBER() OVER (ORDER by NC.NO DESC) AS RN
         , NC.*
-        FROM NEW_CAR NC)
+        FROM NEW_CAR NC
+        <if test="keyword != null and keyword != ''.toString()">
+            WHERE COMPANY = #{keyword}
+        </if>)
         <if test="firstRecordIndex != null and lastRecordIndex != null">
             WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
         </if>
@@ -190,6 +193,11 @@
         WHERE NO = #{no}
     </update>
 
+    <delete id="deleteNewCar" parameterType="int">
+        DELETE
+        FROM NEW_CAR
+        WHERE NO = #{no}
+    </delete>
 </mapper>
 
 
