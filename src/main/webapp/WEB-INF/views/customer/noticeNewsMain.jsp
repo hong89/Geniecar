@@ -9,11 +9,18 @@
         if (page == null || page == '' || page == 'undefined') {
             page = 1;
         }
-        location.href = "/info/noticeNewsMain.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
+        location.href = "/customer/noticeNewsMain.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
     }
 </script>
 
 <style>
+    /* CSS 스타일링 */
+    table thead.table-light {
+        background-color: red ;  /* 헤더 배경색 지정 */
+    }
+    .table thead tr th {
+        background-color: red; /* 변경하고자 하는 색상으로 수정 가능 */
+    }
 
 </style>
 <div class="container-xl">
@@ -35,23 +42,19 @@
             <section class="text-center">
                 <h1 class="tit">공지사항</h1>
             </section>
-            <div class="pt-5">
-                <table class="table caption-top">
-                    <tr>
-                        <td class="text-center">
-                            <div class="mx-auto" style="max-width: 500px;">
-                                <div class="d-flex">
-                                    <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." style="flex: 1; margin-right: 10px;">
-                                    <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
-                                    <button type="button" class="btn text-white" onclick="javascript:fn_search(1)" style="background-color: #41087c;">검색</button>
-                                </div>
-                            </div>
-                        </td>
-                </table>
+            <div class="p-5">
+                <td class="text-center">
+                    <div class="d-flex" style="float:right">
+                        <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." style="flex: 1; margin-right: 10px;">
+                        <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
+                        <button type="button" class="btn text-white" onclick="javascript:fn_search(1)" style="background-color: #41087c;">검색</button>
+                    </div>
+                </td>
             </div>
+            
             <div class="pt-5">
-                <table class="table caption-top">
-                    <thead>
+                <table class="table caption-top table table-hover">
+                    <thead class="table-light">
                     <tr>
                         <td align="center" scope="col"><strong></strong></td>
                         <td align="center" scope="col"><strong>제목</strong></td>
@@ -63,7 +66,7 @@
                     <c:forEach var="notice" items="${boardList}">
                         <tr>
                             <td align="center">공지</td>
-                            <td align="left"><a href="/info/noticeDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
+                            <td align="left"><a href="/customer/noticeDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
                             </td>
                             <td align="center">${notice.regDate}</td>
                         </tr>

@@ -34,7 +34,7 @@
         </div>
         <div>
             <div class="p-5" style="text-align: center;">
-                <a href="/info/noticeNewsMain.do?typeCode=${notice.typeCode}" class="btn text-white"
+                <a href="/customer/noticeNewsMain.do?typeCode=${notice.typeCode}" class="btn text-white"
                    style="background-color: #41087c;">목록으로 돌아가기</a>
             </div>
         </div>
