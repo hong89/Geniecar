@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
 import com.rental.geniecar.domain.board.BoardVo;
@@ -63,28 +64,12 @@ public class MyPageController {
         return "mypage/reservationDetail";
     }
 	//ruddud
-	@GetMapping("/reservationMonth.do")
-	public String reservationMonth(Model model){
-		
-        return "mypage/reservationMonth";
-    }
-	//ruddud
-	@GetMapping("/rentCarConsulting.do")
-	public String rentCarConsulting(){
-		
-        return "mypage/rentCarConsulting";
-    }
-	//ruddud
-	@GetMapping("/rentCarConsultingDetail.do")
-	public String rentCarConsultingDetail(){
-		
-        return "mypage/rentCarConsultingDetail";
-    }
-	//ruddud
 	@GetMapping("/point.do")
 	public String point(Model model, HttpSession session){
 		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
 		model.addAttribute("member", membervo);
+		PointVo point = pointService.selectPoint(membervo.getId());
+		model.addAttribute("point", point);
 		List<PointVo> pointList = pointService.secletAll(membervo.getId());
 		model.addAttribute("pointList", pointList);
         return "mypage/point";
@@ -105,6 +90,11 @@ public class MyPageController {
 		model.addAttribute("license", license);
 		return "mypage/license";
 	}
+	@PostMapping("/addLicense.do")
+	public String addLicense(LicenseVo license) {
+		System.out.println("++++++++++++++++++++++++++++" + license.toString());
+		return "redirect:/mypage/license";
+	}
 	//ruddud
 	@GetMapping("/member/modify.do")
 	public String memberModify(HttpSession session, Model model){
@@ -112,6 +102,7 @@ public class MyPageController {
 		model.addAttribute("member", membervo);
         return "mypage/member/modify";
     }
+	//ruddud
 	@PostMapping("/member/domodify.do")
 	public String domodify(HttpSession session, MemberVo vo) {
 		session.removeAttribute("memberInfo");
@@ -120,10 +111,24 @@ public class MyPageController {
 	}
 	//ruddud
 	@GetMapping("/member/password.do")
-	public String memberPassword(){
-		
+	public String memberPassword(HttpSession session, Model model){
+		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		model.addAttribute("member", membervo);
         return "mypage/member/password";
     }
+	//ruddud
+	@PostMapping("/member/changepw.do")
+	public String changepw(String currentPw, MemberVo vo, RedirectAttributes re, HttpSession session) {
+		String msg=null;
+		if(memberService.changepw(currentPw, vo) >0) { 
+			msg="ok"; 
+			session.removeAttribute("memberInfo");
+			session.setAttribute("memberInfo", memberService.selectOne(vo.getId()));
+		} 
+		else { msg="not"; }
+		re.addFlashAttribute("msg", msg);
+		return "redirect:/mypage/member/password.do";
+	}
 	//ruddud
 	@GetMapping("/member/leave.do")
 	public String memberLeave(Model model, HttpSession session){
@@ -131,6 +136,7 @@ public class MyPageController {
 		model.addAttribute("member", membervo);
         return "mypage/member/leave";
     }
+	//ruddud
 	@PostMapping("/leave.do")
 	public String  Leave(String id,HttpSession session) {
 		memberService.leaveMember(id);

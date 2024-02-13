@@ -23,4 +23,7 @@ public class PointService {
 	public void delete(String id) {
 		pointDao.delete(id);
 	}
+	public PointVo selectPoint(String memberId){
+		return pointDao.selectPoint(memberId);		
+	}
 }

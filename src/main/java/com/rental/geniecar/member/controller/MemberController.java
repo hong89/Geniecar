@@ -1,5 +1,8 @@
 package com.rental.geniecar.member.controller;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.rental.geniecar.common.service.CommonService;
+import com.rental.geniecar.domain.common.CommonCodeVo;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.member.service.MemberService;
 
@@ -19,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 	
 	private final MemberService memberService;
+	private final CommonService commonService;
 
 	//ruddud
 	@GetMapping("/join.do")
@@ -41,10 +47,16 @@ public class MemberController {
     }
 
 	//ruddud
-    @GetMapping("/businessJoin.do")
-    public String businessJoin(MemberVo member){
-    	
+	@GetMapping("/businessJoin.do")
+    public String businessJoin(MemberVo member, Model model){
+    	List<CommonCodeVo> locations = commonService.selectCommonCodes("LOC");
+        model.addAttribute("locations", locations);
         return "member/businessJoin";
     }
-
+	@ResponseBody
+	@GetMapping("/branch.do")
+	public ResponseEntity branch(String groupCode) {
+		 List<CommonCodeVo> branchCode = commonService.selectCommonCodes(groupCode);
+		 return ResponseEntity.ok(branchCode);
+	}
 }

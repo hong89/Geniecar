@@ -51,6 +51,7 @@
                     <li><a class="dropdown-item" href="/customer/noticeNewsMain.do?typeCode=NOTICE">공지사항</a></li>
                     <li><a class="dropdown-item" href="/customer/eventMain.do?typeCode=EVENT">이벤트</a></li>
                     <li><a class="dropdown-item" href="/customer/faq.do?typeCode=FAQ">FAQ</a></li>
+                    <li><a class="dropdown-item" href="/customer/consult.do">상담 신청</a></li>
                 </ul>
             </li>
 

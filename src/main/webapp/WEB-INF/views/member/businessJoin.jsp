@@ -75,6 +75,20 @@
             
             });
         })
+
+        $(function() {
+            $('#locations').on('change', function () {
+                var groupCode = $(this).val().substring(3, 6);
+                $.get("/member/branch.do", {groupCode: groupCode}, function (res) {
+                    var str = "<option selected>선택</option>";
+                    $.each(res, function (i) {
+                        str += "<option value='" + res[i].fullCode + "'>" + res[i].codeName + "</option>";
+                    });
+                    $('#branches').html(str);
+                });
+            });
+        })
+
         $(function () {
             $('#submitBtn').click(function () {
                 var pw = $('[name=pw]').val();
@@ -334,7 +348,15 @@
                             <label for="branchCode" class="col-form-label">지점</label>
                         </div>
                         <div class="col-auto">
-                            <input type="text" id="branchCode" name="branchCode" class="form-control">
+                            <select class="form-select" id="locations" name="locations" style="display: inline; width: auto;">
+                                <option selected>선택</option>
+                                <c:forEach var="loc" items="${locations}">
+                                    <option value="${loc.fullCode}">${loc.codeName}</option>
+                                </c:forEach>
+                            </select>
+                            <select class="form-select" id="branches" name="branchCode" style=" display: inline;width: auto;">
+                                <option value="" selected>선택</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row g-3 align-items-center join-container">
@@ -345,11 +367,11 @@
                         <div class="col-auto">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" value="M">
-                                <label class="form-check-label">M</label>
+                                <label class="form-check-label">남성</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" value="F">
-                                <label class="form-check-label">F</label>
+                                <label class="form-check-label">여성</label>
                             </div>
                         </div>
                     </div>

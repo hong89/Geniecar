@@ -139,9 +139,11 @@
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">포인트 사용내역</h2>
             </div>
-            <div class="p-5 m-3" style="background-color: #f8f7fd;">
-                <h4 class="fw-bold">잔여포인트  <span style="color: #41087c;">0P</span> </h4>
+            <div class="p-5 m-3 row text-center" style="background-color: #f8f7fd;">
+                <div class="col"><h4 class="fw-bold">잔여포인트  <span style="color: #41087c;"><c:if test='${!(point != null)}'>0</c:if>${point.currentPoint}P</span></h4></div>
+                <div class="col"><h4 class="fw-bold">사용포인트  <span style="color: #41087c;"><c:if test='${!(point != null)}'>0</c:if>${point.totalUsePoint}P</span></h4></div>
             </div>
+
             <div class="p-3">
                 <ul class="nav nav-bars nav-pills border-bottom" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">

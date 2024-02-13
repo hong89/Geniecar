@@ -229,7 +229,7 @@
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">운전면허 정보</h2>
             </div>
-            <form>
+            <form method="post" action="/mypage/addLicense.do">
                 <div class="border rounded-3 row p-4 m-5" style="width: 670px; height: 422px; position: relative;">
                     <div id="licenseGradeCode">
                         <select name="licenseGradeCode" id="" class="border rounded-1" style="height: 40px;" value = "">

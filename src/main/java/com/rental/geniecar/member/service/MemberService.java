@@ -35,6 +35,13 @@ public class MemberService {
 		memberDao.updateMember(vo);
 		return memberDao.selectOne(vo.getId());
 	}
+	public int changepw(String currentPw, MemberVo vo) {
+		if(currentPw.equals(selectOne(vo.getId()).getPw())) {
+			return memberDao.updatePw(vo);
+		} else {
+			return 0;		
+		}		
+	}
 	public List<MemberVo> selectAll(String type){
 		return memberDao.selectAll(type);
 	}

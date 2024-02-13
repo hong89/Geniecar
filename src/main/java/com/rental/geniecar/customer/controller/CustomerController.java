@@ -3,24 +3,31 @@ package com.rental.geniecar.customer.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
+import com.rental.geniecar.common.service.CommonService;
 import com.rental.geniecar.domain.board.BoardVo;
 import com.rental.geniecar.domain.board.CommonCrudVo;
+import com.rental.geniecar.domain.common.CommonCodeVo;
 import com.rental.geniecar.domain.common.FileVo;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 @RequestMapping("/customer")
+@RequiredArgsConstructor
 public class CustomerController {
 	private static final String UPLOAD_PATH = "C:\\geniecar_images";
+	private final CommonService commonService;
 	
 	private void setImageFilePath(List<FileVo> imageFiles, String savePath) {
         for (FileVo imageFile : imageFiles) {
@@ -215,6 +222,18 @@ public class CustomerController {
 		model.addAttribute("boardVo", boardVo);
 		return "customer/noticeNewsMain";
 	}
-
+	//ruddud
+	@GetMapping("/consult.do")
+	public String consult(Model model) {
+		List<CommonCodeVo> locations = commonService.selectCommonCodes("LOC");
+        model.addAttribute("locations", locations);
+		return "customer/consult";
+	}
+	@ResponseBody
+	@GetMapping("/branch.do")
+	public ResponseEntity branch(String groupCode) {
+		 List<CommonCodeVo> branchCode = commonService.selectCommonCodes(groupCode);
+		 return ResponseEntity.ok(branchCode);
+	}
 
 }
