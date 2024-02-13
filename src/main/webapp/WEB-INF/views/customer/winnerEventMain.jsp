@@ -9,7 +9,7 @@
         if (page == null || page == '' || page == 'undefined') {
             page = 1;
         }
-        location.href = "/carlife/winnerEventMain.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
+        location.href = "/customer/winnerEventMain.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
     }
 </script>
 
@@ -44,8 +44,9 @@
             </section>
 
             <nav class="mt-5 nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link" href="/carlife/eventMain.do?typeCode=EVENT">진행중 이벤트</a>
-                <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="/carlife/winnerEventMain.do?typeCode=EVENTWINNER">당첨자 발표</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="/customer/eventMain.do?typeCode=EVENT">진행중 이벤트</a>
+                <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page"
+                   href="/customer/winnerEventMain.do?typeCode=EVENTWINNER">당첨자 발표</a>
             </nav>
 
             <div class="pt-5">
@@ -54,9 +55,13 @@
                         <td class="text-center">
                             <div class="mx-auto" style="max-width: 500px;">
                                 <div class="d-flex">
-                                    <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." style="flex: 1; margin-right: 10px;">
+                                    <input type="text" id="title" name="title" value="${boardVo.title}"
+                                           class="form-control" placeholder="검색어를 입력해주세요."
+                                           style="flex: 1; margin-right: 10px;">
                                     <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
-                                    <button type="button" class="btn text-white" onclick="javascript:fn_search(1)" style="background-color: #41087c;">검색</button>
+                                    <button type="button" class="btn text-white" onclick="javascript:fn_search(1)"
+                                            style="background-color: #41087c;">검색
+                                    </button>
                                 </div>
                             </div>
                         </td>
@@ -76,7 +81,8 @@
                     <c:forEach var="notice" items="${boardList}">
                         <tr>
                             <td align="center">${notice.no}</td>
-                            <td align="left"><a href="/carlife/winnerEventDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
+                            <td align="left"><a href="/customer/winnerEventDetail.do?no=${notice.no}"
+                                                style="text-decoration-line: none; color:black">${notice.title}</a>
                             </td>
                             <td align="center">${notice.regDate}</td>
                         </tr>

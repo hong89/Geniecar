@@ -27,11 +27,11 @@
                 <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false">단기 렌터카 안내</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/reservation/shortMonth/info.do">월 단기 렌터카</a></li>
-                    <li><a class="dropdown-item" href="/carlife/commuteRent.do">출퇴근 렌터카</a></li>
-                    <li><a class="dropdown-item" href="/reservation/shortInfo/pay.do">대여 및 요금 안내</a></li>
-                    <li><a class="dropdown-item" href="/reservation/shortInfo/checkIn.do">체크인 서비스</a></li>
-                    <li><a class="dropdown-item" href="/reservation/shortInfo/service.do">부가 서비스</a></li>
+                    <li><a class="dropdown-item" href="/info/shortMonth.do">월 단기 렌터카</a></li>
+                    <li><a class="dropdown-item" href="/info/commuteRent.do">출퇴근 렌터카</a></li>
+                    <li><a class="dropdown-item" href="/info/pay.do">대여 및 요금 안내</a></li>
+                    <li><a class="dropdown-item" href="/info/checkIn.do">체크인 서비스</a></li>
+                    <li><a class="dropdown-item" href="/info/service.do">부가 서비스</a></li>
                 </ul>
             </li>
 
@@ -39,8 +39,8 @@
                 <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false">지점안내</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/info/allBranchArea.do">전국지점</a></li>
-                    <li><a class="dropdown-item" href="/carlife/jejuAuto.do">제주 오토 하우스</a></li>
+                    <li><a class="dropdown-item" href="/branch/allBranchArea.do">전국지점</a></li>
+                    <li><a class="dropdown-item" href="/branch/jejuAuto.do">제주 오토 하우스</a></li>
                 </ul>
             </li>
 
@@ -48,8 +48,8 @@
                 <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false">고객 지원</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/info/noticeNewsMain.do?typeCode=NOTICE">공지사항</a></li>
-                    <li><a class="dropdown-item" href="/carlife/eventMain.do?typeCode=EVENT">이벤트</a></li>
+                    <li><a class="dropdown-item" href="/customer/noticeNewsMain.do?typeCode=NOTICE">공지사항</a></li>
+                    <li><a class="dropdown-item" href="/customer/eventMain.do?typeCode=EVENT">이벤트</a></li>
                     <li><a class="dropdown-item" href="/customer/faq.do?typeCode=FAQ">FAQ</a></li>
                 </ul>
             </li>

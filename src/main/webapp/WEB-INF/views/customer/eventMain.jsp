@@ -33,15 +33,15 @@
             </section>
 
             <nav class="my-5 nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="/carlife/eventMain.do?typeCode=EVENT">진행중 이벤트</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="/carlife/winnerEventMain.do?typeCode=EVENTWINNER">당첨자 발표</a>
+                <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="/customer/eventMain.do?typeCode=EVENT">진행중 이벤트</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="/customer/winnerEventMain.do?typeCode=EVENTWINNER">당첨자 발표</a>
             </nav>
 
             <div class="row row-cols-1 row-cols-md-3 g-4 P-5">
                 <c:forEach var="notice" items="${boardList}">
                 <div class="col">
                   <div class="card h-100">
-                    <a href="/carlife/eventDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
+                    <a href="/customer/eventDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
                         <c:forEach var="imageFile" items="${notice.imageFiles}">
                             <c:if test="${not empty imageFile.saveName}">
                                 <img class="form-control" src="/downloadFile/${imageFile.saveName}" alt="images" width="300" height="200">
