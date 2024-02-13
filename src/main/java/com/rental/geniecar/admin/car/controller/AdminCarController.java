@@ -5,6 +5,7 @@ import com.rental.geniecar.common.service.CommonService;
 import com.rental.geniecar.domain.branch.BranchRentalCarVo;
 import com.rental.geniecar.domain.car.NewCarVo;
 import com.rental.geniecar.domain.car.RentalCarVo;
+import com.rental.geniecar.domain.car.RequestNewCarVo;
 import com.rental.geniecar.domain.common.CommonCodeVo;
 import com.rental.geniecar.domain.common.Pagination;
 import lombok.RequiredArgsConstructor;
@@ -53,10 +54,9 @@ public class AdminCarController {
     // hsh
     @GetMapping("/changeBranch.do")
     public String changeBranch(Model model) {
-        List<CommonCodeVo> locations = commonService.selectCommonCodes("LOC");
-        model.addAttribute("locations", locations);
-        List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
-        model.addAttribute("companies", companies);
+        model.addAttribute("locations", commonService.selectCommonCodes("LOC"));
+        model.addAttribute("companies", commonService.selectCommonCodes("COM"));
+        model.addAttribute("segCodeList", commonService.selectCommonCodes("SEG"));
         return "admin/car/changeBranch";
     }
 
@@ -68,6 +68,7 @@ public class AdminCarController {
         return ResponseEntity.ok(carNameCodes);
     }
 
+
     // hsh
     @ResponseBody
     @GetMapping("/selectCarByFullCode.do")
@@ -77,9 +78,19 @@ public class AdminCarController {
     }
 
     //hsh
+    @GetMapping("/selectCarNameList.do")
+    @ResponseBody
+    public ResponseEntity selectCarNameList(NewCarVo newCarVo){
+        List<NewCarVo> carList = adminCarService.selectCarNameList(newCarVo);
+        return ResponseEntity.ok(carList);
+    }
+
+    //hsh
     @GetMapping("/register.do")
     public String register(Model model) {
         model.addAttribute("codeList", commonService.selectCommonCodes("COM"));
+        model.addAttribute("fuelCodeList", commonService.selectCommonCodes("FUE"));
+        model.addAttribute("segCodeList", commonService.selectCommonCodes("SEG"));
         return "admin/car/register";
     }
 
@@ -96,27 +107,54 @@ public class AdminCarController {
         adminCarService.insertRentalCarBranchesCar(checkCar, branches);
         return "redirect:list.do";
     }
+
     //hsh
-    @PostMapping("/insertNewCar.do")
-    public String insertNewCar() {
-        return "redirect:list.do";
+    @PostMapping("/insertNewCars.do")
+    public String insertNewCars(RequestNewCarVo requestNewCarVo) {
+        adminCarService.insertNewCars(requestNewCarVo);
+        return "redirect:newCarList.do";
     }
 
     //hsh
     @GetMapping("/selectRentalCars.do")
-    public ResponseEntity selectRentalCars(String code) {
-        List<RentalCarVo> carList = adminCarService.selectRentalCars(code);
+    public ResponseEntity selectRentalCars(NewCarVo newCarVo) {
+        List<RentalCarVo> carList = adminCarService.selectRentalCars(newCarVo);
         return ResponseEntity.ok(carList);
     }
 
-
+    //hsh
     @GetMapping("/newCarRegister.do")
-    public String newCarRegister() {
+    public String newCarRegister(Model model) {
+        List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
+        List<CommonCodeVo> carsType = commonService.selectCommonCodes("SEG");
+        List<CommonCodeVo> carsFuel = commonService.selectCommonCodes("FUE");
+        model.addAttribute("companies", companies);
+        model.addAttribute("carsType", carsType);
+        model.addAttribute("carsFuel", carsFuel);
         return "admin/car/newCarRegister";
     }
 
-    @GetMapping("/remove.do")
-    public String remove() {
-        return "admin/car/remove";
+    //hsh
+    @GetMapping("/newCarList.do")
+    public String newCarList(Pagination pagination, Model model) {
+        List<CommonCodeVo> companies = commonService.selectCommonCodes("COM");
+        pagination.setTotalRecordCount(adminCarService.newCarTotalCount(pagination));
+        List<NewCarVo> newCarList = adminCarService.selectNewCarList(pagination);
+        model.addAttribute("companies", companies);
+        model.addAttribute("newCarList", newCarList);
+        model.addAttribute("pagination", pagination);
+        return "admin/car/newCarList";
+    }
+
+    @PostMapping("/newCarModify.do")
+    public String newCarModify(NewCarVo newCarVo){
+        adminCarService.updateNewCar(newCarVo);
+        return "redirect:newCarList.do";
+    }
+
+    @GetMapping("/newCarDelete.do")
+    public String newCarDelete(@RequestParam int no) {
+        adminCarService.deleteNewCar(no);
+        return "redirect:newCarList.do";
     }
 }

@@ -1,25 +1,37 @@
 package com.rental.geniecar.admin.rental.controller;
 
+import com.rental.geniecar.admin.rental.service.AdminRentalService;
+import com.rental.geniecar.domain.common.Pagination;
+import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/admin/rental/")
 public class AdminRentalController {
 
-    @GetMapping("/shortRent.do")
-    public String shortRent() {
-        return "admin/rental/shortRent";
+    private final AdminRentalService adminRentalService;
+
+    @GetMapping("/rentReservation.do")
+    public String rentReservation(Pagination pagination, Model model) {
+        pagination.setTotalRecordCount(adminRentalService.totalCount(pagination));
+        List<RentalCarReservationVo> reservationList = adminRentalService.selectReservationList(pagination);
+        model.addAttribute("reservationList", reservationList);
+        model.addAttribute("pagination", pagination);
+        return "admin/rental/rentReservation";
     }
 
-    @GetMapping("/monthRent.do")
-    public String monthRent() {
-        return "admin/rental/monthRent";
+    @GetMapping("/rentComplete.do")
+    public String rentComplete(Model model) {
+
+        return "admin/rental/rentComplete";
     }
 
-    @GetMapping("/commuteRent.do")
-    public String commuteRent() {
-        return "admin/rental/commuteRent";
-    }
 }
+

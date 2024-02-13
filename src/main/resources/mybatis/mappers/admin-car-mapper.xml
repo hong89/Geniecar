@@ -4,7 +4,7 @@
 
 	<select id="selectCarByFullCode" resultType="newCarVo" parameterType="String">
         SELECT NO
-              ,CC.CODE_NAME AS CAR_NAME
+              ,CAR_NAME
               ,NC.CAR_TYPE_CODE
               ,NC.CAR_FUEL_CODE
               ,FN_COMM_NM(NC.CAR_FUEL_CODE) AS FUEL_NAME
@@ -16,16 +16,10 @@
     <insert id="insertRentalCar" parameterType="rentalCarVo">
         INSERT INTO RENTAL_CAR (
              CAR_IDENTIFICATION_NUMBER
-           , CAR_TYPE_CODE
-           , CAR_NAME_CODE
-           , CAR_FUEL_CODE
-           , COMPANY
+            ,CAR_NO
         ) VALUES (
-            #{carIdentificationNumber}
-           , #{carTypeCode}
-           , #{carNameCode}
-           , #{carFuelCode}
-           , #{company}
+             #{carIdentificationNumber}
+            ,#{carNo}
         )
     </insert>
 
@@ -39,17 +33,17 @@
     <select id="selectStockList" resultType="rentalCarVo" parameterType="com.rental.geniecar.domain.common.Pagination">
         SELECT RN
              , CAR_IDENTIFICATION_NUMBER
+             , CAR_NO
              , CAR_TYPE_CODE
-             , FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
-             , CAR_NAME_CODE
-             , FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
+             , CAR_TYPE
+             , CAR_NAME
              , CAR_FUEL_CODE
-             , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
+             , CAR_FUEL
              , COMPANY
-             , FN_COMM_NAME(COMPANY)       AS COMPANY_NAME
-        FROM (SELECT ROW_NUMBER() OVER (ORDER by CAR_TYPE_CODE) AS RN
-           , RENTAL_CAR.*
-              FROM RENTAL_CAR
+             , COMPANY_NAME
+        FROM (SELECT ROW_NUMBER() OVER (ORDER by RC.CAR_TYPE_CODE) AS RN
+           , RC.*
+              FROM RENTAL_CAR_VIEW RC
               WHERE <include refid="commonStockListPagingWhereQuery" />)
         <if test="firstRecordIndex != null and lastRecordIndex != null">
         WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
@@ -57,23 +51,27 @@
     </select>
 
     <select id="totalCount" resultType="int" parameterType="com.rental.geniecar.domain.common.Pagination">
-        SELECT COUNT(*) FROM RENTAL_CAR
+        SELECT COUNT(*) FROM RENTAL_CAR_VIEW
         WHERE <include refid="commonStockListPagingWhereQuery" />
     </select>
 
-    <select id="selectRentalCars" resultType="rentalCarVo" parameterType="String">
+    <select id="selectRentalCars" resultType="rentalCarVo" parameterType="newCarVo">
         SELECT CAR_IDENTIFICATION_NUMBER
              , CAR_TYPE_CODE
-             , FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
-             , CAR_NAME_CODE
-             , FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
+             , CAR_TYPE
+             , CAR_NAME
              , CAR_FUEL_CODE
-             , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
+             , CAR_FUEL
              , COMPANY
-             , FN_COMM_NAME(COMPANY)       AS COMPANY_NAME
-        FROM RENTAL_CAR
-        WHERE CAR_NAME_CODE = #{code}
-        AND DELIVERY_DATE IS NULL
+             , COMPANY_NAME
+        FROM RENTAL_CAR_VIEW
+        WHERE DELIVERY_DATE IS NULL
+        <if test="company != null and company != ''.toString()">
+            AND COMPANY = #{company}
+        </if>
+        <if test="carTypeCode != null and carTypeCode != ''.toString()">
+            AND CAR_TYPE_CODE = #{carTypeCode}
+        </if>
     </select>
 
     <insert id="insertRentalCarBranch" parameterType="String">
@@ -100,13 +98,13 @@
         SELECT RN
         , FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS BRANCH
         , CAR_IDENTIFICATION_NUMBER
-        , FN_COMM_NAME(CAR_NAME_CODE) AS CAR_NAME
-        , FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
-        , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
-        , FN_COMM_NAME(COMPANY) AS COMPANY
+        , CAR_NAME
+        , CAR_TYPE
+        , CAR_FUEL
+        , COMPANY_NAME AS COMPANY
         , DELIVERY_DATE
-        FROM (SELECT ROW_NUMBER() OVER (ORDER BY DELIVERY_DATE DESC) AS RN, RC.*, RCBC.RENTAL_CAR_BRANCH_NO
-        FROM RENTAL_CAR RC, RENTAL_CAR_BRANCHES_CAR RCBC
+        FROM (SELECT ROW_NUMBER() OVER (ORDER BY RC.DELIVERY_DATE DESC) AS RN, RC.*, RCBC.RENTAL_CAR_BRANCH_NO
+        FROM RENTAL_CAR_VIEW RC, RENTAL_CAR_BRANCHES_CAR RCBC
         WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
         <if test="keyword != null and keyword != ''.toString()">
             AND RENTAL_CAR_BRANCH_NO = #{keyword}
@@ -125,9 +123,81 @@
         </if>
     </select>
 
+    <!--차량 목록 조회-->
+    <select id="selectCarNameList" resultType="newCarVo" parameterType="newCarVo">
+        SELECT NO
+              ,CAR_NAME
+              ,CAR_TYPE_CODE
+              ,CAR_FUEL_CODE
+              ,DEFAULT_COST
+              ,COMPANY
+          FROM NEW_CAR
+         WHERE CAR_TYPE_CODE = #{carTypeCode}
+           AND CAR_FUEL_CODE = #{carFuelCode}
+           AND COMPANY = #{company}
+    </select>
+
+    <insert id="insertNewCar" parameterType="newCarVo">
+        INSERT INTO NEW_CAR (
+             NO
+            ,CAR_NAME
+            ,CAR_TYPE_CODE
+            ,CAR_FUEL_CODE
+            ,DEFAULT_COST
+            ,COMPANY
+        ) VALUES (
+             SEQ_NEW_CAR_NO.NEXTVAL
+            ,#{carName}
+            ,#{carTypeCode}
+            ,#{carFuelCode}
+            ,#{defaultCost}
+            ,#{company}
+        )
+    </insert>
+
+    <select id="selectNewCarList" resultType="newCarVo" parameterType="com.rental.geniecar.domain.common.Pagination">
+        SELECT
+            RN
+            , NO
+            , CAR_NAME
+            , CAR_TYPE_CODE
+            , FN_COMM_NAME(CAR_TYPE_CODE) AS TYPE_NAME
+            , CAR_FUEL_CODE
+            , FN_COMM_NAME(CAR_FUEL_CODE) AS FUEL_NAME
+            , DEFAULT_COST
+            , COMPANY
+            , FN_COMM_NAME(COMPANY) AS COMPANY_NAME
+        FROM (SELECT ROW_NUMBER() OVER (ORDER by NC.NO DESC) AS RN
+        , NC.*
+        FROM NEW_CAR NC
+        <if test="keyword != null and keyword != ''.toString()">
+            WHERE COMPANY = #{keyword}
+        </if>)
+        <if test="firstRecordIndex != null and lastRecordIndex != null">
+            WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+        </if>
+    </select>
+
+    <select id="newCarTotalCount" resultType="int" parameterType="com.rental.geniecar.domain.common.Pagination">
+        SELECT COUNT(*)
+        FROM NEW_CAR
+        <if test="keyword != null and keyword != ''.toString()">
+            WHERE COMPANY = #{keyword}
+        </if>
+    </select>
+
+    <update id="updateNewCar" parameterType="newCarVo">
+        UPDATE NEW_CAR
+        SET CAR_NAME     = #{carName},
+            DEFAULT_COST = #{defaultCost}
+        WHERE NO = #{no}
+    </update>
+
+    <delete id="deleteNewCar" parameterType="int">
+        DELETE
+        FROM NEW_CAR
+        WHERE NO = #{no}
+    </delete>
 </mapper>
-
-
-
 
 

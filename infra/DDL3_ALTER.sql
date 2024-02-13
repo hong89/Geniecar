@@ -7,26 +7,11 @@ ALTER TABLE MEMBER
 
 
 ------------------------------------------------------------------- 렌터 차량 테이블
--- 차종코드 (공통코드 FK)
+-- 신차 코드 (신차 NO FK)
 ALTER TABLE RENTAL_CAR
-    ADD CONSTRAINT RC_CAR_TYPE_CODE_FK
-        FOREIGN KEY (CAR_TYPE_CODE)
-            REFERENCES COMMON_CODE (FULL_CODE);
--- 차량명코드 (공통코드 FK)
-ALTER TABLE RENTAL_CAR
-    ADD CONSTRAINT RC_CAR_NAME_CODE_FK
-        FOREIGN KEY (CAR_NAME_CODE)
-            REFERENCES COMMON_CODE (FULL_CODE);
--- 연료코드 (공통코드 FK)
-ALTER TABLE RENTAL_CAR
-    ADD CONSTRAINT RC_CAR_FUEL_CODE_FK
-        FOREIGN KEY (CAR_FUEL_CODE)
-            REFERENCES COMMON_CODE (FULL_CODE);
--- 제조사 (공통코드 FK)
-ALTER TABLE RENTAL_CAR
-    ADD CONSTRAINT RC_COMPANY_FK
-        FOREIGN KEY (COMPANY)
-            REFERENCES COMMON_CODE (FULL_CODE);
+    ADD CONSTRAINT RC_CAR_NO_FK
+        FOREIGN KEY (CAR_NO)
+            REFERENCES NEW_CAR (NO);
 
 
 ------------------------------------------------------------------- 렌터카 지점 테이블
@@ -54,10 +39,10 @@ ALTER TABLE RENTAL_CAR_BRANCH
 
 ------------------------------------------------------------------- 차량 테이블
 -- 차량명 코드 (공통코드 FK)
-ALTER TABLE NEW_CAR
+/*ALTER TABLE NEW_CAR
     ADD CONSTRAINT NC_CAR_NAME_CODE_FK
         FOREIGN KEY (CAR_NAME_CODE)
-            REFERENCES COMMON_CODE (FULL_CODE);
+            REFERENCES COMMON_CODE (FULL_CODE);*/
 -- 차종 코드 (공통코드 FK)
 ALTER TABLE NEW_CAR
     ADD CONSTRAINT NC_CAR_TYPE_CODE_FK

@@ -19,9 +19,8 @@
 <div>
     <ul class="list-group">
         <li class="list-group-item"><p>렌터카 예약 관리</p>
-            <p><a href="/admin/rental/shortRent.do">단기 렌터카 관리</a></p>
-            <p><a href="/admin/rental/monthRent.do">월단기 렌터카 관리</a></p>
-            <p><a href="/admin/rental/commuteRent.do">출퇴근 렌터카 관리</a></p>
+            <p><a href="/admin/rental/rentReservation.do">렌터카 예약 내역</a></p>
+            <p><a href="/admin/rental/rentComplete.do">렌터카 종료 내역</a></p>
         </li>
         <li class="list-group-item"><p>게시판 관리</p>
             <p><a href="/admin/board/register.do">게시판 등록</a></p>
@@ -41,9 +40,9 @@
             <p><a href="/admin/business/paymentList.do">결제 내역 목록</a></p>
         </li>
         <li class="list-group-item"><p>차량 관리</p>
-            <p><a href="/admin/car/newCarRegister.do">신차 등록</a></p>
-            <p><a href="/admin/car/register.do">차량 등록</a></p>
-            <p><a href="/admin/car/stockList.do">보유 목록</a></p>
+            <p><a href="/admin/car/newCarList.do">신차 목록</a></p>
+            <p><a href="/admin/car/register.do">렌터 차량 등록</a></p>
+            <p><a href="/admin/car/stockList.do">차량 보유 목록</a></p>
             <p><a href="/admin/car/list.do">지점별 차량 목록</a></p>
         </li>
     </ul>

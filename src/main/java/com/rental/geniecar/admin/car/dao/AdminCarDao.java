@@ -18,7 +18,7 @@ public interface AdminCarDao {
 
     int totalCount(Pagination pagination);
 
-    List<RentalCarVo> selectRentalCars(String code);
+    List<RentalCarVo> selectRentalCars(NewCarVo code);
 
     void insertRentalCarBranch(String car, String branch);
 
@@ -28,4 +28,15 @@ public interface AdminCarDao {
 
     int branchesTotalCount(Pagination pagination);
 
+    void insertNewCar(NewCarVo newCarVo);
+
+    List<NewCarVo> selectCarNameList(NewCarVo newCarVo);
+
+    List<NewCarVo> selectNewCarList(Pagination pagination);
+
+    int newCarTotalCount(Pagination pagination);
+
+    void updateNewCar(NewCarVo newCarVo);
+
+    void deleteNewCar(int no);
 }

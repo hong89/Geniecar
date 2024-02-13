@@ -7,53 +7,36 @@
     <div class="p-5">
         <div class="inner-type2">
             <section class="text-center">
-                <h1 class="pb-5 tit">보유 차량 목록</h1>
-                <div class="row pb-5">
-                    <div class="col-3">
-                        <select class="form-select" id="formSelect" aria-label="Default select example">
-                            <option value="" selected>선택</option>
-                            <c:forEach var="com" items="${companies}">
-                                <option value="${com.fullCode}"
-                                        <c:if test="${not empty param.keyword and param.keyword eq com.fullCode}">selected</c:if>>
-                                        ${com.codeName}
-                                </option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <div class="col-6"></div>
-                    <div class="col-3">
-                        <button class="btn text-white" type="button"
-                                onclick="location.href='/admin/car/changeBranch.do'"
-                                style="background: #41087c; width: 100%;">지점 배정하기
-                        </button>
-                    </div>
-                </div>
+                <h1 class="pb-5 tit">단기 렌터카 예약 관리</h1>
             </section>
             <table class="pt-5 table caption-top">
                 <thead>
                 <tr>
-                    <td class="col"><strong>차대번호</strong></td>
-                    <td class="col"><strong>차량명</strong></td>
-                    <td class="col"><strong>차량타입</strong></td>
-                    <td class="col"><strong>연료</strong></td>
-                    <td class="col"><strong>제조사</strong></td>
+                    <td class="col"><strong>예약번호</strong></td>
+                    <td class="col"><strong>대여장소</strong></td>
+                    <td class="col"><strong>반납장소</strong></td>
+                    <td class="col"><strong>대여기간</strong></td>
+                    <td class="col"><strong>차량번호</strong></td>
+                    <td class="col"><strong>예약이름</strong></td>
+                    <td class="col"><strong>최종가격</strong></td>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="list" items="${rentalCarList}">
+                <c:forEach var="res" items="${reservationList}">
                     <tr>
-                        <td class="text-center">${list.carIdentificationNumber}</td>
-                        <td class="text-center">${list.carName}</td>
-                        <td class="text-center">${list.carType}</td>
-                        <td class="text-center">${list.carFuel}</td>
-                        <td class="text-center">${list.companyName}</td>
+                        <td class="col">${res.reservationNo}</td>
+                        <td class="col">${res.rentalPlaceName}</td>
+                        <td class="col">${res.returnPlaceName}</td>
+                        <td class="col">${res.rentalDate} / ${res.returnDate}</td>
+                        <td class="col">${res.carIdentificationNumber}</td>
+                        <td class="col">${res.reservationMemberId}</td>
+                        <td class="col">${res.finalReservationPrice}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
         <div>
-            <!---->
             <!--paginate -->
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
@@ -95,7 +78,6 @@
                 </ul>
             </nav>
             <!-- /paginate -->
-
             <!---->
             <script>
 
@@ -106,7 +88,7 @@
                 //페이지 이동
                 function movePage(currentPage) {
 
-                    var url = "/admin/car/stockList.do";
+                    var url = "/admin/car/newCarList.do";
                     var params = [];
                     params.push("currentPage=" + (currentPage || 1));
 
@@ -120,14 +102,13 @@
                         if (i == 0) queryParams = '?' + params[i];
                         else queryParams += '&' + params[i]
                     }
-
                     location.href = url + queryParams;
                 }
 
             </script>
-
         </div>
     </div>
+
 
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>

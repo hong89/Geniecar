@@ -25,7 +25,7 @@
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button"
-                   aria-expanded="false">단기 렌터카 상품</a>
+                   aria-expanded="false">단기 렌터카 안내</a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/reservation/shortMonth/info.do">월 단기 렌터카</a></li>
                     <li><a class="dropdown-item" href="/carlife/commuteRent.do">출퇴근 렌터카</a></li>
@@ -58,6 +58,7 @@
                 <a class="nav-link text-dark" href="/customer/reviewMain.do?typeCode=REVIEW" role="button"
                    aria-expanded="false">이용후기</a>
             </li>
+
         </ul>
 
 

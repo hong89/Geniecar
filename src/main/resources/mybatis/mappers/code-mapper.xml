@@ -3,19 +3,19 @@
 <mapper namespace="com.rental.geniecar.common.dao.CommonDao">
 
 	<select id="selectCommonCodes" resultType="commonCodeVo" parameterType="java.lang.String">
-		SELECT CONCAT(GROUP_CODE, CODE) AS FULLCODE
-			 ,CODE
-			 ,CODE_NAME
-			 ,GROUP_CODE
-			 ,GROUP_CODE_NAME
-			 ,DESCRIPTION
-			 ,CODE_SORT
-			 ,USE_YN
+		SELECT FULL_CODE
+			 , CODE
+			 , CODE_NAME
+			 , GROUP_CODE
+			 , GROUP_CODE_NAME
+			 , DESCRIPTION
+			 , CODE_SORT
+			 , USE_YN
 		FROM COMMON_CODE WHERE GROUP_CODE = #{groupCode}
 	</select>
 
 	<select id="selectCommonSubCodes" resultType="commonCodeVo" parameterType="java.lang.String">
-		SELECT CONCAT(GROUP_CODE, CODE) AS FULL_CODE
+		SELECT FULL_CODE
 			 , CODE_NAME
 		FROM COMMON_CODE WHERE GROUP_CODE IN (SELECT CODE FROM COMMON_CODE WHERE GROUP_CODE = #{groupCode})
 	</select>
