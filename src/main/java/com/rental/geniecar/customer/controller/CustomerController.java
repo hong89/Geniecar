@@ -185,7 +185,36 @@ public class CustomerController {
 		return "customer/eventDetail";
 	}
 
+	@GetMapping("/noticeDetail.do")
+	public String noticeDetail(@RequestParam int no, Model model) {
+		BoardVo notice = boardService.selectNoticeDetail(no);
 
+		List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
+
+		setImageFilePath(imageFiles, UPLOAD_PATH);
+
+		model.addAttribute("notice", notice);
+		model.addAttribute("imageFiles", imageFiles);
+
+		return "customer/noticeDetail";
+	}
+
+	@GetMapping("/noticeNewsMain.do")
+	public String noticeNewsMain(CommonCrudVo boardVo, Model model) {
+
+		// 페이징 전처리
+		boardVo.setPageStartSet();
+		// 목록조회
+		List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
+		// 목록 전체건수 조회
+		boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+		// 페이징 후처리
+		boardVo.setPageEndSet();
+
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("boardVo", boardVo);
+		return "customer/noticeNewsMain";
+	}
 
 
 }

@@ -20,51 +20,30 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/info")
 public class InfoController {
-	private static final String UPLOAD_PATH = "C:\\geniecar_images";
-	
-	private void setImageFilePath(List<FileVo> imageFiles, String savePath) {
-        for (FileVo imageFile : imageFiles) {
-            imageFile.setImageFilePath(savePath, imageFile.getSaveName());
-        }
-    }
-	
-	@Autowired
-    private AdminBoardService boardService;
-	
-	@GetMapping("/allBranchArea.do")
-	public String allBranchArea() {
-		return "info/allBranchArea";
+
+	@GetMapping("/shortMonth.do")
+	public String shortMonthInfo(){
+		return "info/shortMonth";
 	}
-	
-	@GetMapping("/noticeDetail.do")
-	public String noticeDetail(@RequestParam int no, Model model) {
-		BoardVo notice = boardService.selectNoticeDetail(no);
-		
-	    List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
- 
-	    setImageFilePath(imageFiles, UPLOAD_PATH);
 
-	    model.addAttribute("notice", notice);
-	    model.addAttribute("imageFiles", imageFiles);
-		
-		return "info/noticeDetail";
+	@GetMapping("/commuteRent.do")
+	public String commuteRent() {
+		return "info/commuteRent";
 	}
-	
-	@GetMapping("/noticeNewsMain.do")
-    public String noticeNewsMain(CommonCrudVo boardVo, Model model) {
 
-        // 페이징 전처리
-        boardVo.setPageStartSet();
-        // 목록조회
-        List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
-        // 목록 전체건수 조회
-        boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
-        // 페이징 후처리
-        boardVo.setPageEndSet();
+	@GetMapping("/pay.do")
+	public String shortInfoPay(){
+		return "info/pay";
+	}
 
-        model.addAttribute("boardList", boardList);
-        model.addAttribute("boardVo", boardVo);
-        return "info/noticeNewsMain";
-    }
+	@GetMapping("/checkIn.do")
+	public String shortInfoCheckIn(){
+		return "info/checkIn";
+	}
+
+	@GetMapping("/service.do")
+	public String shortInfoService(){
+		return "info/service";
+	}
 
 }
