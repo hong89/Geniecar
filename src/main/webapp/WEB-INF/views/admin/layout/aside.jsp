@@ -33,7 +33,7 @@
             <p><a href="/admin/member/userList.do">회원 목록</a></p>
             <p><a href="/admin/member/businessList.do">사업자 목록</a></p>
         </li>
-        <li class="list-group-item"><p>사업자 관리</p>
+        <li class="list-group-item"><p>고객 관리</p>
             <p><a href="/admin/business/reviewList.do?typeCode=REVIEW">이용 후기 목록</a></p>
             <p><a href="/admin/business/consultList.do?typeCode=CONSULTING">상담 신청 목록</a></p>
             <p><a href="/admin/business/qnaList.do?typeCode=QNA">1:1 문의 목록</a></p>
