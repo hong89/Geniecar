@@ -8,7 +8,7 @@
     <div class="p-5">
         <div class="inner-type2">
             <section class="text-center">
-                <h1 class="pb-5 tit">렌터카 종료 내역</h1>
+                <h1 class="pb-5 tit">렌터카 진행 내역</h1>
             </section>
             <table class="pt-5 table caption-top">
                 <thead>
@@ -23,17 +23,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="com" items="${completeList}">
+                <c:forEach var="res" items="${progressList}">
                     <tr>
-                        <td class="col">${com.reservationNo}</td>
-                        <td class="col">${com.rentalPlaceName}</td>
-                        <td class="col">${com.returnPlaceName}</td>
-                        <td class="col"><fmt:formatDate value="${com.rentalDate}" pattern="MM/dd HH:mm" />
-                            <br/>~ <fmt:formatDate value="${com.returnDate}" pattern="MM/dd HH:mm" /></td>
-                        <td class="col">${fn:substring(com.carIdentificationNumber, 11, 13)}허
-                                ${fn:substring(com.carIdentificationNumber, 13, 17)}</td>
-                        <td class="col">${com.reservationMemberName}</td>
-                        <td class="col">${com.finalReservationPrice}</td>
+                        <td class="col">${res.reservationNo}</td>
+                        <td class="col">${res.rentalPlaceName}</td>
+                        <td class="col">${res.returnPlaceName}</td>
+                        <td class="col"><fmt:formatDate value="${res.rentalDate}" pattern="MM/dd HH:mm" />
+                             <br/>~ <fmt:formatDate value="${res.returnDate}" pattern="MM/dd HH:mm" /></td>
+                        <td class="col">${fn:substring(res.carIdentificationNumber, 11, 13)}허
+                                ${fn:substring(res.carIdentificationNumber, 13, 17)}</td>
+                        <td class="col">${res.reservationMemberName}</td>
+                        <td class="col">${res.finalReservationPrice}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

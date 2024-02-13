@@ -36,5 +36,14 @@ public class AdminRentalController {
         return "admin/rental/rentComplete";
     }
 
+
+    @GetMapping("/rentProgress.do")
+    public String rentProgress(Pagination pagination, Model model) {
+        pagination.setTotalRecordCount(adminRentalService.progressTotalCount(pagination));
+        List<RentalCarReservationVo> progressList = adminRentalService.selectProgressList(pagination);
+        model.addAttribute("progressList", progressList);
+        model.addAttribute("pagination", pagination);
+        return "admin/rental/rentProgress";
+    }
 }
 

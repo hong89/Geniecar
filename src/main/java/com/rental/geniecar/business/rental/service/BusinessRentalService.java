@@ -1,6 +1,6 @@
-package com.rental.geniecar.admin.rental.service;
+package com.rental.geniecar.business.rental.service;
 
-import com.rental.geniecar.admin.rental.dao.AdminRentalDao;
+import com.rental.geniecar.business.rental.dao.BusinessRentalDao;
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
 import lombok.RequiredArgsConstructor;
@@ -9,34 +9,33 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 @Transactional
-@RequiredArgsConstructor
-public class AdminRentalService {
+public class BusinessRentalService {
 
-    private final AdminRentalDao adminRentalDao;
-
+    private final BusinessRentalDao businessRentalDao;
 
     public List<RentalCarReservationVo> selectReservationList(Pagination pagination) {
-        return adminRentalDao.selectReservationList(pagination);
+        return businessRentalDao.selectReservationList(pagination);
     }
 
     public int totalCount(Pagination pagination) {
-        return adminRentalDao.totalCount(pagination);
+        return businessRentalDao.totalCount(pagination);
     }
 
     public List<RentalCarReservationVo> selectCompleteList(Pagination pagination) {
-        return adminRentalDao.selectCompleteList(pagination);
+        return businessRentalDao.selectCompleteList(pagination);
     }
 
     public int completeTotalCount(Pagination pagination) {
-        return adminRentalDao.completeTotalCount(pagination);
+        return businessRentalDao.completeTotalCount(pagination);
     }
     public List<RentalCarReservationVo> selectProgressList(Pagination pagination) {
-        return adminRentalDao.selectProgressList(pagination);
+        return businessRentalDao.selectProgressList(pagination);
     }
 
     public int progressTotalCount(Pagination pagination) {
-        return adminRentalDao.progressTotalCount(pagination);
+        return businessRentalDao.progressTotalCount(pagination);
     }
 }

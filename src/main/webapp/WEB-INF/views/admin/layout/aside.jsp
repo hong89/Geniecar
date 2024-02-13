@@ -20,6 +20,7 @@
     <ul class="list-group">
         <li class="list-group-item"><p>렌터카 예약 관리</p>
             <p><a href="/admin/rental/rentReservation.do">렌터카 예약 내역</a></p>
+            <p><a href="/admin/rental/rentProgress.do">렌터카 진행 내역</a></p>
             <p><a href="/admin/rental/rentComplete.do">렌터카 종료 내역</a></p>
         </li>
         <li class="list-group-item"><p>게시판 관리</p>

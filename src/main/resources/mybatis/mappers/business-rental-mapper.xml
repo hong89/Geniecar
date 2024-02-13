@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rental.geniecar.admin.rental.dao.AdminRentalDao">
+<mapper namespace="com.rental.geniecar.business.rental.dao.BusinessRentalDao">
 
 	<select id="selectReservationList" resultType="rentalCarReservationVo" parameterType="com.rental.geniecar.domain.common.Pagination">
 		SELECT  RESERVATION_NO

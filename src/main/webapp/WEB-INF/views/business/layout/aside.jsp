@@ -22,10 +22,10 @@
             <p><a href="/business/car/list.do">차량 목록</a></p>
             <p><a href="/business/car/assignList.do">차량 인수 등록</a></p>
         </li>
-        <li class="list-group-item"><p>예약 목록</p>
-            <p><a href="/business/rental/shortRent.do">단기 렌터카</a></p>
-            <p><a href="/business/rental/monthRent.do">월단기 렌터카</a></p>
-            <p><a href="/business/rental/commuteRent.do">출퇴근 렌터카</a></p>
+        <li class="list-group-item"><p>예약 관리</p>
+            <p><a href="/business/rental/rentReservation.do">렌터카 예약 내역</a></p>
+            <p><a href="/business/rental/rentProgress.do">렌터카 진행 내역</a></p>
+            <p><a href="/business/rental/rentComplete.do">렌터카 종료 내역</a></p>
         </li>
         <li class="list-group-item"><p>상담 내역</p>
             <p><a href="/business/consult/consult.do?typeCode=CONSULTING">상담 문의 목록</a></p>

@@ -1,4 +1,4 @@
-package com.rental.geniecar.admin.rental.dao;
+package com.rental.geniecar.business.rental.dao;
 
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
@@ -7,8 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface AdminRentalDao {
-
+public interface BusinessRentalDao {
 
     List<RentalCarReservationVo> selectReservationList(Pagination pagination);
 
