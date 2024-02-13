@@ -181,14 +181,14 @@
                         <li>차량 무료 업그레이드 / 무료 이용권 지급</li>
                         <li>다양한 여행정보 및 할인쿠폰 제공을 통해 알뜰한 여행 가능</li>
                     </ul>
-                    <div class="btn-box">
+                    <div class="">
                         <a class="btn btn-white"
-                           href="https://lotterentacar.net/hp/kor/reservation/step1.do?state=2&rentArea=1"
+                           href="http://localhost:8085/reservation/index.do"
                            data-link-area="단기렌트 서비스 안내" data-link-name="대여 및 요금안내"
                            data-link-text="내륙 예약하기">내륙
                             예약하기</a>
                         <a class="btn btn-white"
-                           href="https://lotterentacar.net/hp/kor/reservation/step1.do?state=2&rentArea=6"
+                           href="http://localhost:8085/reservation/index.do"
                            data-link-area="단기렌트 서비스 안내" data-link-name="대여 및 요금안내"
                            data-link-text="제주 예약하기">제주
                             예약하기</a>
