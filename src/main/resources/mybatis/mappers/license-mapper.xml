@@ -7,7 +7,7 @@
 		 FROM LICENSE WHERE MEMBER_ID = #{memberId}
 	</select>
 
-	<insert id="">
+	<insert id="insertLicense">
 		
 	</insert>
 </mapper>

@@ -36,6 +36,9 @@
 </style>
 <script>
     $(function() {
+        let msg = "${msg}";
+        if(msg ==="ok") {alert("비밀번호가 변경되었습니다.")};
+        if(msg ==="not") {alert("현재 비밀번호가 일치하지 않습니다.")};
         $('#btnSubmit').click(function () {
             var currentPw = $('#currentPw').val();
             var password1 = $('#password1').val();
@@ -56,6 +59,7 @@
                 alert("비밀번호가 일치하지 않습니다.");
                 return false;
             }
+            $('#pw').val(password1);
             $('#passwordForm').submit();
             
         });
@@ -155,7 +159,7 @@
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">비밀번호 변경</h2>
             </div>
-            <form name = "passwordForm" id ="passwordForm">
+            <form name = "passwordForm" id ="passwordForm" action="/mypage/member/changepw.do" method="post">
                 <div class="row p-1 m-2">
                     <div class="col-2">
                         <label for="currentPw" class="col-form-label">현재 비밀번호</label>
@@ -178,6 +182,8 @@
                     </div>
                     <div class="col-6">
                         <input type="password" id="password2" name="password2" class="form-control">
+                        <input type="hidden" name="id" value="${member.id}" >
+                        <input type="hidden" id="pw" name="pw">
                     </div>
                 </div>
                 <div class="text-center m">

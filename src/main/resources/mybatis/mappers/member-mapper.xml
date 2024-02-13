@@ -25,6 +25,10 @@
 		UPDATE MEMBER SET HP = #{hp}, ZIP_CODE = #{zipCode}, ADDRESS = #{address}, ADDRESS_DETAIL = #{addressDetail} WHERE ID= #{id}
 	</update>
 	
+	<update id="updatePw" parameterType="memberVo">
+		UPDATE MEMBER SET PW = #{pw} WHERE ID = #{id}
+	</update>
+	
 	<select id="selectAll" resultType="memberVo" parameterType="String">
 		SELECT * FROM MEMBER WHERE TYPE =#{type} ORDER BY NAME
     </select>
