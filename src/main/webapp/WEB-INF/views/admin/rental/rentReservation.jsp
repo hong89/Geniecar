@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -27,9 +28,11 @@
                         <td class="col">${res.reservationNo}</td>
                         <td class="col">${res.rentalPlaceName}</td>
                         <td class="col">${res.returnPlaceName}</td>
-                        <td class="col">${res.rentalDate} / ${res.returnDate}</td>
-                        <td class="col">${res.carIdentificationNumber}</td>
-                        <td class="col">${res.reservationMemberId}</td>
+                        <td class="col"><fmt:formatDate value="${res.rentalDate}" pattern="MM/dd HH:mm" />
+                             <br/>~ <fmt:formatDate value="${res.returnDate}" pattern="MM/dd HH:mm" /></td>
+                        <td class="col">${fn:substring(res.carIdentificationNumber, 11, 13)}허
+                                ${fn:substring(res.carIdentificationNumber, 13, 17)}</td>
+                        <td class="col">${res.reservationMemberName}</td>
                         <td class="col">${res.finalReservationPrice}</td>
                     </tr>
                 </c:forEach>

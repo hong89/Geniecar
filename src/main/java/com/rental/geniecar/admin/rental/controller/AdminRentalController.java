@@ -28,8 +28,11 @@ public class AdminRentalController {
     }
 
     @GetMapping("/rentComplete.do")
-    public String rentComplete(Model model) {
-
+    public String rentComplete(Pagination pagination, Model model) {
+        pagination.setTotalRecordCount(adminRentalService.completeTotalCount(pagination));
+        List<RentalCarReservationVo> completeList = adminRentalService.selectCompleteList(pagination);
+        model.addAttribute("completeList", completeList);
+        model.addAttribute("pagination", pagination);
         return "admin/rental/rentComplete";
     }
 

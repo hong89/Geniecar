@@ -22,9 +22,9 @@ CREATE TABLE MEMBER -- 회원 테이블
     GENDER          CHAR(1)       NOT NULL,   -- 성별 (M: 남, F: 여)
     BIRTHDAY        DATE          NOT NULL,   -- 생년월일 ('YYYY-MM-DD')
     HP              VARCHAR2(13)  NOT NULL,   -- 휴대폰 (FORMAT: XXX-XXXX-XXXX)
-    ADDRESS         VARCHAR2(200) NOT NULL,   -- 주소
-    ADDRESS_DETAIL  VARCHAR2(100) NOT NULL,   -- 상세주소
-    ZIP_CODE        VARCHAR2(6)   NOT NULL,   -- 우편번호
+    ADDRESS         VARCHAR2(200),            -- 주소
+    ADDRESS_DETAIL  VARCHAR2(100),            -- 상세주소
+    ZIP_CODE        VARCHAR2(6),              -- 우편번호
     JOIN_DATE       DATE          NOT NULL,   -- 가입일
     LAST_LOGIN_DATE DATE          NOT NULL,   -- 마지막 로그인 일시
     WITHDRAWAL_YN   CHAR(1)       NOT NULL,   -- 탈퇴 여부

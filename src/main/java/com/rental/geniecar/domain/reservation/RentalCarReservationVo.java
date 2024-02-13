@@ -19,6 +19,7 @@ public class RentalCarReservationVo {
     private String rentalCarBranchNo;               // 렌터카_지점_NO
     private String rentalCarBranchName;             // 렌터카_지점명
     private String reservationMemberId;          // 예약자_ID (회원아이디 FK)
+    private String reservationMemberName;          // 예약자_ID (회원아이디 FK)
     private int regularPrice;                    // 정가
     private int saleRate;                        // 할인율
     private int finalReservationPrice;           // 최종_예약_금액 (정가/할인율=최종금액)

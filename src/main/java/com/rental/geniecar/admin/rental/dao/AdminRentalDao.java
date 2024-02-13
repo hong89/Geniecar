@@ -13,4 +13,8 @@ public interface AdminRentalDao {
     List<RentalCarReservationVo> selectReservationList(Pagination pagination);
 
     int totalCount(Pagination pagination);
+
+    List<RentalCarReservationVo> selectCompleteList(Pagination pagination);
+
+    int completeTotalCount(Pagination pagination);
 }

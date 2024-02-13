@@ -24,4 +24,12 @@ public class AdminRentalService {
     public int totalCount(Pagination pagination) {
         return adminRentalDao.totalCount(pagination);
     }
+
+    public List<RentalCarReservationVo> selectCompleteList(Pagination pagination) {
+        return adminRentalDao.selectCompleteList(pagination);
+    }
+
+    public int completeTotalCount(Pagination pagination) {
+        return adminRentalDao.completeTotalCount(pagination);
+    }
 }
