@@ -26,8 +26,7 @@
     </div>
 
     <div class="content1">
-        <h3>출퇴근 렌터카</h3><br/>
-        <a href="/carlife/commuteRent.do">
+        <a href="/info/commuteRent.do">
             <img class="mb-4" src="/images/commuteRent.png" width="1000px" height="Auto" alt="출퇴근 페이지">
         </a>
     </div>

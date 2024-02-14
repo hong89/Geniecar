@@ -134,42 +134,42 @@
                         <h4 class="fw-bold mb-4">이용 중 관리 서비스 이용 방법</h4>
                         <ol class="service-guide-list row">
                             <li class="col-6">
-                                <p class="tit">1. 우측상단 예약확인 이동</p>
+                                <p class="tit">우측상단 예약확인 이동</p>
                                 <div class="img-box">
                                     <img alt=""
                                          src="/images/img-shortInfoAdditional-service-guide01.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">2. 대여 중인 계약번호 선택</p>
+                                <p class="tit">대여 중인 계약번호 선택</p>
                                 <div class="img-box">
                                     <img alt=""
                                          src="/images/img-shortInfoAdditional-service-guide02.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">3. 이용 중 관리 버튼 선택</p>
+                                <p class="tit">이용 중 관리 버튼 선택</p>
                                 <div class="img-box">
                                     <img alt=""
                                          src="/images/img-shortInfoAdditional-service-guide03.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">4. 반납 시간 및 반납지점 변경</p>
+                                <p class="tit">반납 시간 및 반납지점 변경</p>
                                 <div class="img-box">
                                     <img alt=""
                                          src="/images/img-shortInfoAdditional-service-guide04.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">5. 추가 운전자 등록</p>
+                                <p class="tit">추가 운전자 등록</p>
                                 <div class="img-box">
                                     <img alt=""
                                          src="/images/img-shortInfoAdditional-service-guide05.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">6. 추가금액 발생 시 결제하기</p>
+                                <p class="tit">추가금액 발생 시 결제하기</p>
                                 <div class="img-box">
                                     <img alt=""
                                          src="/images/img-shortInfoAdditional-service-guide06.png">
@@ -816,49 +816,49 @@
                         <h4 class="fw-bold mb-4">예약 방법</h4>
                         <ol class="service-guide-list row">
                             <li class="col-6">
-                                <p class="tit">1. 회원 로그인</p>
+                                <p class="tit">회원 로그인</p>
                                 <div class="img-box">
                                     <img alt="" src="/images/img-smart-guide01.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">2. 스마트 키박스 서비스 운영 지점 선택</p>
+                                <p class="tit">스마트 키박스 서비스 운영 지점 선택</p>
                                 <div class="img-box">
                                     <img alt="" src="/images/img-smart-guide02.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">3. 서비스 이용 선택 및 예약 완료 (결제 완료)</p>
+                                <p class="tit">서비스 이용 선택 및 예약 완료 (결제 완료)</p>
                                 <div class="img-box">
                                     <img alt="" src="/images/img-smart-guide03.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">4. 마이페이지 – 예약확인 이동</p>
+                                <p class="tit">마이페이지 – 예약확인 이동</p>
                                 <div class="img-box">
                                     <img alt="" src="/images/img-smart-guide04.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">5. 서비스 이용 계약번호 선택</p>
+                                <p class="tit">서비스 이용 계약번호 선택</p>
                                 <div class="img-box">
                                     <img alt="" src="/images/img-smart-guide06.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">6. 사전체크인 선택</p>
+                                <p class="tit">사전체크인 선택</p>
                                 <div class="img-box">
                                     <img alt="" src="/images/img-smart-guide07.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">7. 추가 운전자 등록</p>
+                                <p class="tit">추가 운전자 등록</p>
                                 <div class="img-box">
                                     <img alt="" src="/images/img-smart-guide08.png">
                                 </div>
                             </li>
                             <li class="col-6">
-                                <p class="tit">8. 이용자 동의 항목 체크 후 확인</p>
+                                <p class="tit">이용자 동의 항목 체크 후 확인</p>
                                 <div class="img-box">
                                     <img alt="" src="/images/img-smart-guide09.png">
                                 </div>

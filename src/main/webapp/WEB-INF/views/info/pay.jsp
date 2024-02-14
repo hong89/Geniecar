@@ -42,8 +42,7 @@
     }
 
     .nav-link.clicked {
-        background-color: #41087c;
-        color: white;
+        background-color: #d1c9ff;
     }
 
 </style>
@@ -172,9 +171,9 @@
         <div class="explain-cont">
             <div class="row">
                 <div class="col">
-                    <img alt="" src="/images/@temp-short-info-default.png">
+                    <img alt="" src="/images/geniecar1.png" width="600">
                 </div>
-                <div class="col">
+                <div class="col mt-5">
                     <h4 class="tit-size-big">회원가입 할인 혜택</h4>
                     <ul class="lst dot">
                         <li>주중 및 주말 최고 60% 회원 할인 혜택 (단 24시간 이상 이용 시 할인 적용)</li>

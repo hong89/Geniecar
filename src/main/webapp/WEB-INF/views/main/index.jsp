@@ -81,7 +81,7 @@
         </div>
     </div><hr/>
 
-    <section class="pt-5">
+    <!-- <section class="pt-5">
         <div class="explain-header">
             <p>즐겨보세요</p>
             <h2>매거진</h2><hr/>
@@ -99,7 +99,7 @@
                 <img src="/images/main/main-sub.png" width="600" height="150" alt="">
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section class="pt-5">
         <div class="explain-header">
