@@ -14,5 +14,6 @@ public class NewCarVo {
     private String fuelName;                  // 연료코드 명
     private String company;                   // 제조사 (공통코드 FK) 현대, 기아 ...
     private String companyName;               // 제조사명
-    private Integer defaultCost;
+    private Integer defaultCost;              // 가격
+    private int fileNo;                    // 차 파일 번호
 }

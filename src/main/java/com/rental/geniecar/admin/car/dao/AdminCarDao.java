@@ -39,4 +39,6 @@ public interface AdminCarDao {
     void updateNewCar(NewCarVo newCarVo);
 
     void deleteNewCar(int no);
+
+    NewCarVo selectDetailCar(int no);
 }

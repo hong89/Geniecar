@@ -145,6 +145,7 @@
             ,CAR_FUEL_CODE
             ,DEFAULT_COST
             ,COMPANY
+            ,FILE_NO
         ) VALUES (
              SEQ_NEW_CAR_NO.NEXTVAL
             ,#{carName}
@@ -152,6 +153,7 @@
             ,#{carFuelCode}
             ,#{defaultCost}
             ,#{company}
+            ,#{fileNo}
         )
     </insert>
 
@@ -198,6 +200,21 @@
         FROM NEW_CAR
         WHERE NO = #{no}
     </delete>
+
+    <select id="selectDetailCar" resultType="newCarVo" parameterType="int">
+        SELECT NO
+           , CAR_NAME
+           , CAR_TYPE_CODE
+           , FN_COMM_NAME(CAR_TYPE_CODE) AS TYPE_NAME
+           , CAR_FUEL_CODE
+           , FN_COMM_NAME(CAR_FUEL_CODE) AS FUEL_NAME
+           , DEFAULT_COST
+           , COMPANY
+           , FN_COMM_NAME(COMPANY) AS COMPANY_NAME
+           , FILE_NO
+        FROM NEW_CAR
+        WHERE NO = #{no}
+    </select>
 </mapper>
 
 

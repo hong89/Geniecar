@@ -12,13 +12,4 @@ public class BusinessPaymentController {
         return "business/payment/shortRent";
     }
 
-    @GetMapping("/monthRent.do")
-    public String monthRent() {
-        return "business/payment/monthRent";
-    }
-
-    @GetMapping("/commuteRent.do")
-    public String commuteRent() {
-        return "business/payment/commuteRent";
-    }
 }

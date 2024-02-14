@@ -17,17 +17,18 @@
                     <td class="col-2"><strong>차량명</strong></td>
                     <td class="col-2"><strong>차량타입</strong></td>
                     <td class="col-2"><strong>연료</strong></td>
-                    <td class="col-2"><strong>사용여부</strong></td>
-                    <td class="col-2"><strong>차대번호</strong></td>
                     <td class="col-2"><strong>차량번호</strong></td>
+                    <td class="col-2"><strong>사용여부</strong></td>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="car" items="${branchRentalCar}">
                     <tr>
-                        <td>${car.carName}</td>
+                        <td><a href="/business/car/carDetail.do?carIdentificationNumber=${car.carIdentificationNumber}">${car.carName}</a></td>
                         <td>${car.carType}</td>
                         <td>${car.carFuel}</td>
+                        <td>${fn:substring(car.carIdentificationNumber, 11, 13)}
+                            허 ${fn:substring(car.carIdentificationNumber, 13, 17)}</td>
                         <td>
                             <c:choose>
                                 <c:when test="${car.rentalAbleStatus == 'Y'}">
@@ -41,9 +42,6 @@
                                 </c:otherwise>
                             </c:choose>
                         </td>
-                        <td>${car.carIdentificationNumber}</td>
-                        <td>${fn:substring(car.carIdentificationNumber, 11, 13)}
-                            허 ${fn:substring(car.carIdentificationNumber, 13, 17)}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
