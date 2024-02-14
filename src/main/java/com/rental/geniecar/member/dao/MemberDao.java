@@ -23,4 +23,6 @@ public interface MemberDao {
 	public int updateWithdrawal(String id);
 	public Map myReservation(String id);
 	public LicenseVo selectLicense(String id);
+	public void insertLicense(LicenseVo vo);
+	public void updateLicense(LicenseVo vo);
 }

@@ -1,7 +1,10 @@
 package com.rental.geniecar.mypage.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,9 +94,25 @@ public class MyPageController {
 		return "mypage/license";
 	}
 	@PostMapping("/addLicense.do")
-	public String addLicense(LicenseVo license) {
-		System.out.println("++++++++++++++++++++++++++++" + license.toString());
-		return "redirect:/mypage/license";
+	public String addLicense(HttpServletRequest request) throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		LicenseVo license = new LicenseVo();
+		license.setLicenseGradeCode(request.getParameter("licenseGradeCode"));
+		license.setLicenseNumber(request.getParameter("licenseNumber"));
+		license.setDriverName(request.getParameter("driverName"));
+		license.setMemberId(request.getParameter("memberId"));
+		license.setDriverBirth(format.parse(request.getParameter("driverBirth")));
+		license.setLicenseTestDate(format.parse(request.getParameter("licenseTestDate")));
+		license.setLicenseIssueDate(format.parse(request.getParameter("licenseIssueDate")));
+		System.out.println(license);
+		memberService.insertLicense(license);
+		return "redirect:/mypage/license.do";
+	}
+	@PostMapping("/updateLicense.do")
+	public String updateLicense(LicenseVo license) {
+		System.out.println(license);
+		memberService.updateLicense(license);
+		return "redirect:/mypage/license.do";
 	}
 	//ruddud
 	@GetMapping("/member/modify.do")

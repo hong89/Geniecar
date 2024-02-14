@@ -94,6 +94,7 @@
                 var pw = $('[name=pw]').val();
                 var pwCheck = $('[name=pwCheck]').val();
                 var name = $('[name=name]').val();
+                var branchCode = $('[name=branchCode]').val();
                 var gender = $('input:radio[name="gender"]:checked').val();
                 var birthday = $('[name=birthday]').val();
                 var hp = $('[name=hp]').val();
@@ -103,36 +104,49 @@
 
                 if (!$.trim($('[name=id]').val())) {
                     alert('아이디를 중복체크 해주세요.');
+                    $("#id").focus();
                     return false;
                 } else if (pw == '' || pw == null) {
                     alert("비밀번호를 입력해주세요");
+                    $("#pw").focus();
                     return false;
                 } else if (pwCheck == '' || pwCheck == null) {
                     alert("비밀번호 확인을 입력해주세요");
+                    $("#pwCheck").focus();
                     return false;
                 } else if (pw != pwCheck) {
                     alert("비밀번호가 일치하지 않습니다.");
                     return false;
                 } else if (name == '' || name == null) {
                     alert("이름을 입력해주세요");
+                    $("#name").focus();
+                    return false;
+                } else if (branchCode == '선택') {
+                    alert("지점을 선택해주세요");
                     return false;
                 } else if (gender == null) {
                     alert("성별을 입력해주세요");
+                    $("#gender").focus();
                     return false;
                 } else if (birthday == '' || birthday == null) {
                     alert("생일을 입력해주세요");
+                    $("#birthday").focus();
                     return false;
                 } else if (hp == '' || hp == null) {
                     alert("전화번호를 입력해주세요");
+                    $("#hp").focus();
                     return false;
                 } else if (zipCode == '' || zipCode == null) {
                     alert("우편번호를 입력해주세요");
+                    $("#zipCode").focus();
                     return false;
                 }else if (address == '' || address == null) {
                     alert("주소를 입력해주세요");
+                    $("#address").focus();
                     return false;
                 }else if (addressDetail == '' || addressDetail == null) {
                     alert("나머지 주소를 입력해주세요");
+                    $("#addressDetail").focus();
                     return false;
                 }
                 $('[name=doJoin]').submit();                
@@ -315,7 +329,7 @@
                             <label for="pw" class="col-form-label">비밀번호</label>
                         </div>
                         <div class="col-auto">
-                            <input type="password" id="pw" name="pw" class="form-control"
+                            <input type="password" id="pw" name="pw" class="form-control" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
                                 aria-describedby="passwordHelpInline">
                         </div>
                         <div class="col-auto">

@@ -80,7 +80,7 @@
                         </c:forEach>
                     </select>
                     <select class="form-select col" id="branches" name="wishRegion" style=" display: inline;width: auto;">
-                        <option value="" selected>희망지역(구/시)선택</option>
+                        <option value="" selected>선택</option>
                     </select>
                 </div>
             </div>
