@@ -129,12 +129,34 @@
         const reg = /\D/g;
         event.target.value = event.target.value.replace(reg, "");
     }
-    $(function() {
-        var licenseNumber = $('#licenseNumber').val();
-        var licenseNumber1 = licenseNumber.substring(0, 2);
-        var licenseNumber2 = licenseNumber.substring(2, 4);
-        var licenseNumber3 = licenseNumber.substring(4, 10);
-        var licenseNumber4 = licenseNumber.substring(10, 12);
+    function oninputPhone(target) {
+        target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/([0-9]{4})([0-9]{2})([0-9]{2})/g, "$1-$2-$3");
+    }
+
+    $(function () {
+        var isnull = document.getElementById('isnull').value;
+        if(isnull == ""){
+            $('#submitBtn').click(function () {
+                $('#licenseNumber').val($("#licenseNumber1").val()+ "-" + $("#licenseNumber2").val() + "-" + $("#licenseNumber3").val() + "-" + $("#licenseNumber4").val());
+                $("form").attr("action", "/mypage/addLicense.do");
+            });
+        }
+        if(isnull !== ""){
+            $("#licenseGradeCode").val("${license.licenseGradeCode}").attr("selected","selected");
+            var licenseNumber = document.getElementById('licenseNumber').value;
+            var lilicenseNumber = licenseNumber.split('-');
+            $('#licenseNumber1').val(lilicenseNumber[0]);
+            $('#licenseNumber2').val(lilicenseNumber[1]);
+            $('#licenseNumber3').val(lilicenseNumber[2]);
+            $('#licenseNumber4').val(lilicenseNumber[3]);
+            $('#submitBtn').click(function () {
+                $('#licenseNumber').val($("#licenseNumber1").val()+ "-" + $("#licenseNumber2").val() + "-" + $("#licenseNumber3").val() + "-" + $("#licenseNumber4").val());
+                $("form").attr("action", "/mypage/updateLicense.do");
+            });
+        }
+        
     })
 
 </script>
@@ -229,10 +251,11 @@
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">운전면허 정보</h2>
             </div>
-            <form method="post" action="/mypage/addLicense.do">
+            <form method="post" id="form">
+                <input type="hidden" value="${license}" id="isnull">
                 <div class="border rounded-3 row p-4 m-5" style="width: 670px; height: 422px; position: relative;">
-                    <div id="licenseGradeCode">
-                        <select name="licenseGradeCode" id="" class="border rounded-1" style="height: 40px;" value = "">
+                    <div id="">
+                        <select name="licenseGradeCode" id="licenseGradeCode" class="border rounded-1" style="height: 40px;" value = "${license.licenseGradeCode}">
                             <option value="">선택 </option>
                             <option value="1종대형">1종대형</option>
                             <option value="1종보통">1종보통</option>
@@ -282,41 +305,42 @@
                             <option value="대전" >대전</option>
                             <option value="울산" >울산</option>
                         </select>
-                        <input type="text" name="licenseNumber2" id="licenseNumber2" value="" maxlength="2" class="border rounded-1" oninput="onlyNumber()">
-                        <input type="password" name="licenseNumber3" id="licenseNumber3" value="" maxlength="6" class="border rounded-1" oninput="onlyNumber()">
-                        <input type="text" name="licenseNumber4" id="licenseNumber4" value="" maxlength="2" class="border rounded-1" oninput="onlyNumber()">
+                        <input type="text" id="licenseNumber2" value="" maxlength="2" class="border rounded-1" oninput="onlyNumber()">
+                        <input type="password" id="licenseNumber3" value="" maxlength="6" class="border rounded-1" oninput="onlyNumber()">
+                        <input type="text" id="licenseNumber4" value="" maxlength="2" class="border rounded-1" oninput="onlyNumber()">
                         <input type="hidden" name="licenseNumber" id="licenseNumber" value="${license.licenseNumber}">
                     </div>
                     <div id="">
-                        <label for="name" id="labelName">이름</label>
+                        <label for="driverName" id="labelName">이름</label>
                         <div class="">
-                            <input type="text" id="inputName" name = "name" value="${license.driverName}" class="border rounded-1">
+                            <input type="text" id="inputName" name = "driverName" class="border rounded-1" value="${license.driverName}">
                             <input type="hidden" name="memberId" value="${member.id}">
                         </div>
                     </div>
                     <div id="">
                         <label for="birthday" id="labelBirthday">생년월일</label>
                         <div class="">
-                            <input id="inputBirthday" name = "birthday" value="${license.driverBirth}" class="border rounded-1" placeholder=" YYYYMMDD" maxlength="8" oninput="onlyNumber()">
+                            <input id="inputBirthday" name = "driverBirth" value="<fmt:formatDate value='${license.driverBirth}' pattern='yyyy-MM-dd' />" class="border rounded-1" placeholder=" YYYYMMDD"maxlength="10" oninput="oninputPhone(this)">
                         </div>
                     </div>
                     <div id="">
                         <label for="licenseTestDate" id="labelExpirationDate">만료일자</label>
                         <div class="">
-                            <input id="inputExpirationDate" name = "licenseTestDate" value="${license.licenseTestDate}" class="border rounded-1" placeholder=" YYYYMMDD" maxlength="8" oninput="onlyNumber()" > 
+                            <input id="inputExpirationDate" name = "licenseTestDate" value="<fmt:formatDate value='${license.licenseTestDate}' pattern='yyyy-MM-dd' />" class="border rounded-1" placeholder=" YYYYMMDD" maxlength="10" oninput="oninputPhone(this)"> 
                         </div>
                     </div>
                     <div id="">
                         <label for="licenseIssueDate" id="labelIssueDate" >발급일자</label>
                         <div class="">
-                            <input id="inputIssueDate" name = "licenseIssueDate" value="${license.licenseIssueDate}" class="border rounded-1" placeholder=" YYYYMMDD" maxlength="8" oninput="onlyNumber()">
+                            <input id="inputIssueDate" name = "licenseIssueDate" value="<fmt:formatDate value='${license.licenseIssueDate}' pattern='yyyy-MM-dd' />" class="border rounded-1" placeholder=" YYYYMMDD" maxlength="10" oninput="oninputPhone(this)">
                         </div>
                     </div>  
-                </div>
+                </div> 
                 <div class="text-center">
-                    <button class="btn text-white" style="background-color: #41087c; width: 100px;">등록하기</button>
-                </div>
+                    <button class="btn text-white" id="submitBtn" style="background-color: #41087c; width: 100px;" >등록하기</button>
+                </div> 
             </form>
+
         </article>
     </div>
 

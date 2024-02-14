@@ -63,4 +63,10 @@ public class MemberService {
 	public LicenseVo selectLicense(String id) {
 		return memberDao.selectLicense(id);
 	}
+	public void insertLicense(LicenseVo vo) {
+		memberDao.insertLicense(vo);
+	}
+	public void updateLicense(LicenseVo vo) {
+		memberDao.updateLicense(vo);
+	}
 }

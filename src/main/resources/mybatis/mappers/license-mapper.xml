@@ -8,6 +8,11 @@
 	</select>
 
 	<insert id="insertLicense">
-		
+		INSERT INTO LICENSE(NO, MEMBER_ID, LICENSE_GRADE_CODE, LICENSE_NUMBER, DRIVER_NAME, DRIVER_BIRTH, LICENSE_TEST_DATE, LICENSE_ISSUE_DATE) VALUES
+		(SEQ_LICENSE_NO.NEXTVAL, #{memberId}, #{licenseGradeCode}, #{licenseNumber}, #{driverName}, #{driverBirth}, #{licenseTestDate}, #{licenseIssueDate})
 	</insert>
+	<update id="updateLicense">
+		UPDATE LICENSE SET LICENSE_GRADE_CODE = #{licenseGradeCode}, LICENSE_NUMBER = #{licenseNumber}, DRIVER_NAME = #{driverName}, 
+		DRIVER_BIRTH = #{driverBirth}, LICENSE_TEST_DATE = #{licenseTestDate}, LICENSE_ISSUE_DATE =#{licenseIssueDate} where MEMBER_ID = #{memberId}
+	</update>
 </mapper>
