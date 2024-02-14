@@ -10,7 +10,7 @@
             <section class="text-center">
                 <h1 class="pb-5 tit">렌터카 종료 내역</h1>
             </section>
-            <table class="pt-5 table caption-top">
+            <table class="pt-5 table caption-top align-middle">
                 <thead>
                 <tr>
                     <td class="col"><strong>예약번호</strong></td>

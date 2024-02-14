@@ -187,6 +187,7 @@ CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
     REGULAR_PRICE             NUMBER(10)   NOT NULL,    -- 정가
     SALE_RATE                 NUMBER(2)    NOT NULL,    -- 할인율
     FINAL_RESERVATION_PRICE   NUMBER(10)   NOT NULL,    -- 최종_예약_금액 (정가/할인율=최종금액)
+    CANCEL_YN                 CHAR(1) DEFAULT 'N',      -- 예약 취소 여부
     REG_ID                    VARCHAR2(20) NOT NULL,    -- 등록자 (회원아이디 FK)
     REG_DATE                  DATE         NOT NULL,    -- 등록_일시
     MOD_ID                    VARCHAR2(20),             -- 수정자 (회원아이디 FK)

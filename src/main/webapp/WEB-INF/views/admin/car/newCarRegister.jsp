@@ -22,9 +22,9 @@
         $('[name$=carFuelCode]').on('change', function () {
             var className = $(this).attr('id').toLowerCase();
 
-            if($(this).is(':checked')){
+            if ($(this).is(':checked')) {
                 $('.' + className).prop('disabled', false);
-            }else{
+            } else {
                 $('.' + className).prop('disabled', true).val('');
             }
 
@@ -41,7 +41,8 @@
                 <h1 class="tit">신차 등록</h1>
             </section>
 
-            <form name="frmInsert" action="/admin/car/insertNewCars.do" id="frmInsert" method="post">
+            <form name="frmInsert" action="/admin/car/insertNewCars.do" id="frmInsert" method="post"
+                  enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-8 pt-4">
                         <div class="mb-3 row">
@@ -81,7 +82,8 @@
                                 <div class="row">
                                     <c:forEach var="fuel" items="${carsFuel}" varStatus="index">
                                         <div class="col-4 text-start"><label for="${fuel.fullCode}">
-                                            <input type="checkbox" name="rentalCosts[${index.index}].carFuelCode" id="${fuel.fullCode}" value="${fuel.fullCode}">
+                                            <input type="checkbox" name="rentalCosts[${index.index}].carFuelCode"
+                                                   id="${fuel.fullCode}" value="${fuel.fullCode}">
                                                 ${fuel.codeName} </label>
                                         </div>
                                     </c:forEach>
@@ -93,36 +95,47 @@
                         <div class="mb-3 row">
                             <label for="fuelGas" class="col-sm-3 col-form-label">가솔린 가격</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control fuegas" id="fuelGas" name="rentalCosts[0].defaultCost" disabled="disabled"
+                                <input type="text" class="form-control fuegas" id="fuelGas"
+                                       name="rentalCosts[0].defaultCost" disabled="disabled"
                                        placeholder="10분 단위 가격을 작성해주세요.">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="fuelDie" class="col-sm-3 col-form-label">디젤 가격</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control fuedie" id="fuelDie" name="rentalCosts[1].defaultCost" disabled="disabled"
+                                <input type="text" class="form-control fuedie" id="fuelDie"
+                                       name="rentalCosts[1].defaultCost" disabled="disabled"
                                        placeholder="10분 단위 가격을 작성해주세요.">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="fuelLPG" class="col-sm-3 col-form-label">LPG 가격</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control fuelpg" id="fuelLPG" name="rentalCosts[2].defaultCost" disabled="disabled"
+                                <input type="text" class="form-control fuelpg" id="fuelLPG"
+                                       name="rentalCosts[2].defaultCost" disabled="disabled"
                                        placeholder="10분 단위 가격을 작성해주세요.">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="fuelHyb" class="col-sm-3 col-form-label">하이브리드 가격</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control fuehyb" id="fuelHyb" name="rentalCosts[3].defaultCost" disabled="disabled"
+                                <input type="text" class="form-control fuehyb" id="fuelHyb"
+                                       name="rentalCosts[3].defaultCost" disabled="disabled"
                                        placeholder="10분 단위 가격을 작성해주세요.">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="fuelEle" class="col-sm-3 col-form-label">전기 가격</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control fueele" id="fuelEle" name="rentalCosts[4].defaultCost" disabled="disabled"
+                                <input type="text" class="form-control fueele" id="fuelEle"
+                                       name="rentalCosts[4].defaultCost" disabled="disabled"
                                        placeholder="10분 단위 가격을 작성해주세요.">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="carImage" class="col-sm-3 form-label">차량 사진</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="file" id="carImage" name="carImage">
                             </div>
                         </div>
                     </div>
@@ -196,10 +209,7 @@
                         <p style="text-align: left; font-size: small">* 평균 비용으로 차량에 따라 기준 비용이 달라질 수 있습니다.</p>
                     </div>
                 </div>
-
-
                 <button type="submit" class="btn text-white" style="background: #41087c" id="frmSubmit">등록하기</button>
-
             </form>
         </div>
     </div>

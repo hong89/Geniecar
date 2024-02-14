@@ -2,12 +2,14 @@ package com.rental.geniecar.business.car.controller;
 
 import com.rental.geniecar.business.car.service.BusinessCarService;
 import com.rental.geniecar.domain.branch.BranchCarVo;
+import com.rental.geniecar.domain.car.ResponseBranchCarVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -48,5 +50,12 @@ public class BusinessCarController {
     @GetMapping("/remove.do")
     public String remove(){
         return "business/car/remove";
+    }
+
+    @GetMapping("/carDetail.do")
+    public String carDetail(@RequestParam("carIdentificationNumber") String carIdentificationNumber, Model model){
+        ResponseBranchCarVo car = businessCarService.selectCarDetail(carIdentificationNumber);
+        model.addAttribute("car", car);
+        return "business/car/carDetail";
     }
 }

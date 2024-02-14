@@ -1,6 +1,7 @@
 package com.rental.geniecar.business.car.dao;
 
 import com.rental.geniecar.domain.branch.BranchCarVo;
+import com.rental.geniecar.domain.car.ResponseBranchCarVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface BusinessCarDao {
     void modifyRentalCarBranchesCar(String carNumber, String branchCode, String memberId);
 
     void modifyRentalCarCostUpdate(String carNumber);
+
+    ResponseBranchCarVo selectCarDetail(String carIdentificationNumber);
 }

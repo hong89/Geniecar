@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script>
-    $(function(){
+    $(function () {
         $('.modify-btn').on('click', function () {
             $('[name=no]').val($(this).data('no'));
             $('[name=defaultCost]').val($(this).data('cost'));
@@ -19,12 +19,12 @@
                 <div class="col-3">
                     <select class="form-select" id="formSelect" aria-label="Default select example">
                         <option value="" selected>선택</option>
-                         <c:forEach var="com" items="${companies}">
-                             <option value="${com.fullCode}"
-                                     <c:if test="${not empty param.keyword and param.keyword eq com.fullCode}">selected</c:if>>
-                                     ${com.codeName}
-                             </option>
-                         </c:forEach>
+                        <c:forEach var="com" items="${companies}">
+                            <option value="${com.fullCode}"
+                                    <c:if test="${not empty param.keyword and param.keyword eq com.fullCode}">selected</c:if>>
+                                    ${com.codeName}
+                            </option>
+                        </c:forEach>
                     </select>
                 </div>
                 <div class="col-6"></div>
@@ -36,14 +36,12 @@
             </div>
 
 
-            <table class="pt-5 table caption-top">
+            <table class="pt-5 table caption-top align-middle">
                 <thead>
                 <tr>
                     <td class="col-2"><strong>차량명</strong></td>
-                    <td class="col-2"><strong>차량타입</strong></td>
                     <td class="col-2"><strong>연료</strong></td>
-                    <td class="col-1"><strong>가격</strong></td>
-                    <td class="col-2"><strong>회사</strong></td>
+                    <td class="col-2"><strong>가격</strong></td>
                     <td class="col-1"><strong>수정</strong></td>
                     <td class="col-1"><strong>삭제</strong></td>
                 </tr>
@@ -51,19 +49,20 @@
                 <tbody>
                 <c:forEach var="car" items="${newCarList}">
                     <tr>
-                        <td class="text-center">${car.carName}</td>
-                        <td class="text-center">${car.typeName}</td>
+                        <td class="text-center"><a href="/admin/car/newCarDetail.do?no=${car.no}">${car.carName}</a></td>
                         <td class="text-center">${car.fuelName}</td>
                         <td class="text-center">${car.defaultCost}원</td>
-                        <td class="text-center">${car.companyName}</td>
                         <td class="text-center">
-                            <button type="button" class="btn btn-sm modify-btn" style="background: #f8f7fd; border: 1px solid #41087c"
+                            <button type="button" class="btn btn-sm modify-btn"
+                                    style="background: #f8f7fd; border: 1px solid #41087c"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    data-no="${car.no}" data-car-name="${car.carName}" data-cost="${car.defaultCost}">수정</button>
+                                    data-no="${car.no}" data-car-name="${car.carName}" data-cost="${car.defaultCost}">수정
+                            </button>
                         </td>
                         <td class="text-center">
                             <button class="btn btn-sm" style="background: #f8f7fd; border: 1px solid #41087c"
-                                    onclick="location.href='/admin/car/newCarDelete.do?no=${car.no}'">삭제</button>
+                                    onclick="location.href='/admin/car/newCarDelete.do?no=${car.no}'">삭제
+                            </button>
                         </td>
 
                     </tr>
@@ -154,15 +153,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/admin/car/newCarModify.do" >
-                    <input type="hidden" name="no" />
+                <form method="post" action="/admin/car/newCarModify.do">
+                    <input type="hidden" name="no"/>
                     <div class="mb-3 text-start">
                         <label for="carName" class="col-form-label">변경할 이름을 입력하세요.</label>
-                        <input type="text" class="form-control" id="carName" name="carName" />
+                        <input type="text" class="form-control" id="carName" name="carName"/>
                     </div>
                     <div class="mb-3 text-start">
                         <label for="defaultCost" class="col-form-label">변경할 10분 단위 가격을 입력하세요.</label>
-                        <input type="text" class="form-control" id="defaultCost" name="defaultCost" />
+                        <input type="text" class="form-control" id="defaultCost" name="defaultCost"/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
@@ -170,7 +169,7 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
+
