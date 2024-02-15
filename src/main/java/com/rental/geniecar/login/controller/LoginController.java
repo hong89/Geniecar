@@ -45,7 +45,8 @@ public class LoginController {
 			
 			if(memberVo.getWithdrawalYn().equals("N")) {
 				session.setAttribute("isLogOn", true);
-				session.setAttribute("memberInfo",memberVo);	
+				session.setAttribute("memberInfo",memberVo);
+				session.setAttribute("mypage",loginService.mypage(memberVo.getId()));
 				response.sendRedirect("/main/index.do");	
 			} else if(memberVo.getWithdrawalYn().equals("K")) {
 				out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요');history.back();</script>");

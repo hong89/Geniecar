@@ -76,12 +76,12 @@
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">P</a>
+                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
                         <p>할인쿠폰</p>
-                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">0장</a>
+                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">${mypage.coupons}장</a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
@@ -92,8 +92,8 @@
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel06.png">
                         <p>1:1문의</p>
-                        <a href="/mypage/rentCarConsulting.do" class="underline"
-                           id="commonRentalConsultCount">0건</a>
+                        <a href="/mypage/qna.do?typeCode=QNA" class="underline"
+                           id="commonRentalConsultCount">${mypage.qna}건</a>
                     </li>
                 </ul>
             </div>

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.member.dao.MemberDao;
@@ -42,8 +43,17 @@ public class MemberService {
 			return 0;		
 		}		
 	}
-	public List<MemberVo> selectAll(String type){
-		return memberDao.selectAll(type);
+	public List<Map> selectAllBusiness(Pagination pagination){
+		return memberDao.selectAllBusiness(pagination);
+	}
+	public int countBusiness(Pagination pagination) {
+		return memberDao.countBusiness(pagination);
+	}
+	public List<MemberVo> selectAllUser(Pagination pagination){
+		return memberDao.selectAllUser(pagination);
+	}
+	public int countUser(Pagination pagination) {
+		return memberDao.countUser(pagination);
 	}
 	public MemberVo selectOne(String id) {
 		return memberDao.selectOne(id);
@@ -69,4 +79,5 @@ public class MemberService {
 	public void updateLicense(LicenseVo vo) {
 		memberDao.updateLicense(vo);
 	}
+
 }
