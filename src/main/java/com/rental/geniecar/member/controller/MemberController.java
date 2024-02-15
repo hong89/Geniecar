@@ -31,7 +31,6 @@ public class MemberController {
 	public String join(){
         return "member/join";
     }
-	
 	//ruddud
 	@PostMapping("/overlapped.do")
 	public @ResponseBody String overlapped(@RequestParam("id") String id) throws Exception{

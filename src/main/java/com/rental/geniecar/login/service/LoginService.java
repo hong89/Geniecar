@@ -1,5 +1,6 @@
 package com.rental.geniecar.login.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.login.dao.LoginDao;
+import com.rental.geniecar.point.dao.PointDao;
+import com.rental.geniecar.point.service.PointService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class LoginService {
 
 	private final LoginDao loginDao;
+	private final PointDao pointDao;
 	
 	public MemberVo login (Map<String, String> map) {
 		if(loginDao.login(map) != null && loginDao.login(map).getId()!=null) {
@@ -48,5 +52,14 @@ public class LoginService {
 		} else {
 			return null;
 		}
+	}
+	public Map mypage(String id) {
+		Map mypage = new HashMap<>();
+		mypage.put("coupons", loginDao.countCoupons(id));
+		Integer point=0;
+		if(pointDao.selectPoint(id) != null) { point = pointDao.selectPoint(id).getCurrentPoint(); }
+		mypage.put("point", point);
+		mypage.put("qna", loginDao.countQNA(id));
+		return mypage;
 	}
 }

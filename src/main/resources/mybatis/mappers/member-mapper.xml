@@ -29,9 +29,28 @@
 		UPDATE MEMBER SET PW = #{pw} WHERE ID = #{id}
 	</update>
 	
-	<select id="selectAll" resultType="memberVo" parameterType="String">
-		SELECT * FROM MEMBER WHERE TYPE =#{type} ORDER BY NAME
+	<select id="selectAllUser" resultType="memberVo" parameterType="com.rental.geniecar.domain.common.Pagination">
+		SELECT NUM, ID ,PW ,NAME ,GENDER ,BIRTHDAY ,HP ,ADDRESS ,ADDRESS_DETAIL ,ZIP_CODE ,JOIN_DATE ,LAST_LOGIN_DATE ,WITHDRAWAL_YN ,
+		BRANCH_CODE ,TYPE FROM (SELECT ROWNUM AS NUM, M.* FROM (SELECT * FROM MEMBER WHERE TYPE ='U' ORDER BY NAME) M)
+		<if test="firstRecordIndex != null and lastRecordIndex != null">
+            WHERE NUM BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+        </if>
     </select>
+    <select id ="countUser" resultType="int" parameterType="com.rental.geniecar.domain.common.Pagination">
+		SELECT COUNT(*) FROM MEMBER WHERE TYPE ='U'
+	</select>
+    
+    <select id="selectAllBusiness" resultType="Map" parameterType="com.rental.geniecar.domain.common.Pagination">
+		SELECT NUM, ID ,PW ,NAME ,GENDER ,BIRTHDAY ,HP ,ADDRESS ,ADDRESS_DETAIL ,ZIP_CODE ,JOIN_DATE ,LAST_LOGIN_DATE ,WITHDRAWAL_YN ,
+		FN_COMM_NAME(BRANCH_CODE) AS BRANCH ,TYPE FROM (SELECT ROWNUM AS NUM, M.* FROM (SELECT * FROM MEMBER WHERE TYPE ='B' ORDER BY NAME) M)
+		<if test="firstRecordIndex != null and lastRecordIndex != null">
+            WHERE NUM BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+        </if>
+    </select>
+    
+    <select id ="countBusiness" resultType="int" parameterType="com.rental.geniecar.domain.common.Pagination">
+		SELECT COUNT(*) FROM MEMBER WHERE TYPE ='B'
+	</select>
     
     <select id="selectWaiting" resultType="memberVo">
 		SELECT * FROM MEMBER WHERE BRANCH_CODE IS NOT NUll and type = 'U'
@@ -44,7 +63,9 @@
 	<update id="updateWithdrawal">
 		UPDATE MEMBER SET WITHDRAWAL_YN = 'K' WHERE ID = #{id}
 	</update>
+	
 	<select id="myReservation" parameterType="String" resultType="Map">
 		SELECT * FROM RENTAL_CAR_RESERVATION WHERE RESERVATION_MEMBER_ID = #{id}
 	</select>
+
 </mapper>

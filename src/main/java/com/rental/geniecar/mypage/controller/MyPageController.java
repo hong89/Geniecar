@@ -3,6 +3,7 @@ package com.rental.geniecar.mypage.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -57,6 +58,7 @@ public class MyPageController {
 	@GetMapping("/reservation.do")
 	public String reservation(Model model, HttpSession session){
 		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		Map mypage = (Map) session.getAttribute("mypage");
 		model.addAttribute("member", membervo);
         return "mypage/reservation";
     }
@@ -93,6 +95,7 @@ public class MyPageController {
 		model.addAttribute("license", license);
 		return "mypage/license";
 	}
+	//ruddud
 	@PostMapping("/addLicense.do")
 	public String addLicense(HttpServletRequest request) throws ParseException {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -108,9 +111,9 @@ public class MyPageController {
 		memberService.insertLicense(license);
 		return "redirect:/mypage/license.do";
 	}
+	//ruddud
 	@PostMapping("/updateLicense.do")
 	public String updateLicense(LicenseVo license) {
-		System.out.println(license);
 		memberService.updateLicense(license);
 		return "redirect:/mypage/license.do";
 	}

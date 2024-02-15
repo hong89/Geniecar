@@ -17,4 +17,11 @@
     <select id="findPw" parameterType="java.util.Map" resultType="String">
         SELECT PW FROM MEMBER WHERE ID = #{id} AND NAME = #{name} AND HP = #{hp} AND WITHDRAWAL_YN='N'
     </select>
+    	
+	<select id="countCoupons">
+		SELECT COUNT(*) FROM (SELECT * FROM MEMBER_COUPONS WHERE MEMBER_ID = #{id})
+	</select>
+	<select id="countQNA">
+		SELECT COUNT(*) FROM (SELECT * FROM BOARD WHERE TYPE_CODE ='QNA' AND REG_ID =#{id})
+	</select>
 </mapper>

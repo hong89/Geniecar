@@ -76,12 +76,12 @@
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">P</a>
+                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
                         <p>할인쿠폰</p>
-                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">0장</a>
+                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">${mypage.coupons}장</a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
@@ -92,8 +92,8 @@
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel06.png">
                         <p>1:1문의</p>
-                        <a href="/mypage/rentCarConsulting.do" class="underline"
-                           id="commonRentalConsultCount">0건</a>
+                        <a href="/mypage/qna.do?typeCode=QNA" class="underline"
+                           id="commonRentalConsultCount">${mypage.qna}건</a>
                     </li>
                 </ul>
             </div>
@@ -119,7 +119,7 @@
                     <a href="/mypage/consult.do" class="nav-link">상담 신청</a>
                 </li>
                 <li class="nav-item mb-4">
-                    <a href="/mypage/qna.do" class="nav-link">1:1 문의</a>
+                    <a href="/mypage/qna.do?typeCode=QNA" class="nav-link">1:1 문의</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="#" class="nav-link">회원</a>
@@ -189,7 +189,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade border-bottom" id="contact2" role="tabpanel"
-                         aria-labelledby="contact-tab2">.2..
+                         aria-labelledby="contact-tab2">${mypage}
                     </div>
                     <div class="tab-pane fade border-bottom" id="contact3" role="tabpanel"
                          aria-labelledby="contact-tab3">.3..

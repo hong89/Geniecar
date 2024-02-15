@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
 
@@ -17,7 +18,10 @@ public interface MemberDao {
 	public void updateWithdrawalYn(String id);
 	public void updateMember(MemberVo vo);
 	public int updatePw(MemberVo vo);
-	public List<MemberVo> selectAll(String type);
+	public List<MemberVo> selectAllUser(Pagination pagination);
+	public int countUser(Pagination pagination);
+	public List<Map> selectAllBusiness(Pagination pagination);
+	public int countBusiness(Pagination pagination);
 	public List<MemberVo> selectWaiting();
 	public void updateType(String id);
 	public int updateWithdrawal(String id);
@@ -25,4 +29,5 @@ public interface MemberDao {
 	public LicenseVo selectLicense(String id);
 	public void insertLicense(LicenseVo vo);
 	public void updateLicense(LicenseVo vo);
+	
 }
