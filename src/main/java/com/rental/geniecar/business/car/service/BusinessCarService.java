@@ -28,7 +28,7 @@ public class BusinessCarService {
         businessCarDao.modifyRentalCarCostUpdate(carNumber);
     }
 
-    public ResponseBranchCarVo selectCarDetail(String carIdentificationNumber) {
-        return businessCarDao.selectCarDetail(carIdentificationNumber);
+    public ResponseBranchCarVo selectCarDetail(String carIdentificationNumber, String branchCode) {
+        return businessCarDao.selectCarDetail(carIdentificationNumber, branchCode);
     }
 }

@@ -25,81 +25,81 @@
                     <td align="center">최윤서</td>
                     <td align="center">2023.12.31</td>
                 </tr>
-                <tr>
-                    <td align="center">9</td>
-                    <td align="center"><a href="#">카니발</a></td>
-                    <td align="center">강화순</td>
-                    <td align="center">2023.11.28</td>
-                </tr>
-                <tr>
-                    <td align="center">8</td>
-                    <td align="center"><a href="#">모닝</a></td>
-                    <td align="center">임재원</td>
-                    <td align="center">2023.10.25</td>
-                </tr>
-                <tr>
-                    <td align="center">7</td>
-                    <td align="center"><a href="#">렉서스</a></td>
-                    <td align="center">박혜영</td>
-                    <td align="center">2023.09.14</td>
-                </tr>
-                <tr>
-                    <td align="center">6</td>
-                    <td align="center"><a href="#">렉스턴</a></td>
-                    <td align="center">김성일</td>
-                    <td align="center">2023.05.31</td>
-                </tr>
-                <tr>
-                    <td align="center">5</td>
-                    <td align="center"><a href="#">스포티지</a></td>
-                    <td align="center">나현상</td>
-                    <td align="center">2023.05.31</td>
-                </tr>
-                <tr>
-                    <td align="center">4</td>
-                    <td align="center"><a href="#">소나타</a></td>
-                    <td align="center">소순진</td>
-                    <td align="center">2023.04.31</td>
-                </tr>
-                <tr>
-                    <td align="center">3</td>
-                    <td align="center"><a href="#">아반떼</a></td>
-                    <td align="center">오주연</td>
-                    <td align="center">2024.03.11</td>
-                </tr>
-                <tr>
-                    <td align="center">2</td>
-                    <td align="center"><a href="#">티볼리</a></td>
-                    <td align="center">설선규</td>
-                    <td align="center">2023.02.10</td>
-                </tr>
-                <tr>
-                    <td align="center">1</td>
-                    <td align="center"><a href="#">펠리세이드</a></td>
-                    <td align="center">한주아</td>
-                    <td align="center">2023.01.01</td>
-                </tr>
                 </tbody>
             </table>
         </div>
         <div>
+            <!--paginate -->
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
+                        <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+                            <span aria-hidden="true"
+                                  onclick="movePage(1);">&lt;&lt;</span>
                         </a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
+                        <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+                            <span aria-hidden="true" onclick="movePage(${pagination.currentPage} <c:if
+                                    test="${pagination.hasPreviousPage}">-1</c:if>);">&lt;</span>
+                        </a>
+                    </li>
+
+                    <c:forEach begin="${pagination.firstPage}" end="${pagination.lastPage}" var="idx">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0);"
+                               onclick="movePage(${idx},${pagination.cntPerPage}, ${pagination.pageSize});">
+                                    <%--<c:out value="${idx}"/>--%>
+                                <c:if test="${idx != 0}">${idx}</c:if>
+                                <c:if test="${idx == 0}">1</c:if>
+                            </a>
+                        </li>
+                    </c:forEach>
+
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Next" href="javascript:void(0);"
+                           onclick="movePage(${pagination.currentPage} <c:if
+                                   test="${pagination.hasNextPage == true}">+1</c:if>);">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Next" href="javascript:void(0);"
+                           onclick="movePage(${pagination.totalRecordCount});">
+                            <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>
                 </ul>
             </nav>
+            <!-- /paginate -->
+            <!---->
+            <script>
+
+                $('#formSelect').on('change', function () {
+                    movePage(1);
+                });
+
+                //페이지 이동
+                function movePage(currentPage) {
+
+                    var url = "/admin/car/newCarList.do";
+                    var params = [];
+                    params.push("currentPage=" + (currentPage || 1));
+
+                    var formSelectVal = $('#formSelect').val();
+                    if (formSelectVal) {
+                        params.push("keyword=" + formSelectVal);
+                    }
+
+                    var queryParams = '';
+                    for (var i = 0; i < params.length; i++) {
+                        if (i == 0) queryParams = '?' + params[i];
+                        else queryParams += '&' + params[i]
+                    }
+                    location.href = url + queryParams;
+                }
+
+            </script>
         </div>
     </div>
 

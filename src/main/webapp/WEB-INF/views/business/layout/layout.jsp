@@ -74,7 +74,7 @@
     <div id="sidebar-left">
         <tiles:insertAttribute name="aside"/>
     </div>
-    <div id="content">
+    <div id="content" style="min-height: 800px">
         <tiles:insertAttribute name="body"/>
     </div>
     <div id="footer">

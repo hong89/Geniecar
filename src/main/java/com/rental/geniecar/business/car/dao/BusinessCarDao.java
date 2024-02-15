@@ -16,5 +16,5 @@ public interface BusinessCarDao {
 
     void modifyRentalCarCostUpdate(String carNumber);
 
-    ResponseBranchCarVo selectCarDetail(String carIdentificationNumber);
+    ResponseBranchCarVo selectCarDetail(String carIdentificationNumber, String branchCode);
 }

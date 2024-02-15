@@ -32,7 +32,7 @@
     <div id="header">
         <tiles:insertAttribute name="header"/>
     </div>
-    <div id="content">
+    <div id="content" style="min-height: 800px">
         <tiles:insertAttribute name="body"/>
     </div>
     <div id="footer">

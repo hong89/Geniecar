@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>\
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
     #carTable tr td {
         font-size: 18px;
@@ -13,15 +13,15 @@
         <div class="inner-type2">
             <h1 class="pb-5 tit"> 차량 상세</h1>
             <div class="row">
-                <div class="col-6">
+                <div class="col-7 align-self-center">
                     <img src="/images/carImage/${car.no}.png" class="rounded mx-auto d-block"
-                         alt="car" width="70%"/>
+                         alt="car" width="90%"/>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <table class="table table-bordered border-secondary" id="carTable">
                         <tr>
-                            <td class="col-1"><strong>차량번호</strong></td>
-                            <td class="col-1">${car.no}</td>
+                            <td class="col-6"><strong>차량번호</strong></td>
+                            <td class="col-6">${car.no}</td>
                         </tr>
                         <tr>
                             <td><strong>차대번호</strong></td>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="pt-5">
                     <button type="button" class="btn text-white" style="background: #41087c"
-                            onclick="location.href='newCarList.do?'">목록가기
+                            onclick="location.href='list.do'">목록가기
                     </button>
                 </div>
             </div>

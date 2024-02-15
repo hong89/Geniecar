@@ -25,14 +25,14 @@
 		FROM (SELECT ROW_NUMBER() OVER (ORDER by RCR.RENTAL_DATE) AS RN
 		, RCR.*, M.*
 		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
-		WHERE RCR.RESERVATION_MEMBER_ID = M.ID AND RENTAL_DATE &gt; SYSDATE )
+		WHERE RCR.RESERVATION_MEMBER_ID = M.ID AND RENTAL_DATE &gt; SYSDATE AND RENTAL_CAR_BRANCH_NO = #{keyword}  )
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
 		</if>
 	</select>
 	
 	<select id="totalCount" parameterType="com.rental.geniecar.domain.common.Pagination" resultType="int">
-		SELECT COUNT(*) FROM RENTAL_CAR_RESERVATION WHERE RENTAL_DATE &gt; SYSDATE
+		SELECT COUNT(*) FROM RENTAL_CAR_RESERVATION WHERE RENTAL_DATE &gt; SYSDATE AND RENTAL_CAR_BRANCH_NO = #{keyword}
 	</select>
 
 	<select id="selectCompleteList" resultType="rentalCarReservationVo" parameterType="com.rental.geniecar.domain.common.Pagination">
@@ -58,14 +58,14 @@
 		FROM (SELECT ROW_NUMBER() OVER (ORDER by RCR.RENTAL_DATE) AS RN
 		, RCR.*, M.*
 		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
-		WHERE RCR.RESERVATION_MEMBER_ID = M.ID AND RETURN_DATE &lt; SYSDATE )
+		WHERE RCR.RESERVATION_MEMBER_ID = M.ID AND RETURN_DATE &lt; SYSDATE AND RENTAL_CAR_BRANCH_NO = #{keyword}  )
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
 		</if>
 	</select>
 
 	<select id="completeTotalCount" parameterType="com.rental.geniecar.domain.common.Pagination" resultType="int">
-		SELECT COUNT(*) FROM RENTAL_CAR_RESERVATION WHERE RETURN_DATE &lt; SYSDATE
+		SELECT COUNT(*) FROM RENTAL_CAR_RESERVATION WHERE RETURN_DATE &lt; SYSDATE AND RENTAL_CAR_BRANCH_NO = #{keyword}
 	</select>
 
 	<select id="selectProgressList" resultType="rentalCarReservationVo" parameterType="com.rental.geniecar.domain.common.Pagination">
@@ -91,13 +91,13 @@
 		FROM (SELECT ROW_NUMBER() OVER (ORDER by RCR.RENTAL_DATE) AS RN
 		, RCR.*, M.*
 		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
-		WHERE RCR.RESERVATION_MEMBER_ID = M.ID AND SYSDATE BETWEEN RENTAL_DATE AND RETURN_DATE )
+		WHERE RCR.RESERVATION_MEMBER_ID = M.ID AND SYSDATE BETWEEN RENTAL_DATE AND RETURN_DATE AND RENTAL_CAR_BRANCH_NO = #{keyword}  )
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
 		</if>
 	</select>
 
 	<select id="progressTotalCount" parameterType="com.rental.geniecar.domain.common.Pagination" resultType="int">
-		SELECT COUNT(*) FROM RENTAL_CAR_RESERVATION WHERE SYSDATE BETWEEN RENTAL_DATE AND RETURN_DATE
+		SELECT COUNT(*) FROM RENTAL_CAR_RESERVATION WHERE SYSDATE BETWEEN RENTAL_DATE AND RETURN_DATE AND RENTAL_CAR_BRANCH_NO = #{keyword}
 	</select>
 </mapper>
