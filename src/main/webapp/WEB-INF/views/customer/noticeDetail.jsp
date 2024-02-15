@@ -19,7 +19,7 @@
                 <strong>${notice.title}</strong>
                 <span style="float: right; font-size:15px;">${notice.regDate}</span>
             </p><hr/>
-            <pre>${notice.content}</pre> 
+            <!-- <pre>${notice.content}</pre>  -->
             <c:if test="${not empty imageFiles}">
                 <c:forEach var="imageFile" items="${imageFiles}">
                     <c:if test="${not empty imageFile.saveName}">
