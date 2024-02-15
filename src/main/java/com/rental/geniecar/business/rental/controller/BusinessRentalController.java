@@ -60,7 +60,7 @@ public class BusinessRentalController {
         MemberVo member = (MemberVo)session.getAttribute("memberInfo");
         ReservationVo reservation = businessRentalService.selectDetail(reservationNo, member.getBranchCode());
         model.addAttribute("reservation", reservation);
-        return "admin/rental/rentDetail";
+        return "business/rental/rentDetail";
     }
 
 

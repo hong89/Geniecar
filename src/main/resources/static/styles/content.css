@@ -10,3 +10,12 @@
     a.non-deco {
         text-decoration: none;
     }
+
+    /* HOME A링크 사용되지않게 막아둠*/
+    ol.breadcrumb > li.breadcrumb-item > a {
+        text-decoration: none;
+        color: rgba(33, 37, 41, 0.75);
+        cursor: default;
+        pointer-events: none;
+    }
+

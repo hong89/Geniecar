@@ -26,8 +26,8 @@
                 <c:forEach var="com" items="${completeList}">
                     <tr>
                         <td class="col">
-                            <a href="/business/rental/rentDetail.do?reservationNo=${res.reservationNo}">
-                                    ${res.reservationNo}
+                            <a href="/business/rental/rentDetail.do?reservationNo=${com.reservationNo}">
+                                    ${com.reservationNo}
                             </a>
                         </td>
                         <td class="col">${com.rentalPlaceName}</td>
