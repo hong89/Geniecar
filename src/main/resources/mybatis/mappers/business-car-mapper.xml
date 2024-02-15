@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rental.geniecar.business.car.dao.BusinessCarDao">
 
-    <select id="selectBranchesCarByBranchCode" parameterType="String" resultType="com.rental.geniecar.domain.branch.BranchCarVo">
+    <select id="selectBranchesCarByBranchCode" parameterType="String"
+            resultType="com.rental.geniecar.domain.branch.BranchCarVo">
         SELECT RCBC.CAR_IDENTIFICATION_NUMBER
              , FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS BRANCH
              , RC.CAR_TYPE
@@ -12,40 +13,56 @@
              , RC.DELIVERY_DATE
              , RENTAL_ABLE_STATUS
              , DEFAULT_COST
-        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR_VIEW RC
+        FROM RENTAL_CAR_BRANCHES_CAR RCBC,
+             RENTAL_CAR_VIEW RC
         WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
           AND RENTAL_CAR_BRANCH_NO = #{branchCode}
     </select>
 
-    <select id="selectAssignCarByBranchCode" parameterType="String" resultType="com.rental.geniecar.domain.branch.BranchCarVo">
+    <select id="selectAssignCarByBranchCode" parameterType="String"
+            resultType="com.rental.geniecar.domain.branch.BranchCarVo">
         SELECT RCBC.CAR_IDENTIFICATION_NUMBER
              , FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS BRANCH
-             , RENTAL_CAR_BRANCH_NO AS BRANCH_CODE
-             , FN_COMM_NAME(CAR_TYPE_CODE) AS CAR_TYPE
+             , RENTAL_CAR_BRANCH_NO               AS BRANCH_CODE
+             , FN_COMM_NAME(CAR_TYPE_CODE)        AS CAR_TYPE
              , CAR_NAME
-             , FN_COMM_NAME(CAR_FUEL_CODE) AS CAR_FUEL
-             , FN_COMM_NAME(COMPANY) AS COMPANY
+             , FN_COMM_NAME(CAR_FUEL_CODE)        AS CAR_FUEL
+             , FN_COMM_NAME(COMPANY)              AS COMPANY
              , DELIVERY_DATE
              , IMPORT_CAR_YN
              , RENTAL_ABLE_STATUS
              , DEFAULT_COST
-        FROM RENTAL_CAR_BRANCHES_CAR RCBC, RENTAL_CAR_VIEW RC
+        FROM RENTAL_CAR_BRANCHES_CAR RCBC,
+             RENTAL_CAR_VIEW RC
         WHERE RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
-          AND RENTAL_CAR_BRANCH_NO = #{branchCode} AND RENTAL_ABLE_STATUS = 'W'
+          AND RENTAL_CAR_BRANCH_NO = #{branchCode}
+          AND RENTAL_ABLE_STATUS = 'W'
     </select>
+
     <update id="modifyRentalCarBranchesCar" parameterType="String">
         UPDATE RENTAL_CAR_BRANCHES_CAR
-        SET RENTAL_ABLE_STATUS = 'Y', IMPORT_CAR_YN = 'Y', MOD_ID = #{memberId}, MOD_DATE = SYSDATE
-        WHERE CAR_IDENTIFICATION_NUMBER = #{carNumber} AND RENTAL_CAR_BRANCH_NO = #{branchCode}
+        SET RENTAL_ABLE_STATUS = 'Y',
+            IMPORT_CAR_YN      = 'Y',
+            MOD_ID             = #{memberId},
+            MOD_DATE           = SYSDATE
+        WHERE CAR_IDENTIFICATION_NUMBER = #{carNumber}
     </update>
 
-    <!--<update id="modifyRentalCarCostUpdate" parameterType="String">
-
-    </update>-->
+    <update id="modifyRentalCarCostUpdate" parameterType="String">
+        UPDATE RENTAL_CAR_BRANCHES_CAR
+        SET DEFAULT_COST =
+                (SELECT NC.DEFAULT_COST
+                 FROM NEW_CAR NC,
+                      RENTAL_CAR RC,
+                      RENTAL_CAR_BRANCHES_CAR RCBC
+                 WHERE NC.NO = RC.CAR_NO
+                   AND RC.CAR_IDENTIFICATION_NUMBER = RCBC.CAR_IDENTIFICATION_NUMBER
+                   AND RCBC.CAR_IDENTIFICATION_NUMBER = #{carNumber})
+        WHERE CAR_IDENTIFICATION_NUMBER = #{carNumber}
+    </update>
 
     <select id="selectCarDetail" resultType="com.rental.geniecar.domain.car.ResponseBranchCarVo" parameterType="String">
-        SELECT
-            NC.NO
+        SELECT NC.NO
              , NC.CAR_NAME
              , NC.CAR_TYPE_CODE
              , FN_COMM_NAME(NC.CAR_TYPE_CODE) AS TYPE_NAME
@@ -53,10 +70,12 @@
              , FN_COMM_NAME(NC.CAR_FUEL_CODE) AS FUEL_NAME
              , NC.DEFAULT_COST
              , NC.COMPANY
-             , FN_COMM_NAME(NC.COMPANY) AS COMPANY_NAME
+             , FN_COMM_NAME(NC.COMPANY)       AS COMPANY_NAME
              , RC.CAR_IDENTIFICATION_NUMBER
              , RCBC.RENTAL_ABLE_STATUS
-        FROM NEW_CAR NC, RENTAL_CAR RC, RENTAL_CAR_BRANCHES_CAR RCBC
+        FROM NEW_CAR NC,
+             RENTAL_CAR RC,
+             RENTAL_CAR_BRANCHES_CAR RCBC
         WHERE NC.NO = RC.CAR_NO
           AND RC.CAR_IDENTIFICATION_NUMBER = RCBC.CAR_IDENTIFICATION_NUMBER
           AND RCBC.RENTAL_CAR_BRANCH_NO = #{branchCode}

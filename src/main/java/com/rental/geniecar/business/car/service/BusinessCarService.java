@@ -23,8 +23,8 @@ public class BusinessCarService {
         return businessCarDao.selectAssignCarByBranchCode(branchCode);
     }
 
-    public void modifyRentalCarBranchesCar(String carNumber, String branchCode, String memberId) {
-        businessCarDao.modifyRentalCarBranchesCar(carNumber, branchCode, memberId);
+    public void modifyRentalCarBranchesCar(String carNumber, String memberId) {
+        businessCarDao.modifyRentalCarBranchesCar(carNumber, memberId);
         businessCarDao.modifyRentalCarCostUpdate(carNumber);
     }
 

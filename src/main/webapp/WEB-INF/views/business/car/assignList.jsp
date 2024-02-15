@@ -53,7 +53,7 @@
                var carNumber = $(this).val();
                var branchCode = $('#branchCode').val();
 
-               $.get("/business/car/modifyRentalCarBranchesCar.do", {carNumber: carNumber, branchCode:branchCode}, function (res) {
+               $.get("/business/car/modifyRentalCarBranchesCar.do", {carNumber: carNumber}, function (res) {
                    history.go(0);
                });
 

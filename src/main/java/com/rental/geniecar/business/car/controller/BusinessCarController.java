@@ -47,9 +47,9 @@ public class BusinessCarController {
 
     @ResponseBody
     @GetMapping("/modifyRentalCarBranchesCar.do")
-    public ResponseEntity modifyRentalCarBranchesCar(String carNumber, String branchCode, HttpSession session){  // 로그인 아이디
+    public ResponseEntity modifyRentalCarBranchesCar(String carNumber, HttpSession session){  // 로그인 아이디
         MemberVo member = (MemberVo)session.getAttribute("memberInfo");
-        businessCarService.modifyRentalCarBranchesCar(carNumber, branchCode, member.getId());
+        businessCarService.modifyRentalCarBranchesCar(carNumber, member.getId());
         return ResponseEntity.ok("성공");
     }
     @GetMapping("/remove.do")
