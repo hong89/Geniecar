@@ -25,7 +25,11 @@
                 <tbody>
                 <c:forEach var="res" items="${progressList}">
                     <tr>
-                        <td class="col">${res.reservationNo}</td>
+                        <td class="col">
+                            <a href="/business/rental/rentDetail.do?reservationNo=${res.reservationNo}">
+                                    ${res.reservationNo}
+                            </a>
+                        </td>
                         <td class="col">${res.rentalPlaceName}</td>
                         <td class="col">${res.returnPlaceName}</td>
                         <td class="col"><fmt:formatDate value="${res.rentalDate}" pattern="MM/dd HH:mm"/>

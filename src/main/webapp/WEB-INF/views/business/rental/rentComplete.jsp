@@ -25,7 +25,11 @@
                 <tbody>
                 <c:forEach var="com" items="${completeList}">
                     <tr>
-                        <td class="col">${com.reservationNo}</td>
+                        <td class="col">
+                            <a href="/business/rental/rentDetail.do?reservationNo=${res.reservationNo}">
+                                    ${res.reservationNo}
+                            </a>
+                        </td>
                         <td class="col">${com.rentalPlaceName}</td>
                         <td class="col">${com.returnPlaceName}</td>
                         <td class="col"><fmt:formatDate value="${com.rentalDate}" pattern="MM/dd HH:mm" />

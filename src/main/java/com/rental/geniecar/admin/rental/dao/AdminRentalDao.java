@@ -2,6 +2,7 @@ package com.rental.geniecar.admin.rental.dao;
 
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
+import com.rental.geniecar.domain.reservation.ReservationVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface AdminRentalDao {
     List<RentalCarReservationVo> selectProgressList(Pagination pagination);
 
     int progressTotalCount(Pagination pagination);
+
+    ReservationVo selectDetail(String reservationNo);
 }

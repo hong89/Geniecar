@@ -4,11 +4,13 @@ import com.rental.geniecar.business.rental.service.BusinessRentalService;
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
+import com.rental.geniecar.domain.reservation.ReservationVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -52,4 +54,14 @@ public class BusinessRentalController {
         model.addAttribute("pagination", pagination);
         return "business/rental/rentProgress";
     }
+
+    @GetMapping("/rentDetail.do")
+    public String rentDetail(@RequestParam("reservationNo") String reservationNo, Model model, HttpSession session){
+        MemberVo member = (MemberVo)session.getAttribute("memberInfo");
+        ReservationVo reservation = businessRentalService.selectDetail(reservationNo, member.getBranchCode());
+        model.addAttribute("reservation", reservation);
+        return "admin/rental/rentDetail";
+    }
+
+
 }

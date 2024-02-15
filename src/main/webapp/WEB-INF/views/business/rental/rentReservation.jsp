@@ -25,11 +25,15 @@
                 <tbody>
                 <c:forEach var="res" items="${reservationList}">
                     <tr>
-                        <td class="col">${res.reservationNo}</td>
+                        <td class="col">
+                            <a href="/business/rental/rentDetail.do?reservationNo=${res.reservationNo}">
+                                    ${res.reservationNo}
+                            </a>
+                        </td>
                         <td class="col">${res.rentalPlaceName}</td>
                         <td class="col">${res.returnPlaceName}</td>
-                        <td class="col"><fmt:formatDate value="${res.rentalDate}" pattern="MM/dd HH:mm" />
-                             <br/>~ <fmt:formatDate value="${res.returnDate}" pattern="MM/dd HH:mm" /></td>
+                        <td class="col"><fmt:formatDate value="${res.rentalDate}" pattern="MM/dd HH:mm"/>
+                            <br/>~ <fmt:formatDate value="${res.returnDate}" pattern="MM/dd HH:mm"/></td>
                         <td class="col">${fn:substring(res.carIdentificationNumber, 11, 13)}허
                                 ${fn:substring(res.carIdentificationNumber, 13, 17)}</td>
                         <td class="col">${res.reservationMemberName}</td>
@@ -60,7 +64,7 @@
                         <li class="page-item">
                             <a class="page-link" href="javascript:void(0);"
                                onclick="movePage(${idx},${pagination.cntPerPage}, ${pagination.pageSize});">
-                                <%--<c:out value="${idx}"/>--%>
+                                    <%--<c:out value="${idx}"/>--%>
                                 <c:if test="${idx != 0}">${idx}</c:if>
                                 <c:if test="${idx == 0}">1</c:if>
                             </a>
