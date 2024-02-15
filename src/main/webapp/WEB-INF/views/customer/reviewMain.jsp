@@ -10,6 +10,12 @@
         background-color: #41087c !important;
         color: white;
     }
+    .card img {
+        width: 100%;
+        height: 300px;
+        max-width: 100%;
+        max-height: 100%;
+    }
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -45,7 +51,7 @@
                     <a href="/customer/reviewDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
                         <c:forEach var="imageFile" items="${notice.imageFiles}">
                             <c:if test="${not empty imageFile.saveName}">
-                                <img class="form-control" src="/downloadFile/${imageFile.saveName}" alt="images" width="300" height="200">
+                                <img src="/downloadFile/${imageFile.saveName}" alt="images">
                             </c:if>
                         </c:forEach>
                     <div class="card-body">

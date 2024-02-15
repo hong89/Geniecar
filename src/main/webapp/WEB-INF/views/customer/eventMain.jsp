@@ -10,6 +10,12 @@
         background-color: #41087c !important;
         color: white;
     }
+    .card img {
+        width: 100%;
+        height: 300px;
+        max-width: 100%;
+        max-height: 100%;
+    }
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -44,12 +50,12 @@
                     <a href="/customer/eventDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
                         <c:forEach var="imageFile" items="${notice.imageFiles}">
                             <c:if test="${not empty imageFile.saveName}">
-                                <img class="form-control" src="/downloadFile/${imageFile.saveName}" alt="images" width="300" height="500">
+                                <img src="/downloadFile/${imageFile.saveName}" alt="images"><hr/>
                             </c:if>
                         </c:forEach>
                     <div class="card-body">
-                      <h5 class="card-title">${notice.title}</h5><hr/>
-                      <p class="card-text">${notice.content}</p>
+                      <h5 class="card-title">${notice.title}</h5>
+                      <!-- <p class="card-text">${notice.content}</p> -->
                     </div>
                     <div class="card-footer">이벤트 기간 :&nbsp;
                       <small class="text-muted">${notice.startDate} ~ ${notice.endDate}</small>

@@ -14,14 +14,23 @@
 </script>
 
 <style>
-    /* CSS 스타일링 */
-    table thead.table-light {
-        background-color: red ;  /* 헤더 배경색 지정 */
+    .table thead tr td {
+        background-color: #f8f7fd;
+        border-bottom:#d1c9ff solid 5px;
+        padding: 15px;
+        font-size: 1.2em;
     }
-    .table thead tr th {
-        background-color: red; /* 변경하고자 하는 색상으로 수정 가능 */
+    .table tbody tr td {
+        border-bottom:#d1c9ff solid 2px;
+        padding: 15px;
     }
-
+    .table tbody tr.mhover:hover td{
+        background-color: #905dbe;
+        color: white;
+    }
+    .table tbody tr.mhover:hover td a {
+    color: white !important;
+    }
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -45,7 +54,7 @@
             <div class="p-5">
                 <td class="text-center">
                     <div class="d-flex" style="float:right">
-                        <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." style="flex: 1; margin-right: 10px;">
+                        <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." onkeypress="if(event.keyCode == 13){fn_search();}" style="flex: 1; margin-right: 10px;">
                         <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
                         <button type="button" class="btn text-white" onclick="javascript:fn_search(1)" style="background-color: #41087c;">검색</button>
                     </div>
@@ -53,8 +62,8 @@
             </div>
             
             <div class="pt-5">
-                <table class="table caption-top table table-hover">
-                    <thead class="table-light">
+                <table class="table">
+                    <thead>
                     <tr>
                         <td align="center" scope="col"><strong></strong></td>
                         <td align="center" scope="col"><strong>제목</strong></td>
@@ -64,7 +73,7 @@
 
                     <tbody>
                     <c:forEach var="notice" items="${boardList}">
-                        <tr>
+                        <tr class="mhover">
                             <td align="center">공지</td>
                             <td align="left"><a href="/customer/noticeDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
                             </td>
