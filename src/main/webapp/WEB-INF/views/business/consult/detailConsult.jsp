@@ -20,17 +20,6 @@
                 <span style="float: right; font-size:15px;">${notice.regDate}</span>
             </p><hr/>
             <pre align="left">${notice.content}</pre> 
-            <c:if test="${not empty imageFiles}">
-                <c:forEach var="imageFile" items="${imageFiles}">
-                    <c:if test="${not empty imageFile.saveName}">
-                        <div class="mb-3 row">
-                            <div class="col-sm-12">
-                                <img class="form-control responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="300px" height="500px" aria-readonly="true">
-                            </div>
-                        </div>
-                    </c:if>
-                </c:forEach>
-            </c:if>
         </div>
         <div>
             <button type="button" class="btn text-white" style="background: #41087c"

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
+import com.rental.geniecar.domain.board.BoardVo;
 import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
 
@@ -43,23 +44,30 @@ public class AdminBusinessController {
     	
         return "admin/business/consultList";
     }
-
+    
+    // JJ
+    // 관리자 이용후기 목록
     @GetMapping("/reviewList.do")
     public String reviewList(CommonCrudVo boardVo, Model model) {
-    	
-    	// 페이징 전처리
+    	List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
+		
+		for (CommonCrudVo notice : boardList) {
+	        if (notice instanceof BoardVo) {
+	            int no = ((BoardVo) notice).getNo();
+	            List<FileVo> imageFiles = boardService.selectImageFilesByNo(no);
+	            ((BoardVo) notice).setImageFiles(imageFiles);
+	        }
+	    }
+		
         boardVo.setPageStartSet();
-        // 목록조회
-        List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
-        // 목록 전체건수 조회
         boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
-        // 페이징 후처리
         boardVo.setPageEndSet();
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("boardVo", boardVo);
     	
         return "admin/business/reviewList";
+        
     }
 
     @GetMapping("/qnaList.do")

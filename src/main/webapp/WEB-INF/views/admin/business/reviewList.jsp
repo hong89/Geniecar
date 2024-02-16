@@ -12,6 +12,14 @@
         location.href = "/admin/business/reviewList.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
     }
 </script>
+<style>
+    .card img {
+        width: 100%;
+        height: 300px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="pt-5">
@@ -45,19 +53,22 @@
             </section>
 
             <div class="pt-5">
-                <div class="mx-auto" style="max-width: 500px;">
-                    <div class="d-flex">
-                        <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." style="flex: 1; margin-right: 10px;">
+                <td class="text-center">
+                    <div class="d-flex" style="float:right">
+                        <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." onkeypress="if(event.keyCode == 13){fn_search();}" style="flex: 1; margin-right: 10px;">
                         <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
                         <button type="button" class="btn text-white" onclick="javascript:fn_search(1)" style="background-color: #41087c;">검색</button>
                     </div>
-                </div>
+                </td>
+            </div>
+
+            <div class="pt-5">
                 <div class="py-5 inner-type2">
                     <div class="row row-cols-1 row-cols-md-3 g-4 P-5">
                         <c:forEach var="notice" items="${boardList}">
                         <div class="col">
                           <div class="card h-100">
-                            <a href="/admin/board/detailNotice.do?no=${notice.no}" style="text-decoration-line: none; color:black">
+                            <a href="/customer/reviewDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
                                 <c:forEach var="imageFile" items="${notice.imageFiles}">
                                     <c:if test="${not empty imageFile.saveName}">
                                         <img src="/downloadFile/${imageFile.saveName}" alt="images">

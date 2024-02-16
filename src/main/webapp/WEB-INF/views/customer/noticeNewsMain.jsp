@@ -15,8 +15,7 @@
 
 <style>
     .table thead tr td {
-        background-color: #f8f7fd;
-        border-bottom:#d1c9ff solid 5px;
+        border-bottom:#41087c solid 3px;
         padding: 15px;
         font-size: 1.2em;
     }
@@ -24,7 +23,7 @@
         border-bottom:#d1c9ff solid 2px;
         padding: 15px;
     }
-    .table tbody tr.mhover:hover td{
+    /* .table tbody tr.mhover:hover td{
         background-color: #905dbe;
         color: white;
     }
@@ -33,7 +32,7 @@
     }
     .d-flex {
         box-shadow: #41087c !important;
-    }
+    } */
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
