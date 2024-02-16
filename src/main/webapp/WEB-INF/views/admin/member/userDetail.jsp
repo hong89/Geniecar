@@ -3,24 +3,39 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--복사해서 사용하세요--%>
 <div class="container-xl">
-    <script>
-        function fn_kick() {
-            var id = $("#id").val();
-            $.ajax({
-                type: "get",
-                url: "/admin/member/kick.do",
-                dataType: "text",
-                data: { id: id },
-                success: function (data, Status) {
-                    alert("완료되었습니다.");
-                    document.location.reload();
-                },
-                error: function (data, Status) {
-                    alert("에러가 발생했습니다.");
-                }
+<script>
+    function fn_kick() {
+        var id = $("#id").val();
+        $.ajax({
+            type: "get",
+            url: "/admin/member/kick.do",
+            dataType: "text",
+            data: { id: id },
+            success: function (data, Status) {
+                alert("완료되었습니다.");
+                document.location.reload();
+            },
+            error: function (data, Status) {
+                alert("에러가 발생했습니다.");
+            }
+        });
+    }
+    function mask(strName){
+        if (strName.length > 2) {
+            var originName = strName.split('');
+            originName.forEach(function(name, i) {
+            if (i === 0 || i === originName.length - 1) return;
+            originName[i] = '*';
             });
+            var joinName = originName.join();
+            return joinName.replace(/,/g, '');
+        } else {
+            var pattern = /.$/; // 정규식
+            return strName.replace(pattern, '*');
         }
-    </script>
+    }    
+    alert(mask("가나다"));
+</script>
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="p-5">
         <section class="text-center">
