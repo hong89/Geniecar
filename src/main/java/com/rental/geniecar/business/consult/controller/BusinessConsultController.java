@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
+import com.rental.geniecar.domain.board.BoardVo;
 import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
 
@@ -80,5 +82,24 @@ public class BusinessConsultController {
     @GetMapping("/register.do")
     public String register(){
         return "business/consult/register";
+    }
+    
+    // JJ
+    // 게시판 상세 보기
+    @GetMapping("/detailConsult.do")
+    public String detailConsult(@RequestParam int no, Model model) {
+        BoardVo notice = boardService.selectNoticeDetail(no);
+
+        // 이미지 파일 정보 가져오기
+        List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
+        
+        System.out.println(imageFiles.toString());
+        // 이미지 경로
+        setImageFilePath(imageFiles, UPLOAD_PATH);
+
+        model.addAttribute("notice", notice);
+        model.addAttribute("imageFiles", imageFiles);
+
+        return "business/consult/detailConsult";
     }
 }

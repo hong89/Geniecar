@@ -31,6 +31,9 @@
     .table tbody tr.mhover:hover td a {
     color: white !important;
     }
+    .d-flex {
+        box-shadow: #41087c !important;
+    }
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
