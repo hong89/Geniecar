@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
-import com.rental.geniecar.domain.reservation.ReservationVo;
 import com.rental.geniecar.member.dao.MemberDao;
 import com.rental.geniecar.point.dao.PointDao;
 
@@ -68,8 +67,8 @@ public class MemberService {
 	public int kick(String id) {
 		return memberDao.updateWithdrawal(id);
 	}
-	public List<ReservationVo> allMyReservation(String id) {
-		return memberDao.allMyReservation(id);
+	public Map myReservation(String id) {
+		return memberDao.myReservation(id);
 	}
 	public LicenseVo selectLicense(String id) {
 		return memberDao.selectLicense(id);

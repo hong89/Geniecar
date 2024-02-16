@@ -24,7 +24,6 @@ import com.rental.geniecar.domain.common.FileVo;
 import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.domain.member.PointVo;
-import com.rental.geniecar.domain.reservation.ReservationVo;
 import com.rental.geniecar.member.service.MemberService;
 import com.rental.geniecar.point.service.PointService;
 
@@ -60,16 +59,13 @@ public class MyPageController {
 	public String reservation(Model model, HttpSession session){
 		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
 		Map mypage = (Map) session.getAttribute("mypage");
-		List<ReservationVo> reservationList = memberService.allMyReservation(membervo.getId());
 		model.addAttribute("member", membervo);
-		model.addAttribute("reservationList", reservationList);
         return "mypage/reservation";
     }
 	//ruddud
 	@GetMapping("/reservationDetail.do")
-	public String reservationDetail(@RequestParam("reservationNo") String reservationNo, Model model, HttpSession session){
-		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
-		model.addAttribute("member", membervo);
+	public String reservationDetail(Model model){
+
         return "mypage/reservationDetail";
     }
 	//ruddud
