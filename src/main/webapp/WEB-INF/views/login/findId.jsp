@@ -32,7 +32,7 @@
                         if(text == ''){
                             $("#result").html("일치하는 정보가 없습니다.");
                         } else {
-                            $("#result").html('회원님의 아이디는 "' +text +'" 입니다.');
+                            alert('회원님의 아이디는 "' +text +'" 입니다.');
                         }
 
                     },
@@ -69,7 +69,6 @@
                     <button type="button" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;">찾기</button>
                 </div>
             </form>
-            <div id="result" class="mt-5"></div>
         </div>
         <div class="col"></div>
     </section>

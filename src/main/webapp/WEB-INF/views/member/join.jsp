@@ -19,7 +19,6 @@
                 }
             };
         })
-
         $(function () {
             const checkAllTerms = document.querySelector("#checkAllTerms");
             let checkTerm = document.querySelectorAll("[name=checkTerm]");
@@ -76,6 +75,8 @@
             });
         })
         $(function () {
+            
+            var replaceName = /^[가-힣a-zA-Z\s]+$/
             $('#submitBtn').click(function () {
                 var pw = $('[name=pw]').val();
                 var pwCheck = $('[name=pwCheck]').val();
@@ -105,6 +106,9 @@
                 } else if (name == '' || name == null) {
                     alert("이름을 입력해주세요");
                     $("#name").focus();
+                    return false;} 
+                else if (!name.match(replaceName)) {
+                    alert("이름은 한글, 영문만 입력 가능합니다.");
                     return false;
                 } else if (gender == null) {
                     alert("성별을 입력해주세요");

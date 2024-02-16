@@ -32,8 +32,8 @@ public class LoginService {
 	public String findId (Map map) {
 		String id = loginDao.findId(map);
 		if(id != null) {
-			String resultid = id.substring(0,4);
-			for (int i =0 ; i<id.length()-4;i++) {
+			String resultid = id.substring(0,2);
+			for (int i =0 ; i<id.length()-2;i++) {
 				resultid += "*";
 			}
 			return resultid;
