@@ -158,11 +158,11 @@
                                 aria-selected="true">전체
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
+<!--                <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab2" data-bs-toggle="tab" data-bs-target="#contact2"
                                 type="button" role="tab" aria-controls="contact2" aria-selected="false">결제대기
                         </button>
-                    </li>
+                    </li>-->
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab3" data-bs-toggle="tab" data-bs-target="#contact3"
                                 type="button" role="tab" aria-controls="contact3" aria-selected="false">계약완료
@@ -186,44 +186,40 @@
                 </ul>
 
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active border-bottom" id="contact1" role="tabpanel"
-                         aria-labelledby="contact-tab1">
-
-                        <div class="card text-center" style="width: 80%">
-                            <div class="card-header">
-                                스포티지 하이브리드
-                            </div>
-                            <div class="card-body">
-                                <div class="text-body-secondary">
-                                    <table id="shortRental">
-                                        <tr>
-                                            <td style="width: 150px;">예약일자</td>
-                                            <td>2024-01-23</td>
-                                        </tr>
-                                        <tr>
-                                            <td>예약번호</td>
-                                            <td>2422443764</td>
-                                        </tr>
-                                        <tr>
-                                            <td>대여일시/지점</td>
-                                            <td>2024-01-27(토) 14:00 / 강남</td>
-                                        </tr>
-                                        <tr>
-                                            <td>반납일시/지점</td>
-                                            <td>2024-01-28(일) 14:00 / 강남</td>
-                                        </tr>
-                                    </table>
+                    <div class="tab-pane fade show active border-bottom" id="contact1" role="tabpanel" aria-labelledby="contact-tab1">
+                        <c:forEach var="reservation" items="${reservationList }">
+                            <div class="card text-center" style="width: 80%">
+                                <div class="card-header">
+                                    스포티지 하이브리드
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-body-secondary">
+                                        <table id="shortRental">
+                                            <tr>
+                                                <td style="width: 150px;">예약일자</td>
+                                                <td><fmt:formatDate value="${reservation.regDate}" pattern="yyyy-MM-dd"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>예약번호</td>
+                                                <td>${reservation.reservationNo}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>대여일시/지점</td>
+                                                <td><fmt:formatDate value="${reservation.rentalDate}" pattern="yyyy-MM-dd(E) HH:mm"/> / ${reservation.rentalPlaceName} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>반납일시/지점</td>
+                                                <td><fmt:formatDate value="${reservation.returnDate}" pattern="yyyy-MM-dd(E) HH:mm"/> / ${reservation.rentalPlaceName}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="/mypage/reservationDetail.do?$reservationNo=${reservation.reservationNo}">상세정보 확인하기</a>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <a href="/mypage/reservationDetail.do">상세정보 확인하기</a>
-                            </div>
-                        </div>
+                        </c:forEach>
 
-
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact2" role="tabpanel"
-                         aria-labelledby="contact-tab2">.2..
                     </div>
                     <div class="tab-pane fade border-bottom" id="contact3" role="tabpanel"
                          aria-labelledby="contact-tab3">.3..

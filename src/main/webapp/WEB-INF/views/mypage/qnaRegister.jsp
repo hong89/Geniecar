@@ -13,7 +13,7 @@
     <div id="registerForm" style="text-align: center;">
         <h3 class="pb-5">등록하기</h3>
 
-        <form name="registerForm" action="/mypage/insertboard.do?returnUrl=/mypage/qna.do?typeCode=QNA" method="post" enctype="multipart/form-data">
+        <form name="registerForm" action="/admin/board/insertBoard.do?returnUrl=/mypage/qna.do?typeCode=QNA" method="post" enctype="multipart/form-data">
             <div class="mb-3 row">
                 <label for="title" class="col-sm-2 col-form-label">구분</label>
                 <div class="col-sm-10">
