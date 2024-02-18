@@ -21,7 +21,9 @@
         <div>
             <div class="p-5" style="text-align: center;">
                 <a href="/mypage/qna.do?typeCode=${notice.typeCode}" class="btn text-white"
-                   style="background-color: #41087c;">목록으로 돌아가기</a>
+                   style="background-color: #41087c;">목록가기</a>
+                <a href="/mypage/deleteNotice.do?no=${notice.no}&fileNo=${notice.fileNo}" class="btn text-white"
+                   style="background-color: #41087c;">삭제하기</a>
             </div>
         </div>
     </div>

@@ -21,15 +21,17 @@
             </p><hr/>
             <pre align="left">${notice.content}</pre> 
             <c:if test="${not empty imageFiles}">
-                <c:forEach var="imageFile" items="${imageFiles}">
-                    <c:if test="${not empty imageFile.saveName}">
-                        <div class="mb-3 row">
-                            <div class="col-sm-12">
-                                <img class="form-control responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="300px" height="500px" aria-readonly="true">
+                <div class="text-center">
+                    <c:forEach var="imageFile" items="${imageFiles}">
+                        <c:if test="${not empty imageFile.saveName}">
+                            <div class="mb-3 row">
+                                <div class="col-sm-12">
+                                    <img class="responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="1000px" aria-readonly="true">
+                                </div>
                             </div>
-                        </div>
-                    </c:if>
-                </c:forEach>
+                        </c:if>
+                    </c:forEach>
+                </div>
             </c:if>
         </div>
         <div>

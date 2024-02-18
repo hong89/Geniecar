@@ -2,8 +2,14 @@ package com.rental.geniecar.admin.board.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +21,7 @@ import com.rental.geniecar.admin.board.dao.AdminBoardDao;
 import com.rental.geniecar.domain.board.BoardVo;
 import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
+import com.rental.geniecar.domain.member.MemberVo;
 
 
 @Service
@@ -48,13 +55,18 @@ public class AdminBoardService {
 		return boardDao.selectBoardListSize(boardVo);
 	}
 
-	public void insertBoard(BoardVo boardVo, List<FileVo> fileList) {
+	public void insertBoard(BoardVo boardVo, List<FileVo> fileList, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		MemberVo memberInfo = (MemberVo) session.getAttribute("memberInfo");
+		String regId = memberInfo.getId();
 
 		int newFileNo = boardDao.selectNewFileNo();
 		for(int i = 0; i < fileList.size(); i++){
 			FileVo fileVo = fileList.get(i);
 			fileVo.setSeq(i+1);
 			fileVo.setFileNo(newFileNo);
+			fileVo.setRegId(regId);
 			boardDao.insertBoardImage(fileVo);
 		}
 		boardVo.setFileNo(newFileNo);
@@ -155,8 +167,10 @@ public class AdminBoardService {
 		
 	}
 	public void updateImageFile(FileVo fileVo) {
-		// TODO Auto-generated method stub
 		
+	}
+	public List<CommonCrudVo> selectBoardListById(Map<String, Object> paramMap) {
+		return boardDao.selectBoardListById(paramMap);
 	}
 	
 	

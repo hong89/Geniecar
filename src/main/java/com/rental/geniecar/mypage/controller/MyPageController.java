@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -185,8 +186,16 @@ public class MyPageController {
 	// 1:1 문의
 	@GetMapping("/qna.do")
 	public String qna(CommonCrudVo boardVo, Model model, HttpSession session){
-		List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
-		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		MemberVo memberVo = (MemberVo) session.getAttribute("memberInfo");
+		String Id = memberVo.getId();
+		Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("typeCode", boardVo.getTypeCode());
+	    paramMap.put("Id", Id);
+	    paramMap.put("title", boardVo.getTitle());
+	    paramMap.put("startPage", boardVo.getStartPage());
+	    paramMap.put("pageSize", boardVo.getPageSize());
+
+	    List<CommonCrudVo> boardList = boardService.selectBoardListById(paramMap);
 		
 		for (CommonCrudVo notice : boardList) {
 	        if (notice instanceof BoardVo) {
@@ -200,7 +209,7 @@ public class MyPageController {
         boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
         boardVo.setPageEndSet();
         
-        model.addAttribute("member", membervo);
+        model.addAttribute("member", memberVo);
         model.addAttribute("boardList", boardList);
         model.addAttribute("boardVo", boardVo);
         
@@ -216,7 +225,7 @@ public class MyPageController {
 	
 	// JJ
 	// 게시판 글등록
-	@PostMapping("/insertboard.do")
+	@PostMapping("/insertBoard.do")
     public String insertboard(HttpServletRequest request, HttpSession session, BoardVo boardVo, @RequestParam("file") MultipartFile[] files, ServletResponse response, @RequestParam(value = "returnUrl", required = false) String returnUrl, RedirectAttributes redirectAttributes) throws IOException {
     	
     	MemberVo memberInfo = (MemberVo) session.getAttribute("memberInfo");
@@ -268,7 +277,7 @@ public class MyPageController {
                     fileList.add(fileVo);
                 }
                 // 파일과 이미지 정보 DB에 저장하기
-                boardService.insertBoard(boardVo, fileList);
+                boardService.insertBoard(boardVo, fileList, request);
             }
             
         } catch (IOException e) {
@@ -307,5 +316,13 @@ public class MyPageController {
 		
 		return "mypage/qnaDetail";
 	}
+	
+	// JJ
+    // 게시판 내용 삭제하기
+    @GetMapping("/deleteNotice.do")
+    public String deleteNotice(@RequestParam int no, @RequestParam int fileNo) {
+        boardService.deleteNotice(no, fileNo);
+        return "redirect:/mypage/qna.do?typeCode=QNA";
+    }
 	
 }

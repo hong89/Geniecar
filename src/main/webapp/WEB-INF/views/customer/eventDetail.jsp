@@ -53,15 +53,19 @@
                 <small class="text-muted">${notice.startDate} ~ ${notice.endDate}</small>
             </div>
             <c:if test="${not empty imageFiles}">
-                <c:forEach var="imageFile" items="${imageFiles}">
-                    <c:if test="${not empty imageFile.saveName}">
-                        <div class="mb-3 row">
-                            <div class="col-sm-12">
-                                <img class="form-control responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="300px" height="auto" aria-readonly="true">
-                            </div>
-                        </div>
-                    </c:if>
-                </c:forEach>
+                <div class="text-center">
+                    <c:forEach var="imageFile" items="${imageFiles}" varStatus="loop">
+                        <c:if test="${loop.index == 1}">
+                            <c:if test="${not empty imageFile.saveName}">
+                                <div class="mb-3 row">
+                                    <div class="col-sm-12">
+                                        <img class="responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="1000px" aria-readonly="true">
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:if>
+                    </c:forEach>
+                </div>
             </c:if>
         </div>
         <div>
