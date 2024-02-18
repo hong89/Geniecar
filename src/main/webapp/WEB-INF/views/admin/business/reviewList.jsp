@@ -52,7 +52,6 @@
                 <h1 class="tit">${selectTypeCode} 목록</h1>
             </section>
             <div class="pt-5">
-                <<<<<<< HEAD
                 <td class="text-center">
                     <div class="d-flex" style="float:right">
                         <input type="text" id="title" name="title" value="${boardVo.title}" class="form-control"
