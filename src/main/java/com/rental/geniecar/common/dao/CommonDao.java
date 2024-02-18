@@ -9,6 +9,7 @@ import java.util.List;
 public interface
 CommonDao {
 
+    CommonCodeVo selectCommonCode(String fullCode);
     List<CommonCodeVo> selectCommonCodes(String groupCode);
 
     List<CommonCodeVo> selectCommonSubCodes(String groupCode);

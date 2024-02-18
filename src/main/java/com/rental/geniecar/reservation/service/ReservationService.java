@@ -1,6 +1,10 @@
 package com.rental.geniecar.reservation.service;
 
+import com.rental.geniecar.common.dao.CommonDao;
 import com.rental.geniecar.domain.branch.RentalCarBranchVo;
+import com.rental.geniecar.domain.car.NewCarVo;
+import com.rental.geniecar.domain.common.CommonCodeVo;
+import com.rental.geniecar.domain.reservation.RentalCarReservationStep2Vo;
 import com.rental.geniecar.domain.reservation.ReservationRentalCarVo;
 import com.rental.geniecar.domain.reservation.SearchReservationRentalCarVo;
 import com.rental.geniecar.infra.util.DateUtil;
@@ -18,6 +22,7 @@ import java.util.List;
 public class ReservationService {
 
     private final ReservationDao reservationDao;
+    private final CommonDao commonDao;
 
     public List<RentalCarBranchVo> selectBranchesByLocationCode(String locationCode) {
         return reservationDao.selectBranchesByLocationCode(locationCode);
@@ -27,6 +32,16 @@ public class ReservationService {
     public List<ReservationRentalCarVo> selectRentalCarReservationSearchCar(SearchReservationRentalCarVo searchReservationRentalCarVo) throws ParseException {
         long tenMinutes = DateUtil.dateDifferToMinutes(searchReservationRentalCarVo.getRentalDate(), searchReservationRentalCarVo.getReturnDate()) / 10;
         searchReservationRentalCarVo.setDifferTimes(tenMinutes);
+        int per = perCal(tenMinutes / 6);
+
+        searchReservationRentalCarVo.setPer(per);
+        List<ReservationRentalCarVo> reservationRentalCarVos = reservationDao.selectRentalCarReservationSearchCar(searchReservationRentalCarVo);
+
+        return reservationRentalCarVos;
+    }
+
+    private int perCal(long tenMinutes){
+
         long hour = tenMinutes / 6;
 
         int per = 0;
@@ -49,11 +64,20 @@ public class ReservationService {
             per = 55;
         }
 
-        searchReservationRentalCarVo.setPer(per);
-        List<ReservationRentalCarVo> reservationRentalCarVos = reservationDao.selectRentalCarReservationSearchCar(searchReservationRentalCarVo);
-
-        return reservationRentalCarVos;
+        return per;
     }
 
 
+    // 예약 상세
+    public RentalCarReservationStep2Vo reservationStep2(RentalCarReservationStep2Vo rentalCarReservationStep2Vo) throws ParseException  {
+
+        rentalCarReservationStep2Vo.setRentalPlaceName(commonDao.selectCommonCode(rentalCarReservationStep2Vo.getRentalPlace()).getCodeName());
+        rentalCarReservationStep2Vo.setReturnPlaceName(commonDao.selectCommonCode(rentalCarReservationStep2Vo.getReturnPlace()).getCodeName());
+        NewCarVo newCarVo = reservationDao.selectDetailCar(rentalCarReservationStep2Vo.getCarNo());
+        rentalCarReservationStep2Vo.setCarName(newCarVo.getCarName());
+
+
+
+        return rentalCarReservationStep2Vo;
+    }
 }

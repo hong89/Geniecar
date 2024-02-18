@@ -588,13 +588,13 @@
 
             $('#containerArea').on('click', '.rental-car:not(.car-disabled)', function () {
                 $('[name=rentalDate]').val(rentalForm.rentalStartDateStr); //대여 일시
-                $('[name=returnPlaceCd]').val(rentalForm.rentalPlaceCd); //대여 지점
+                $('[name=rentalPlace]').val(rentalForm.rentalPlaceCd); //대여 지점
                 $('[name=returnDate]').val(rentalForm.rentalReturnDateStr); //반납 일시
-                $('[name=returnPlaceCd]').val(rentalForm.returnPlaceCd); //반납 지점
+                $('[name=returnPlace]').val(rentalForm.returnPlaceCd); //반납 지점
                 $('[name=rentalPeriod]').val(rentalForm.getPeriodDate()); //총 대여기간
-                $('[name=rentalCost]').val(); //차량 대여요금
-                $('[name=rentalSaleCost]').val(); //할인요금
-                $('[name=rentalFinalCost]').val(); //총 금액
+                $('[name=totalCost]').val($(this).find('.total-cost').data('totalCost')); //차량대여요금
+                $('[name=saleCost]').val($(this).find('.sale-cost').data('saleCost')); //할인요금
+                $('[name=carNo]').val($(this).data('carNo'));
                 $('#step2Form').submit();
             });
 
@@ -946,13 +946,13 @@
 
     <form id="step2Form" action="/reservation/step2.do" method="post" >
         <input type="hidden" name="rentalDate" value="" /> <%--대여 일시--%>
-        <input type="hidden" name="returnPlaceCd" value="" /> <%--대여 지점--%>
+        <input type="hidden" name="rentalPlace" value="" /> <%--대여 지점--%>
         <input type="hidden" name="returnDate" value="" /> <%--반납 일시--%>
-        <input type="hidden" name="returnPlaceCd" value="" /> <%--반납 지점--%>
+        <input type="hidden" name="returnPlace" value="" /> <%--반납 지점--%>
         <input type="hidden" name="rentalPeriod" value="" /> <%--총 대여기간--%>
-        <input type="hidden" name="rentalCost" value="" /> <%--차량 대여요금--%>
-        <input type="hidden" name="rentalSaleCost" value="" /> <%--할인요금--%>
-        <input type="hidden" name="rentalFinalCost" value="" /> <%--총 금액--%>
+        <input type="hidden" name="carNo" value="" /><%--자동차 no--%>
+        <input type="hidden" name="totalCost" value="" /> <%--대여요금--%>
+        <input type="hidden" name="saleCost" value="" /> <%--할인요금--%>
     </form>
 
     <!-- 차량 선택 영역 -->
@@ -1006,9 +1006,9 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <p class="card-text">{{carName}}</p>
-                                <p class="card-text" style="color: red">{{fmSaleCost}}원<small>({{perSale}}%) 할인</small></p>
-                                <p class="card-text" style="color: gray; text-decoration: line-through">{{fmTotalCost}}원</p>
+                                <p class="card-text" data-car-name="{{carName}}">{{carName}}</p>
+                                <p class="card-text sale-cost" data-sale-cost="{{saleCost}}" style="color: red">{{fmSaleCost}}원<small>({{perSale}}%) 할인</small></p>
+                                <p class="card-text total-cost" data-total-cost="{{totalCost}}" style="color: gray; text-decoration: line-through">{{fmTotalCost}}원</p>
                                 <p class="card-text"><small class="text-body-secondary">{{carFuelName}} / {{seater}}인승</small></p>
                             </div>
                         </div>

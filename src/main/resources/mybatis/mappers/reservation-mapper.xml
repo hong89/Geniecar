@@ -10,7 +10,7 @@
 	</select>
 
 	<select id="selectRentalCarReservationSearchCar" resultType="com.rental.geniecar.domain.reservation.ReservationRentalCarVo" parameterType="com.rental.geniecar.domain.reservation.SearchReservationRentalCarVo">
-		SELECT T.*, FN_RENTAL_CAR_CAL_SALE_COST(T.TOTAL_COST, T.PER_SALE) AS SALE_COST
+		SELECT T.*, T.TOTAL_COST * ((100 - T.PER_SALE) / 100) AS SALE_COST
 		  FROM (
 			SELECT NC.NO AS CAR_NO
 				  ,NC.CAR_NAME
@@ -64,6 +64,21 @@
 						)
 			GROUP BY CAR_NO) ARTC ON NC.NO = ARTC.CAR_NO) T
 		ORDER BY T.RENTAL_AVAILABLE DESC, T.DEFAULT_COST
+	</select>
+
+	<select id="selectDetailCar" resultType="newCarVo" parameterType="int">
+		SELECT NO
+				, CAR_NAME
+				, CAR_TYPE_CODE
+				, FN_COMM_NAME(CAR_TYPE_CODE) AS TYPE_NAME
+				, CAR_FUEL_CODE
+				, FN_COMM_NAME(CAR_FUEL_CODE) AS FUEL_NAME
+				, DEFAULT_COST
+				, COMPANY
+				, FN_COMM_NAME(COMPANY) AS COMPANY_NAME
+				, FILE_NO
+		FROM NEW_CAR
+		WHERE NO = #{no}
 	</select>
 
 </mapper>
