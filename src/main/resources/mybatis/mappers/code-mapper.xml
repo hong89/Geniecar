@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rental.geniecar.common.dao.CommonDao">
 
+	<select id="selectCommonCode" resultType="commonCodeVo" parameterType="java.lang.String">
+		SELECT FULL_CODE
+			 ,CODE
+			 ,CODE_NAME
+			 ,GROUP_CODE
+			 ,GROUP_CODE_NAME
+			 ,DESCRIPTION
+			 ,CODE_SORT
+			 ,USE_YN
+		FROM COMMON_CODE
+		WHERE FULL_CODE = #{fullCode}
+	</select>
+
 	<select id="selectCommonCodes" resultType="commonCodeVo" parameterType="java.lang.String">
 		SELECT FULL_CODE
 			  ,CODE

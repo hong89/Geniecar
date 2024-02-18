@@ -3,6 +3,8 @@ package com.rental.geniecar.reservation.controller;
 import com.rental.geniecar.domain.common.CommonCodeVo;
 import com.rental.geniecar.common.service.CommonService;
 import com.rental.geniecar.domain.branch.RentalCarBranchVo;
+import com.rental.geniecar.domain.reservation.RentalCarReservationStep2Vo;
+import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
 import com.rental.geniecar.domain.reservation.ReservationRentalCarVo;
 import com.rental.geniecar.domain.reservation.SearchReservationRentalCarVo;
 import com.rental.geniecar.reservation.service.ReservationService;
@@ -72,8 +74,13 @@ public class ReservationController {
 
     // HSH
     @PostMapping("/step2.do")
-    public String step2(){
-
+    public String step2(RentalCarReservationStep2Vo rentalCarReservationStep2Vo, Model model){
+        try {
+            rentalCarReservationStep2Vo = reservationService.reservationStep2(rentalCarReservationStep2Vo);
+            model.addAttribute("detail", rentalCarReservationStep2Vo);
+        }catch (ParseException e) {
+            log.error(e.getMessage());
+        }
         return "reservation/step2";
     }
 }
