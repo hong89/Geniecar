@@ -26,7 +26,7 @@
                 <c:forEach var="res" items="${reservationList}">
                     <tr>
                         <td class="col">
-                            <a href="/business/rental/rentDetail.do?reservationNo=${res.reservationNo}">
+                            <a href="/business/rental/rentDetail.do?reservationNo=${res.reservationNo}&checkBtn='check'">
                                     ${res.reservationNo}
                             </a>
                         </td>

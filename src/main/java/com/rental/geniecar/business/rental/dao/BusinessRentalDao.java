@@ -22,4 +22,10 @@ public interface BusinessRentalDao {
     int progressTotalCount(Pagination pagination);
 
     ReservationVo selectDetail(String reservationNo, String branchCode);
+
+    int cancelTotalCount(Pagination pagination);
+
+    List<RentalCarReservationVo> selectCancelList(Pagination pagination);
+
+    void updateReservation(String reservationNo, String id);
 }

@@ -26,6 +26,7 @@
             <p><a href="/business/rental/rentReservation.do">렌터카 예약 내역</a></p>
             <p><a href="/business/rental/rentProgress.do">렌터카 진행 내역</a></p>
             <p><a href="/business/rental/rentComplete.do">렌터카 종료 내역</a></p>
+            <p><a href="/business/rental/rentCancel.do">렌터카 취소 내역</a></p>
         </li>
         <li class="list-group-item"><p>결제 관리</p>
             <p><a href="/business/pay/payment.do">결제 내역 목록</a></p>

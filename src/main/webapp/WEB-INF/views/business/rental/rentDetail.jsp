@@ -17,6 +17,23 @@
         background: #f8f7fd;
     }
 </style>
+<script>
+    $(function () {
+        $('#cancelBtn').on('click', function () {
+            var reservationNo = $('#reservationNo').val();
+            var cancel = confirm("정말로 취소하시겠습니까?");
+            if (cancel) {
+                $.get("/business/rental/cancel.do", {reservationNo: reservationNo}, function (res) {
+                    alert('예약취소가 완료되었습니다.');
+                });
+                location.replace("rentReservation.do");
+
+            } else {
+                alert('예약취소가 취소되었습니다.');
+            }
+        });
+    });
+</script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="p-5">
@@ -62,10 +79,15 @@
                 </tr>
             </table>
         </div>
+        <input type="hidden" id="reservationNo" value="${reservation.reservationNo}" />
         <div class="pt-5">
             <button type="button" class="btn text-white" style="background: #41087c"
                     onclick="location.href='rentReservation.do'">목록가기
             </button>
+            <c:if test="${checkBtn != null}">
+                <button type="button" class="btn text-white" style="background: #41087c" id="cancelBtn">예약취소
+                </button>
+            </c:if>
         </div>
     </div>
 </div>

@@ -146,6 +146,7 @@
             ,DEFAULT_COST
             ,COMPANY
             ,FILE_NO
+            ,SEATER
         ) VALUES (
              SEQ_NEW_CAR_NO.NEXTVAL
             ,#{carName}
@@ -154,6 +155,7 @@
             ,#{defaultCost}
             ,#{company}
             ,#{fileNo}
+            ,#{seater}
         )
     </insert>
 

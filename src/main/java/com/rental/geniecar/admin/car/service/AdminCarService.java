@@ -70,6 +70,7 @@ public class AdminCarService {
             newCarVo.setCompany(requestNewCarVo.getCompany());
             newCarVo.setCarTypeCode(requestNewCarVo.getCarTypeCode());
             newCarVo.setCarName(requestNewCarVo.getCarName());
+            newCarVo.setSeater(requestNewCarVo.getSeater());
             int newFileNo = boardDao.selectNewFileNo();
             fileVo.setFileNo(newFileNo);
             fileVo.setSeq(1);

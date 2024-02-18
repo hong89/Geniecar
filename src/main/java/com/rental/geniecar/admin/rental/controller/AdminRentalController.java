@@ -48,13 +48,6 @@ public class AdminRentalController {
         return "admin/rental/rentProgress";
     }
 
-    @GetMapping("/rentDetail.do")
-    public String rentDetail(@RequestParam("reservationNo") String reservationNo, Model model){
-        ReservationVo reservation = adminRentalService.selectDetail(reservationNo);
-        model.addAttribute("reservation", reservation);
-        return "admin/rental/rentDetail";
-    }
-
     @GetMapping("/rentCancel.do")
     public String rentCancel(Pagination pagination, Model model) {
         pagination.setTotalRecordCount(adminRentalService.cancelTotalCount(pagination));
@@ -62,6 +55,13 @@ public class AdminRentalController {
         model.addAttribute("cancelList", cancelList);
         model.addAttribute("pagination", pagination);
         return "admin/rental/rentCancel";
+    }
+
+    @GetMapping("/rentDetail.do")
+    public String rentDetail(@RequestParam("reservationNo") String reservationNo, Model model){
+        ReservationVo reservation = adminRentalService.selectDetail(reservationNo);
+        model.addAttribute("reservation", reservation);
+        return "admin/rental/rentDetail";
     }
 }
 
