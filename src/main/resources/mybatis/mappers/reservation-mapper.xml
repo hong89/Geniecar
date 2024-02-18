@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rental.geniecar.reservation.dao.ReservationDao">
+
+	<select id="selectBranchesByLocationCode" resultType="rentalCarBranchVo" parameterType="java.lang.String">
+		SELECT BRANCH_CODE
+		   	  ,FN_COMM_NAME(BRANCH_CODE) AS BRANCH_NAME
+		  FROM RENTAL_CAR_BRANCH
+		 WHERE REGION_CODE = #{locationCode}
+	</select>
+
+	<select id="selectRentalCarReservationSearchCar" resultType="com.rental.geniecar.domain.reservation.ReservationRentalCarVo" parameterType="com.rental.geniecar.domain.reservation.SearchReservationRentalCarVo">
+		SELECT T.*, FN_RENTAL_CAR_CAL_SALE_COST(T.TOTAL_COST, T.PER_SALE) AS SALE_COST
+		  FROM (
+			SELECT NC.NO AS CAR_NO
+				  ,NC.CAR_NAME
+				  ,NC.CAR_TYPE_CODE
+				  ,FN_COMM_NAME(NC.CAR_TYPE_CODE) AS CAR_TYPE_NAME
+				  ,NC.CAR_FUEL_CODE
+				  ,FN_COMM_NAME(NC.CAR_FUEL_CODE) AS CAR_FUEL_NAME
+				  ,NC.DEFAULT_COST
+				  ,NC.DEFAULT_COST * #{differTimes} AS TOTAL_COST
+				  ,NC.COMPANY
+				  ,FN_COMM_NAME(NC.COMPANY) AS COMPANY_NAME
+		          ,#{per} AS PER_SALE
+				  ,NC.SEATER
+				  ,NC.FILE_NO
+				  ,ARTC.RENTAL_AVAILABLE
+			  FROM NEW_CAR NC
+			 INNER JOIN (SELECT CASE WHEN COUNT(CASE WHEN AVAILABILITY = 'N' THEN 1 END) >= 1 THEN 'N'
+								ELSE 'Y' END AS RENTAL_AVAILABLE
+							   ,CAR_NO
+						   FROM (SELECT CASE WHEN RENTAL_DATE <![CDATA[<=]]> TO_DATE(#{returnDate}, 'YYYY-MM-DD HH24:MI') AND
+												  RETURN_DATE <![CDATA[>=]]> TO_DATE(#{rentalDate}, 'YYYY-MM-DD HH24:MI')
+											   OR RENTAL_DATE <![CDATA[<=]]> TO_DATE(#{rentalDate}, 'YYYY-MM-DD HH24:MI') AND
+												  RETURN_DATE <![CDATA[>=]]> TO_DATE(#{rentalDate}, 'YYYY-MM-DD HH24:MI')
+											   OR RENTAL_DATE <![CDATA[<=]]> TO_DATE(#{returnDate}, 'YYYY-MM-DD HH24:MI') AND
+												  RETURN_DATE <![CDATA[>=]]> TO_DATE(#{returnDate}, 'YYYY-MM-DD HH24:MI')
+											 THEN 'N' ELSE 'Y' END AS AVAILABILITY
+										,NC.NO AS CAR_NO
+								   FROM RENTAL_CAR_BRANCHES_CAR RCBC
+						 LEFT JOIN RENTAL_CAR_RESERVATION RCR ON RCR.CAR_IDENTIFICATION_NUMBER = RCBC.CAR_IDENTIFICATION_NUMBER
+						INNER JOIN RENTAL_CAR RC ON RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
+						INNER JOIN NEW_CAR NC ON RC.CAR_NO = NC.NO
+						WHERE RCBC.RENTAL_CAR_BRANCH_NO = #{rentalPlaceCd}
+						  <if test="typeCodes != null and !typeCodes.isEmpty()">
+							AND NC.CAR_TYPE_CODE IN
+							<foreach collection="typeCodes" item="typeCode"	separator="," open="(" close=")"  >
+								#{typeCode}
+							</foreach>
+						  </if>
+						  <if test="seaters != null and !seaters.isEmpty()">
+							AND NC.SEATER IN
+							  <foreach collection="seaters" item="seater" separator="," open="(" close=")"  >
+								  #{seater}
+							  </foreach>
+						  </if>
+						  <if test="fuelCodes != null and !fuelCodes.isEmpty()">
+							AND NC.CAR_FUEL_CODE IN
+							  <foreach collection="fuelCodes" item="fuelCode" separator="," open="(" close=")"  >
+								  #{fuelCode}
+							  </foreach>
+						  </if>
+						)
+			GROUP BY CAR_NO) ARTC ON NC.NO = ARTC.CAR_NO) T
+		ORDER BY T.RENTAL_AVAILABLE DESC, T.DEFAULT_COST
+	</select>
+
+</mapper>
