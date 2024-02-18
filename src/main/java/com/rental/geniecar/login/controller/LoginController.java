@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.login.service.LoginService;
@@ -88,8 +89,31 @@ public class LoginController {
 	}
 	//ruddud
 	@PostMapping("/resultFindPw.do")
-	public @ResponseBody String resultFindPw(@RequestParam Map member) {
-		return loginService.findPw(member);
+	public String resultFindPw(@RequestParam Map member, RedirectAttributes re) {
+		System.out.println("********************** : " + member);
+		String msg=null;
+		if(loginService.findPw(member)) { 
+			return "forward:/login/changePw.do"; 
+		}  else { 
+			msg="not";
+			re.addFlashAttribute("msg", msg);
+			return "redirect:/login/findPw.do";
+		}
+	}
+	@PostMapping("/changePw.do")
+	public String changePw(String id, Model model) {
+		model.addAttribute("id", id);
+		return "/login/changePw";
+	}
+	@PostMapping("/dochangePw.do")
+	public String dochangePw(@RequestParam Map pw, RedirectAttributes re) {	
+		if(pw.get("pw").equals(pw.get("pw_"))) {
+			System.out.println("#################################");
+			loginService.changePw(pw);
+			String msg ="ok";
+			re.addFlashAttribute("msg", msg);
+		}
+		return "redirect:/login/findPw.do";
 	}
 
 }

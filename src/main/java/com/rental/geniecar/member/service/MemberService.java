@@ -71,6 +71,9 @@ public class MemberService {
 	public List<ReservationVo> allMyReservation(String id) {
 		return memberDao.allMyReservation(id);
 	}
+	public  ReservationVo selectOneReservation(String no) {
+		return memberDao.selectOneReservation(no);
+	}
 	public LicenseVo selectLicense(String id) {
 		return memberDao.selectLicense(id);
 	}

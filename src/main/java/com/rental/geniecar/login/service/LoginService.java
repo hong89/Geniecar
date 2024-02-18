@@ -41,17 +41,16 @@ public class LoginService {
 			return null;
 		}
 	}
-	public String findPw(Map map) {
-		String pw = loginDao.findPw(map);
-		if(pw != null) {
-			String resultpw = pw.substring(0,4);
-			for (int i =0 ; i<pw.length()-4;i++) {
-				resultpw += "*";
-			}
-			return resultpw;
+	public boolean findPw(Map map) {
+		if(loginDao.findPw(map) == 1) {
+			return true;
 		} else {
-			return null;
+			return false;
 		}
+		
+	}
+	public void changePw(Map pw) {
+		loginDao.changePw(pw);
 	}
 	public Map mypage(String id) {
 		Map mypage = new HashMap<>();

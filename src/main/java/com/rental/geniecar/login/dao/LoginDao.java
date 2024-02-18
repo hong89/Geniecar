@@ -12,7 +12,8 @@ public interface LoginDao {
 	public MemberVo login(Map<String, String> map);
 	public void updateLastLoginDate(String id);
 	public String findId(Map map);
-	public String findPw(Map map);
+	public int findPw(Map map);
+	public void changePw(Map map);
 	public int countCoupons(String id);
 	public int countQNA(String id);
 }

@@ -69,7 +69,9 @@ public class MyPageController {
 	@GetMapping("/reservationDetail.do")
 	public String reservationDetail(@RequestParam("reservationNo") String reservationNo, Model model, HttpSession session){
 		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		ReservationVo reservation = memberService.selectOneReservation(reservationNo);
 		model.addAttribute("member", membervo);
+		model.addAttribute("reservation", reservation);
         return "mypage/reservationDetail";
     }
 	//ruddud

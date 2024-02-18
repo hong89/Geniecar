@@ -14,8 +14,12 @@
         SELECT ID FROM MEMBER WHERE NAME = #{name} AND HP = #{hp} AND WITHDRAWAL_YN='N'
     </select>
     
-    <select id="findPw" parameterType="java.util.Map" resultType="String">
-        SELECT PW FROM MEMBER WHERE ID = #{id} AND NAME = #{name} AND HP = #{hp} AND WITHDRAWAL_YN='N'
+    <select id="findPw" parameterType="java.util.Map">
+       SELECT COUNT(*) FROM MEMBER WHERE ID = #{id} AND NAME = #{name} AND HP = #{hp} AND WITHDRAWAL_YN='N'
+    </select>
+    
+    <select id="changePw" parameterType="java.util.Map">
+       UPDATE MEMBER SET PW = #{pw} WHERE ID= #{id}
     </select>
     	
 	<select id="countCoupons">

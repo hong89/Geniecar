@@ -27,6 +27,7 @@ public interface MemberDao {
 	public void updateType(String id);
 	public int updateWithdrawal(String id);
 	public List<ReservationVo> allMyReservation(String id);
+	public ReservationVo selectOneReservation(String no);
 	public LicenseVo selectLicense(String id);
 	public void insertLicense(LicenseVo vo);
 	public void updateLicense(LicenseVo vo);
