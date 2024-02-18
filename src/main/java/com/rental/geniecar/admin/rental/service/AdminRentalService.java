@@ -44,4 +44,13 @@ public class AdminRentalService {
     public ReservationVo selectDetail(String reservationNo) {
         return adminRentalDao.selectDetail(reservationNo);
     }
+
+    public int cancelTotalCount(Pagination pagination) {
+        return adminRentalDao.cancelTotalCount(pagination);
+    }
+
+    public List<RentalCarReservationVo> selectCancelList(Pagination pagination) {
+        return adminRentalDao.selectCancelList(pagination);
+    }
+
 }

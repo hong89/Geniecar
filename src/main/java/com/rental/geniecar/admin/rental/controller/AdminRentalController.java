@@ -54,5 +54,14 @@ public class AdminRentalController {
         model.addAttribute("reservation", reservation);
         return "admin/rental/rentDetail";
     }
+
+    @GetMapping("/rentCancel.do")
+    public String rentCancel(Pagination pagination, Model model) {
+        pagination.setTotalRecordCount(adminRentalService.cancelTotalCount(pagination));
+        List<RentalCarReservationVo> cancelList = adminRentalService.selectCancelList(pagination);
+        model.addAttribute("cancelList", cancelList);
+        model.addAttribute("pagination", pagination);
+        return "admin/rental/rentCancel";
+    }
 }
 

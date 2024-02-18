@@ -22,6 +22,10 @@
             <p><a href="/admin/rental/rentReservation.do">렌터카 예약 내역</a></p>
             <p><a href="/admin/rental/rentProgress.do">렌터카 진행 내역</a></p>
             <p><a href="/admin/rental/rentComplete.do">렌터카 종료 내역</a></p>
+            <p><a href="/admin/rental/rentCancel.do">렌터카 취소 내역</a></p>
+        </li>
+        <li class="list-group-item"><p>결제 관리</p>
+            <p><a href="/admin/pay/paymentList.do">결제 내역 목록</a></p>
         </li>
         <li class="list-group-item"><p>게시판 관리</p>
             <p><a href="/admin/board/register.do">게시판 등록</a></p>
@@ -38,7 +42,6 @@
             <p><a href="/admin/business/reviewList.do?typeCode=REVIEW">이용 후기 목록</a></p>
             <p><a href="/admin/business/consultList.do?typeCode=CONSULTING">상담 신청 목록</a></p>
             <p><a href="/admin/business/qnaList.do?typeCode=QNA">1:1 문의 목록</a></p>
-            <p><a href="/admin/business/paymentList.do">결제 내역 목록</a></p>
         </li>
         <li class="list-group-item"><p>차량 관리</p>
             <p><a href="/admin/car/newCarList.do">신차 목록</a></p>

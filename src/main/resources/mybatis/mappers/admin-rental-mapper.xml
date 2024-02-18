@@ -26,7 +26,8 @@
 		, RCR.*, M.*
 		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
 		WHERE RCR.RESERVATION_MEMBER_ID = M.ID
-		  AND RENTAL_DATE &gt; SYSDATE )
+		  AND RENTAL_DATE &gt; SYSDATE
+		  AND CANCEL_YN = 'N')
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
 		</if>
@@ -36,6 +37,7 @@
 		SELECT COUNT(*)
 		FROM RENTAL_CAR_RESERVATION
 		WHERE RENTAL_DATE &gt; SYSDATE
+		  AND CANCEL_YN = 'N'
 	</select>
 
 	<select id="selectCompleteList" resultType="rentalCarReservationVo" parameterType="com.rental.geniecar.domain.common.Pagination">
@@ -62,50 +64,56 @@
 		, RCR.*, M.*
 		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
 		WHERE RCR.RESERVATION_MEMBER_ID = M.ID
-		  AND RETURN_DATE &lt; SYSDATE )
+		  AND RETURN_DATE &lt; SYSDATE
+		  AND CANCEL_YN = 'N')
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
 		</if>
 	</select>
 
 	<select id="completeTotalCount" parameterType="com.rental.geniecar.domain.common.Pagination" resultType="int">
-		SELECT COUNT(*) FROM RENTAL_CAR_RESERVATION WHERE RETURN_DATE &lt; SYSDATE
-	</select>
+        SELECT COUNT(*)
+        FROM RENTAL_CAR_RESERVATION
+        WHERE RETURN_DATE &lt; SYSDATE
+		  AND CANCEL_YN = 'N'
+    </select>
 
 	<select id="selectProgressList" resultType="rentalCarReservationVo" parameterType="com.rental.geniecar.domain.common.Pagination">
-		SELECT  RESERVATION_NO
-		, RENTAL_PLACE
-		, FN_COMM_NAME(RENTAL_PLACE) AS RENTAL_PLACE_NAME
-		, RETURN_PLACE
-		, FN_COMM_NAME(RETURN_PLACE) AS RETURN_PLACE_NAME
-		, RENTAL_DATE
-		, RETURN_DATE
-		, CAR_IDENTIFICATION_NUMBER
-		, RENTAL_CAR_BRANCH_NO
-		, FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS RENTAL_CAR_BRANCH_NAME
-		, RESERVATION_MEMBER_ID
-		, NAME AS RESERVATION_MEMBER_NAME
-		, REGULAR_PRICE
-		, SALE_RATE
-		, FINAL_RESERVATION_PRICE
-		, REG_ID
-		, REG_DATE
-		, MOD_ID
-		, MOD_DATE
-		FROM (SELECT ROW_NUMBER() OVER (ORDER by RCR.RENTAL_DATE) AS RN
-		, RCR.*, M.*
-		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
-		WHERE RCR.RESERVATION_MEMBER_ID = M.ID
-		  AND SYSDATE BETWEEN RENTAL_DATE AND RETURN_DATE )
-		<if test="firstRecordIndex != null and lastRecordIndex != null">
-			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
-		</if>
-	</select>
+        SELECT RESERVATION_NO
+        , RENTAL_PLACE
+        , FN_COMM_NAME(RENTAL_PLACE) AS RENTAL_PLACE_NAME
+        , RETURN_PLACE
+        , FN_COMM_NAME(RETURN_PLACE) AS RETURN_PLACE_NAME
+        , RENTAL_DATE
+        , RETURN_DATE
+        , CAR_IDENTIFICATION_NUMBER
+        , RENTAL_CAR_BRANCH_NO
+        , FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS RENTAL_CAR_BRANCH_NAME
+        , RESERVATION_MEMBER_ID
+        , NAME AS RESERVATION_MEMBER_NAME
+        , REGULAR_PRICE
+        , SALE_RATE
+        , FINAL_RESERVATION_PRICE
+        , REG_ID
+        , REG_DATE
+        , MOD_ID
+        , MOD_DATE
+        FROM (SELECT ROW_NUMBER() OVER (ORDER by RCR.RENTAL_DATE) AS RN
+        , RCR.*, M.*
+        FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
+        WHERE RCR.RESERVATION_MEMBER_ID = M.ID
+        AND SYSDATE BETWEEN RENTAL_DATE AND RETURN_DATE
+        AND CANCEL_YN = 'N')
+        <if test="firstRecordIndex != null and lastRecordIndex != null">
+            WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+        </if>
+    </select>
 
 	<select id="progressTotalCount" parameterType="com.rental.geniecar.domain.common.Pagination" resultType="int">
 		SELECT COUNT(*)
 		FROM RENTAL_CAR_RESERVATION
 		WHERE SYSDATE BETWEEN RENTAL_DATE AND RETURN_DATE
+		  AND CANCEL_YN = 'N'
 	</select>
 
 	<select id="selectDetail" parameterType="String" resultType="com.rental.geniecar.domain.reservation.ReservationVo">
@@ -138,4 +146,50 @@
 		  AND RC.CAR_NO = NC.NO
 		  AND RESERVATION_NO = #{reservationNo}
 	</select>
+
+	<select id="selectCancelList" resultType="rentalCarReservationVo" parameterType="com.rental.geniecar.domain.common.Pagination">
+		SELECT RESERVATION_NO
+		, RENTAL_PLACE
+		, FN_COMM_NAME(RENTAL_PLACE) AS RENTAL_PLACE_NAME
+		, RETURN_PLACE
+		, FN_COMM_NAME(RETURN_PLACE) AS RETURN_PLACE_NAME
+		, RENTAL_DATE
+		, RETURN_DATE
+		, CAR_IDENTIFICATION_NUMBER
+		, RENTAL_CAR_BRANCH_NO
+		, FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS RENTAL_CAR_BRANCH_NAME
+		, RESERVATION_MEMBER_ID
+		, NAME AS RESERVATION_MEMBER_NAME
+		, REGULAR_PRICE
+		, SALE_RATE
+		, FINAL_RESERVATION_PRICE
+		, REG_ID
+		, REG_DATE
+		, MOD_ID
+		, MOD_DATE
+		FROM (SELECT ROW_NUMBER() OVER (ORDER by RCR.RENTAL_DATE) AS RN
+		, RCR.*, M.*
+		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
+		WHERE RCR.RESERVATION_MEMBER_ID = M.ID
+		AND CANCEL_YN = 'Y')
+		<if test="firstRecordIndex != null and lastRecordIndex != null">
+			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+		</if>
+	</select>
+
+	<select id="cancelTotalCount" parameterType="com.rental.geniecar.domain.common.Pagination" resultType="int">
+		SELECT COUNT(*)
+		FROM RENTAL_CAR_RESERVATION
+		WHERE CANCEL_YN = 'Y'
+	</select>
+
+
+
+
+
+
+
+
+
+
 </mapper>

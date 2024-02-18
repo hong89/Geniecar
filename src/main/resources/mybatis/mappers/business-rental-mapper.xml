@@ -27,6 +27,7 @@
 		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
 		WHERE RCR.RESERVATION_MEMBER_ID = M.ID
 		  AND RENTAL_DATE &gt; SYSDATE
+		  AND CANCEL_YN = 'N'
 		  AND RENTAL_CAR_BRANCH_NO = #{keyword}  )
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
@@ -37,6 +38,7 @@
         SELECT COUNT(*)
         FROM RENTAL_CAR_RESERVATION
         WHERE RENTAL_DATE &gt; SYSDATE
+		  AND CANCEL_YN = 'N'
           AND RENTAL_CAR_BRANCH_NO = #{keyword}
     </select>
 
@@ -65,6 +67,7 @@
 		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
 		WHERE RCR.RESERVATION_MEMBER_ID = M.ID
 		  AND RETURN_DATE &lt; SYSDATE
+		AND CANCEL_YN = 'N'
 		  AND RENTAL_CAR_BRANCH_NO = #{keyword} )
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
@@ -75,6 +78,7 @@
 		SELECT COUNT(*)
 		FROM RENTAL_CAR_RESERVATION
 		WHERE RETURN_DATE &lt; SYSDATE
+		  AND CANCEL_YN = 'N'
 		  AND RENTAL_CAR_BRANCH_NO = #{keyword}
 	</select>
 
@@ -101,7 +105,10 @@
 		FROM (SELECT ROW_NUMBER() OVER (ORDER by RCR.RENTAL_DATE) AS RN
 		, RCR.*, M.*
 		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
-		WHERE RCR.RESERVATION_MEMBER_ID = M.ID AND SYSDATE BETWEEN RENTAL_DATE AND RETURN_DATE AND RENTAL_CAR_BRANCH_NO = #{keyword}  )
+		WHERE RCR.RESERVATION_MEMBER_ID = M.ID
+		  AND SYSDATE BETWEEN RENTAL_DATE AND RETURN_DATE
+		  AND CANCEL_YN = 'N'
+		  AND RENTAL_CAR_BRANCH_NO = #{keyword}  )
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
 		</if>
@@ -111,6 +118,7 @@
         SELECT COUNT(*)
         FROM RENTAL_CAR_RESERVATION
         WHERE SYSDATE BETWEEN RENTAL_DATE AND RETURN_DATE
+		  AND CANCEL_YN = 'N'
           AND RENTAL_CAR_BRANCH_NO = #{keyword}
     </select>
 

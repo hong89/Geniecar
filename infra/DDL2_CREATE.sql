@@ -39,11 +39,9 @@ CREATE TABLE RENTAL_CAR -- 렌터 차량 테이블
     DELIVERY_DATE             DATE                      -- 출고일시
 );
 
-CREATE SEQUENCE SEQ_CAR_BRANCH_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 9999999999 NOCYCLE;
 CREATE TABLE RENTAL_CAR_BRANCH -- 렌터카 지점 테이블
 (
-    NO                NUMBER(10) PRIMARY KEY,       -- 렌터카 지점 NO (시퀀스)
-    BRANCH_CODE       VARCHAR2(6)         NOT NULL, -- 렌터카 지점 코드 (공통코드 FK)
+    BRANCH_CODE       VARCHAR2(6) PRIMARY KEY,      -- 렌터카 지점 코드 (공통코드 FK)
     REGION_CODE       VARCHAR2(6)         NOT NULL, -- 지역 코드 (공통코드 FK)
     LATITUDE          VARCHAR2(13)        NOT NULL, -- 위도
     LONGITUDE         VARCHAR2(13)        NOT NULL, -- 경도
@@ -75,7 +73,7 @@ CREATE TABLE NEW_CAR -- 차량 테이블
 CREATE TABLE RENTAL_CAR_BRANCHES_CAR -- 렌터카 지점별 차량 테이블
 (
     CAR_IDENTIFICATION_NUMBER VARCHAR2(17),                   -- 차대번호 (자동차 FK) - 복합키 처리
-    RENTAL_CAR_BRANCH_NO      VARCHAR2(6),                    -- 렌터카 지점 NO (렌터카 지점 FK) - 복합키 처리
+    RENTAL_CAR_BRANCH_NO      VARCHAR2(6),                    -- 렌터카 지점 코드 (코드 FK) - 복합키 처리
     IMPORT_CAR_YN             CHAR(1)   DEFAULT 'N',          -- 본사 -> 대리점 인수 전('N'), 인수 완료 ('Y')
     DEFAULT_COST              NUMBER(6),                      -- 기본 대여료 (10분 단위)
     DEFAULT_SALE_RATE         NUMBER(2) DEFAULT 50  NOT NULL, -- 기본 할인율

@@ -23,4 +23,8 @@ public interface AdminRentalDao {
     int progressTotalCount(Pagination pagination);
 
     ReservationVo selectDetail(String reservationNo);
+
+    int cancelTotalCount(Pagination pagination);
+
+    List<RentalCarReservationVo> selectCancelList(Pagination pagination);
 }
