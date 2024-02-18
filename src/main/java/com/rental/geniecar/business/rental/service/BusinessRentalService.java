@@ -42,4 +42,16 @@ public class BusinessRentalService {
     public ReservationVo selectDetail(String reservationNo, String branchCode) {
         return businessRentalDao.selectDetail(reservationNo, branchCode);
     }
+
+    public int cancelTotalCount(Pagination pagination) {
+        return businessRentalDao.cancelTotalCount(pagination);
+    }
+
+    public List<RentalCarReservationVo> selectCancelList(Pagination pagination) {
+        return businessRentalDao.selectCancelList(pagination);
+    }
+
+    public void updateReservation(String reservationNo, String id) {
+        businessRentalDao.updateReservation(reservationNo, id);
+    }
 }

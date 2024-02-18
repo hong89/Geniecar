@@ -77,6 +77,13 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
+                            <label for="seater" class="col-sm-3 col-form-label">인승</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="seater" name="seater"
+                                       placeholder="인승 정보를 입력해주세요.">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">연료</label>
                             <div class="col-sm-9" style="align-self:center">
                                 <div class="row">

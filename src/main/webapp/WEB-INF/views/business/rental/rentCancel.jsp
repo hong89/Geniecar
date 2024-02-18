@@ -26,7 +26,7 @@
                 <c:forEach var="com" items="${cancelList}">
                     <tr>
                         <td class="col">
-                            <a href="/admin/rental/rentDetail.do?reservationNo=${com.reservationNo}">
+                            <a href="/business/rental/rentDetail.do?reservationNo=${com.reservationNo}">
                                     ${com.reservationNo}
                             </a>
                         </td>

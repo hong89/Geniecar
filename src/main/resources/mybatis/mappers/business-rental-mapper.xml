@@ -146,6 +146,7 @@
 			 , FN_COMM_NAME(CAR_FUEL_CODE) AS FUEL_NAME
 			 , FN_COMM_NAME(CAR_TYPE_CODE) AS TYPE_NAME
 			 , CAR_NAME
+			 , CANCEL_YN
 		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M, RENTAL_CAR RC, NEW_CAR NC
 		WHERE RCR.RESERVATION_MEMBER_ID = M.ID
 		  AND RCR.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
@@ -153,4 +154,51 @@
 		  AND RESERVATION_NO = #{reservationNo}
 		  AND RENTAL_CAR_BRANCH_NO = #{branchCode}
 	</select>
+
+	<select id="selectCancelList" resultType="rentalCarReservationVo" parameterType="com.rental.geniecar.domain.common.Pagination">
+		SELECT  RESERVATION_NO
+		, RENTAL_PLACE
+		, FN_COMM_NAME(RENTAL_PLACE) AS RENTAL_PLACE_NAME
+		, RETURN_PLACE
+		, FN_COMM_NAME(RETURN_PLACE) AS RETURN_PLACE_NAME
+		, RENTAL_DATE
+		, RETURN_DATE
+		, CAR_IDENTIFICATION_NUMBER
+		, RENTAL_CAR_BRANCH_NO
+		, FN_COMM_NAME(RENTAL_CAR_BRANCH_NO) AS RENTAL_CAR_BRANCH_NAME
+		, RESERVATION_MEMBER_ID
+		, NAME AS RESERVATION_MEMBER_NAME
+		, REGULAR_PRICE
+		, SALE_RATE
+		, FINAL_RESERVATION_PRICE
+		, REG_ID
+		, REG_DATE
+		, MOD_ID
+		, MOD_DATE
+		FROM (SELECT ROW_NUMBER() OVER (ORDER by RCR.RENTAL_DATE) AS RN
+		, RCR.*, M.*
+		FROM RENTAL_CAR_RESERVATION RCR, MEMBER M
+		WHERE RCR.RESERVATION_MEMBER_ID = M.ID
+		AND CANCEL_YN = 'Y'
+		AND RENTAL_CAR_BRANCH_NO = #{keyword}  )
+		<if test="firstRecordIndex != null and lastRecordIndex != null">
+			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+		</if>
+	</select>
+
+	<select id="cancelTotalCount" parameterType="com.rental.geniecar.domain.common.Pagination" resultType="int">
+		SELECT COUNT(*)
+		FROM RENTAL_CAR_RESERVATION
+		WHERE  CANCEL_YN = 'Y'
+		  AND RENTAL_CAR_BRANCH_NO = #{keyword}
+	</select>
+
+	<update id="updateReservation" parameterType="String">
+		UPDATE RENTAL_CAR_RESERVATION
+		SET CANCEL_YN = 'Y',
+		    MOD_ID = #{id},
+		    MOD_DATE = SYSDATE
+		WHERE RESERVATION_NO = #{reservationNo}
+	</update>
+
 </mapper>
