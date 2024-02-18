@@ -3,17 +3,19 @@ package com.rental.geniecar.reservation.controller;
 import com.rental.geniecar.domain.common.CommonCodeVo;
 import com.rental.geniecar.common.service.CommonService;
 import com.rental.geniecar.domain.branch.RentalCarBranchVo;
+import com.rental.geniecar.domain.reservation.ReservationRentalCarVo;
+import com.rental.geniecar.domain.reservation.SearchReservationRentalCarVo;
 import com.rental.geniecar.reservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -26,9 +28,23 @@ public class ReservationController {
 
     // HSH
 	@GetMapping("/index.do")
-	public String index(Model model){
+	public String index(Model model, @RequestParam(defaultValue = "1") String regionType){
+
         List<CommonCodeVo> locationList = commonService.selectCommonCodes("LOC");
+        if("1".equals(regionType)){
+            locationList = locationList.stream()
+                    .filter(location -> !"JJD".equals(location.getCode())).collect(Collectors.toList());
+        }else{
+            locationList = locationList.stream()
+                    .filter(location -> "JJD".equals(location.getCode())).collect(Collectors.toList());
+        }
+
+        List<CommonCodeVo> carTypeList = commonService.selectCommonCodes("SEG");
+        List<CommonCodeVo> fuelTypeList = commonService.selectCommonCodes("FUE");
         model.addAttribute("locationList", locationList);
+        model.addAttribute("carTypeList", carTypeList);
+        model.addAttribute("fuelTypeList", fuelTypeList);
+        model.addAttribute("regionType", regionType);
         return "reservation/index";
     }
 
@@ -41,8 +57,23 @@ public class ReservationController {
     }
 
     // HSH
-    @GetMapping("/step2.do")
+    @GetMapping("/searchCar.do")
+    @ResponseBody
+    public ResponseEntity selectSearchCar(SearchReservationRentalCarVo searchReservationRentalCarVo){
+        List<ReservationRentalCarVo> reservationSearchCars = null;
+        try {
+            reservationSearchCars = reservationService.selectRentalCarReservationSearchCar(searchReservationRentalCarVo);
+        } catch (ParseException e) {
+            log.error(e.getMessage());
+            return ResponseEntity.badRequest().body(null);
+        }
+        return ResponseEntity.ok(reservationSearchCars);
+    }
+
+    // HSH
+    @PostMapping("/step2.do")
     public String step2(){
+
         return "reservation/step2";
     }
 }

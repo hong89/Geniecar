@@ -18,8 +18,8 @@
                 <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false">빠른 예약</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/reservation/index.do">내륙 예약</a></li>
-                    <li><a class="dropdown-item" href="/reservation/index.do">제주 예약</a></li>
+                    <li><a class="dropdown-item" href="/reservation/index.do?regionType=1">내륙 예약</a></li>
+                    <li><a class="dropdown-item" href="/reservation/index.do?regionType=2">제주 예약</a></li>
                 </ul>
             </li>
 

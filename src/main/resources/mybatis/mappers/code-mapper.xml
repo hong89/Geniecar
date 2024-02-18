@@ -4,19 +4,25 @@
 
 	<select id="selectCommonCodes" resultType="commonCodeVo" parameterType="java.lang.String">
 		SELECT FULL_CODE
-			 , CODE
-			 , CODE_NAME
-			 , GROUP_CODE
-			 , GROUP_CODE_NAME
-			 , DESCRIPTION
-			 , CODE_SORT
-			 , USE_YN
-		FROM COMMON_CODE WHERE GROUP_CODE = #{groupCode}
+			  ,CODE
+			  ,CODE_NAME
+			  ,GROUP_CODE
+			  ,GROUP_CODE_NAME
+			  ,DESCRIPTION
+			  ,CODE_SORT
+			  ,USE_YN
+		FROM COMMON_CODE
+		WHERE GROUP_CODE = #{groupCode}
+		  AND USE_YN = 'Y'
+	   ORDER BY CODE_SORT
 	</select>
 
 	<select id="selectCommonSubCodes" resultType="commonCodeVo" parameterType="java.lang.String">
 		SELECT FULL_CODE
-			 , CODE_NAME
-		FROM COMMON_CODE WHERE GROUP_CODE IN (SELECT CODE FROM COMMON_CODE WHERE GROUP_CODE = #{groupCode})
+			  ,CODE_NAME
+		  FROM COMMON_CODE
+		  WHERE GROUP_CODE IN (SELECT CODE FROM COMMON_CODE WHERE GROUP_CODE = #{groupCode})
+			AND USE_YN = 'Y'
+	     ORDER BY CODE_SORT
 	</select>
 </mapper>
