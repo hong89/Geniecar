@@ -27,8 +27,8 @@
             <p><a href="/business/rental/rentProgress.do">렌터카 진행 내역</a></p>
             <p><a href="/business/rental/rentComplete.do">렌터카 종료 내역</a></p>
         </li>
-        <li class="list-group-item"><p>결제 내역</p>
-            <p><a href="/business/payment/shortRent.do">렌트 결제 내역</a></p>
+        <li class="list-group-item"><p>결제 관리</p>
+            <p><a href="/business/pay/payment.do">결제 내역 목록</a></p>
         </li>
         <li class="list-group-item"><p>상담 내역</p>
             <p><a href="/business/consult/consult.do?typeCode=CONSULTING">상담 문의 목록</a></p>

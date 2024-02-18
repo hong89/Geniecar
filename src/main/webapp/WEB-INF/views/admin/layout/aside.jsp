@@ -25,7 +25,7 @@
             <p><a href="/admin/rental/rentCancel.do">렌터카 취소 내역</a></p>
         </li>
         <li class="list-group-item"><p>결제 관리</p>
-            <p><a href="/admin/pay/paymentList.do">결제 내역 목록</a></p>
+            <p><a href="/admin/pay/payment.do">결제 내역 목록</a></p>
         </li>
         <li class="list-group-item"><p>게시판 관리</p>
             <p><a href="/admin/board/register.do">게시판 등록</a></p>
