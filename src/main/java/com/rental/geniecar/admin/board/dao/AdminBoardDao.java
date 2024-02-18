@@ -1,6 +1,7 @@
 package com.rental.geniecar.admin.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,5 +46,6 @@ public interface AdminBoardDao {
 
 	void insertImageFile(FileVo fileVo);
 
-	
+	List<CommonCrudVo> selectBoardListById(Map<String, Object> paramMap);
+
 }

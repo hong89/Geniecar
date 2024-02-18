@@ -14,6 +14,7 @@
 			 , HASH_TAG
 			 , START_DATE
 			 , END_DATE
+			 , REG_ID
 			 , REG_DATE
 			 , RN
   		  FROM 
@@ -26,11 +27,54 @@
 			        , HASH_TAG
 			        , START_DATE
 					, END_DATE
+					, REG_ID
 			        , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
 			        , ROW_NUMBER() OVER(ORDER BY NO DESC)
 			          AS RN
  		         FROM BOARD
  		        WHERE TYPE_CODE = #{typeCode}
+		<if test='title != null'>
+				  AND TITLE LIKE '%' || #{title} || '%'
+		</if> 		         		    
+	         )
+		<![CDATA[
+         WHERE RN >= #{startPage} 
+           AND RN < #{startPage} + #{pageSize} 
+		]]>	         
+	  ORDER BY RN ASC
+	</select>
+	
+	<select id="selectBoardListById" parameterType="java.util.Map">
+		/* selectBoardList */
+		SELECT NO
+			 , TITLE
+			 , CONTENT
+			 , HIT
+			 , TYPE_CODE
+			 , NOTICE_YN
+			 , HASH_TAG
+			 , START_DATE
+			 , END_DATE
+			 , REG_ID
+			 , REG_DATE
+			 , RN
+  		  FROM 
+             ( SELECT NO
+			        , TITLE
+			        , CONTENT
+			        , HIT
+			        , TYPE_CODE
+			        , NOTICE_YN
+			        , HASH_TAG
+			        , START_DATE
+					, END_DATE
+					, REG_ID
+			        , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
+			        , ROW_NUMBER() OVER(ORDER BY NO DESC)
+			          AS RN
+ 		         FROM BOARD
+ 		        WHERE TYPE_CODE = #{typeCode} 
+ 		          AND REG_ID = #{Id}
 		<if test='title != null'>
 				  AND TITLE LIKE '%' || #{title} || '%'
 		</if> 		         		    
@@ -169,7 +213,7 @@
         , #{fileName}
         , #{extension}
         , #{fileSize}
-        , 'ADMIN'
+        , #{regId}
         , SYSDATE
     	)
 	</insert>

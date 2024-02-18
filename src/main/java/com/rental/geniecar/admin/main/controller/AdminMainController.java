@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
 import com.rental.geniecar.domain.board.CommonCrudVo;
@@ -34,15 +35,19 @@ public class AdminMainController {
 	// JJ
 	// 관리자 메인 글 목록
 	@GetMapping("/index.do")
-	public String index(CommonCrudVo boardVo, Model model) {
+	public String index(Model model) {
 		
-		boardVo.setPageStartSet();
-        List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
-        boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
-        boardVo.setPageEndSet();
-
-        model.addAttribute("boardList", boardList);
-        model.addAttribute("boardVo", boardVo);
+		CommonCrudVo boardVo1 = new CommonCrudVo();
+	    boardVo1.setTypeCode("CONSULTING");
+	    List<CommonCrudVo> boardList1 = boardService.selectBoardList(boardVo1);
+	    model.addAttribute("boardList1", boardList1);
+	    model.addAttribute("boardVo1", boardVo1);
+	    
+	    CommonCrudVo boardVo2 = new CommonCrudVo();
+	    boardVo2.setTypeCode("QNA");
+	    List<CommonCrudVo> boardList2 = boardService.selectBoardList(boardVo2);
+	    model.addAttribute("boardList2", boardList2);
+	    model.addAttribute("boardVo2", boardVo2);
 		
 		return "admin/main/index";
 	}

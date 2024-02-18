@@ -2,6 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+    // 검색수행
+    function fn_search(i_page) {
+        var page = i_page;
+        if (page == null || page == '' || page == 'undefined') {
+            page = 1;
+        }
+        location.href = "/customer/faq.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
+    }
+</script>
+
 <style>
 
 </style>
@@ -22,6 +33,11 @@
     <div class="explain-header">
         <h2 class="tit-size-big">FAQ</h2>
         <hr/>
+    </div>
+    <div class="d-flex" style="float:right">
+        <input type="hidden" id="title" name="title" value="${boardVo.title}" class="form-control" placeholder="검색어를 입력해주세요." onkeypress="if(event.keyCode == 13){fn_search();}" style="flex: 1; margin-right: 10px;">
+        <input type="hidden" id="typeCode" name="typeCode" value="${boardVo.typeCode}">
+        <button type="hidden" class="btn text-white" onclick="javascript:fn_search(1)"></button>
     </div>
 
     <div class="py-5">

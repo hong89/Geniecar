@@ -64,6 +64,8 @@ public class AdminBoardController {
     // 게시판 목록 보기
     @GetMapping("/list.do")
     public String listNotice(CommonCrudVo boardVo, Model model) {
+    	
+    	boardVo.setPageStartSet();
     	List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
 		
 		for (CommonCrudVo notice : boardList) {
@@ -74,16 +76,15 @@ public class AdminBoardController {
 	        }
 	    }
 		
-        boardVo.setPageStartSet();
-        boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+    	boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
         boardVo.setPageEndSet();
-
+        
         model.addAttribute("boardList", boardList);
         model.addAttribute("boardVo", boardVo);
         
         return "admin/board/list";
     }
-
+  
     // JJ
     // 게시판 상세 보기 (여기 부분 확인 필요 fileNo)
     @GetMapping("/detailNotice.do")
@@ -182,7 +183,7 @@ public class AdminBoardController {
                     fileList.add(fileVo);
                 }
                 // 파일과 이미지 정보 DB에 저장하기
-                boardService.insertBoard(boardVo, fileList);
+                boardService.insertBoard(boardVo, fileList, request);
             }
             
         } catch (IOException e) {

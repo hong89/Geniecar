@@ -12,7 +12,7 @@
     }
     .card img {
         width: 100%;
-        height: 300px;
+        height: auto;
         max-width: 100%;
         max-height: 100%;
     }
@@ -48,9 +48,11 @@
                 <div class="col">
                   <div class="card h-100">
                     <a href="/customer/eventDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
-                        <c:forEach var="imageFile" items="${notice.imageFiles}">
-                            <c:if test="${not empty imageFile.saveName}">
-                                <img src="/downloadFile/${imageFile.saveName}" alt="images"><hr/>
+                        <c:forEach var="imageFile" items="${notice.imageFiles}" varStatus="imageStatus">
+                            <c:if test="${imageStatus.index eq 0}">
+                                <c:if test="${not empty imageFile.saveName}">
+                                    <img src="/downloadFile/${imageFile.saveName}" alt="images">
+                                </c:if>
                             </c:if>
                         </c:forEach>
                     <div class="card-body">

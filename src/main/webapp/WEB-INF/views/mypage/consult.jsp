@@ -156,7 +156,8 @@
                 <p>※ 성함과 연락처를 남겨 주시면 전문 상담사가 빠른 시일 내에 연락드리겠습니다.
                 </p>
             </div>            
-                <form name = "registerForm" action="/admin/board/insertBoard.do?returnUrl=/mypage/consult.do" method="post" enctype="multipart/form-data">
+                <%--<form name = "registerForm" action="/admin/board/insertBoard.do?returnUrl=/mypage/consult.do" method="post" enctype="multipart/form-data">--%>
+                <form name = "registerForm" action="/mypage/insertBoard.do" method="post" enctype="multipart/form-data">
                     <div class="row p-1 m-2">
                         <div class="col-6">
                             <input type="hidden" id="typeCode" name="typeCode" class="form-control" value="CONSULTING">
@@ -164,7 +165,7 @@
                     </div>
                     <div class="row p-1 m-2">
                         <div class="col-2">
-                            <label for="text" class="col-form-label">성함</label>
+                            <label for="title" class="col-form-label">성함</label>
                         </div>
                         <div class="col-6">
                             <input type="text" id="title" name="title" class="form-control">
@@ -172,7 +173,7 @@
                     </div>
                     <div class="row p-1 m-2">
                         <div class="col-2">
-                            <label for="text" class="col-form-label">연락처</label>
+                            <label for="content" class="col-form-label">연락처</label>
                         </div>
                         <div class="col-6">
                             <input type="text" id="content" name="content" class="form-control" oninput="oninputPhone(this)" maxlength="13">
