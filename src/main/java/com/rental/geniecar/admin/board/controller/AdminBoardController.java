@@ -33,6 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
+import com.rental.geniecar.common.service.CommonService;
 import com.rental.geniecar.domain.board.BoardVo;
 import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
@@ -63,18 +64,23 @@ public class AdminBoardController {
     // 게시판 목록 보기
     @GetMapping("/list.do")
     public String listNotice(CommonCrudVo boardVo, Model model) {
-
-        // 페이징 전처리
+    	List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
+		
+		for (CommonCrudVo notice : boardList) {
+	        if (notice instanceof BoardVo) {
+	            int no = ((BoardVo) notice).getNo();
+	            List<FileVo> imageFiles = boardService.selectImageFilesByNo(no);
+	            ((BoardVo) notice).setImageFiles(imageFiles);
+	        }
+	    }
+		
         boardVo.setPageStartSet();
-        // 목록조회
-        List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
-        // 목록 전체건수 조회
         boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
-        // 페이징 후처리
         boardVo.setPageEndSet();
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("boardVo", boardVo);
+        
         return "admin/board/list";
     }
 

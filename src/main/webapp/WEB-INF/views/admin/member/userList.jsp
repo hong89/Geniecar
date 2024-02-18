@@ -9,6 +9,19 @@
         height: 100%;
     } 
 </style>
+<script>
+    function maskingName(name) {
+        if (name.length <= 2) {
+            return name.replace(name.substring(0, 1), "*");
+        }
+
+        return (
+            name[0] +
+            "*".repeat(name.substring(1, name.length - 1).length) +
+            name[name.length - 1]
+        );
+        }
+</script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="p-5">
@@ -31,9 +44,16 @@
                         <tr>
                             <td align="center">${user.id}</td>
                             <td align="center"><a href="/admin/member/userDetail.do?id=${user.id}">${user.name }</a></td>
-                            <td align="center">${user.gender}</td>
+                            <td align="center">
+                                <c:if test='${user.gender eq "M" }'> 남성</c:if>
+                                <c:if test='${user.gender eq "F" }'> 여성</c:if>
+                            </td>
                             <td align="center"><fmt:formatDate value="${user.joinDate}" pattern="yyyy-MM-dd" /></td>
-                            <td align="center">${user.withdrawalYn}</td>
+                            <td align="center">
+                                <c:if test='${user.withdrawalYn eq "N" }'></c:if>
+                                <c:if test='${user.withdrawalYn eq "Y" }'>탈퇴</c:if>
+                                <c:if test='${user.withdrawalYn eq "K" }'>강퇴</c:if>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>

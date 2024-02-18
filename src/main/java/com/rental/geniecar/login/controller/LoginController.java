@@ -29,8 +29,9 @@ public class LoginController {
 
 	//ruddud
 	@GetMapping("/login.do")
-	public String login(){
-
+	public String login(HttpSession session){
+		session.getAttribute("isLogOn");
+		System.out.println(session.getAttribute("isLogOn"));
         return "login/login";
     }
 	//ruddud

@@ -47,6 +47,15 @@
         background-color: #41087c !important;
         color: white;
     }
+    .table thead tr td {
+        border-bottom:#41087c solid 3px;
+        padding: 15px;
+        font-size: 1.2em;
+    }
+    .table tbody tr td {
+        border-bottom:#d1c9ff solid 2px;
+        padding: 15px;
+    }
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
