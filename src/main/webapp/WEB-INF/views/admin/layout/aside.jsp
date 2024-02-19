@@ -40,8 +40,8 @@
         </li>
         <li class="list-group-item"><p>고객 관리</p>
             <p><a href="/admin/business/reviewList.do?typeCode=REVIEW">이용 후기 목록</a></p>
-            <p><a href="/admin/business/consultList.do?typeCode=CONSULTING">상담 신청 목록</a></p>
             <p><a href="/admin/business/qnaList.do?typeCode=QNA">1:1 문의 목록</a></p>
+            <p><a href="/admin/business/consultList.do">상담 문의 목록</a></p>
         </li>
         <li class="list-group-item"><p>차량 관리</p>
             <p><a href="/admin/car/newCarList.do">신차 목록</a></p>

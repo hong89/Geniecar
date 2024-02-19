@@ -32,7 +32,7 @@
             <p><a href="/business/pay/payment.do">결제 내역 목록</a></p>
         </li>
         <li class="list-group-item"><p>상담 내역</p>
-            <p><a href="/business/consult/consult.do?typeCode=CONSULTING">상담 문의 목록</a></p>
+            <p><a href="/business/consult/consultList.do">상담 문의 목록</a></p>
         </li>
 
     </ul>
