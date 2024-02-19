@@ -11,7 +11,7 @@
     <typeAliases>
         <typeAlias type="com.rental.geniecar.domain.board.BoardVo" alias="boardVo" />
         <typeAlias type="com.rental.geniecar.domain.common.CommonCodeVo" alias="commonCodeVo" />
-        <typeAlias type="com.rental.geniecar.domain.board.ConsultVo" alias="consultVo" />
+        <typeAlias type="com.rental.geniecar.domain.customer.ConsultVo" alias="consultVo" />
         <typeAlias type="com.rental.geniecar.domain.common.CouponVo" alias="couponVo" />
         <typeAlias type="com.rental.geniecar.domain.common.FileVo" alias="fileVo" />
         <typeAlias type="com.rental.geniecar.domain.member.MemberCouponsVo" alias="memberCouponsVo" />

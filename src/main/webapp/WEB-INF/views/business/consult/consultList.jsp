@@ -19,7 +19,6 @@
                     <td class="col"><strong>고객명</strong></td>
                     <td class="col"><strong>전화번호</strong></td>
                     <td class="col"><strong>이메일</strong></td>
-                    <td class="col"><strong>상담지점</strong></td>
                     <td class="col"><strong>상담여부</strong></td>
                 </tr>
                 </thead>
@@ -30,7 +29,6 @@
                         <td class="col">${con.name}</td>
                         <td class="col">${con.tel}</td>
                         <td class="col">${con.email}</td>
-                        <td class="col">${con.wishRegionName}</td>
                         <td class="col">${con.statusYn}</td>
                     </tr>
                 </c:forEach>

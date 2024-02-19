@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.rental.geniecar.domain.customer.ConsultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -326,5 +327,7 @@ public class CustomerController {
 		 List<CommonCodeVo> branchCode = commonService.selectCommonCodes(groupCode);
 		 return ResponseEntity.ok(branchCode);
 	}
+
+
 
 }
