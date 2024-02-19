@@ -14,4 +14,8 @@ public interface ConsultDao {
     List<ConsultVo> selectConsultList(Pagination pagination);
 
     List<ConsultVo> selectAdminConsultList(Pagination pagination);
+
+    ConsultVo selectConsultDetail(int no);
+
+    void updateConsultStatus(int no);
 }

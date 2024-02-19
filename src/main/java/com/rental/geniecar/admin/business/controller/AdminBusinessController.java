@@ -15,6 +15,7 @@ import com.rental.geniecar.admin.board.service.AdminBoardService;
 import com.rental.geniecar.domain.board.BoardVo;
 import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -90,5 +91,12 @@ public class AdminBusinessController {
         List<ConsultVo> consultList = consultService.selectAdminConsultList(pagination);
         model.addAttribute("consultList", consultList);
         return "admin/business/consultList";
+    }
+
+    @GetMapping("/consultDetail.do")
+    public String consultDetail(@RequestParam("no") int no, Model model){
+        ConsultVo consult = consultService.selectConsultDetail(no);
+        model.addAttribute("consult", consult);
+        return "admin/business/consultDetail";
     }
 }

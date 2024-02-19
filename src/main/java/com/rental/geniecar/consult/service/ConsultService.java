@@ -27,4 +27,12 @@ public class ConsultService {
     public List<ConsultVo> selectAdminConsultList(Pagination pagination) {
         return consultDao.selectAdminConsultList(pagination);
     }
+
+    public ConsultVo selectConsultDetail(int no) {
+        return consultDao.selectConsultDetail(no);
+    }
+
+    public void updateConsultStatus(int no) {
+        consultDao.updateConsultStatus(no);
+    }
 }

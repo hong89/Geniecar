@@ -25,11 +25,16 @@
                 <tbody>
                 <c:forEach var="con" items="${consultList}">
                     <tr>
-                        <td class="col"><a href="#">${con.no}</a></td>
+                        <td class="col"><a href="/business/consult/consultDetail.do?no=${con.no}">${con.no}</a></td>
                         <td class="col">${con.name}</td>
                         <td class="col">${con.tel}</td>
                         <td class="col">${con.email}</td>
-                        <td class="col">${con.statusYn}</td>
+                        <td class="col">
+                            <c:choose>
+                                <c:when test="${con.statusYn == 'Y'}">완료</c:when>
+                                <c:when test="${con.statusYn == 'N'}">대기중</c:when>
+                            </c:choose>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -89,7 +94,7 @@
                 //페이지 이동
                 function movePage(currentPage) {
 
-                    var url = "/business/rental/rentReservation.do";
+                    var url = "/admin/business/consultList.do";
                     var params = [];
                     params.push("currentPage=" + (currentPage || 1));
 

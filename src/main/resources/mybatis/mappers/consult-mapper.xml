@@ -48,4 +48,23 @@
         FROM CONSULT
     </select>
 
+    <select id="selectConsultDetail" parameterType="int" resultType="consultVo">
+        SELECT NO
+             , NAME
+             , TEL
+             , EMAIL
+             , PURPOSE
+             , WISH_REGION
+             , FN_COMM_NAME(WISH_REGION) AS WISH_REGION_NAME
+             , REG_DATE
+             , STATUS_YN
+        FROM CONSULT
+        WHERE NO = #{no}
+    </select>
+
+    <update id="updateConsultStatus" parameterType="int">
+        UPDATE CONSULT
+        SET STATUS_YN = 'Y'
+        WHERE NO = #{no}
+    </update>
 </mapper>
