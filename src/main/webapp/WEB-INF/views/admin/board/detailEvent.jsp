@@ -19,16 +19,18 @@
                 <strong>${notice.title}</strong>
                 <span style="float: right; font-size:15px;">${notice.regDate}</span>
             </p><hr/>
-            <p align="left">${notice.content}</p> 
+            <!-- <p align="left">${notice.content}</p>  -->
             <c:if test="${not empty imageFiles}">
                 <div class="text-center">
-                    <c:forEach var="imageFile" items="${imageFiles}">
-                        <c:if test="${not empty imageFile.saveName}">
-                            <div class="mb-3 row">
-                                <div class="col-sm-12">
-                                    <img class="responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="1000px" aria-readonly="true">
+                    <c:forEach var="imageFile" items="${imageFiles}" varStatus="loop">
+                        <c:if test="${loop.index == 1}">
+                            <c:if test="${not empty imageFile.saveName}">
+                                <div class="mb-3 row">
+                                    <div class="col-sm-12">
+                                        <img class="responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="1000px" aria-readonly="true">
+                                    </div>
                                 </div>
-                            </div>
+                            </c:if>
                         </c:if>
                     </c:forEach>
                 </div>

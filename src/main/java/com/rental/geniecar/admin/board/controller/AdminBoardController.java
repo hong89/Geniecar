@@ -33,7 +33,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
-import com.rental.geniecar.common.service.CommonService;
 import com.rental.geniecar.domain.board.BoardVo;
 import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
@@ -84,6 +83,31 @@ public class AdminBoardController {
         
         return "admin/board/list";
     }
+    
+    // JJ
+    // 게시판 이벤트 목록 보기
+    @GetMapping("/eventList.do")
+    public String eventList(CommonCrudVo boardVo, Model model) {
+    	
+    	boardVo.setPageStartSet();
+    	List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
+		
+		for (CommonCrudVo notice : boardList) {
+	        if (notice instanceof BoardVo) {
+	            int no = ((BoardVo) notice).getNo();
+	            List<FileVo> imageFiles = boardService.selectImageFilesByNo(no);
+	            ((BoardVo) notice).setImageFiles(imageFiles);
+	        }
+	    }
+		
+    	boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+        boardVo.setPageEndSet();
+        
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("boardVo", boardVo);
+        
+        return "admin/board/eventList";
+    }
   
     // JJ
     // 게시판 상세 보기 (여기 부분 확인 필요 fileNo)
@@ -102,6 +126,23 @@ public class AdminBoardController {
         model.addAttribute("imageFiles", imageFiles);
 
         return "admin/board/detailNotice";
+    }
+    
+    @GetMapping("/detailEvent.do")
+    public String detailEvent(@RequestParam int no, Model model) {
+        BoardVo notice = boardService.selectNoticeDetail(no);
+
+        // 이미지 파일 정보 가져오기
+        List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
+        
+        System.out.println(imageFiles.toString());
+        // 이미지 경로
+        setImageFilePath(imageFiles, UPLOAD_PATH);
+
+        model.addAttribute("notice", notice);
+        model.addAttribute("imageFiles", imageFiles);
+
+        return "admin/board/detailEvent";
     }
 
 
@@ -340,8 +381,11 @@ public class AdminBoardController {
     // 게시판 내용 삭제하기
     @GetMapping("/deleteNotice.do")
     public String deleteNotice(@RequestParam int no, @RequestParam int fileNo) {
+    	// 이전 글 목록 가져오기
+    	BoardVo existingBoard = boardService.selectNoticeDetail(no);
         boardService.deleteNotice(no, fileNo);
-        return "redirect:/admin/board/list.do?typeCode=NOTICE";
+        // 글 목록 타입으로 돌아가기
+        return "redirect:/admin/board/list.do?typeCode=" + existingBoard.getTypeCode();
     }
 
 
