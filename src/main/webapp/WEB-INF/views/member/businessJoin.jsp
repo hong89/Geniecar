@@ -91,6 +91,9 @@
         })
 
         $(function () {
+            var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
+            var replaceName = /^[가-힣a-zA-Z\s]+$/
+
             $('#submitBtn').click(function () {
                 var pw = $('[name=pw]').val();
                 var pwCheck = $('[name=pwCheck]').val();
@@ -111,6 +114,9 @@
                     alert("비밀번호를 입력해주세요");
                     $("#pw").focus();
                     return false;
+                } else if (!passwordRegex.test(pw)) {
+                    alert("비밀번호는 8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.");
+                    return false;
                 } else if (pwCheck == '' || pwCheck == null) {
                     alert("비밀번호 확인을 입력해주세요");
                     $("#pwCheck").focus();
@@ -121,6 +127,9 @@
                 } else if (name == '' || name == null) {
                     alert("이름을 입력해주세요");
                     $("#name").focus();
+                    return false;
+                }else if (!name.match(replaceName)) {
+                    alert("이름은 한글, 영문만 입력 가능합니다.");
                     return false;
                 } else if (branchCode == '선택') {
                     alert("지점을 선택해주세요");
@@ -229,6 +238,14 @@
             .replace(/[^0-9]/g, '')
             .replace(/(^02.{0}|^01.{1}|[0-9]{2,3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
         }
+
+        function chkCharCode(event) {
+            const regExp = /[^0-9a-zA-Z]/g;
+            const ele = event.target;
+            if (regExp.test(ele.value)) {
+                ele.value = ele.value.replace(regExp, '');
+            }
+        };
     </script>
     <div class="container-xl">
         <!--------------------------------------------------상단---------------------------------------------------------->
@@ -315,7 +332,7 @@
                             <label for="id" class="col-form-label">아이디</label>
                         </div>
                         <div class="col-auto">
-                            <input type="text" id="_id" class="form-control" oninput="oninputdId(this)">
+                            <input type="text" id="_id" class="form-control" onkeyup="chkCharCode(event)">
                             <input type="hidden" name="id" id="id" />
                         </div>
                         <div class="col-2">

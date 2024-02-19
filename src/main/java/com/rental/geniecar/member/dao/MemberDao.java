@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
+import com.rental.geniecar.domain.member.MyReservationVo;
 import com.rental.geniecar.domain.reservation.ReservationVo;
 
 @Mapper
@@ -26,10 +27,12 @@ public interface MemberDao {
 	public List<MemberVo> selectWaiting();
 	public void updateType(String id);
 	public int updateWithdrawal(String id);
-	public List<ReservationVo> allMyReservation(String id);
-	public ReservationVo selectOneReservation(String no);
+	public List<MyReservationVo> allMyReservation(String id);
+	public MyReservationVo selectOneReservation(String no);
+	public String selectBranchAddress(String branchCode);
 	public LicenseVo selectLicense(String id);
 	public void insertLicense(LicenseVo vo);
 	public void updateLicense(LicenseVo vo);
+	public int countQNA(String id);
 	
 }

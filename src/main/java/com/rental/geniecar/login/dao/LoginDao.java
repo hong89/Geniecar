@@ -15,5 +15,5 @@ public interface LoginDao {
 	public int findPw(Map map);
 	public void changePw(Map map);
 	public int countCoupons(String id);
-	public int countQNA(String id);
+	
 }
