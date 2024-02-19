@@ -165,7 +165,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                        <button type="submit" class="btn btn-primary">수정</button>
+                        <button type="submit" class="btn text-white" style="background: #23093d">수정</button>
                     </div>
                 </form>
             </div>

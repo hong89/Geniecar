@@ -63,17 +63,17 @@ public class AdminCarService {
         return adminCarDao.branchesTotalCount(pagination);
     }
 
-    public void insertNewCars(RequestNewCarVo requestNewCarVo, FileVo fileVo) {
+    public void insertNewCars(RequestNewCarVo requestNewCarVo, FileVo fileVo, String id) {
         if (requestNewCarVo != null && requestNewCarVo.getRentalCosts() != null && !requestNewCarVo.getRentalCosts().isEmpty()) {
             NewCarVo newCarVo = new NewCarVo();
             // 공통영역
             newCarVo.setCompany(requestNewCarVo.getCompany());
             newCarVo.setCarTypeCode(requestNewCarVo.getCarTypeCode());
-            newCarVo.setCarName(requestNewCarVo.getCarName());
             newCarVo.setSeater(requestNewCarVo.getSeater());
             int newFileNo = boardDao.selectNewFileNo();
             fileVo.setFileNo(newFileNo);
             fileVo.setSeq(1);
+            fileVo.setRegId(id);
             boardDao.insertBoardImage(fileVo);
             newCarVo.setFileNo(newFileNo);
             // 개별 가격 영역
@@ -81,6 +81,7 @@ public class AdminCarService {
                 if (rentalCostVo.getCarFuelCode() != null && rentalCostVo.getDefaultCost() != null) {
                     newCarVo.setCarFuelCode(rentalCostVo.getCarFuelCode());
                     newCarVo.setDefaultCost(rentalCostVo.getDefaultCost());
+                    newCarVo.setCarName(requestNewCarVo.getCarName() + "(" + rentalCostVo.getCarFuelCode().charAt(3) + ")");
                     adminCarDao.insertNewCar(newCarVo);
                 }
             }

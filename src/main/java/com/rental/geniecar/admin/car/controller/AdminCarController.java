@@ -9,6 +9,7 @@ import com.rental.geniecar.domain.car.RequestNewCarVo;
 import com.rental.geniecar.domain.common.CommonCodeVo;
 import com.rental.geniecar.domain.common.FileVo;
 import com.rental.geniecar.domain.common.Pagination;
+import com.rental.geniecar.domain.member.MemberVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -116,30 +118,32 @@ public class AdminCarController {
     //hsh
     @PostMapping("/insertNewCars.do")
     public String insertNewCars(RequestNewCarVo requestNewCarVo,
-                                @RequestParam(value = "carImage", required = false) MultipartFile carImage) throws IOException {
+                                @RequestParam(value = "carImage", required = false) MultipartFile carImage,
+                                HttpSession session) throws IOException {
+        MemberVo member = (MemberVo) session.getAttribute("memberInfo");
         FileVo fileVo = new FileVo();
-            if(carImage!=null) {
-                    if (!carImage.isEmpty()) {
-                        // 파일 정보
-                        fileVo.setFileName(carImage.getOriginalFilename());
-                        fileVo.setFileSize((int) carImage.getSize());
+        if (carImage != null) {
+            if (!carImage.isEmpty()) {
+                // 파일 정보
+                fileVo.setFileName(carImage.getOriginalFilename());
+                fileVo.setFileSize((int) carImage.getSize());
 
-                        // 파일 저장 경로
-                        String savePath = "C:\\geniecar_images\\carImage";
-                        String saveName = (fileVo.getFileName() != "") ? UUID.randomUUID().toString() + "_" + carImage.getOriginalFilename() : null;
-                        String fullPath = savePath + File.separator + saveName;
+                // 파일 저장 경로
+                String savePath = "C:\\geniecar_images\\carImage";
+                String saveName = (fileVo.getFileName() != "") ? UUID.randomUUID().toString() + "_" + carImage.getOriginalFilename() : null;
+                String fullPath = savePath + File.separator + saveName;
 
-                        // 파일 저장 하기
-                        File dest = new File(fullPath);
-                        carImage.transferTo(dest);
+                // 파일 저장 하기
+                File dest = new File(fullPath);
+                carImage.transferTo(dest);
 
-                        // 파일 정보 설정
-                        fileVo.setSavePath(savePath);
-                        fileVo.setSaveName(saveName);
-                        fileVo.setExtension(getFileExtension(carImage.getOriginalFilename()));
-                    }
+                // 파일 정보 설정
+                fileVo.setSavePath(savePath);
+                fileVo.setSaveName(saveName);
+                fileVo.setExtension(getFileExtension(carImage.getOriginalFilename()));
             }
-        adminCarService.insertNewCars(requestNewCarVo, fileVo);
+        }
+        adminCarService.insertNewCars(requestNewCarVo, fileVo, member.getId());
 
         return "redirect:newCarList.do";
     }
@@ -175,20 +179,41 @@ public class AdminCarController {
         return "admin/car/newCarList";
     }
 
-    @PostMapping("/newCarModify.do")
+  /*  @PostMapping("/newCarModify.do")
     public String newCarModify(NewCarVo newCarVo) {
         adminCarService.updateNewCar(newCarVo);
         return "redirect:newCarList.do";
+    }*/
+
+    @ResponseBody
+    @PostMapping("/newCarModify.do")
+    public ResponseEntity newCarModify(NewCarVo newCarVo) {
+        try {
+            adminCarService.updateNewCar(newCarVo);
+            return ResponseEntity.ok("성공");
+        } catch (Exception e) {
+            return ResponseEntity.ok("실패");
+        }
     }
 
+    /*    @GetMapping("/newCarDelete.do")
+        public String newCarDelete(@RequestParam int no) {
+            adminCarService.deleteNewCar(no);
+            return "redirect:newCarList.do";
+        }*/
+    @ResponseBody
     @GetMapping("/newCarDelete.do")
-    public String newCarDelete(@RequestParam int no) {
-        adminCarService.deleteNewCar(no);
-        return "redirect:newCarList.do";
+    public ResponseEntity newCarDelete(@RequestParam int no) {
+        try {
+            adminCarService.deleteNewCar(no);
+            return ResponseEntity.ok("성공");
+        } catch (Exception e) {
+            return ResponseEntity.ok("실패");
+        }
     }
 
     @GetMapping("/newCarDetail.do")
-    public String newCarDetail(@RequestParam int no, Model model){
+    public String newCarDetail(@RequestParam int no, Model model) {
         NewCarVo newCar = adminCarService.selectDetailCar(no);
         model.addAttribute("newCar", newCar);
         return "admin/car/newCarDetail";
@@ -202,8 +227,6 @@ public class AdminCarController {
         }
         return fileName.substring(dotIndex + 1).toLowerCase();
     }
-
-
 
 
 }
