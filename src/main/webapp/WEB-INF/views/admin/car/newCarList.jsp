@@ -8,6 +8,20 @@
             $('[name=defaultCost]').val($(this).data('cost'));
             $('[name=carName]').val($(this).data('carName'));
         });
+
+        $('.cancel-btn').on('click', function () {
+            var deleteNo = $(this).data('deleteNo');
+            var cancel = confirm("정말로 취소하시겠습니까?");
+            if (cancel) {
+                $.get("/admin/car/newCarDelete.do", {deleteNo: deleteNo}, function (res) {
+                    alert('삭제가 완료되었습니다.');
+                });
+                location.replace("newCarList.do");
+
+            } else {
+                alert('삭제가 취소되었습니다.');
+            }
+        });
     })
 </script>
 <div class="container-xl">
@@ -60,8 +74,8 @@
                             </button>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-sm" style="background: #f8f7fd; border: 1px solid #41087c"
-                                    onclick="location.href='/admin/car/newCarDelete.do?no=${car.no}'">삭제
+                            <button class="btn btn-sm cancel-btn" style="background: #f8f7fd; border: 1px solid #41087c"
+                                    data-delete-no="${car.no}">삭제
                             </button>
                         </td>
 
@@ -153,7 +167,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/admin/car/newCarModify.do">
+                <form method="post" action="/admin/car/newCarModify.do" id="modifyForm">
                     <input type="hidden" name="no"/>
                     <div class="mb-3 text-start">
                         <label for="carName" class="col-form-label">변경할 이름을 입력하세요.</label>

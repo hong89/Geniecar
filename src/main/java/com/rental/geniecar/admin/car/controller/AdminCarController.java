@@ -179,13 +179,13 @@ public class AdminCarController {
         return "admin/car/newCarList";
     }
 
-  /*  @PostMapping("/newCarModify.do")
+    @PostMapping("/newCarModify.do")
     public String newCarModify(NewCarVo newCarVo) {
         adminCarService.updateNewCar(newCarVo);
         return "redirect:newCarList.do";
-    }*/
+    }
 
-    @ResponseBody
+/*    @ResponseBody
     @PostMapping("/newCarModify.do")
     public ResponseEntity newCarModify(NewCarVo newCarVo) {
         try {
@@ -194,16 +194,11 @@ public class AdminCarController {
         } catch (Exception e) {
             return ResponseEntity.ok("실패");
         }
-    }
+    }*/
 
-    /*    @GetMapping("/newCarDelete.do")
-        public String newCarDelete(@RequestParam int no) {
-            adminCarService.deleteNewCar(no);
-            return "redirect:newCarList.do";
-        }*/
     @ResponseBody
     @GetMapping("/newCarDelete.do")
-    public ResponseEntity newCarDelete(@RequestParam int no) {
+    public ResponseEntity newCarDelete(@RequestParam("deleteNo") int no) {
         try {
             adminCarService.deleteNewCar(no);
             return ResponseEntity.ok("성공");
