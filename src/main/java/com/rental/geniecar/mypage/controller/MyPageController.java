@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,8 +31,9 @@ import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
 import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
+import com.rental.geniecar.domain.member.MyReservationVo;
 import com.rental.geniecar.domain.member.PointVo;
-import com.rental.geniecar.domain.reservation.ReservationVo;
+import com.rental.geniecar.login.service.LoginService;
 import com.rental.geniecar.member.service.MemberService;
 import com.rental.geniecar.point.service.PointService;
 
@@ -49,13 +54,14 @@ public class MyPageController {
     @Autowired
     private AdminBoardService boardService;
 
-    private final MemberService memberService;
+    private final MemberService memberService;private final LoginService loginService;
     private final PointService pointService;
 
     //ruddud
     @GetMapping("/main.do")
     public String index(Model model, HttpSession session) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
         model.addAttribute("member", membervo);
         return "mypage/main";
     }
@@ -64,9 +70,10 @@ public class MyPageController {
     @GetMapping("/reservation.do")
     public String reservation(Model model, HttpSession session) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
-        Map mypage = (Map) session.getAttribute("mypage");
-        List<ReservationVo> reservationList = memberService.allMyReservation(membervo.getId());
         model.addAttribute("member", membervo);
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
+        Map mypage = (Map) session.getAttribute("mypage");
+        List<MyReservationVo> reservationList = memberService.allMyReservation(membervo.getId()); 
         model.addAttribute("reservationList", reservationList);
         return "mypage/reservation";
     }
@@ -75,9 +82,10 @@ public class MyPageController {
 	@GetMapping("/reservationDetail.do")
 	public String reservationDetail(@RequestParam("reservationNo") String reservationNo, Model model, HttpSession session){
 		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
-		ReservationVo reservation = memberService.selectOneReservation(reservationNo);
 		model.addAttribute("member", membervo);
-		model.addAttribute("reservation", reservation);
+		model.addAttribute("mypage",memberService.mypage(membervo.getId()));
+		model.addAttribute("reservation", memberService.selectOneReservation(reservationNo));
+		model.addAttribute("license", memberService.selectLicense(membervo.getId()));
         return "mypage/reservationDetail";
     }
 
@@ -86,6 +94,7 @@ public class MyPageController {
     public String point(Model model, HttpSession session) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
         PointVo point = pointService.selectPoint(membervo.getId());
         model.addAttribute("point", point);
         List<PointVo> pointList = pointService.secletAll(membervo.getId());
@@ -98,6 +107,7 @@ public class MyPageController {
     public String coupon(Model model, HttpSession session) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
         return "mypage/coupon";
     }
 
@@ -107,6 +117,7 @@ public class MyPageController {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         LicenseVo license = memberService.selectLicense(membervo.getId());
         model.addAttribute("member", membervo);
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
         model.addAttribute("license", license);
         return "mypage/license";
     }
@@ -140,6 +151,7 @@ public class MyPageController {
     public String memberModify(HttpSession session, Model model) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
         return "mypage/member/modify";
     }
 
@@ -156,6 +168,7 @@ public class MyPageController {
     public String memberPassword(HttpSession session, Model model) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
         return "mypage/member/password";
     }
 
@@ -179,6 +192,7 @@ public class MyPageController {
     public String memberLeave(Model model, HttpSession session) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
         return "mypage/member/leave";
     }
 
@@ -197,6 +211,7 @@ public class MyPageController {
     public String consult(Model model, HttpSession session) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
         return "mypage/consult";
     }
 
@@ -205,6 +220,7 @@ public class MyPageController {
     @GetMapping("/qna.do")
     public String qna(CommonCrudVo boardVo, Model model, HttpSession session) {
         MemberVo memberVo = (MemberVo) session.getAttribute("memberInfo");
+        
         String Id = memberVo.getId();
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("typeCode", boardVo.getTypeCode());
@@ -226,10 +242,12 @@ public class MyPageController {
         boardVo.setPageStartSet();
         boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
         boardVo.setPageEndSet();
-
+      
         model.addAttribute("member", memberVo);
+        model.addAttribute("mypage",memberService.mypage(memberVo.getId()));
         model.addAttribute("boardList", boardList);
         model.addAttribute("boardVo", boardVo);
+        
 
         return "mypage/qna";
     }

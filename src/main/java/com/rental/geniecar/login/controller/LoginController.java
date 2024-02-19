@@ -48,7 +48,7 @@ public class LoginController {
 			if(memberVo.getWithdrawalYn().equals("N")) {
 				session.setAttribute("isLogOn", true);
 				session.setAttribute("memberInfo",memberVo);
-				session.setAttribute("mypage",loginService.mypage(memberVo.getId()));
+				
 				response.sendRedirect("/main/index.do");	
 			} else if(memberVo.getWithdrawalYn().equals("K")) {
 				out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요');history.back();</script>");
@@ -90,12 +90,10 @@ public class LoginController {
 	//ruddud
 	@PostMapping("/resultFindPw.do")
 	public String resultFindPw(@RequestParam Map member, RedirectAttributes re) {
-		System.out.println("********************** : " + member);
-		String msg=null;
 		if(loginService.findPw(member)) { 
 			return "forward:/login/changePw.do"; 
 		}  else { 
-			msg="not";
+			String msg ="not";
 			re.addFlashAttribute("msg", msg);
 			return "redirect:/login/findPw.do";
 		}
@@ -108,7 +106,6 @@ public class LoginController {
 	@PostMapping("/dochangePw.do")
 	public String dochangePw(@RequestParam Map pw, RedirectAttributes re) {	
 		if(pw.get("pw").equals(pw.get("pw_"))) {
-			System.out.println("#################################");
 			loginService.changePw(pw);
 			String msg ="ok";
 			re.addFlashAttribute("msg", msg);

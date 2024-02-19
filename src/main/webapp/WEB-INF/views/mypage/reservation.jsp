@@ -158,11 +158,6 @@
                                 aria-selected="true">전체
                         </button>
                     </li>
-<!--                <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab2" data-bs-toggle="tab" data-bs-target="#contact2"
-                                type="button" role="tab" aria-controls="contact2" aria-selected="false">결제대기
-                        </button>
-                    </li>-->
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab3" data-bs-toggle="tab" data-bs-target="#contact3"
                                 type="button" role="tab" aria-controls="contact3" aria-selected="false">계약완료
@@ -188,7 +183,7 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active border-bottom" id="contact1" role="tabpanel" aria-labelledby="contact-tab1">
                         <c:forEach var="reservation" items="${reservationList }">
-                            <div class="card text-center" style="width: 80%">
+                            <div class="card text-center mb-3" style="width: 80%">
                                 <div class="card-header">
                                     ${reservation.carName}
                                 </div>

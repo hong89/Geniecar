@@ -35,6 +35,11 @@ public class MemberController {
 	public String join(){
         return "member/join";
     }
+	
+	@GetMapping("/memberJoin.do")
+	public String memberjoin(){
+        return "member/memberJoin";
+    }
 	//ruddud
 	@GetMapping("/businessJoin.do")
     public String businessJoin(MemberVo member, Model model){

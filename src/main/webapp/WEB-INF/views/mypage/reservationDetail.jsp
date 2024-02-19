@@ -73,12 +73,12 @@
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">0P</a>
+                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
                         <p>할인쿠폰</p>
-                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">0장</a>
+                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">${mypage.coupons}장</a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
@@ -90,7 +90,7 @@
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel06.png">
                         <p>1:1문의</p>
                         <a href="/mypage/qna.do?typeCode=QNA" class="underline"
-                           id="commonRentalConsultCount">0건</a>
+                           id="commonRentalConsultCount">${mypage.qna}건</a>
                     </li>
                 </ul>
             </div>
@@ -142,33 +142,33 @@
             <table class="table table-bordered reservationTable">
                 <tr>
                     <th scope="row">예약자명</th>
-                    <td>홍경영</td>
+                    <td>${member.name}</td>
                     <th scope="row">전화번호</th>
-                    <td>010-0000-0000</td>
+                    <td>${member.hp}</td>
                 </tr>
                 <tr>
                     <th scope="row">예약일자</th>
-                    <td>2024-01-23</td>
+                    <td><fmt:formatDate value="${reservation.regDate}" pattern="yyyy-MM-dd"/></td>
                     <th scope="row">예약번호</th>
-                    <td>2422443764</td>
+                    <td>${reservation.reservationNo}</td>
                 </tr>
                 <tr>
                     <th scope="row">대여일시</th>
-                    <td>2024-01-27(토) 14:00</td>
+                    <td><fmt:formatDate value="${reservation.rentalDate}" pattern="yyyy-MM-dd(E) HH:mm"/></td>
                     <th scope="row">반납일시</th>
-                    <td>2024-01-28(일) 14:00</td>
+                    <td><fmt:formatDate value="${reservation.returnDate}" pattern="yyyy-MM-dd(E) HH:mm"/></td>
                 </tr>
                 <tr>
                     <th scope="row">대여지점</th>
-                    <td>강남</td>
+                    <td>${reservation.rentalPlaceName}</td>
                     <th scope="row">반납지점</th>
-                    <td>강남</td>
+                    <td>${reservation.returnPlaceName}</td>
                 </tr>
                 <tr>
                     <th scope="row">대여주소</th>
-                    <td>서울시 강남구 테헤란로81기로 53, 1층</td>
+                    <td>${reservation.rentalPlaceAddress}</td>
                     <th scope="row">반납주소</th>
-                    <td>서울시 강남구 테헤란로81기로 53, 1층</td>
+                    <td>${reservation.returnPlaceAddress}</td>
                 </tr>
             </table>
             <br/>
@@ -186,31 +186,25 @@
             <table class="table table-bordered reservationTable">
                 <tr>
                     <th scope="row">이름</th>
-                    <td colspan="3">홍경영</td>
+                    <td colspan="3">${license.driverName}</td>
                 </tr>
                 <tr>
-                    <th scope="row">성별</th>
-                    <td>여</td>
                     <th scope="row">법정생년월일</th>
-                    <td>1997-09-13</td>
-                </tr>
-                <tr>
+                    <td><fmt:formatDate value="${license.driverBirth}" pattern="yyyy-MM-dd"/></td>
                     <th scope="row">휴대전화번호</th>
-                    <td>010-0000-0000</td>
-                    <th scope="row">이메일</th>
-                    <td>hong@test.com</td>
+                    <td>${member.hp}</td>
                 </tr>
                 <tr>
                     <th scope="row">면허종류</th>
-                    <td>2종오토</td>
-                    <th scope="row">면허증정보</th>
-                    <td>***********</td>
+                    <td>${license.licenseGradeCode}</td>
+                    <th scope="row">면허증번호</th>
+                    <td>${license.licenseNumber}</td>
                 </tr>
                 <tr>
                     <th scope="row">갱신기간</th>
-                    <td>0000-00-00</td>
+                    <td><fmt:formatDate value="${license.licenseTestDate}" pattern="yyyy-MM-dd"/></td>
                     <th scope="row">발급일</th>
-                    <td>0000-00-00</td>
+                    <td><fmt:formatDate value="${license.licenseIssueDate}" pattern="yyyy-MM-dd"/></td>
                 </tr>
             </table>
             <ul class="mt-3 lh-lg">
