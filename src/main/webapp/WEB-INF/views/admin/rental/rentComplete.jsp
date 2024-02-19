@@ -97,7 +97,7 @@
                 //페이지 이동
                 function movePage(currentPage) {
 
-                    var url = "/admin/rental/rentComplete.do";
+                    var url = "/admin/car/newCarList.do";
                     var params = [];
                     params.push("currentPage=" + (currentPage || 1));
 

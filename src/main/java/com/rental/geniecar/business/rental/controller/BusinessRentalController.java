@@ -6,8 +6,6 @@ import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
 import com.rental.geniecar.domain.reservation.ReservationVo;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@Slf4j
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/business/rental/")
@@ -85,13 +82,9 @@ public class BusinessRentalController {
     @ResponseBody
     @GetMapping("/cancel.do")
     public ResponseEntity cancel(String reservationNo, HttpSession session) {
-        try {
-            MemberVo member = (MemberVo)session.getAttribute("memberInfo");
-            businessRentalService.updateReservation(reservationNo, member.getId());
-            return ResponseEntity.ok("성공");
-        } catch (Exception e) {
-            return ResponseEntity.ok("실패");
-        }
+        MemberVo member = (MemberVo)session.getAttribute("memberInfo");
+        businessRentalService.updateReservation(reservationNo, member.getId());
+        return ResponseEntity.ok("성공");
     }
 
 }
