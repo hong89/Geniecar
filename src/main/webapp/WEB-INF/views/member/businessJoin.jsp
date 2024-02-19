@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
     <style>
         .join-container>div {
             padding: 10px;
-        }
-        
+        } 
     </style>
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -325,7 +323,7 @@
                 <div class="p-4 mb-5" style="background-color: #f8f7fd; color: #23093d; ">
                     <h4 class="fw-bolder ps-3">회원 정보입력</h4>
                 </div>
-                <form:form commandName="Join">
+                <form action="/member/completeJoin.do" method="post" name="Join" autocomplete="on">
                     <div class="row g-3 align-items-center join-container">
                         <div class="col-2"></div>
                         <div class="col-2">
