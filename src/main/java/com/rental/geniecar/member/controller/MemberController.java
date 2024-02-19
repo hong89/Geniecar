@@ -2,10 +2,14 @@ package com.rental.geniecar.member.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +36,13 @@ public class MemberController {
         return "member/join";
     }
 	//ruddud
+	@GetMapping("/businessJoin.do")
+    public String businessJoin(MemberVo member, Model model){
+    	List<CommonCodeVo> locations = commonService.selectCommonCodes("LOC");
+        model.addAttribute("locations", locations);
+        return "member/businessJoin";
+    }
+	//ruddud
 	@PostMapping("/overlapped.do")
 	public @ResponseBody String overlapped(@RequestParam("id") String id) throws Exception{
 		return memberService.overlapped(id);
@@ -39,19 +50,12 @@ public class MemberController {
 	
 	//ruddud
 	@PostMapping("/completeJoin.do")
-	public String completeJoin(MemberVo member, Model model){
+	public String completeJoin(@Valid @ModelAttribute("Join")MemberVo member, Model model, Errors errors){
 		memberService.newMember(member);
 		model.addAttribute("name", member.getName());
 		return "member/completeJoin";
     }
-
-	//ruddud
-	@GetMapping("/businessJoin.do")
-    public String businessJoin(MemberVo member, Model model){
-    	List<CommonCodeVo> locations = commonService.selectCommonCodes("LOC");
-        model.addAttribute("locations", locations);
-        return "member/businessJoin";
-    }
+	
 	@ResponseBody
 	@GetMapping("/branch.do")
 	public ResponseEntity branch(String groupCode) {

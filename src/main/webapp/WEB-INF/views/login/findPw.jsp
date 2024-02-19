@@ -6,6 +6,14 @@
     <!--------------------------------------------------상단---------------------------------------------------------->
     <script>
         $(function () {
+            window.onpageshow = function (event) {
+                if (event.persisted) {
+                    window.location.reload();
+                }
+            };
+
+            let msg = "${msg}";
+            if(msg ==="not") {alert("일치하는 회원정보가 없습니다.")};     
             $('#submitBtn').click(function () {
                 var id =$("#id").val();
                 var name =$("#name").val();
@@ -24,25 +32,7 @@
                     $("#hp").focus();
                     return false;
                 }
-                
-                $.ajax({
-                    type: "post",
-                    url: "/login/resultFindPw.do",
-                    dataType: "text",
-                    data :$("#findpw").serialize(),
-                    success : function (text) {
-                        console.log(text);
-                        if(text == ''){
-                            $("#result").html("일치하는 정보가 없습니다.");
-                        } else {
-                            $("#result").html('회원님의 비밀번호는 "' +text +'" 입니다.');
-                        }
-
-                    },
-                    error: function (){
-                        console.log("실패 :" + data);
-                    }
-                });
+                $('[name=findpw]').submit();                  
             });
         })
 
@@ -57,7 +47,7 @@
     <section class="row p-3">
         <div class="col"></div>
         <div class="col">
-            <form name = "findpw" id = "findpw" method="post">
+            <form name = "findpw" id = "findpw" method="post" action="/login/resultFindPw.do">
                 <div class="row mb-5">
                     <div class="col text-center">
                         <label for="name" class="col-form-label">아이디</label>
@@ -84,7 +74,7 @@
                 </div>
                 <div class="text-center">
                     <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="location.href='/login/login.do'">로그인</button>
-                    <button type="button" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;" onclick="fn_submit()">찾기</button>
+                    <button type="button" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;" >찾기</button>
                 </div>
             </form>
             <div id="result" class="mt-5"></div>

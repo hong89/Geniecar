@@ -190,7 +190,7 @@
                         <c:forEach var="reservation" items="${reservationList }">
                             <div class="card text-center" style="width: 80%">
                                 <div class="card-header">
-                                    스포티지 하이브리드
+                                    ${reservation.carName}
                                 </div>
                                 <div class="card-body">
                                     <div class="text-body-secondary">
@@ -215,7 +215,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="/mypage/reservationDetail.do?$reservationNo=${reservation.reservationNo}">상세정보 확인하기</a>
+                                    <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}">상세정보 확인하기</a>
                                 </div>
                             </div>
                         </c:forEach>

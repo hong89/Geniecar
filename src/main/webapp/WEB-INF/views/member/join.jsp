@@ -74,8 +74,11 @@
             
             });
         })
+        $(document).on('keyup', '#id', function() {
+                $(this).val($(this).val().replace(/[^a-zA-Z0-9]/g, ''));
+            });
         $(function () {
-            
+            var regPw = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$";
             var replaceName = /^[가-힣a-zA-Z\s]+$/
             $('#submitBtn').click(function () {
                 var pw = $('[name=pw]').val();
@@ -92,18 +95,21 @@
                     alert('아이디를 중복체크 해주세요.');
                     $("#id").focus();
                     return false;
-                } else if (pw == '' || pw == null) {
+                } else if (pw == '' || pw.length == 0) {
                     alert("비밀번호를 입력해주세요");
                     $("#pw").focus();
                     return false;
-                } else if (pwCheck == '' || pwCheck == null) {
+                } else if (!regPw.txt) {
+                    alert("비밀번호는 8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.");
+                    return false;
+                } else if (pwCheck == '' || pwCheck.length == 0) {
                     alert("비밀번호 확인을 입력해주세요");
                     $("#pwCheck").focus();
                     return false;
                 } else if (pw != pwCheck) {
                     alert("비밀번호가 일치하지 않습니다.");
                     return false;
-                } else if (name == '' || name == null) {
+                } else if (name == '' || name.length == 0) {
                     alert("이름을 입력해주세요");
                     $("#name").focus();
                     return false;} 
@@ -213,7 +219,13 @@
             .replace(/[^0-9]/g, '')
             .replace(/(^02.{0}|^01.{1}|[0-9]{2,3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
         }
-
+        function chkCharCode(event) {
+            const regExp = /[^0-9a-zA-Z]/g;
+            const ele = event.target;
+            if (regExp.test(ele.value)) {
+                ele.value = ele.value.replace(regExp, '');
+            }
+        };
         
     </script>
     <div class="container-xl">
@@ -916,7 +928,7 @@ Chrome: 웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설�
                             <label for="id" class="col-form-label">아이디</label>
                         </div>
                         <div class="col-auto">
-                            <input type="text" id="_id" class="form-control">
+                            <input type="text" id="_id" class="form-control" maxlength="20" onkeyup="chkCharCode(event)"/>
                             <input type="hidden" name="id" id="id" />
                         </div>
                         <div class="col-2">
@@ -931,7 +943,7 @@ Chrome: 웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설�
                             <label for="pw" class="col-form-label">비밀번호</label>
                         </div>
                         <div class="col-auto">
-                            <input type="password" id="pw" name="pw" class="form-control"
+                            <input type="password" id="pw" name="pw" class="form-control" maxlength="20"
                                 aria-describedby="passwordHelpInline">
                         </div>
                         <div class="col-auto">
