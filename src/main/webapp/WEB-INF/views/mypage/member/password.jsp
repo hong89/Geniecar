@@ -141,6 +141,9 @@
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
                 </li>
                 <li class="nav-item mb-4">
+                    <a href="/mypage/myReview.do?typeCode=REVIEW" class="nav-link">이용 후기</a>
+                </li>
+                <li class="nav-item mb-4">
                     <a href="/mypage/consult.do" class="nav-link">상담 신청</a>
                 </li>
                 <li class="nav-item mb-4">

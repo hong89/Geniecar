@@ -47,6 +47,21 @@
         background-color: #41087c !important;
         color: white;
     }
+    .table thead tr td {
+        border-bottom:#41087c solid 3px;
+        padding: 15px;
+        font-size: 1.2em;
+    }
+    .table tbody tr td {
+        border-bottom:#d1c9ff solid 2px;
+        padding: 15px;
+    }
+    .card img {
+        width: 100%;
+        height: 300px;
+        max-width: 100%;
+        max-height: 100%;
+    }
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -142,69 +157,43 @@
         </aside>
         <article class="p-5 container-fluid">
             <section>
-                <ul class="nav nav-pills pb-3 border-bottom" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="contact-tab1" data-bs-toggle="tab"
-                                data-bs-target="#contact1" type="button" role="tab"
-                                aria-controls="contact1" aria-selected="true">전체
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab2" data-bs-toggle="tab"
-                                data-bs-target="#contact2" type="button" role="tab"
-                                aria-controls="contact2" aria-selected="false">결제대기
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab3" data-bs-toggle="tab"
-                                data-bs-target="#contact3" type="button" role="tab"
-                                aria-controls="contact3" aria-selected="false">계약완료
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab4" data-bs-toggle="tab"
-                                data-bs-target="#contact4" type="button" role="tab"
-                                aria-controls="contact4" aria-selected="false">이용중
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab5" data-bs-toggle="tab"
-                                data-bs-target="#contact5" type="button" role="tab"
-                                aria-controls="contact5" aria-selected="false">이용완료
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab6" data-bs-toggle="tab"
-                                data-bs-target="#contact6" type="button" role="tab"
-                                aria-controls="contact6" aria-selected="false">취소
-                        </button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active border-bottom" id="contact1"
-                         role="tabpanel" aria-labelledby="contact-tab1">
-                        <div class="text-center mt-3 mb-3 pd-5">
-                            <h5><br><br><br><br>이용중인 렌터카 차량이 없습니다.<br>
-                                <button type="button" class="btn m-3"
-                                        style="background-color: #41087c; color: #f8f7fd;">제주/내륙 렌터카 예약하기
+                <div class="pt-5">
+                    <div class="inner-type2">
+                        <section class="text-center">
+                            <h1 class="tit">이용 후기</h1>
+                        </section>
+                        <div class="pt-3">
+                            <p>
+                                <span class="icon time2"></span><strong style="font-size: 30px;">이용 후기</strong>
+                                <span class="icon date2"></span>
+                                <button type="button" class="btn text-white" style="background: #41087c; float: right;"
+                                        onclick="location.href='/customer/reviewRegister.do'">후기등록
                                 </button>
-                                <br><br><br><br></h5>
+                            </p>
+                        </div><hr/>
+                        
+                        <div class="row row-cols-1 row-cols-md-3 g-4 P-5">
+                            <c:forEach var="notice" items="${boardList}">
+                            <div class="col">
+                              <div class="card h-100">
+                                <a href="/customer/reviewDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
+                                    <c:forEach var="imageFile" items="${notice.imageFiles}">
+                                        <c:if test="${not empty imageFile.saveName}">
+                                            <img src="/downloadFile/${imageFile.saveName}" alt="images">
+                                        </c:if>
+                                    </c:forEach>
+                                <div class="card-body">
+                                  <h5 class="card-title">${notice.title}</h5><hr/>
+                                  <p class="card-text">${notice.content}</p>
+                                </div>
+                                <div class="card-footer">작성일 :&nbsp;
+                                  <small class="text-muted">${notice.regDate}</small>
+                                </div>
+                                </a>
+                              </div>
+                            </div>
+                            </c:forEach>
                         </div>
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact2" role="tabpanel"
-                         aria-labelledby="contact-tab2">${mypage}
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact3" role="tabpanel"
-                         aria-labelledby="contact-tab3">.3..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact4" role="tabpanel"
-                         aria-labelledby="contact-tab4">.4..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact5" role="tabpanel"
-                         aria-labelledby="contact-tab5">.5..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact6" role="tabpanel"
-                         aria-labelledby="contact-tab6">.6..
                     </div>
                 </div>
             </section>

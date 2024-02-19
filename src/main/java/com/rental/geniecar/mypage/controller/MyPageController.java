@@ -255,6 +255,40 @@ public class MyPageController {
 
         return "mypage/qna";
     }
+    
+    // JJ
+    // 1:1 문의
+    @GetMapping("/myReview.do")
+    public String myReview(CommonCrudVo boardVo, Model model, HttpSession session) {
+        MemberVo memberVo = (MemberVo) session.getAttribute("memberInfo");
+        String Id = memberVo.getId();
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("typeCode", boardVo.getTypeCode());
+        paramMap.put("Id", Id);
+        paramMap.put("title", boardVo.getTitle());
+        paramMap.put("startPage", boardVo.getStartPage());
+        paramMap.put("pageSize", boardVo.getPageSize());
+        
+        
+        boardVo.setPageStartSet();
+        List<CommonCrudVo> boardList = boardService.selectBoardListById(paramMap);
+        boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+        boardVo.setPageEndSet();
+        
+        for (CommonCrudVo notice : boardList) {
+            if (notice instanceof BoardVo) {
+                int no = ((BoardVo) notice).getNo();
+                List<FileVo> imageFiles = boardService.selectImageFilesByNo(no);
+                ((BoardVo) notice).setImageFiles(imageFiles);
+            }
+        }
+
+        model.addAttribute("member", memberVo);
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("boardVo", boardVo);
+
+        return "mypage/myReview";
+    }
 
     // JJ
     // 1:1문의 작성폼
