@@ -184,6 +184,7 @@ CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
     RENTAL_CAR_BRANCH_NO      VARCHAR2(6)  NOT NULL,    -- 렌터카_지점_NO
     RESERVATION_MEMBER_ID     VARCHAR2(20) NOT NULL,    -- 예약자_ID (회원아이디 FK)
     REGULAR_PRICE             NUMBER(10)   NOT NULL,    -- 정가
+    ADD_PRICE                 NUMBER(10)   DEFAULT 0,    -- 추가요금(면책금)
     SALE_RATE                 NUMBER(2)    NOT NULL,    -- 할인율
     FINAL_RESERVATION_PRICE   NUMBER(10)   NOT NULL,    -- 최종_예약_금액 (정가/할인율=최종금액)
     CANCEL_YN                 CHAR(1) DEFAULT 'N',      -- 예약 취소 여부
@@ -211,41 +212,32 @@ CREATE TABLE LICENSE
 CREATE SEQUENCE SEQ_PAY_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 99999999999999999999 NOCYCLE;
 CREATE TABLE PAYMENT
 (
-    PAY_NO                  NUMBER(20) PRIMARY KEY, -- 시퀀스 NO
-    RESULT_CODE             VARCHAR2(100) NOT NULL, -- 결과코드 "0000":성공, 이외 실패 (실패코드 6byte)
-    RESULT_MSG              VARCHAR2(100) NOT NULL, -- 결과메세지
-    TID                     VARCHAR2(100) NOT NULL, -- 거래번호
-    MID                     VARCHAR2(100) NOT NULL, -- 상점아이디
-    MOID                    VARCHAR2(100) NOT NULL, -- 주문번호 결제 요청시 oid 필드에 설정된 값
-    TOT_PRICE               VARCHAR2(100) NOT NULL, -- 결제금액
-    GOOD_NAME               VARCHAR2(100) NOT NULL, -- 상품명
-    PAY_METHOD              VARCHAR2(100),          -- 지불수단
-    APPL_DATE               VARCHAR2(100) NOT NULL, -- 승인일자 [YYYYMMDD]
-    APPL_TIME               VARCHAR2(100) NOT NULL, -- 승인시간 [hh24miss]
-    EVENT_CODE              VARCHAR2(100) NOT NULL, -- 이벤트 코드, 카드 할부 및 행사 적용 코드
-    BUYER_NAME              VARCHAR2(100) NOT NULL, -- 구매자명
-    BUYER_TEL               VARCHAR2(100) NOT NULL, -- 구매자 휴대폰번호
-    BUYER_EMAIL             VARCHAR2(100) NOT NULL, -- 구매자 이메일주소
-    CUST_EMAIL              VARCHAR2(100) NOT NULL, -- 최종 이메일주소
-    APPLNUM                 VARCHAR2(100) NOT NULL, -- 승인번호
-    CARD_NUM                VARCHAR2(100) NOT NULL, -- 신용카드번호
-    CARD_INTEREST           VARCHAR2(100) NOT NULL, -- 상점부담 무이자 할부여부 ["1":상점부담 무이자]
-    CARD_QUOTA              VARCHAR2(100) NOT NULL, -- 카드 할부기간
-    CARD_CODE               VARCHAR2(100) NOT NULL, -- 카드사 코드
-    CARD_CORPFLAG           VARCHAR2(100) NOT NULL, -- 카드구분 ["0":개인카드, "1":법인카드, "9":구분불가]
-    CARD_CHECKFLAG          VARCHAR2(100) NOT NULL, -- 카드종류 ["0":신용카드, "1":체크카드, "2":기프트카드]
-    CARD_PRTC_CODE          VARCHAR2(100) NOT NULL, -- 부분취소 가능여부 ["1":가능 , "0":불가능]
-    CARD_BANKCODE           VARCHAR2(100) NOT NULL, -- 카드발급사(은행) 코드
-    CARD_SRCCODE            VARCHAR2(100) NOT NULL, -- 간편(앱)결제구분
-    CARD_POINT              VARCHAR2(100) NOT NULL, -- 카드포인트 사용여부 ["":카드 포인트 사용안함, "1":카드 포인트 사용]
-    CARD_USEPOINT           VARCHAR2(100) NOT NULL, -- 포인트 사용금액
-    CARD_APPLPRICE          VARCHAR2(100) NOT NULL, -- 신용카드 승인금액
-    CARD_COUPONPRICE        VARCHAR2(100),          -- 즉시할인 쿠폰 사용 시, 실제 카드 승인 금액
-    CARD_COUPONDISCOUNT     VARCHAR2(100),          -- 쿠폰(즉시할인) 금액
-    NAVERPOINT_USEFREEPOINT VARCHAR2(100) NOT NULL, -- 네이버포인트 무상포인트
-    NAVERPOINT_CSHRAPPLYN   VARCHAR2(100) NOT NULL, -- 네이버포인트 현금영수증 발행여부 ["Y":발행, "N":미발행]
-    NAVERPOINT_CSHRAPPLAMT  VARCHAR2(100) NOT NULL, -- 네이버포인트 현금영수증 발행 금액
-    PCO_ORDERNO             VARCHAR2(100),          -- 페이코 주문번호
-    CURRENCY                VARCHAR2(100) NOT NULL, -- 통화코드
-    ORGPRICE                VARCHAR2(100)           -- 달러 환전금액 해외카드 + 달러(USD) 결제 일 경우 환전금액
+    PAY_NO NUMBER(20) PRIMARY KEY,
+    APPLY_NUM VARCHAR2(100),
+    BANK_NAME VARCHAR2(100),
+    BUYER_ADDR VARCHAR2(200),
+    BUYER_EMAIL VARCHAR2(100),
+    BUYER_NAME VARCHAR2(100),
+    BUYER_POSTCODE VARCHAR2(100),
+    BUYER_TEL VARCHAR2(20),
+    CARD_NAME VARCHAR2(50),
+    CARD_NUMBER VARCHAR2(100),
+    CARD_QUOTA NUMBER(3),
+    CURRENCY VARCHAR2(100),
+    CUSTOM_DATA VARCHAR2(500),
+    IMP_UID VARCHAR2(100),
+    MERCHANT_UID VARCHAR2(20),
+    NAME  VARCHAR2(100),
+    PAID_AMOUNT NUMBER(10),
+    PAID_AT NUMBER(20),
+    PAY_METHOD VARCHAR2(100),
+    PG_PROVIDER VARCHAR2(100),
+    PG_TID VARCHAR2(200),
+    PG_TYPE VARCHAR2(100),
+    STATUS VARCHAR2(100),
+    SUCCESS VARCHAR2(5),
+    REG_ID                    VARCHAR2(20) NOT NULL,
+    REG_DATE                  DATE         NOT NULL,
+    MOD_ID                    VARCHAR2(20),
+    MOD_DATE                  DATE
 );

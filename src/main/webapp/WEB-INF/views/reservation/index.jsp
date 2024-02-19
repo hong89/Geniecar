@@ -489,6 +489,8 @@
                 rentalForm.periodDay = returnDate.diff(startDate, 'days');
                 rentalForm.PeriodHour = moment.duration(returnDate.diff(startDate)).hours();
                 rentalForm.PeriodMinute = moment.duration(returnDate.diff(startDate)).minutes();
+                rentalForm.rentalStartDate = startDate.format('YYYY-MM-DD HH:mm');
+                rentalForm.rentalReturnDate = returnDate.format('YYYY-MM-DD HH:mm');
                 rentalForm.rentalStartDateStr = startDate.format('MM/DD (dd) HH:mm');
                 rentalForm.rentalReturnDateStr = returnDate.format('MM/DD (dd) HH:mm');
                 $('#rentalPeriodDay').text(rentalForm.periodDay);
@@ -587,14 +589,18 @@
             });
 
             $('#containerArea').on('click', '.rental-car:not(.car-disabled)', function () {
-                $('[name=rentalDate]').val(rentalForm.rentalStartDateStr); //대여 일시
+                $('[name=rentalDate]').val(rentalForm.rentalStartDate); //대여 일시
+                $('[name=rentalPrintDate]').val(rentalForm.rentalStartDateStr); //대여 일시
                 $('[name=rentalPlace]').val(rentalForm.rentalPlaceCd); //대여 지점
-                $('[name=returnDate]').val(rentalForm.rentalReturnDateStr); //반납 일시
+                $('[name=returnDate]').val(rentalForm.rentalReturnDate); //반납 일시
+                $('[name=returnPrintDate]').val(rentalForm.rentalReturnDateStr); //반납 일시
                 $('[name=returnPlace]').val(rentalForm.returnPlaceCd); //반납 지점
                 $('[name=rentalPeriod]').val(rentalForm.getPeriodDate()); //총 대여기간
                 $('[name=totalCost]').val($(this).find('.total-cost').data('totalCost')); //차량대여요금
                 $('[name=saleCost]').val($(this).find('.sale-cost').data('saleCost')); //할인요금
                 $('[name=carNo]').val($(this).data('carNo'));
+                $('[name=saleRate]').val($(this).data('perSale'));
+
                 $('#step2Form').submit();
             });
 
@@ -948,13 +954,16 @@
 
     <form id="step2Form" action="/reservation/step2.do" method="post" >
         <input type="hidden" name="rentalDate" value="" /> <%--대여 일시--%>
+        <input type="hidden" name="rentalPrintDate" value="" /> <%--대여 일시 출력용--%>
         <input type="hidden" name="rentalPlace" value="" /> <%--대여 지점--%>
         <input type="hidden" name="returnDate" value="" /> <%--반납 일시--%>
+        <input type="hidden" name="returnPrintDate" value="" /> <%--반납 일시 출력용--%>
         <input type="hidden" name="returnPlace" value="" /> <%--반납 지점--%>
         <input type="hidden" name="rentalPeriod" value="" /> <%--총 대여기간--%>
         <input type="hidden" name="carNo" value="" /><%--자동차 no--%>
         <input type="hidden" name="totalCost" value="" /> <%--대여요금--%>
         <input type="hidden" name="saleCost" value="" /> <%--할인요금--%>
+        <input type="hidden" name="saleRate" value="" /> <%--할인율--%>
     </form>
 
     <!-- 차량 선택 영역 -->
@@ -1000,7 +1009,7 @@
 
     <div type="x-tmpl-mustache" id="searchRentalCarTemplate" style="display: none">
         {{#rentalCars}}
-            <div class="col-6 cursor-pointer rental-car {{carDisabled}}" data-car-no="{{carNo}}">
+            <div class="col-6 cursor-pointer rental-car {{carDisabled}}" data-car-no="{{carNo}}" data-per-sale="{{perSale}}">
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">

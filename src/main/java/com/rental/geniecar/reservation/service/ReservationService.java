@@ -3,10 +3,7 @@ package com.rental.geniecar.reservation.service;
 import com.rental.geniecar.common.dao.CommonDao;
 import com.rental.geniecar.domain.branch.RentalCarBranchVo;
 import com.rental.geniecar.domain.car.NewCarVo;
-import com.rental.geniecar.domain.common.CommonCodeVo;
-import com.rental.geniecar.domain.reservation.RentalCarReservationStep2Vo;
-import com.rental.geniecar.domain.reservation.ReservationRentalCarVo;
-import com.rental.geniecar.domain.reservation.SearchReservationRentalCarVo;
+import com.rental.geniecar.domain.reservation.*;
 import com.rental.geniecar.infra.util.DateUtil;
 import com.rental.geniecar.reservation.dao.ReservationDao;
 import lombok.RequiredArgsConstructor;
@@ -77,7 +74,26 @@ public class ReservationService {
         rentalCarReservationStep2Vo.setCarName(newCarVo.getCarName());
 
 
+        String reservationNo = reservationDao.selectReservationNo();
+        rentalCarReservationStep2Vo.setReservationNo(reservationNo);
+
 
         return rentalCarReservationStep2Vo;
+    }
+
+    //렌트카 예약 완료
+    public RentalCarReservationVo saveRentalCarReservationSuccess(ReservationSaveVo reservationSaveVo) {
+
+        //NewCarVo newCarVo = reservationDao.selectDetailCar(reservationSaveVo.getCarNo());
+        reservationSaveVo.setReservationMemberId(reservationSaveVo.getRegId());
+
+        //TODO 빌릴 차대 번호 추출, 포인트 적용 필요
+        reservationSaveVo.setCarIdentificationNumber("ROKCVL07MNU710765");
+        reservationDao.saveRentalCarReservation(reservationSaveVo);
+        reservationDao.savePayment(reservationSaveVo);
+
+        RentalCarReservationVo rentalCarReservationVo = reservationDao.selectReservationOne(reservationSaveVo.getReservationNo());
+
+        return rentalCarReservationVo;
     }
 }

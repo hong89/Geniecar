@@ -3,10 +3,8 @@ package com.rental.geniecar.reservation.controller;
 import com.rental.geniecar.domain.common.CommonCodeVo;
 import com.rental.geniecar.common.service.CommonService;
 import com.rental.geniecar.domain.branch.RentalCarBranchVo;
-import com.rental.geniecar.domain.reservation.RentalCarReservationStep2Vo;
-import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
-import com.rental.geniecar.domain.reservation.ReservationRentalCarVo;
-import com.rental.geniecar.domain.reservation.SearchReservationRentalCarVo;
+import com.rental.geniecar.domain.member.MemberVo;
+import com.rental.geniecar.domain.reservation.*;
 import com.rental.geniecar.reservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -74,13 +73,25 @@ public class ReservationController {
 
     // HSH
     @PostMapping("/step2.do")
-    public String step2(RentalCarReservationStep2Vo rentalCarReservationStep2Vo, Model model){
+    public String step2(RentalCarReservationStep2Vo rentalCarReservationStep2Vo, Model model, HttpSession session){
         try {
+            MemberVo member = (MemberVo) session.getAttribute("memberInfo");
+            rentalCarReservationStep2Vo.setReservationMemberName(member.getName());
+            rentalCarReservationStep2Vo.setReservationMemberHp(member.getHp());
             rentalCarReservationStep2Vo = reservationService.reservationStep2(rentalCarReservationStep2Vo);
             model.addAttribute("detail", rentalCarReservationStep2Vo);
         }catch (ParseException e) {
             log.error(e.getMessage());
         }
         return "reservation/step2";
+    }
+
+    @PostMapping("/reservationSuccess.do")
+    @ResponseBody
+    public ResponseEntity reservationSuccess(ReservationSaveVo reservationSaveVo, HttpSession session){
+        MemberVo member = (MemberVo) session.getAttribute("memberInfo");
+        reservationSaveVo.setRegId(member.getId());
+        RentalCarReservationVo rentalCarReservationVo = reservationService.saveRentalCarReservationSuccess(reservationSaveVo);
+        return ResponseEntity.ok().body(rentalCarReservationVo);
     }
 }

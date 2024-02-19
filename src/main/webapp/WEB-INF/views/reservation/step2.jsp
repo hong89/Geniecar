@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <style>
     .breadcrumb-item a {
         text-decoration: none;
@@ -27,19 +28,182 @@
     .location-name > a, #searchName > a {
         text-decoration-line: none;
     }
-    .add-rate button.on {
+    .add-rate button.on, .payments.on {
         background: #fffbfb;
         color: #E70012;
         border: 1px solid #FD1326 !important;
     }
 </style>
 <script>
-    $(function () {
-        $('.terms').on('click', function () {
-            alert($(this));
-        });
-    });
+    var rentalCost = {
+        saleCost: ${detail.totalCost - detail.saleCost},
+        totalCost: ${detail.totalCost},
+        addCost: 20000,
+        step1FinalCostCal: function () {
+            return this.totalCost - this.saleCost;
+        },
+        step2FinalCostCal: function () {
+            return this.totalCost - this.saleCost + this.addCost;
+        }
+    }
 
+    function numberCostFormat(cost){
+        return cost.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+    function step1Print(){
+        var template = $('#step1Template').html();
+        var rendered = Mustache.render(template);
+        var $image = $('.container .step2-nav img:eq(1)');
+        $image.attr('src', $image.attr('src').replace('circle-check-solid', 'circle-check-regular'));
+        $('#addRateArea').hide();
+        $('#step2Area').html(rendered);
+        rentalCost.addCost = 20000;
+        $('#finalCost').text(numberCostFormat(rentalCost.step1FinalCostCal()) + '원');
+    }
+
+
+    function step2Print(){
+        var template = $('#step2Template').html();
+        var rendered = Mustache.render(template);
+        $('#step2Area').html(rendered);
+        var $image = $('.container .step2-nav img:eq(1)');
+        $image.attr('src', $image.attr('src').replace('circle-check-regular', 'circle-check-solid'));
+        $('#addRateArea').show();
+        $('#addRateCost').text(numberCostFormat(rentalCost.addCost + '원'));
+        $('#finalCost').text(numberCostFormat(rentalCost.step2FinalCostCal()) + '원');
+    }
+
+    function step3Print(data) {
+        var template = $('#step3Template').html();
+        var rendered = Mustache.render(template, data);
+        $('#templateArea').html(rendered);
+        var $image = $('.container .step2-nav img:eq(2)');
+        $image.attr('src', $image.attr('src').replace('circle-check-regular', 'circle-check-solid'));
+    }
+
+    var payInfo = {
+        reservationNo: '${detail.reservationNo}',
+        carName: '${detail.carName}',
+        rentalPeriod: '${detail.rentalPeriod}',
+        amount: '',
+        orderedName : '${detail.reservationMemberName}',
+        buyerTel: '${detail.reservationMemberHp}'
+    }
+
+    IMP.init('imp34077744');
+    function kgPay(payInfo){
+
+        if(!payInfo) {
+            alert('오류가 발생되었습니다. 관리자에게 문의 바랍니다.');
+            return false;
+        }
+
+        IMP.request_pay({
+            pg : 'html5_inicis',
+            pay_method : 'card',
+            merchant_uid: payInfo.reservationNo, // 상점에서 관리하는 주문 번호를 전달
+            name : 'geniecar_' + payInfo.carName + '_' + payInfo.rentalPeriod,
+            amount : payInfo.amount,
+            buyer_email : '',
+            buyer_name : payInfo.orderedName,
+            buyer_tel : payInfo.buyerTel,
+        }, function(rsp) { // callback 로직
+            if (rsp.success) {
+                var reservationSaveData = {
+                    //예약정보
+                    reservationNo: rsp.merchant_uid,
+                    carNo: ${detail.carNo},
+                    rentalPlace: '${detail.rentalPlace}',
+                    returnPlace: '${detail.returnPlace}',
+                    rentalDate: '${detail.rentalDate}',
+                    returnDate: '${detail.returnDate}',
+                    rentalCarBranchNo: '${detail.rentalPlace}',
+                    saleRate: ${detail.saleRate},
+                    addPrice: rentalCost.addCost, //면책요금
+                    finalReservationPrice: rsp.paid_amount,
+                    regularPrice: ${detail.totalCost},
+
+                    //결제정보
+                    applyNum: rsp.apply_num,
+                    buyerName: rsp.buyer_name,
+                    buyerTel: rsp.buyer_tel,
+                    cardName: rsp.card_name,
+                    cardNumber: rsp.card_number,
+                    cardQuota: rsp.card_quota,
+                    currency: rsp.currency,
+                    customData: rsp.custom_data,
+                    impUid: rsp.imp_uid,
+                    merchantUid: rsp.merchant_uid,
+                    name: rsp.name,
+                    paidAmount: rsp.paid_amount,
+                    paidAt: rsp.paid_at,
+                    payMethod: rsp.pay_method,
+                    pgProvider: rsp.pg_provider,
+                    pgTid: rsp.pg_tid,
+                    pgType: rsp.pg_type,
+                    status: rsp.status,
+                    success: rsp.success,
+                };
+                $.post('reservationSuccess.do', reservationSaveData, function (res) {
+                    //console.log(res);
+                    step3Print({
+                        reservation: res
+                    });
+                });
+
+            }else{
+                alert(rsp.error_msg); //오류 메시지 출력
+            }
+        });
+
+        //
+    }
+
+    $(function () {
+        //면책제도 변경
+        $('#templateArea').on('click', '.cdw-btn', function () {
+            $('#templateArea .cdw-btn').removeClass('on');
+            $(this).addClass('on');
+            rentalCost.addCost = Number($(this).data('addCost'));
+            $('#addRateCost').text(numberCostFormat(rentalCost.addCost + '원'));
+            $('#finalCost').text(numberCostFormat(rentalCost.step2FinalCostCal()) + '원');
+        });
+
+        $('#templateArea').on('click', '.payments', function(){
+            var payment = $(this).data('payment');
+            $('#templateArea .payments').removeClass('on');
+            $(this).addClass('on');
+
+            if(payment == 'kginicis'){ //결제수단
+                payInfo.amount = rentalCost.step2FinalCostCal();
+                $('#paymentBtn').closest('div').show();
+            }
+        });
+
+        $('#templateArea').on('click', '#paymentBtn', function () {
+            kgPay(payInfo);
+            return false;
+        });
+
+        step1Print();
+
+        $('#templateArea').on('click', '#step2PrevBtn', function () {
+            $('#step2PrevBtn').closest('div').hide();
+            $('#step2NextBtn').closest('div').show();
+            $('#paymentBtn').closest('div').hide();
+            step1Print();
+            return false;
+        });
+
+        $('#templateArea').on('click', '#step2NextBtn', function () {
+            $('#step2PrevBtn').closest('div').show();
+            $('#step2NextBtn').closest('div').hide();
+            step2Print();
+            return false;
+        });
+
+    });
 </script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -55,21 +219,6 @@
     </div>
 
 
-    <%--step1. 예약/약관 페이지--%>
-    <%--<div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-                <img src="/images/icons/circle-check-solid.svg" width="30px"/><br/>
-                예약/약관
-            </div>
-            <div class="col col-lg-2">
-                <img src="/images/icons/circle-check-solid.svg" width="30px"/><br/>
-                할인/결제
-            </div>
-            <div class="col col-lg-2">
-                <img src="/images/icons/circle-check-regular.svg" width="30px"/><br/>
-                완료
-            </div>
-        </div>--%>
     <div class="container text-center">
         <h2 style="padding: 50px">예약 결제</h2>
         <div class="row justify-content-md-center step2-nav">
@@ -87,8 +236,6 @@
             </div>
         </div>
     </div>
-
-
 
     <div class="container" id="templateArea" style="padding-top: 50px;">
         <div class="row">
@@ -155,111 +302,24 @@
                     <div class="col location-name text-center" style="background: #41087c;">
                         <a class="text-white" href="#" id="step2NextBtn">다 음</a>
                     </div>
+                    <div class="col location-name text-center" style="background: #ee505d; display: none;">
+                        <a class="text-white" href="#" id="paymentBtn">결 제</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        var rentalCost = {
-            saleCost: ${detail.saleCost},
-            totalCost: ${detail.totalCost},
-            addCost: 20000,
-            step1FinalCostCal: function () {
-                return this.totalCost - this.saleCost;
-            },
-            step2FinalCostCal: function () {
-                return this.totalCost - this.saleCost + this.addCost;
-            }
-        }
-
-        function numberCostFormat(cost){
-            return cost.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-        }
-
-        function step1Print(){
-            var template = $('#step1Template').html();
-            var rendered = Mustache.render(template);
-            var $image = $('.container .step2-nav img:eq(1)');
-            $image.attr('src', $image.attr('src').replace('circle-check-solid', 'circle-check-regular'));
-            $('#addRateArea').hide();
-            $('#step2Area').html(rendered);
-            rentalCost.addCost = 20000;
-            $('#finalCost').text(numberCostFormat(rentalCost.step1FinalCostCal()) + '원');
-        }
-
-
-        function step2Print(){
-            var template = $('#step2Template').html();
-            var rendered = Mustache.render(template);
-            $('#step2Area').html(rendered);
-            var $image = $('.container .step2-nav img:eq(1)');
-            $image.attr('src', $image.attr('src').replace('circle-check-regular', 'circle-check-solid'));
-            $('#addRateArea').show();
-            $('#addRateCost').text(numberCostFormat(rentalCost.addCost + '원'));
-            $('#finalCost').text(numberCostFormat(rentalCost.step2FinalCostCal()) + '원');
-        }
-
-        //면책제도 변경
-
-        $('#templateArea').on('click', '.cdw-btn', function () {
-            $('#templateArea .cdw-btn').removeClass('on');
-            $(this).addClass('on');
-            rentalCost.addCost = Number($(this).data('addCost'));
-            $('#addRateCost').text(numberCostFormat(rentalCost.addCost + '원'));
-            $('#finalCost').text(numberCostFormat(rentalCost.step2FinalCostCal()) + '원');
-        });
-
-        $(function () {
-            step1Print();
-
-            $('#templateArea').on('click', '#step2PrevBtn', function () {
-                $('#step2PrevBtn').closest('div').hide();
-                $('#step2NextBtn').closest('div').show();
-                step1Print();
-                return false;
-            });
-
-            $('#templateArea').on('click', '#step2NextBtn', function () {
-                $('#step2PrevBtn').closest('div').show();
-                $('#step2NextBtn').closest('div').hide();
-                step2Print();
-                return false;
-            });
-
-            //TODO 면잭제도 선택 시 금액 계산
-        });
-    </script>
-
-
-    <%--step2. 할인/결제 페이지--%>
-    <%--<div class="container text-center">
-        <h2 style="padding: 50px">내륙예약</h2>
-        <div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-                <img src="/images/icons/circle-check-solid.svg" width="30px"/><br/>
-                예약/약관
-            </div>
-            <div class="col col-lg-2">
-                <img src="/images/icons/circle-check-solid.svg" width="30px"/><br/>
-                할인/결제
-            </div>
-            <div class="col col-lg-2">
-                <img src="/images/icons/circle-check-regular.svg" width="30px"/><br/>
-                완료
-            </div>
-        </div>
-    </div>--%>
-
+    <%--예약/약관--%>
     <script type="x-tmpl-mustache" id="step1Template" style="display: none">
         <h4 style="background: #f8f7fd; padding: 20px;"><strong>예약상세내역</strong></h4>
             <div class="row" style="padding: 20px">
                 <h5 class="col-3">대여일시/지점</h5>
-                <h5 class="col-9">${detail.rentalDate} / ${detail.rentalPlaceName}</h5>
+                <h5 class="col-9">${detail.rentalPrintDate} / ${detail.rentalPlaceName}</h5>
             </div>
             <div class="row" style="padding: 20px">
                 <h5 class="col-3">반납일시/지점</h5>
-                <h5 class="col-9">${detail.returnDate} / ${detail.returnPlaceName}</h5>
+                <h5 class="col-9">${detail.returnPrintDate} / ${detail.returnPlaceName}</h5>
             </div>
             <div class="row" style="padding: 20px">
                 <h5 class="col-3">차량상세정보</h5>
@@ -423,6 +483,7 @@
             </div>
     </script>
 
+    <%--할인/결제--%>
     <script type="x-tmpl-mustache" id="step2Template" style="display: none">
         <h4 style="background: #f8f7fd; padding: 20px;"><strong>자차손해 면책제도 (CDW)</strong></h4>
         <div class="p-5 pt-3">
@@ -442,6 +503,11 @@
                         사고시 면책금 30만원 10,000원
                     </button>
                 </div>
+                <div class="col-6 p-2">
+                    <button type="button" data-add-cost="0" class="btn p-3 cdw-btn" style="border: 1px solid #41087c; width: 100%">
+                        사고시 면책금 100% 부담 0원
+                    </button>
+                </div>
             </div>
             <span style="color: red">
             [자차손해 면책제도 가입 안내]<br/>
@@ -456,7 +522,7 @@
         <div class="p-5 pt-3">
             <div class="row">
                 <div class="col-3 p-2">
-                    <button type="button" class="btn p-3" style="border: 1px solid #41087c; width: 100%">
+                    <button type="button" class="btn p-3 payments" data-payment="kginicis" style="border: 1px solid #41087c; width: 100%">
                         <img src="/images/logos/ico-enroll04.png" width="100%"/><br/>
                         신용카드
                     </button>
@@ -472,161 +538,9 @@
             * 차량 수령시간 이후 : NO SHOW 수수료 발생 (차량대여요금의 10% )<br/>
         </div>
     </script>
-    <%--<div class="container" style="padding-top: 50px;">
-        <div class="row">
-            <div class="col-8">
-                <h4 style="background: #f8f7fd; padding: 20px;"><strong>자차손해 면책제도 (CDW)</strong></h4>
-                <div class="p-5 pt-3">
-                    <div class="row">
-                        <div class="col-6 p-2">
-                            <button type="button" class="btn p-3" style="border: 1px solid #41087c; width: 100%">
-                                고객부담금 면제 20,000원
-                            </button>
-                        </div>
-                        <div class="col-6 p-2">
-                            <button type="button" class="btn p-3" style="border: 1px solid #41087c; width: 100%">
-                                사고시 면책금 10만원 12,000원
-                            </button>
-                        </div>
-                        <div class="col-6 p-2">
-                            <button type="button" class="btn p-3" style="border: 1px solid #41087c; width: 100%">
-                                사고시 면책금 30만원 10,000원
-                            </button>
-                        </div>
-                    </div>
-                    <span style="color: red">
-                    [자차손해 면책제도 가입 안내]<br/>
-                    * 자차손해 면책제도(CDW)를 가입하지 않은 경우 차량대여 중 고객의 귀책사유로 인해
-                    발생한 당사 차량손해(손, 망실)에 대한 차량 수리비를 지불하셔야 합니다.<br/>
-                    * 자차손해 면책제도 가입을 통해 고객의 실수로 발생하는 자차사고에 대한 보호를 받으시기 바랍니다.<br/>
-                    </span>
-                </div>
 
-                <h4 style="background: #f8f7fd; padding: 20px;"><strong>결제수단 선택</strong></h4>
-
-                <div class="p-5 pt-3">
-                    <div class="row">
-                        <div class="col-3 p-2">
-                            <button type="button" class="btn p-3" style="border: 1px solid #41087c; width: 100%">
-                                <img src="/images/logos/ico-enroll04.png" width="100%"/><br/>
-                                신용카드
-                            </button>
-                        </div>
-                        <div class="col-3 p-2">
-                            <button type="button" class="btn p-3" style="border: 1px solid #41087c; width: 100%">
-                                <img src="/images/logos/ico-enroll05.png" width="100%"/><br/>
-                                네이버 페이
-                            </button>
-                        </div>
-                        <div class="col-3 p-2">
-                            <button type="button" class="btn p-3" style="border: 1px solid #41087c; width: 100%">
-                                <img src="/images/logos/ico-enroll06.png" width="100%"/><br/>
-                                카카오 페이
-                            </button>
-                        </div>
-                        <div class="col-3 p-2">
-                            <button type="button" class="btn p-3" style="border: 1px solid #41087c; width: 100%">
-                                <img src="/images/logos/ico-enroll07.png" width="100%"/><br/>
-                                삼성 페이
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-
-                <h4 style="background: #f8f7fd; padding: 20px;"><strong>취소 수수료 안내</strong></h4>
-                <div class="p-5 pt-3">
-                    * 차량 수령 24시간 전 취소 : 전액 환불<br/>
-                    * 차량 수령 24시간 이내 ~ 수령시간까지 취소 : 취소수수료 발생 (3,000원)<br/>
-                    * 차량 수령시간 이후 : NO SHOW 수수료 발생 (차량대여요금의 10% )<br/>
-                </div>
-            </div>
-
-            <div class="col-4">
-                <div class="card border-secondary">
-                    <div class="card-header text-center" style="height: 70px; padding-top: 20px;"><h4>캐스퍼(G)</h4></div>
-                    <div class="card-body text-secondary">
-                        <img src="/images/carImage/casper.png" width="100%"/>
-                        <p class="card-text">실제 대여하는 차량과 외관, 색상, 옵션 등 차이가 있을 수 있으며
-                            사고 또는 고장 등 부득이한 경우 동급차종으로 변경될 수 있습니다.</p>
-                    </div>
-                </div>
-
-                <div class="card priceArea mt-4">
-                    <ul class="list-group list-group-flush">
-
-                        <li class="list-group-item text-white">
-                            <div class="row">
-                                <div class="col-6">대여정보</div>
-                                <div class="col-6 text-end">광주공항지점</div>
-                            </div>
-                        </li>
-                        <li class="list-group-item text-white">
-                            <div class="row">
-                                <div class="col-6">반납정보</div>
-                                <div class="col-6 text-end">광주공항지점</div>
-                            </div>
-                        </li>
-                        <li class="list-group-item text-white">
-                            <div class="row">
-                                <div class="col-6">차량대여요금</div>
-                                <div class="col-6 text-end">120,000원</div>
-                            </div>
-                        </li>
-                        <li class="list-group-item text-white">
-                            <div class="row">
-                                <div class="col-6">할인요금</div>
-                                <div class="col-6 text-end">-48,000원</div>
-                            </div>
-                        </li>
-                        <li class="list-group-item text-white">
-                            <div class="row">
-                                <div class="col-6">추가요금</div>
-                                <div class="col-6 text-end">20,000원</div>
-                            </div>
-                        </li>
-                        <li class="list-group-item text-white">
-                            <div class="row">
-                                <div class="col-6">총금액</div>
-                                <div class="col-6 text-end">92,000원</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <span style="color:red">
-                    다음 단계에서 할인의 변경, 보험 및 옵션의 선택에 따라 총금액은 달라질 수 있으니 결제 전 꼭 확인바랍니다.
-                </span>
-                <div class="row">
-                    <div class="col location-name text-center" style="background: #f8f7fd;">
-                        <a class="text-dark" href="#">이 전</a>
-                    </div>
-                    <div class="col location-name text-center" style="background: #41087c;">
-                        <a class="text-white" href="#">다 음</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>--%>
-
-    <%--step3. 완료 페이지--%>
-    <%--<div class="container text-center">
-        <h2 style="padding: 50px">내륙예약</h2>
-        <div class="row justify-content-md-center">
-            <div class="col col-lg-2">
-                <img src="/images/icons/circle-check-solid.svg" width="30px"/><br/>
-                예약/약관
-            </div>
-            <div class="col col-lg-2">
-                <img src="/images/icons/circle-check-solid.svg" width="30px"/><br/>
-                할인/결제
-            </div>
-            <div class="col col-lg-2">
-                <img src="/images/icons/circle-check-solid.svg" width="30px"/><br/>
-                완료
-            </div>
-        </div>
-    </div>
-    <div class="container" style="padding-top: 50px;">
+    <%--완료--%>
+    <script type="x-tmpl-mustache" id="step3Template" style="display: none">
         <div style="width: 100%; background: #f8f7fd" class="text-center p-5">
             <h3 class="p-2">감사합니다</h3>
             <p>즐거움이 가득한 지니카 예약이<br/>
@@ -636,43 +550,44 @@
             <p style="color: red">사전체크인을 하면 지점 방문 시 빠른 차량 픽업이 가능하고<br/>
                 추가운전자 등록도 가능합니다.<br/></p>
         </div>
-
+        {{#reservation}}
         <div class="row p-5 pb-0">
             <div class="col-6">
                 <div class="row p-3">
                     <div class="col-4">예약번호</div>
-                    <div class="col-8">2422454591</div>
+                    <div class="col-8">${detail.reservationNo}</div>
                 </div>
                 <div class="row p-3">
                     <div class="col-4">차명</div>
-                    <div class="col-8">캐스퍼(G)(가솔린)</div>
+                    <div class="col-8">${detail.carName}</div>
                 </div>
                 <div class="row p-3">
                     <div class="col-4">예약일</div>
-                    <div class="col-8">2024-01-29</div>
+                    <div class="col-8">{{regDate}}</div>
                 </div>
                 <div class="row p-3">
                     <div class="col-4">지점</div>
-                    <div class="col-8">사당 지점</div>
+                    <div class="col-8">${detail.rentalPlaceName}</div>
                 </div>
                 <div class="row p-3">
                     <div class="col-4">대여기간</div>
-                    <div class="col-8">2024-02-28(수) 12:00 ~ 2024-02-29(목) 12:00</div>
+                    <div class="col-8">${detail.rentalPrintDate} ~ ${detail.returnPrintDate}</div>
                 </div>
-
+            {{/reservation}}
             </div>
             <div class="col-6 p-5">
-                <img src="/images/carImage/casper.png" width="100%"/>
+                <img src="/images/carImage/${detail.carNo}.png" width="100%"/>
             </div>
         </div>
         <hr/>
         <div class="text-center">
-            <button type="button" class="btn m-3" style="border: 1px solid #41087c">목록으로</button>
-            <button type="button" class="btn text-white" style="background: #41087c">사전체크인</button>
+            <button type="button" class="btn m-3" style="border: 1px solid #41087c" onclick="location.href='/'" >메인으로</button>
+            <button type="button" class="btn text-white" style="background: #41087c" onclick="location.href='/mypage/license.do'" >사전체크인</button>
         </div>
         <br/>
         <br/><br/>
 
-    </div>--%>
+    </script>
+
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>
