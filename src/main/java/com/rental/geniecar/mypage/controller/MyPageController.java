@@ -228,9 +228,13 @@ public class MyPageController {
         paramMap.put("title", boardVo.getTitle());
         paramMap.put("startPage", boardVo.getStartPage());
         paramMap.put("pageSize", boardVo.getPageSize());
-
+        
+        
+        boardVo.setPageStartSet();
         List<CommonCrudVo> boardList = boardService.selectBoardListById(paramMap);
-
+        boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+        boardVo.setPageEndSet();
+        
         for (CommonCrudVo notice : boardList) {
             if (notice instanceof BoardVo) {
                 int no = ((BoardVo) notice).getNo();

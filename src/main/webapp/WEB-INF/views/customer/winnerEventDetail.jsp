@@ -46,7 +46,7 @@
                 <strong>${notice.title}</strong>
                 <span style="float: right; font-size:15px;">${notice.regDate}</span>
             </p><hr/>
-            <pre>${notice.content}</pre>
+            <p>${notice.content}</p>
         </div>
         <div>
             <div class="p-5" style="text-align: center;">

@@ -153,7 +153,6 @@
                         <section class="text-center">
                             <h1 class="tit">1:1 문의</h1>
                         </section>
-
                         <div class="pt-3">
                             <p>
                                 <span class="icon time2"></span><strong style="font-size: 30px;">1:1 문의</strong>
@@ -186,30 +185,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center">
-                                <c:if test="${boardVo.startPageBlock > boardVo.pageBlock}">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                </c:if>
-                                <c:forEach begin="${boardVo.startPageBlock}" end="${boardVo.endPageBlock}" step="1"
-                                           varStatus="status">
-                                    <li class="page-item"><a class="page-link" href="#"
-                                                             onclick="javascript:fn_search('${status.index}')">${status.index}</a>
-                                    </li>
-                                </c:forEach>
-                                <c:if test="${boardVo.endPageBlock < boardVo.pageCount}">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </c:if>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </section>
