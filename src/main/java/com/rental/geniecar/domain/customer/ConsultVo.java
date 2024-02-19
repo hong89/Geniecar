@@ -1,4 +1,4 @@
-package com.rental.geniecar.domain.consult;
+package com.rental.geniecar.domain.customer;
 
 import lombok.Getter;
 import lombok.Setter;
