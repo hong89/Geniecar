@@ -143,7 +143,7 @@ public class AdminCarController {
                 fileVo.setExtension(getFileExtension(carImage.getOriginalFilename()));
             }
         }
-        adminCarService.insertNewCars(requestNewCarVo, fileVo);
+        adminCarService.insertNewCars(requestNewCarVo, fileVo, member.getId());
 
         return "redirect:newCarList.do";
     }
@@ -185,9 +185,25 @@ public class AdminCarController {
         return "redirect:newCarList.do";
     }
 
+/*    @ResponseBody
+    @PostMapping("/newCarModify.do")
+    public ResponseEntity newCarModify(NewCarVo newCarVo) {
+        try {
+            adminCarService.updateNewCar(newCarVo);
+            return ResponseEntity.ok("성공");
+        } catch (Exception e) {
+            return ResponseEntity.ok("실패");
+        }
+    }*/
+
+    /*    @GetMapping("/newCarDelete.do")
+        public String newCarDelete(@RequestParam int no) {
+            adminCarService.deleteNewCar(no);
+            return "redirect:newCarList.do";
+        }*/
     @ResponseBody
     @GetMapping("/newCarDelete.do")
-    public ResponseEntity newCarDelete(@RequestParam("deleteNo") int no) {
+    public ResponseEntity newCarDelete(@RequestParam int no) {
         try {
             adminCarService.deleteNewCar(no);
             return ResponseEntity.ok("성공");
