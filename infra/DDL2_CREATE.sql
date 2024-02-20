@@ -88,29 +88,6 @@ CREATE TABLE RENTAL_CAR_BRANCHES_CAR -- 렌터카 지점별 차량 테이블
     CONSTRAINT BRANCH_CAR_PK PRIMARY KEY (CAR_IDENTIFICATION_NUMBER, RENTAL_CAR_BRANCH_NO)
 );
 
-CREATE TABLE COUPON -- 쿠폰 테이블
-(
-    SERIAL_NO      VARCHAR2(14) PRIMARY KEY, -- 쿠폰 번호 (FORMAT: OOOO-OOOOO-OOOOO)
-    NAME           VARCHAR2(100) NOT NULL,   -- 쿠폰명
-    ABLE_REGION    VARCHAR2(6)   NOT NULL,   -- 사용 가능 지역 (공통코드 FK)
-    TYPE           VARCHAR2(20)  NOT NULL,   -- 쿠폰 유형
-    EXPIRED_DATE   DATE          NOT NULL,   -- 만료 날짜
-    COUPON_VALUE   NUMBER(7)     NOT NULL,   -- 쿠폰가액 (금액 OR 할인율)
-    MAXIMUM_AMOUNT NUMBER(7),                -- 최대 할인 금액 (NULL 이면 제한 없음)
-    REG_ID         VARCHAR2(20)  NOT NULL,   -- 생성자 (회원아이디 FK)
-    REG_DATE       DATE          NOT NULL    -- 생성일시
-);
-
-CREATE TABLE MEMBER_COUPONS -- 회원 보유 쿠폰 테이블
-(
-    MEMBER_ID         VARCHAR2(20),          -- 회원아이디 (회원아이디 FK) 복합키
-    COUPONS_SERIAL_NO VARCHAR2(14),          -- 쿠폰 번호 (쿠폰 FK) 복합키
-    ISSUER_ID         VARCHAR2(20) NOT NULL, -- 발급자 (시스템이 주는 경우 'SYSTEM'으로 처리)
-    ISSUER_DATE       DATE         NOT NULL, -- 발급일
-    USED_DATE         DATE,                  -- 사용 날짜 (날짜 존재 시 사용 완료)
-    CONSTRAINT MEMBER_COUPONS_PK PRIMARY KEY (MEMBER_ID, COUPONS_SERIAL_NO)
-);
-
 CREATE SEQUENCE SEQ_POINT_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 99999999999999999999 NOCYCLE;
 CREATE TABLE POINT -- 포인트 테이블
 (
@@ -184,10 +161,10 @@ CREATE TABLE RENTAL_CAR_RESERVATION -- 예약 정보 테이블
     RENTAL_CAR_BRANCH_NO      VARCHAR2(6)  NOT NULL,    -- 렌터카_지점_NO
     RESERVATION_MEMBER_ID     VARCHAR2(20) NOT NULL,    -- 예약자_ID (회원아이디 FK)
     REGULAR_PRICE             NUMBER(10)   NOT NULL,    -- 정가
-    ADD_PRICE                 NUMBER(10)   DEFAULT 0,   -- 추가요금(면책금)
+    ADD_PRICE                 NUMBER(10) DEFAULT 0,     -- 추가요금(면책금)
     SALE_RATE                 NUMBER(2)    NOT NULL,    -- 할인율
     FINAL_RESERVATION_PRICE   NUMBER(10)   NOT NULL,    -- 최종_예약_금액 (정가/할인율=최종금액)
-    CANCEL_YN                 CHAR(1) DEFAULT 'N',      -- 예약 취소 여부
+    CANCEL_YN                 CHAR(1)    DEFAULT 'N',   -- 예약 취소 여부
     REG_ID                    VARCHAR2(20) NOT NULL,    -- 등록자 (회원아이디 FK)
     REG_DATE                  DATE         NOT NULL,    -- 등록_일시
     MOD_ID                    VARCHAR2(20),             -- 수정자 (회원아이디 FK)
@@ -212,32 +189,58 @@ CREATE TABLE LICENSE
 CREATE SEQUENCE SEQ_PAY_NO INCREMENT BY 1 START WITH 1 MINVALUE 1 MAXVALUE 99999999999999999999 NOCYCLE;
 CREATE TABLE PAYMENT
 (
-    PAY_NO NUMBER(20) PRIMARY KEY,
-    APPLY_NUM VARCHAR2(100),
-    BANK_NAME VARCHAR2(100),
-    BUYER_ADDR VARCHAR2(200),
-    BUYER_EMAIL VARCHAR2(100),
-    BUYER_NAME VARCHAR2(100),
-    BUYER_POSTCODE VARCHAR2(100),
-    BUYER_TEL VARCHAR2(20),
-    CARD_NAME VARCHAR2(50),
-    CARD_NUMBER VARCHAR2(100),
-    CARD_QUOTA NUMBER(3),
-    CURRENCY VARCHAR2(100),
-    CUSTOM_DATA VARCHAR2(500),
-    IMP_UID VARCHAR2(100),
-    MERCHANT_UID VARCHAR2(20),
-    NAME  VARCHAR2(100),
-    PAID_AMOUNT NUMBER(10),
-    PAID_AT NUMBER(20),
-    PAY_METHOD VARCHAR2(100),
-    PG_PROVIDER VARCHAR2(100),
-    PG_TID VARCHAR2(200),
-    PG_TYPE VARCHAR2(100),
-    STATUS VARCHAR2(100),
-    SUCCESS VARCHAR2(5),
-    REG_ID                    VARCHAR2(20) NOT NULL,
-    REG_DATE                  DATE         NOT NULL,
-    MOD_ID                    VARCHAR2(20),
-    MOD_DATE                  DATE
+    PAY_NO         NUMBER(20) PRIMARY KEY, -- 번호
+    APPLY_NUM      VARCHAR2(100),          -- 신용카드 승인번호
+    BANK_NAME      VARCHAR2(100),          -- 가상계좌 입금번호
+    BUYER_ADDR     VARCHAR2(200),          -- 주문자 주소
+    BUYER_EMAIL    VARCHAR2(100),          -- 주문자 이메일
+    BUYER_NAME     VARCHAR2(100),          -- 주문자명
+    BUYER_POSTCODE VARCHAR2(100),          -- 주문자 우편번호
+    BUYER_TEL      VARCHAR2(20),           -- 주문자 연락처
+    CARD_NAME      VARCHAR2(50),           -- 카드명
+    CARD_NUMBER    VARCHAR2(100),          -- 카드번호
+    CARD_QUOTA     NUMBER(3),              -- 할부개월
+    CURRENCY       VARCHAR2(100),          -- 통화
+    CUSTOM_DATA    VARCHAR2(500),          -- 가맹점 임의 지정 데이터
+    IMP_UID        VARCHAR2(100),          -- 포트원 고유번호
+    MERCHANT_UID   VARCHAR2(20),           -- 주문번호
+    NAME           VARCHAR2(100),          -- 이름
+    PAID_AMOUNT    NUMBER(10),             -- 결제금액
+    PAID_AT        NUMBER(20),             -- 결제승인시각
+    PAY_METHOD     VARCHAR2(100),          -- 결제수단 구분코드
+    PG_PROVIDER    VARCHAR2(100),          -- PG사 구분코드
+    PG_TID         VARCHAR2(200),          -- PG사 거래번호
+    PG_TYPE        VARCHAR2(100),          -- PG사 타입명
+    STATUS         VARCHAR2(100),          -- 결제상태
+    SUCCESS        VARCHAR2(5),            -- 결제 성공 여부
+    REG_ID         VARCHAR2(20) NOT NULL,  -- 등록자
+    REG_DATE       DATE         NOT NULL,  -- 등록일
+    MOD_ID         VARCHAR2(20),           -- 수정자
+    MOD_DATE       DATE                    -- 수정일
+);
+
+
+-------------------------------------------------------------------------------------------------------- 사용X
+
+CREATE TABLE COUPON -- 쿠폰 테이블
+(
+    SERIAL_NO      VARCHAR2(14) PRIMARY KEY, -- 쿠폰 번호 (FORMAT: OOOO-OOOOO-OOOOO)
+    NAME           VARCHAR2(100) NOT NULL,   -- 쿠폰명
+    ABLE_REGION    VARCHAR2(6)   NOT NULL,   -- 사용 가능 지역 (공통코드 FK)
+    TYPE           VARCHAR2(20)  NOT NULL,   -- 쿠폰 유형
+    EXPIRED_DATE   DATE          NOT NULL,   -- 만료 날짜
+    COUPON_VALUE   NUMBER(7)     NOT NULL,   -- 쿠폰가액 (금액 OR 할인율)
+    MAXIMUM_AMOUNT NUMBER(7),                -- 최대 할인 금액 (NULL 이면 제한 없음)
+    REG_ID         VARCHAR2(20)  NOT NULL,   -- 생성자 (회원아이디 FK)
+    REG_DATE       DATE          NOT NULL    -- 생성일시
+);
+
+CREATE TABLE MEMBER_COUPONS -- 회원 보유 쿠폰 테이블
+(
+    MEMBER_ID         VARCHAR2(20),          -- 회원아이디 (회원아이디 FK) 복합키
+    COUPONS_SERIAL_NO VARCHAR2(14),          -- 쿠폰 번호 (쿠폰 FK) 복합키
+    ISSUER_ID         VARCHAR2(20) NOT NULL, -- 발급자 (시스템이 주는 경우 'SYSTEM'으로 처리)
+    ISSUER_DATE       DATE         NOT NULL, -- 발급일
+    USED_DATE         DATE,                  -- 사용 날짜 (날짜 존재 시 사용 완료)
+    CONSTRAINT MEMBER_COUPONS_PK PRIMARY KEY (MEMBER_ID, COUPONS_SERIAL_NO)
 );

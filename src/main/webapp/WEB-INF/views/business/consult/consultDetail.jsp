@@ -73,8 +73,10 @@
             <button type="button" class="btn text-white" style="background: #41087c"
                     onclick="location.href='consultList.do'">목록가기
             </button>
-            <button type="button" class="btn text-white" style="background: #41087c" id="consultBtn">상담완료
-            </button>
+            <c:if test="${consult.statusYn == 'N'}">
+                <button type="button" class="btn text-white" style="background: #41087c" id="consultBtn">상담완료
+                </button>
+            </c:if>
         </div>
     </div>
 </div>
