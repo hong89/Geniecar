@@ -25,7 +25,7 @@ public class RentalCarReservationVo {
     private int saleRate;                        // 할인율
     private int finalReservationPrice;           // 최종_예약_금액 (정가/할인율=최종금액)
     private String regId;                        // 등록자 (회원아이디 FK)
-    private Date regDate;                        // 등록_일시
+    private String regDate;                        // 등록_일시
     private String modId;                        // 수정자 (회원아이디 FK)
-    private Date modDate;                        // 수정_일시
+    private String modDate;                        // 수정_일시
 }

@@ -19,18 +19,16 @@
                     <td class="col"><strong>고객명</strong></td>
                     <td class="col"><strong>전화번호</strong></td>
                     <td class="col"><strong>이메일</strong></td>
-                    <td class="col"><strong>상담지점</strong></td>
                     <td class="col"><strong>상담여부</strong></td>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="con" items="${consultList}">
                     <tr>
-                        <td class="col"><a href="/admin/business/consultDetail.do?no=${con.no}">${con.no}</a></td>
+                        <td class="col"><a href="/business/consult/consultDetail.do?no=${con.no}">${con.no}</a></td>
                         <td class="col">${con.name}</td>
                         <td class="col">${con.tel}</td>
                         <td class="col">${con.email}</td>
-                        <td class="col">${con.wishRegionName}</td>
                         <td class="col">
                             <c:choose>
                                 <c:when test="${con.statusYn == 'Y'}">완료</c:when>
@@ -96,7 +94,7 @@
                 //페이지 이동
                 function movePage(currentPage) {
 
-                    var url = "/business/rental/rentReservation.do";
+                    var url = "/admin/business/consultList.do";
                     var params = [];
                     params.push("currentPage=" + (currentPage || 1));
 
