@@ -131,82 +131,82 @@ public class CustomerController {
     }
 	
 	// JJ
-		// 게시판 글등록
-		@PostMapping("/insertBoard.do")
-	    public String insertboard(HttpServletRequest request, HttpSession session, BoardVo boardVo, @RequestParam("file") MultipartFile[] files, ServletResponse response, @RequestParam(value = "returnUrl", required = false) String returnUrl, RedirectAttributes redirectAttributes) throws IOException {
-	    	
-	    	MemberVo memberInfo = (MemberVo) session.getAttribute("memberInfo");
-	    	String typeCode = request.getParameter("typeCode");
-	    	
-	    	if (memberInfo != null) {
-	            String regId = memberInfo.getId();
-	            boardVo.setRegId(regId);
-	        } else {
-	            String alertMessage = "로그인이 필요합니다. 로그인 페이지로 이동합니다.";
-	            response.setContentType("text/html; charset=UTF-8");
-	            PrintWriter out = response.getWriter();
-	            out.println("<script>alert('" + alertMessage + "'); window.location.href='/login/login.do';</script>");
-	            out.flush();
-	            out.close();
-	            return null;
-	        }
-	    	
-	        List<FileVo> fileList = new ArrayList<>();
-	        try {
-	            if (files != null && files.length > 0) {
+	// 게시판 글 등록
+	@PostMapping("/insertBoard.do")
+	public String insertboard(HttpServletRequest request, HttpSession session, BoardVo boardVo, @RequestParam("file") MultipartFile[] files, ServletResponse response, @RequestParam(value = "returnUrl", required = false) String returnUrl, RedirectAttributes redirectAttributes) throws IOException {
+		
+		MemberVo memberInfo = (MemberVo) session.getAttribute("memberInfo");
+		String typeCode = request.getParameter("typeCode");
+		
+		if (memberInfo != null) {
+	        String regId = memberInfo.getId();
+	        boardVo.setRegId(regId);
+	    } else {
+	        String alertMessage = "로그인이 필요합니다. 로그인 페이지로 이동합니다.";
+	        response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = response.getWriter();
+	        out.println("<script>alert('" + alertMessage + "'); window.location.href='/login/login.do';</script>");
+	        out.flush();
+	        out.close();
+	        return null;
+	    }
+		
+	    List<FileVo> fileList = new ArrayList<>();
+	    try {
+	        if (files != null && files.length > 0) {
 
-	                for (MultipartFile file : files) {
-	                    FileVo fileVo = new FileVo();
-	                    //fileVo.setRegId(boardVo.getRegId());  // 등록자 아이디 설정
+	            for (MultipartFile file : files) {
+	                FileVo fileVo = new FileVo();
+	                //fileVo.setRegId(boardVo.getRegId());  // 등록자 아이디 설정
 
-	                    // 파일 정보 설정 확인
-	                    fileVo.setFileName(file.getOriginalFilename());
-	                    fileVo.setFileSize((int) file.getSize());
-	                    
-	                    System.err.println("###### 파일이름 ::" + fileVo.getFileName());
-	                    
-	                    // 파일 저장 경로
-	                    String savePath = "C:\\geniecar_images";
-	                    String saveName = (fileVo.getFileName() != "") ? UUID.randomUUID().toString() + "_" + file.getOriginalFilename() : null;
-	                    System.err.println("UUID 생성" + saveName);
-	                    String fullPath = savePath + File.separator + saveName;
+	                // 파일 정보 설정 확인
+	                fileVo.setFileName(file.getOriginalFilename());
+	                fileVo.setFileSize((int) file.getSize());
+	                
+	                System.err.println("###### 파일이름 ::" + fileVo.getFileName());
+	                
+	                // 파일 저장 경로
+	                String savePath = "C:\\geniecar_images";
+	                String saveName = (fileVo.getFileName() != "") ? UUID.randomUUID().toString() + "_" + file.getOriginalFilename() : null;
+	                System.err.println("UUID 생성" + saveName);
+	                String fullPath = savePath + File.separator + saveName;
 
-	                    // 파일 저장 하기
-	                    File dest = new File(fullPath);
-	                    file.transferTo(dest);
+	                // 파일 저장 하기
+	                File dest = new File(fullPath);
+	                file.transferTo(dest);
 
-	                    // 파일 정보 설정 하기
-	                    fileVo.setSavePath(savePath);
-	                    fileVo.setSaveName(saveName);
-	                    fileVo.setExtension(getFileExtension(file.getOriginalFilename()));
+	                // 파일 정보 설정 하기
+	                fileVo.setSavePath(savePath);
+	                fileVo.setSaveName(saveName);
+	                fileVo.setExtension(getFileExtension(file.getOriginalFilename()));
 
-	                    System.out.println("fileVo" + fileVo.getFileNo());
-	                    fileList.add(fileVo);
-	                }
-	                // 파일과 이미지 정보 DB에 저장하기
-	                boardService.insertBoard(boardVo, fileList, request);
+	                System.out.println("fileVo" + fileVo.getFileNo());
+	                fileList.add(fileVo);
 	            }
-	            
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	        if (returnUrl != null && !returnUrl.isEmpty()) {
-	            return "redirect:" + returnUrl;
-	        } else {
-	        	redirectAttributes.addAttribute("typeCode", typeCode);
-	        	return "redirect:/customer/reviewMain.do";
+	            // 파일과 이미지 정보 DB에 저장하기
+	            boardService.insertBoard(boardVo, fileList, request);
 	        }
 	        
+	    } catch (IOException e) {
+	        e.printStackTrace();
 	    }
+	    if (returnUrl != null && !returnUrl.isEmpty()) {
+	        return "redirect:" + returnUrl;
+	    } else {
+	    	redirectAttributes.addAttribute("typeCode", typeCode);
+	    	return "redirect:/customer/reviewMain.do";
+	    }
+	    
+	}
 
-	    // 파일 확장자 얻기
-	    private String getFileExtension(String fileName) {
-	        int dotIndex = fileName.lastIndexOf('.');
-	        if (dotIndex == -1 || dotIndex == fileName.length() - 1) {
-	            return "";
-	        }
-	        return fileName.substring(dotIndex + 1).toLowerCase();
+	// 파일 확장자 얻기
+	private String getFileExtension(String fileName) {
+	    int dotIndex = fileName.lastIndexOf('.');
+	    if (dotIndex == -1 || dotIndex == fileName.length() - 1) {
+	        return "";
 	    }
+	    return fileName.substring(dotIndex + 1).toLowerCase();
+	}
 
 	// JJ
 	// 이벤트 메인 페이지

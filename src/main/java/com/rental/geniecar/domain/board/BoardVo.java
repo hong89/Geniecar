@@ -36,4 +36,7 @@ public class BoardVo {
     public void setImageFiles(List<FileVo> imageFiles) {
     	this.imageFiles = imageFiles;
     }
+    public String getIndentedTitle() {
+        return "  ".repeat(level - 1) + title;
+    }
 }

@@ -86,6 +86,46 @@
 	  ORDER BY RN ASC
 	</select>
 	
+	<!-- 글 목록(계층) 가져오기 -->
+	<select id="selectQnaList" parameterType="com.rental.geniecar.domain.board.CommonCrudVo">
+		WITH Hierarchical_Board AS (
+    		SELECT NO
+		         , PARENT_NO
+		         , TITLE
+		         , CONTENT
+		         , HIT
+		         , TYPE_CODE
+		         , NOTICE_YN
+		         , HASH_TAG
+		         , START_DATE
+		         , END_DATE
+		         , REG_ID
+		         , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
+		         , ROW_NUMBER() OVER(ORDER BY NO DESC) AS RN
+		    FROM BOARD
+		    WHERE TYPE_CODE = 'QNA'
+			)
+				SELECT LEVEL
+					 , LPAD(' ', 2*(LEVEL-1)) || TITLE
+				     , NO
+				     , PARENT_NO
+				     , TITLE
+				     , CONTENT
+				     , HIT
+				     , TYPE_CODE
+				     , NOTICE_YN
+				     , HASH_TAG
+				     , START_DATE
+				     , END_DATE
+				     , REG_ID
+				     , REG_DATE
+				     , RN
+				FROM Hierarchical_Board
+				START WITH PARENT_NO = 0
+				CONNECT BY PRIOR NO = PARENT_NO
+				ORDER SIBLINGS BY NO DESC
+	</select>
+	
 	<select id="selectBoardListSize" parameterType="boardVo">
 		/* selectBoardListSize */
 		SELECT COUNT(*)

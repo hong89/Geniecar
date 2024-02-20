@@ -23,8 +23,6 @@
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
-
-
     <div class="pb-5 position-relative">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb"
              class="position-absolute end-0">
@@ -41,19 +39,20 @@
                 <strong>${notice.title}</strong>
                 <span style="float: right; font-size:15px;">${notice.regDate}</span>
             </p><hr/>
-            <pre>${notice.content}</pre>
-            
-            <c:if test="${not empty imageFiles}">
-                <c:forEach var="imageFile" items="${imageFiles}">
-                    <c:if test="${not empty imageFile.saveName}">
-                        <div class="mb-3 row">
-                            <div class="col-sm-12">
-                                <img class="form-control responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="300px" height="auto" aria-readonly="true">
+            <div class="text-center">
+                <p>${notice.content}</p>
+                <c:if test="${not empty imageFiles}">
+                    <c:forEach var="imageFile" items="${imageFiles}">
+                        <c:if test="${not empty imageFile.saveName}">
+                            <div class="mb-3 row">
+                                <div class="col-sm-12">
+                                    <img class="responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="300px" height="auto" aria-readonly="true">
+                                </div>
                             </div>
-                        </div>
-                    </c:if>
-                </c:forEach>
-            </c:if>
+                        </c:if>
+                    </c:forEach>
+                </c:if>
+            </div>
         </div>
         <div>
             <div class="p-5" style="text-align: center;">
