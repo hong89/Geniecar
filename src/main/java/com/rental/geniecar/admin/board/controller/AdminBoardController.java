@@ -84,6 +84,32 @@ public class AdminBoardController {
         return "admin/board/list";
     }
     
+    // JJ------------------------------------------------
+    // 게시판 QNA 댓글 목록 보기
+    @GetMapping("/listQna.do")
+    public String listQna(CommonCrudVo boardVo, Model model) {
+    	
+    	boardVo.setPageStartSet();
+    	List<CommonCrudVo> boardList = boardService.selectQnaList(boardVo);
+		
+		for (CommonCrudVo notice : boardList) {
+	        if (notice instanceof BoardVo) {
+	            int no = ((BoardVo) notice).getNo();
+	            List<FileVo> imageFiles = boardService.selectImageFilesByNo(no);
+	            ((BoardVo) notice).setImageFiles(imageFiles);
+	        }
+	    }
+		
+    	boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
+        boardVo.setPageEndSet();
+        
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("boardVo", boardVo);
+        
+        return "admin/board/list";
+    }
+    
+    
     // JJ
     // 게시판 이벤트 목록 보기
     @GetMapping("/eventList.do")

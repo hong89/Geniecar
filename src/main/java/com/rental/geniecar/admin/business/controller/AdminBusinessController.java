@@ -58,14 +58,16 @@ public class AdminBusinessController {
         return "admin/business/reviewList";
 
     }
-
+    
+    // JJ
+    // -------------------------------------------------------댓글확인 
     @GetMapping("/qnaList.do")
     public String qnaList(CommonCrudVo boardVo, Model model) {
 
         // 페이징 전처리
         boardVo.setPageStartSet();
-        // 목록조회
-        List<CommonCrudVo> boardList = boardService.selectBoardList(boardVo);
+        // 목록조회 ----------------------------------selectboardList
+        List<CommonCrudVo> boardList = boardService.selectQnaList(boardVo);
         // 목록 전체건수 조회
         boardVo.setTotalPageCount(boardService.selectBoardListSize(boardVo));
         // 페이징 후처리

@@ -48,4 +48,6 @@ public interface AdminBoardDao {
 
 	List<CommonCrudVo> selectBoardListById(Map<String, Object> paramMap);
 
+	List<CommonCrudVo> selectQnaList(CommonCrudVo boardVo);
+
 }

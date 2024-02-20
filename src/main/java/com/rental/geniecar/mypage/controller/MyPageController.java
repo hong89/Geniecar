@@ -289,6 +289,22 @@ public class MyPageController {
 
         return "mypage/myReview";
     }
+    
+    // JJ
+ 	// 이용 후기 상세보기
+ 	@GetMapping("/myReviewDetail.do")
+ 	public String myReviewDetail(@RequestParam int no, Model model) {
+ 		BoardVo notice = boardService.selectNoticeDetail(no);
+ 		
+ 		List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
+ 		
+ 		setImageFilePath(imageFiles, UPLOAD_PATH);
+ 		
+ 		model.addAttribute("notice", notice);
+ 		model.addAttribute("imageFiles", imageFiles);
+ 		   
+ 		return "mypage/myReviewDetail";
+ 	}
 
     // JJ
     // 1:1문의 작성폼
@@ -392,11 +408,20 @@ public class MyPageController {
     }
 
     // JJ
-    // 게시판 내용 삭제하기
+    // 1:1문의 내용 삭제하기
     @GetMapping("/deleteNotice.do")
     public String deleteNotice(@RequestParam int no, @RequestParam int fileNo) {
+    	BoardVo existingBoard = boardService.selectNoticeDetail(no);
         boardService.deleteNotice(no, fileNo);
-        return "redirect:/mypage/qna.do?typeCode=QNA";
+        return "redirect:/mypage/qna.do?typeCode=" + existingBoard.getTypeCode();
     }
-
+    
+    // JJ
+    // 이용 후기 내용 삭제하기
+    @GetMapping("/deleteMyReview.do")
+    public String deleteMyReview(@RequestParam int no, @RequestParam int fileNo) {
+    	BoardVo existingBoard = boardService.selectNoticeDetail(no);
+        boardService.deleteNotice(no, fileNo);
+        return "redirect:/mypage/myReview.do?typeCode=" + existingBoard.getTypeCode();
+    }
 }

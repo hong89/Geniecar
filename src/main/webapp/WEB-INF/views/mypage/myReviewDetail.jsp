@@ -56,12 +56,6 @@
         border-bottom:#d1c9ff solid 2px;
         padding: 15px;
     }
-    .card img {
-        width: 100%;
-        height: 200px;
-        max-width: 100%;
-        max-height: 100%;
-    }
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -159,37 +153,32 @@
             <section>
                 <div class="pt-5">
                     <div class="inner-type2">
-                        <section class="text-center">
-                            <h1 class="tit">이용 후기</h1>
-                        </section>
-                        <div class="pt-3">
-                            <p>
-                                <span class="icon time2"></span><strong style="font-size: 30px;">이용 후기</strong>
-                                <span class="icon date2"></span>
-                            </p>
-                        </div><hr/>
-                        
-                        <div class="row row-cols-1 row-cols-md-3 g-4 P-5">
-                            <c:forEach var="notice" items="${boardList}">
-                            <div class="col">
-                              <div class="card h-100">
-                                <a href="/mypage/myReviewDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
-                                    <c:forEach var="imageFile" items="${notice.imageFiles}">
-                                        <c:if test="${not empty imageFile.saveName}">
-                                            <img src="/downloadFile/${imageFile.saveName}" alt="images">
-                                        </c:if>
-                                    </c:forEach>
-                                <div class="card-body">
-                                  <h5 class="card-title">${notice.title}</h5><hr/>
-                                  <p class="card-text">${notice.content}</p>
-                                </div>
-                                <div class="card-footer">작성일 :&nbsp;
-                                  <small class="text-muted">${notice.regDate}</small>
-                                </div>
-                                </a>
-                              </div>
-                            </div>
-                            </c:forEach>
+                        <p style="font-size:20px;">
+                            <strong>${notice.title}</strong>
+                            <span style="float: right; font-size:15px;">${notice.regDate}</span>
+                        </p><hr/>
+                        <div class="text-center">
+                            <p>${notice.content}</p>
+                            <div class="text-center">
+                            <c:if test="${not empty imageFiles}">
+                                <c:forEach var="imageFile" items="${imageFiles}">
+                                    <c:if test="${not empty imageFile.saveName}">
+                                        <div class="mb-3 row">
+                                            <div class="col-sm-12">
+                                                <img class="responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="300px" height="auto" aria-readonly="true">
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                </c:forEach>
+                            </c:if>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="p-5" style="text-align: center;">
+                            <a href="javascript:history.back();" class="btn text-white"
+                               style="background-color: #41087c;">목록가기</a>
+                            <a href="/mypage/deleteMyReview.do?no=${notice.no}&fileNo=${notice.fileNo}" class="btn text-white"
+                               style="background-color: #41087c;">삭제하기</a>
                         </div>
                     </div>
                 </div>

@@ -3,8 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
-
-
+    .table tbody tr td {
+        border-bottom:#d1c9ff solid 2px;
+        border-style: none;
+        padding: 15px;
+    }
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -100,14 +103,21 @@
                     <h2>따끈따끈한 공지사항</h2></a>
             </div>
             <div class="container col-8">
-                <div class="p-3">이용약관 변경에 대한 공지</div>
-                <div class="p-3">2024 대한민국 퍼스트브랜드 대상 20년 연속 수상</div>
-                <div class="p-3">수탁사 변경에 따른 개인정보 처리방침 변경에 대한 공지</div>
-                <div class="p-3">IoT서비스 명칭 변경 및 롯데렌탈회원(자체회원) 도입에 따른 개인정보 처리방침 및 이용약관 변경 공지</div>
+                <div class="pt-5">
+                    <table class="table">
+                        <tbody>
+                        <c:forEach var="notice" items="${boardList}" begin="0" end="4">
+                            <tr class="mhover">
+                                <td align="left"><a href="/customer/noticeDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
+                                </td>
+                                <td align="center">${notice.regDate}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
-
-
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>

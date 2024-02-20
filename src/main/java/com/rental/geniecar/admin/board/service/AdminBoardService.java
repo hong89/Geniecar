@@ -172,6 +172,9 @@ public class AdminBoardService {
 	public List<CommonCrudVo> selectBoardListById(Map<String, Object> paramMap) {
 		return boardDao.selectBoardListById(paramMap);
 	}
-	
+	public List<CommonCrudVo> selectQnaList(CommonCrudVo boardVo) {
+		List<CommonCrudVo> boardList = boardDao.selectQnaList(boardVo);
+		return boardList;
+	}
 	
 }

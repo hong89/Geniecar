@@ -48,7 +48,7 @@
                 <strong>${notice.title}</strong>
                 <span style="float: right; font-size:15px;">${notice.regDate}</span>
             </p><hr/>
-            <!-- <pre>${notice.content}</pre> -->
+            <!-- <p>${notice.content}</p> -->
             <div class="m-2 card-footer">이벤트 기간 :&nbsp;
                 <small class="text-muted">${notice.startDate} ~ ${notice.endDate}</small>
             </div>
