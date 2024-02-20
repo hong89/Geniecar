@@ -63,7 +63,8 @@
                     <label for="id" class="">성별</label>
                 </div>
                 <div class="col-auto">
-                    <p class="">${user.gender}</p>
+                    <c:if test='${user.gender eq "M" }'> 남성</c:if>
+                    <c:if test='${user.gender eq "F" }'> 여성</c:if>
                 </div>
             </div>
             <div class="row p-1 m-2">
@@ -127,7 +128,11 @@
                     <label for="joinDate" class="">탈퇴여부</label>
                 </div>
                 <div class="col-auto">
-                    <p class="">${user.withdrawalYn}</p>
+                    <p class="">
+                        <c:if test='${user.withdrawalYn eq "N" }'> 활동중</c:if>
+                        <c:if test='${user.withdrawalYn eq "Y" }'> 탙퇴</c:if>
+                        <c:if test='${user.withdrawalYn eq "K" }'> 강퇴</c:if>
+                    </p>
                 </div>
             </div>
             <div class="d-flex justify-content-center mt-4">

@@ -140,6 +140,7 @@
         if(isnull == ""){
             $('#submitBtn').click(function () {
                 $('#licenseNumber').val($("#licenseNumber1").val()+ "-" + $("#licenseNumber2").val() + "-" + $("#licenseNumber3").val() + "-" + $("#licenseNumber4").val());
+                chk();
                 $("form").attr("action", "/mypage/addLicense.do");
             });
         }
@@ -158,7 +159,9 @@
         }
         
     })
-
+    function chk(){
+        
+    }
 </script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -192,11 +195,6 @@
                         <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
                     </li>
                     <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
-                        <p>할인쿠폰</p>
-                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">${mypage.coupons}장</a>
-                    </li>
-                    <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>결제 내역</p>
                         <a href="/mypage/carSeller.do" class="underline"
@@ -223,13 +221,7 @@
                     <a href="/mypage/point.do" class="nav-link">포인트</a>
                 </li>
                 <li class="nav-item mb-4">
-                    <a href="/mypage/coupon.do" class="nav-link">할인쿠폰</a>
-                </li>
-                <li class="nav-item mb-4">
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
-                </li>
-                <li class="nav-item mb-4">
-                    <a href="/mypage/consult.do" class="nav-link">상담 신청</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/qna.do?typeCode=QNA" class="nav-link">1:1 문의</a>
@@ -254,7 +246,7 @@
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">운전면허 정보</h2>
             </div>
-            <form method="post" id="form">
+            <form method="post" id="form" name ="form">
                 <input type="hidden" value="${license}" id="isnull">
                 <div class="border rounded-3 row p-4 m-5" style="width: 670px; height: 422px; position: relative;">
                     <div id="">
@@ -271,7 +263,7 @@
                     </div>
                     <img src ="/images/blank-profile.png" id="imgProfil">
                     <div class = "" id="inputLicenseNumber">   
-                        <select id="licenseNumber1" class="border rounded-1" >
+                        <select id="licenseNumber1" name="licenseNumber1" class="border rounded-1" >
                             <option value="" selected="selected">선택</option>
                             <option value="11" >11</option>
                             <option value="12" >12</option>
@@ -291,7 +283,7 @@
                             <option value="26" >26</option>
                             <option value="27" >27</option>
                             <option value="28" >28</option>
-                            <option value="서울" >서울</option>
+                    <!--    <option value="서울" >서울</option>
                             <option value="부산" >부산</option>
                             <option value="경기" >경기</option>
                             <option value="강원" >강원</option>
@@ -306,7 +298,7 @@
                             <option value="인천" >인천</option>
                             <option value="광주" >광주</option>
                             <option value="대전" >대전</option>
-                            <option value="울산" >울산</option>
+                            <option value="울산" >울산</option>  -->
                         </select>
                         <input type="text" id="licenseNumber2" value="" maxlength="2" class="border rounded-1" oninput="onlyNumber()">
                         <input type="password" id="licenseNumber3" value="" maxlength="6" class="border rounded-1" oninput="onlyNumber()">

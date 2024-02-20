@@ -57,7 +57,10 @@
                     <label for="id" class="">성별</label>
                 </div>
                 <div class="col-auto">
-                    <p class="">${business.gender}</p>
+                    <p class="">
+                        <c:if test='${business.gender eq "M" }'> 남성</c:if>
+                        <c:if test='${business.gender eq "F" }'> 여성</c:if>
+                    </p>
                 </div>
             </div>
             <div class="row p-1 m-2">
