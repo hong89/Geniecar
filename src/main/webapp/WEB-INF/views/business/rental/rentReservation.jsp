@@ -64,9 +64,7 @@
                         <li class="page-item">
                             <a class="page-link" href="javascript:void(0);"
                                onclick="movePage(${idx},${pagination.cntPerPage}, ${pagination.pageSize});">
-                                    <%--<c:out value="${idx}"/>--%>
-                                <c:if test="${idx != 0}">${idx}</c:if>
-                                <c:if test="${idx == 0}">1</c:if>
+                                    <c:out value="${idx}"/>
                             </a>
                         </li>
                     </c:forEach>
