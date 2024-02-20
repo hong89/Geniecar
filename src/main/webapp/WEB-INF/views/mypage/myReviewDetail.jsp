@@ -181,6 +181,7 @@
                                style="background-color: #41087c;">삭제하기</a>
                         </div>
                     </div>
+                    </div>
                 </div>
             </section>
         </article>

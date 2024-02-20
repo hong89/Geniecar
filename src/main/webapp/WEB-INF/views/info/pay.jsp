@@ -20,7 +20,7 @@
     }
 
     .nav-item a {
-        color: #41087c;
+        color: black;
     }
 
     .nav-item a:hover {
@@ -43,6 +43,7 @@
 
     .nav-link.clicked {
         background-color: #d1c9ff;
+        color:black;
     }
 
 </style>

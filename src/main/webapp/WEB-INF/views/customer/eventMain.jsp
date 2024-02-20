@@ -55,7 +55,7 @@
                                 </c:if>
                             </c:if>
                         </c:forEach>
-                    <div class="card-body">
+                    <div class="card-body" style="overflow: hidden; height:70px;">
                       <h5 class="card-title">${notice.title}</h5>
                       <!-- <p class="card-text">${notice.content}</p> -->
                     </div>

@@ -71,15 +71,15 @@
                      <c:forEach var="notice" items="${boardList}">
                         <div class="col">
                             <div class="card h-100">
-                                <a href="/customer/reviewDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
+                                <a href="/admin/board/detailNotice.do?no=${notice.no}" style="text-decoration-line: none; color:black">
                                     <c:forEach var="imageFile" items="${notice.imageFiles}">
                                         <c:if test="${not empty imageFile.saveName}">
                                             <img src="/downloadFile/${imageFile.saveName}" alt="images">
                                         </c:if>
                                     </c:forEach>
                                 <div class="card-body">
-                                    <h5 class="card-title">${notice.title}</h5><hr/>
-                                    <p class="card-text">${notice.content}</p>
+                                    <h5 class="card-title" style="overflow: hidden; height:70px;">${notice.title}</h5><hr/>
+                                    <p class="card-text" style="overflow: hidden; height:70px;">${notice.content}</p>
                                 </div>
                                 <div class="card-footer">작성일 :&nbsp;
                                     <small class="text-muted">${notice.regDate}</small>

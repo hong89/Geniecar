@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <style>
     .table tbody tr td {
         border-bottom:#d1c9ff solid 2px;
@@ -15,31 +14,44 @@
     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="5000">
-                <img src="/images/main/main1.png" class="d-block w-100" alt="...">
+                <a class="page-link" href="/customer/eventMain.do?typeCode=EVENT">
+                    <img src="/images/main/main0.png" class="d-block w-100" alt="...">
+                </a>
             </div>
             <div class="carousel-item" data-bs-interval="5000">
-                <img src="/images/main/main2.png" class="d-block w-100" alt="...">
+                <a class="page-link" href="/customer/eventMain.do?typeCode=EVENT">
+                    <img src="/images/main/main1.png" class="d-block w-100" alt="...">
+                </a>
             </div>
             <div class="carousel-item" data-bs-interval="5000">
-                <img src="/images/main/main3.png" class="d-block w-100" alt="...">
+                <a class="page-link" href="/customer/eventMain.do?typeCode=EVENT">
+                    <img src="/images/main/main2.png" class="d-block w-100" alt="...">
+                </a>
             </div>
             <div class="carousel-item" data-bs-interval="5000">
-                <img src="/images/main/main4.png" class="d-block w-100" alt="...">
+                <a class="page-link" href="/customer/eventMain.do?typeCode=EVENT">
+                    <img src="/images/main/main3.png" class="d-block w-100" alt="...">
+                </a>
             </div>
             <div class="carousel-item" data-bs-interval="5000">
-                <img src="/images/main/main5.png" class="d-block w-100" alt="...">
+                <a class="page-link" href="/customer/eventMain.do?typeCode=EVENT">
+                    <img src="/images/main/main4.png" class="d-block w-100" alt="...">
+                </a>
             </div>
             <div class="carousel-item" data-bs-interval="5000">
-                <img src="/images/main/main6.png" class="d-block w-100" alt="...">
+                <a class="page-link" href="/customer/eventMain.do?typeCode=EVENT">
+                    <img src="/images/main/main5.png" class="d-block w-100" alt="...">
+                </a>
             </div>
             <div class="carousel-item" data-bs-interval="5000">
-                <img src="/images/main/main7.png" class="d-block w-100" alt="...">
+                <a class="page-link" href="/customer/eventMain.do?typeCode=EVENT">
+                    <img src="/images/main/main6.png" class="d-block w-100" alt="...">
+                </a>
             </div>
             <div class="carousel-item" data-bs-interval="5000">
-                <img src="/images/main/main8.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item" data-bs-interval="5000">
-                <img src="/images/main/main9.png" class="d-block w-100" alt="...">
+                <a class="page-link" href="/info/commuteRent.do">
+                    <img src="/images/main/main7.png" class="d-block w-100" alt="...">
+                </a>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"

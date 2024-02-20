@@ -55,8 +55,8 @@
                             </c:if>
                         </c:forEach>
                     <div class="card-body">
-                      <h5 class="card-title">${notice.title}</h5><hr/>
-                      <p class="card-text">${notice.content}</p>
+                      <h5 class="card-title" style="overflow: hidden; height:70px;">${notice.title}</h5><hr/>
+                      <p class="card-text" style="overflow: hidden; height:70px;">${notice.content}</p>
                     </div>
                     <div class="card-footer">작성일 :&nbsp;
                       <small class="text-muted">${notice.regDate}</small>
