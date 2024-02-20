@@ -148,7 +148,7 @@
                     <label for="carNumber" class="col-sm-3 col-form-label">고유번호<small>(6자리)</small></label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="carNumber" minlength="6" maxlength="6"
-                               oninput="this.value = this.value.replace(/^[a-zA-Z0-9]*$/g, '').replace(/(\..*)\./g, '$1');">
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                     </div>
                 </div>
                 <div class="mb-3 row">

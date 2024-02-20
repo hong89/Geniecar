@@ -203,7 +203,7 @@ public class AdminCarController {
         }*/
     @ResponseBody
     @GetMapping("/newCarDelete.do")
-    public ResponseEntity newCarDelete(@RequestParam int no) {
+    public ResponseEntity newCarDelete(@RequestParam("deleteNo") int no) {
         try {
             adminCarService.deleteNewCar(no);
             return ResponseEntity.ok("성공");
