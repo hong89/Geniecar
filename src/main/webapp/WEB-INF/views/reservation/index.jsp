@@ -88,14 +88,14 @@
         height: 38px;
     }
 
-    .car-disabled{
+    .car-disabled > .card{
         display: flex;
         align-items: center;
         justify-content: center;
         flex-flow: column;
         /*width: 100%;
         height: 100%;*/
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.6);
         color: #fff;
     }
 
@@ -692,12 +692,12 @@
                         <li class="list-group-item" style="height: 70px;">
                             <div class="row">
                                 <div class="col-1 location-name <c:if test='${regionType ne "1"}'>region-on</c:if>" style="background: #f1f1f1; color: #8f9191">
-                                    <a href="index.do?regionType=2">
+                                    <a href="index.do?regionType=2" style="display: block;">
                                         제주
                                     </a>
                                 </div>
                                 <div class="col-1 location-name <c:if test='${regionType eq "1"}'>region-on</c:if>" style="background: #f1f1f1; color: #8f9191" >
-                                    <a href="index.do?regionType=1">
+                                    <a href="index.do?regionType=1" style="display: block;">
                                         내륙
                                     </a>
                                 </div>
@@ -729,7 +729,7 @@
 
                                 </div>
                                 <%--/reservation/step2.do #f8f7fd--%>
-                                <div class="col-2" id="searchName" style="background: #ddd;" >
+                                <div class="col-2" id="searchName" style="background: #ddd; display: block; " >
                                     차량 검색하기
                                 </div>
                             </div>
@@ -1012,10 +1012,10 @@
             <div class="col-6 cursor-pointer rental-car {{carDisabled}}" data-car-no="{{carNo}}" data-per-sale="{{perSale}}">
                 <div class="card mb-3">
                     <div class="row g-0">
-                        <div class="col-md-4">
+                        <div class="col-md-5 align-self-center">
                             <img src="/images/carImage/{{carNo}}.png" class="img-fluid rounded-start" style="padding-top: 20px; margin-left: 5px;" alt="{{carName}}">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="card-body">
                                 <p class="card-text" data-car-name="{{carName}}">{{carName}}</p>
                                 <p class="card-text sale-cost" data-sale-cost="{{saleCost}}" style="color: red">{{fmSaleCost}}원<small>({{perSale}}%) 할인</small></p>
