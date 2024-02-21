@@ -50,7 +50,7 @@
                     <p>
                         <span class="icon time2"></span><strong>운영시간</strong>06:00 ~ 23:00 (평일/주말 동일, 연중무휴)
                         <span class="icon date2"></span>
-                        <a href="/reservation/index.do" class="underline" style="float: right;">제주렌터카 예약하기</a>
+                        <a href="/reservation/index.do?regionType=2" class="underline" style="float: right;">제주렌터카 예약하기</a>
                     </p>
                 </div>
                 <div class="pt-5 section-explain">
@@ -322,7 +322,7 @@
                             </div>
                         </div>
                         <div class="pt-5" style="text-align: center;">
-                            <a href="/reservation/index.do" class="btn btn-purple"
+                            <a href="/reservation/index.do?regionType=2" class="btn btn-purple"
                                style="background-color: #41087c; color:white;">제주렌터카 예약하기</a>
                         </div>
                         <div class="pt-5">
