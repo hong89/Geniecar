@@ -133,33 +133,33 @@
             <br/><br/>
             <table class="table table-bordered reservationTable">
                 <tr>
-                    <th scope="row">예약자명</th>
-                    <td>${member.name}</td>
-                    <th scope="row">전화번호</th>
-                    <td>${member.hp}</td>
+                    <th class="col-1">예약자명</th>
+                    <td class="col-3">${member.name}</td>
+                    <th class="col-1">전화번호</th>
+                    <td class="col-3">${member.hp}</td>
                 </tr>
                 <tr>
-                    <th scope="row">예약일자</th>
+                    <th>예약일자</th>
                     <td><fmt:formatDate value="${reservation.regDate}" pattern="yyyy-MM-dd"/></td>
-                    <th scope="row">예약번호</th>
+                    <th>예약번호</th>
                     <td>${reservation.reservationNo}</td>
                 </tr>
                 <tr>
-                    <th scope="row">대여일시</th>
+                    <th>대여일시</th>
                     <td><fmt:formatDate value="${reservation.rentalDate}" pattern="yyyy-MM-dd(E) HH:mm"/></td>
-                    <th scope="row">반납일시</th>
+                    <th>반납일시</th>
                     <td><fmt:formatDate value="${reservation.returnDate}" pattern="yyyy-MM-dd(E) HH:mm"/></td>
                 </tr>
                 <tr>
-                    <th scope="row">대여지점</th>
+                    <th>대여지점</th>
                     <td>${reservation.rentalPlaceName}</td>
-                    <th scope="row">반납지점</th>
+                    <th>반납지점</th>
                     <td>${reservation.returnPlaceName}</td>
                 </tr>
                 <tr>
-                    <th scope="row">대여주소</th>
+                    <th>대여주소</th>
                     <td>${reservation.rentalPlaceAddress}</td>
-                    <th scope="row">반납주소</th>
+                    <th>반납주소</th>
                     <td>${reservation.returnPlaceAddress}</td>
                 </tr>
             </table>
