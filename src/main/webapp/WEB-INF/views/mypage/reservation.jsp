@@ -55,7 +55,21 @@
     .tab-content > div {
         padding: 30px;
     }
+    .card-footer a{
+        color: #23093d;
+        text-decoration: none;
+    }
+    .cnacel {
+        color: white;
+        background-color: #41087c;
+        opacity:0.8;
+    }
 </style>
+<script>
+    $(function () {
+        var now = new Date();
+    })
+</script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="pb-5 position-relative">
@@ -173,11 +187,18 @@
                 </ul>
 
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active border-bottom" id="contact1" role="tabpanel" aria-labelledby="contact-tab1">
+                    <div class="tab-pane fade show active border-bottom text-center" id="contact1" role="tabpanel" aria-labelledby="contact-tab1">
+                        <c:if test="${reservationList == []}">
+                            <h5 class="mt-5 pt-3">이용중인 렌터카 차량이 없습니다.</h5>
+                            <button type="button" class="btn m-3 mb-5 " style="background-color: #41087c; color: #f8f7fd;">제주/내륙 렌터카 예약하기 </button>
+                        </c:if>
                         <c:forEach var="reservation" items="${reservationList }">
                             <div class="card text-center mb-3" style="width: 80%">
-                                <div class="card-header">
-                                    ${reservation.carName}
+                                <div class="card-header position-relative" style="background-color: #f8f7fd; min-height: 50px;">
+                                    <span class="position-absolute top-50 start-50 translate-middle">${reservation.carName}</span>
+                                <c:if test="${reservation.cancelYn eq 'Y'}">
+                                    <span class="rounded-pill p-1 ps-3 pe-3 me-3 position-absolute top-1 end-0 cnacel" >취소</span>
+                                </c:if>
                                 </div>
                                 <div class="card-body">
                                     <div class="text-body-secondary">
@@ -201,7 +222,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="card-footer">
+                                <div class="card-footer " style="background-color: #f8f7fd;">
                                     <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}">상세정보 확인하기</a>
                                 </div>
                             </div>
@@ -218,7 +239,43 @@
                          aria-labelledby="contact-tab5">.5..
                     </div>
                     <div class="tab-pane fade border-bottom" id="contact6" role="tabpanel"
-                         aria-labelledby="contact-tab6">.6..
+                         aria-labelledby="contact-tab6">
+                        <c:forEach var="reservation" items="${reservationList }">
+                            <c:if test="${reservation.cancelYn eq 'Y'}">
+                                <div class="card text-center mb-3" style="width: 80%">
+                                    <div class="card-header">
+                                        ${reservation.carName}
+                                        <span class="float-end ">취소</span>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text-body-secondary">
+                                            <table id="shortRental">
+                                                <tr>
+                                                    <td style="width: 150px;">예약일자</td>
+                                                    <td><fmt:formatDate value="${reservation.regDate}" pattern="yyyy-MM-dd"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>예약번호</td>
+                                                    <td>${reservation.reservationNo}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>대여일시/지점</td>
+                                                    <td><fmt:formatDate value="${reservation.rentalDate}" pattern="yyyy-MM-dd(E) HH:mm"/> / ${reservation.rentalPlaceName} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>반납일시/지점</td>
+                                                    <td><fmt:formatDate value="${reservation.returnDate}" pattern="yyyy-MM-dd(E) HH:mm"/> / ${reservation.rentalPlaceName}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}">상세정보 확인하기</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
                     </div>
                     <ul class="mt-3 lh-lg">
                         <li>최근 90일 이내 예약건만 확인이 가능합니다.</li>

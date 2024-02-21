@@ -159,9 +159,65 @@
         }
         
     })
-    function chk(){
-        
+    function check() {
+      var form = document.form;
+      if (!form.licenseGradeCode.value) {
+            alert("면허 종류를 선택해 주세요");
+            form.licenseGradeCode.focus();
+            return false;
+        }else if(!form.licenseNumber1.value){
+            alert("면허 번호를 입력해주세요");
+            form.licenseNumber1.focus();
+            return false;
+        }else if(!form.licenseNumber2.value){
+            alert("면허 번호를 입력해주세요");
+            form.licenseNumber2.focus();
+            return false;
+        }else if(form.licenseNumber2.value.length<2){
+            alert("면허 번호를 올바르게 입력해주세요");
+            form.licenseNumber2.focus();
+            return false;
+        }else if(!form.licenseNumber3.value){
+            alert("면허 번호를 입력해주세요");
+            form.licenseNumber3.focus();
+            return false;
+        }else if(form.licenseNumber3.value.length<6){
+            alert("면허 번호를 올바르게 입력해주세요");
+            form.licenseNumber3.focus();
+            return false;
+        }else if(!form.licenseNumber4.value){
+            alert("면허 번호를 입력해주세요");
+            form.licenseNumber4.focus();
+            return false;
+        }else if(form.licenseNumber4.value.length<2){
+            alert("면허 번호를 올바르게 입력해주세요");
+            form.licenseNumber4.focus();
+            return false;
+        }else if(!form.driverName.value){
+            alert("이름을 입력해주세요");
+            form.driverName.focus();
+            return false;
+        }else if(!form.driverBirth.value){
+            alert("생년월일을 입력해주세요");
+            form.driverBirth.focus();
+            return false;
+        }else if(!form.licenseIssueDate.value){
+            alert("만료일자를 입력해주세요");
+            form.licenseIssueDate.focus();
+            return false;
+        }else if(!form.licenseIssueDate.value){
+            alert("발급일자를 입력해주세요");
+            form.licenseIssueDate.focus();
+            return false;
+        }
     }
+    function chkCharCode(event) {
+            const regExp = /[^ㄱ-힣]/g;
+            const ele = event.target;
+            if (regExp.test(ele.value)) {
+                ele.value = ele.value.replace(regExp, '');
+            }
+        };
 </script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -249,7 +305,7 @@
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">운전면허 정보</h2>
             </div>
-            <form method="post" id="form" name ="form">
+            <form method="post" id="form" name ="form" onsubmit="return check()">
                 <input type="hidden" value="${license}" id="isnull">
                 <div class="border rounded-3 row p-4 m-5" style="width: 670px; height: 422px; position: relative;">
                     <div id="">
@@ -311,7 +367,7 @@
                     <div id="">
                         <label for="driverName" id="labelName">이름</label>
                         <div class="">
-                            <input type="text" id="inputName" name = "driverName" class="border rounded-1" value="${license.driverName}">
+                            <input type="text" id="inputName" name = "driverName" class="border rounded-1" value="${license.driverName}" onkeyup="chkCharCode(event)">
                             <input type="hidden" name="memberId" value="${member.id}">
                         </div>
                     </div>

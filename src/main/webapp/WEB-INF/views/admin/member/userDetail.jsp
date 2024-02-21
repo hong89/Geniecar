@@ -6,19 +6,23 @@
 <script>
     function fn_kick() {
         var id = $("#id").val();
-        $.ajax({
-            type: "get",
-            url: "/admin/member/kick.do",
-            dataType: "text",
-            data: { id: id },
-            success: function (data, Status) {
-                alert("완료되었습니다.");
-                document.location.reload();
-            },
-            error: function (data, Status) {
-                alert("에러가 발생했습니다.");
-            }
-        });
+        if(confirm("내보내기 하시겠습니까?")){
+            $.ajax({
+                type: "get",
+                url: "/admin/member/kick.do",
+                dataType: "text",
+                data: { id: id },
+                success: function (data, Status) {
+                    alert("내보내기가 완료되었습니다.");
+                    document.location.reload();
+                },
+                error: function (data, Status) {
+                    alert("에러가 발생했습니다.");
+                }
+            });
+        }
+        
+        
     }
     function mask(strName){
         if (strName.length > 2) {
