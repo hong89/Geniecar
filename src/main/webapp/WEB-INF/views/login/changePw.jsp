@@ -34,21 +34,39 @@
 </script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
-    <form method="post" name = "changePw" action="/login/dochangePw.do">
-        <label>새 비밀번호</label>
-        <input type="password" name="pw" id= "pw">
-        <label>새 비밀번호 확인</label>
-        <input type="password" name="pw_" id="pw_">
-        <input type="hidden" id = "id" name = "id" value="${id}">
-        <button id="submitBtn">변경하기</button>
+    <div class = "row">
+        <div class="col"></div>
+        <div class="col text-center">
+            <h1 class="m-5 text-center fw-bolder">비밀번호 변경</h1>
+            <form method="post" name = "changePw" action="/login/dochangePw.do"> 
+                <p class="form-text text-center pt-3 pb-2">
+                    8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
+                </p>               
+                <div class="row mb-4">
+                    <div class="col">
+                        <label for ="pw" class="col-form-label">새 비밀번호</label>
+                    </div>
+                    <div class="col">
+                        <input type="password" name="pw" id= "pw" class="form-control" style="width: 210px;">
+                    </div>
+                </div>
+                
+                <div class="row mb-5">
+                    <div class="col r">
+                        <label class="col-form-label" for="pw_">새 비밀번호 확인</label>
+                    </div>
+                    <div class="col ">
+                        <input class="form-control" type="password" name="pw_" id="pw_"  style="width: 210px;">
+                    </div>
+                    <input type="hidden" id = "id" name = "id" value="${id}" >
+                </div>
+                
+                <button type="button" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;" >변경하기</button>
+        
+            </form>
 
-    </form>
-    
-
-
-
-
-
-
+        </div>
+        <div class="col"></div>
+    </div>
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>

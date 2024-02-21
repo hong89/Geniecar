@@ -80,11 +80,6 @@
                         <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
                     </li>
                     <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
-                        <p>할인쿠폰</p>
-                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">${mypage.coupons}장</a>
-                    </li>
-                    <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>결제 내역</p>
                         <a href="/mypage/carSeller.do" class="underline"
@@ -111,18 +106,18 @@
                     <a href="/mypage/point.do" class="nav-link">포인트</a>
                 </li>
                 <li class="nav-item mb-4">
-                    <a href="/mypage/coupon.do" class="nav-link">할인쿠폰</a>
-                </li>
-                <li class="nav-item mb-4">
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
                 </li>
                 <li class="nav-item mb-4">
+<<<<<<< HEAD
                     <a href="/mypage/myReview.do?typeCode=REVIEW" class="nav-link">이용 후기</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/consult.do" class="nav-link">상담 신청</a>
                 </li>
                 <li class="nav-item mb-4">
+=======
+>>>>>>> HKY
                     <a href="/mypage/qna.do?typeCode=QNA" class="nav-link">1:1 문의</a>
                 </li>
                 <li class="nav-item mb-4">
@@ -183,7 +178,7 @@
                                 <tr>
                                     <td>${point.history}</td>
                                     <td><fmt:formatDate value="${point.regDate}" pattern="yyyy-MM-dd" /></td>
-                                    <td>${point.point}</td>
+                                    <td>${point.increase}${point.point}</td>
                                 </tr>
                             </c:forEach>
                         </tbody>
@@ -205,7 +200,7 @@
                                         <td>${point.history}
                                         </td>
                                         <td><fmt:formatDate value="${point.regDate}" pattern="yyyy-MM-dd" /></td>
-                                        <td>${point.point}</td>
+                                        <td>${point.increase}${point.point}</td>
                                     </tr>
                                 </c:if>
                             </c:forEach>
@@ -228,7 +223,7 @@
                                         <td>${point.history}
                                         </td>
                                         <td><fmt:formatDate value="${point.regDate}" pattern="yyyy-MM-dd" /></td>
-                                        <td>${point.point}</td>
+                                        <td>${point.increase}${point.point}</td>
                                     </tr>
                                 </c:if>
                             </c:forEach>

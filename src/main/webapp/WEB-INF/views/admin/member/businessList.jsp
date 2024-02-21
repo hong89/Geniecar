@@ -12,7 +12,6 @@
             <table class="pt-5 table">
                 <thead>
                 <tr>
-                    <td align="center" scope="col">No.</td>
                     <td align="center" scope="col">ID</td>
                     <td align="center" scope="col"><strong>이름</strong></td>
                     <td align="center" scope="col"><strong>지점명</strong></td>
@@ -22,7 +21,6 @@
                 <tbody>
                     <c:forEach var="business" items="${businessList }" varStatus="status">
                         <tr>
-                            <td align="center">${status.count}</td>
                             <td align="center">${business.ID}</td>
                             <td align="center"><a href="/admin/member/businessDetail.do?id=${business.ID}">${business.NAME }</a></td>
                             <td align="center">${business.BRANCH}</td>
