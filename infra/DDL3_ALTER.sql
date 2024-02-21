@@ -38,11 +38,6 @@ ALTER TABLE RENTAL_CAR_BRANCH
 
 
 ------------------------------------------------------------------- 차량 테이블
--- 차량명 코드 (공통코드 FK)
-/*ALTER TABLE NEW_CAR
-    ADD CONSTRAINT NC_CAR_NAME_CODE_FK
-        FOREIGN KEY (CAR_NAME_CODE)
-            REFERENCES COMMON_CODE (FULL_CODE);*/
 -- 차종 코드 (공통코드 FK)
 ALTER TABLE NEW_CAR
     ADD CONSTRAINT NC_CAR_TYPE_CODE_FK
@@ -81,32 +76,6 @@ ALTER TABLE RENTAL_CAR_BRANCHES_CAR
     ADD CONSTRAINT RCBC_MOD_ID_FK
         FOREIGN KEY (MOD_ID)
             REFERENCES MEMBER (ID);
-
-
-------------------------------------------------------------------- 쿠폰 테이블
--- 지점 코드 (공통코드 FK)
-ALTER TABLE COUPON
-    ADD CONSTRAINT C_ABLE_REGION_FK
-        FOREIGN KEY (ABLE_REGION)
-            REFERENCES COMMON_CODE (FULL_CODE);
--- 생성자 (회원 아이디 FK)
-ALTER TABLE COUPON
-    ADD CONSTRAINT C_REG_ID_FK
-        FOREIGN KEY (REG_ID)
-            REFERENCES MEMBER (ID);
-
-
-------------------------------------------------------------------- 회원 보유 쿠폰 테이블
--- 회원아이디 (회원아이디 FK)
-ALTER TABLE MEMBER_COUPONS
-    ADD CONSTRAINT MC_MEMBER_ID_FK
-        FOREIGN KEY (MEMBER_ID)
-            REFERENCES MEMBER (ID);
--- 쿠폰 번호 (쿠폰 FK)
-ALTER TABLE MEMBER_COUPONS
-    ADD CONSTRAINT MC_COUPONS_SERIAL_NO_FK
-        FOREIGN KEY (COUPONS_SERIAL_NO)
-            REFERENCES COUPON (SERIAL_NO);
 
 
 ------------------------------------------------------------------- 포인트 테이블
@@ -179,4 +148,12 @@ ALTER TABLE RENTAL_CAR_RESERVATION
 ALTER TABLE LICENSE
     ADD CONSTRAINT L_MEMBER_ID_FK
         FOREIGN KEY (MEMBER_ID)
+            REFERENCES MEMBER (ID);
+
+
+------------------------------------------------------------------- 결제 테이블
+-- 등록자 (회원아이디 FK)
+ALTER TABLE PAYMENT
+    ADD CONSTRAINT P_REG_ID_FK
+        FOREIGN KEY (REG_ID)
             REFERENCES MEMBER (ID);
