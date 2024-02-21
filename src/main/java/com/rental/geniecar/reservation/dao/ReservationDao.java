@@ -27,4 +27,8 @@ public interface ReservationDao {
     void savePayment(ReservationSaveVo reservationSaveVo);
 
     RentalCarReservationVo selectReservationOne(String reservationNo);
+
+    String selectOneAvailableRentalCarIdentificationNumber(ReservationSaveVo reservationSaveVo);
+
+    void updateReservationCancel(String reservationNo);
 }

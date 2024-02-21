@@ -94,4 +94,11 @@ public class ReservationController {
         RentalCarReservationVo rentalCarReservationVo = reservationService.saveRentalCarReservationSuccess(reservationSaveVo);
         return ResponseEntity.ok().body(rentalCarReservationVo);
     }
+
+    @PostMapping("/reservationCancel.do")
+    @ResponseBody
+    public String reservationCancel(String reservationNo){
+        reservationService.updateReservationCancel(reservationNo);
+        return "정상적으로 예약이 취소되었습니다.";
+    }
 }

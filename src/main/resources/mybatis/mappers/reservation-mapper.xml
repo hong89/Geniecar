@@ -44,9 +44,11 @@
 										,NC.NO AS CAR_NO
 								   FROM RENTAL_CAR_BRANCHES_CAR RCBC
 						 LEFT JOIN RENTAL_CAR_RESERVATION RCR ON RCR.CAR_IDENTIFICATION_NUMBER = RCBC.CAR_IDENTIFICATION_NUMBER
+							   AND RCR.CANCEL_YN = 'N'
 						INNER JOIN RENTAL_CAR RC ON RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
 						INNER JOIN NEW_CAR NC ON RC.CAR_NO = NC.NO
 						WHERE RCBC.RENTAL_CAR_BRANCH_NO = #{rentalPlaceCd}
+
 						  <if test="typeCodes != null and !typeCodes.isEmpty()">
 							AND NC.CAR_TYPE_CODE IN
 							<foreach collection="typeCodes" item="typeCode"	separator="," open="(" close=")"  >
@@ -68,6 +70,27 @@
 						)
 			GROUP BY CAR_NO) ARTC ON NC.NO = ARTC.CAR_NO) T
 		ORDER BY T.RENTAL_AVAILABLE DESC, T.DEFAULT_COST
+	</select>
+
+	<select id="selectOneAvailableRentalCarIdentificationNumber" resultType="java.lang.String" parameterType="com.rental.geniecar.domain.reservation.ReservationSaveVo">
+		SELECT CAR_IDENTIFICATION_NUMBER FROM (
+			  SELECT CASE WHEN RENTAL_DATE <![CDATA[<=]]> TO_DATE(#{returnDate}, 'YYYY-MM-DD HH24:MI') AND
+							   RETURN_DATE <![CDATA[>=]]> TO_DATE(#{rentalDate}, 'YYYY-MM-DD HH24:MI')
+						    OR RENTAL_DATE <![CDATA[<=]]> TO_DATE(#{rentalDate}, 'YYYY-MM-DD HH24:MI') AND
+						  	   RETURN_DATE <![CDATA[>=]]> TO_DATE(#{rentalDate}, 'YYYY-MM-DD HH24:MI')
+						    OR RENTAL_DATE <![CDATA[<=]]> TO_DATE(#{returnDate}, 'YYYY-MM-DD HH24:MI') AND
+						  	   RETURN_DATE <![CDATA[>=]]> TO_DATE(#{returnDate}, 'YYYY-MM-DD HH24:MI')
+							   THEN 'N' ELSE 'Y' END AS AVAILABILITY
+						 ,RCBC.CAR_IDENTIFICATION_NUMBER
+			    FROM RENTAL_CAR_BRANCHES_CAR RCBC
+				LEFT JOIN RENTAL_CAR_RESERVATION RCR ON RCR.CAR_IDENTIFICATION_NUMBER = RCBC.CAR_IDENTIFICATION_NUMBER
+					  AND RCR.CANCEL_YN = 'N'
+				INNER JOIN RENTAL_CAR RC ON RCBC.CAR_IDENTIFICATION_NUMBER = RC.CAR_IDENTIFICATION_NUMBER
+				INNER JOIN NEW_CAR NC ON RC.CAR_NO = NC.NO
+				WHERE RCBC.RENTAL_CAR_BRANCH_NO = #{rentalPlace}
+				  AND NC.NO = #{carNo}
+				ORDER BY RETURN_DATE)
+		 WHERE AVAILABILITY = 'Y' AND ROWNUM = 1
 	</select>
 
 	<select id="selectDetailCar" resultType="newCarVo" parameterType="int">
@@ -190,5 +213,10 @@
 		FROM RENTAL_CAR_RESERVATION
 	   WHERE RESERVATION_NO = #{reservationNo}
 	</select>
+
+	<update id="updateReservationCancel" parameterType="java.lang.String">
+		UPDATE RENTAL_CAR_RESERVATION SET CANCEL_YN = 'Y'
+         WHERE RESERVATION_NO = #{reservationNo}
+	</update>
 
 </mapper>
