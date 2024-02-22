@@ -9,7 +9,7 @@
         if (page == null || page == '' || page == 'undefined') {
             page = 1;
         }
-        location.href = "/admin/board/list.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
+        location.href = "/admin/business/qnaList.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
     }
 </script>
 <style>
@@ -21,6 +21,14 @@
     .table tbody tr td {
         border-bottom:#d1c9ff solid 2px;
         padding: 15px;
+    }
+    pre {
+        margin: auto 0;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 16px;
     }
 </style>
 <div class="container-xl">
@@ -77,7 +85,7 @@
                     <c:forEach var="notice" items="${boardList}">
                         <tr>
                             <td align="center">${notice.no}</td>
-                            <td align="left"><a href="/admin/board/detailNotice.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
+                            <td align="left"><pre><a href="/admin/board/detailNotice.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</pre></a>
                             </td>
                             <td align="center">${notice.regDate}</td>
                         </tr>

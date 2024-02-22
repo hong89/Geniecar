@@ -104,12 +104,14 @@
 		         , ROW_NUMBER() OVER(ORDER BY NO DESC) AS RN
 		    FROM BOARD
 		    WHERE TYPE_CODE = 'QNA'
+		    <if test='title != null'>
+           		AND TITLE LIKE '%' || #{title} || '%'
+        	</if> 
 			)
 				SELECT LEVEL
-					 , LPAD(' ', 2*(LEVEL-1)) || TITLE
 				     , NO
 				     , PARENT_NO
-				     , TITLE
+				     , LPAD(' ', 5*(LEVEL-1)) || CASE WHEN LEVEL > 1 THEN '[답변]: ' ELSE '' END || TITLE AS TITLE
 				     , CONTENT
 				     , HIT
 				     , TYPE_CODE
@@ -123,7 +125,12 @@
 				FROM Hierarchical_Board
 				START WITH PARENT_NO = 0
 				CONNECT BY PRIOR NO = PARENT_NO
-				ORDER SIBLINGS BY NO DESC
+		
+    		<!--<![CDATA[
+   			 	AND RN >= #{startPage} 
+    			AND RN < #{startPage} + #{pageSize} 
+    		]]>-->
+				ORDER SIBLINGS BY RN ASC
 	</select>
 	
 	<select id="selectBoardListSize" parameterType="boardVo">
