@@ -1,12 +1,23 @@
 package com.rental.geniecar.login.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.security.SecureRandom;
 import java.util.Map;
+import java.util.function.Consumer;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rental.geniecar.domain.api.NaverToken;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +25,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.login.service.LoginService;
 
 import lombok.RequiredArgsConstructor;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/login")
@@ -30,9 +45,21 @@ public class LoginController {
 
 	//ruddud
 	@GetMapping("/login.do")
-	public String login(HttpSession session){
+	public String login(HttpSession session, Model model) throws UnsupportedEncodingException {
 		session.getAttribute("isLogOn");
-		System.out.println(session.getAttribute("isLogOn"));
+		//System.out.println(session.getAttribute("isLogOn"));
+
+		String clientId = "UzPVeRTcU83j7OZ_dIac";//애플리케이션 클라이언트 아이디값";
+		String redirectURI = URLEncoder.encode("http://localhost:8085/login/naverLogin.do", "UTF-8");
+		SecureRandom random = new SecureRandom();
+		String state = new BigInteger(130, random).toString();
+		String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code"
+				+ "&client_id=" + clientId
+				+ "&redirect_uri=" + redirectURI
+				+ "&state=" + state;
+		session.setAttribute("state", state);
+		model.addAttribute("apiURL", apiURL);
+
         return "login/login";
     }
 	//ruddud
@@ -145,7 +172,67 @@ public class LoginController {
 	//hsh
 	//Todo 네이버 로그인 요청
 	@GetMapping("/naverLogin.do")
-	public String naverLogin(){
+	public String naverLogin(HttpServletRequest request, Model model, RedirectAttributes ra) {
+
+		try {
+			String clientId = "UzPVeRTcU83j7OZ_dIac";//애플리케이션 클라이언트 아이디값";
+			String clientSecret = "GUacqebacy";//애플리케이션 클라이언트 시크릿값";
+			String code = request.getParameter("code");
+			String state = request.getParameter("state");
+			String redirectURI = URLEncoder.encode("http://localhost:8085/login/naverLogin.do", "UTF-8");
+			String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code"
+					+ "&client_id=" + clientId
+					+ "&client_secret=" + clientSecret
+					+ "&redirect_uri=" + redirectURI
+					+ "&code=" + code
+					+ "&state=" + state;
+
+			URL url = new URL(apiURL);
+			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+			con.setRequestMethod("GET");
+			int responseCode = con.getResponseCode();
+			BufferedReader br;
+
+			if (responseCode == 200) { // 정상 호출
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			} else {  // 에러 발생
+				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+			}
+			String inputLine;
+			StringBuilder res = new StringBuilder();
+
+			while ((inputLine = br.readLine()) != null) {
+				res.append(inputLine);
+			}
+			br.close();
+
+			if(responseCode == 200) {
+				var objectMapper = new ObjectMapper();
+				NaverToken naverToken = objectMapper.readValue(res.toString(), NaverToken.class);
+				WebClient webClient = WebClient.builder()
+						.baseUrl("https://openapi.naver.com/v1/nid/me")
+						.defaultHeaders(httpHeaders -> {
+							httpHeaders.setBearerAuth(naverToken.getAccessToken());
+							httpHeaders.add("Host", "openapi.naver.com");
+							httpHeaders.add("Accept", "*/*");
+							httpHeaders.add("Pragma", "no-cache");
+							httpHeaders.add("User-Agent", "curl/7.12.1 (i686-redhat-linux-gnu) libcurl/7.12.1 OpenSSL/0.9.7a zlib/1.2.1.2 libidn/0.5.6");
+						})
+						.build();
+
+				Mono<Map> mapMono = webClient.get().retrieve().bodyToMono(Map.class);
+				Map naverMemberInfo = (Map) mapMono.block().get("response");
+				//TODO naverMemberInfo 정보로 로그인 객체 생성 => 세션에 담기
+				//네이버 로그인 전 회원가입
+			}
+			else{
+				ra.addFlashAttribute("errorMsg", "네이버 로그인이 실패하였습니다.");
+				return "redirect:login.do";
+			}
+		} catch (IOException e){
+			log.error(e.getMessage());
+		}
+
 		return "login/naverLogin";
 	}
 }

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <style>
     a{
         text-decoration: none;
@@ -114,7 +113,8 @@
                 <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=cf11928680449247d8d486d6f2f78403&redirect_uri=http://localhost:8085/main/index.do">
                     <img src="/images/kakao_login_large_wide.png" class="w-100 mt-3" /></a>
                 <!-- //네이버 로그인 버튼 노출 영역 -->
-                <div id="naver_id_login" class="w-100 mt-3"></div>
+                <a href="${apiURL}"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+                <%--<div id="naver_id_login" class="w-100 mt-3"></div>--%>
                 <div class="w-100 mt-3 text-center"><a href="/login/findId.do">아이디 찾기</a>/<a href="/login/findPw.do">비밀번호 찾기</a></div>
                 <div class="w-100 mt-3 text-center"><a href="/member/memberJoin.do">회원가입</a>/<a href="/member/businessJoin.do">사업자 회원가입</a></div>
             </form>
@@ -125,12 +125,7 @@
 </div>
 
 <script>
-    // hsh
-        var naver_id_login = new naver_id_login("UzPVeRTcU83j7OZ_dIac", "http://localhost:8085/login/naverLogin.do");
-        var state = naver_id_login.getUniqState();
-        naver_id_login.setButton("green", 3, 90);
-        naver_id_login.setDomain("http://localhost:8085/login/login.do");
-        naver_id_login.setState(state);
-        naver_id_login.setPopup();
-        naver_id_login.init_naver_id_login();
+    <c:if test="${not empty errorMsg}">
+        alert('${errorMsg}');
+    </c:if>
 </script>
