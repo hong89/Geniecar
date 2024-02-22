@@ -115,15 +115,6 @@
                     <img src="/images/kakao_login_large_wide.png" class="w-100 mt-3" /></a>
                 <!-- //네이버 로그인 버튼 노출 영역 -->
                 <div id="naver_id_login" class="w-100 mt-3"></div>
-                <script type="text/javascript">
-                    var naver_id_login = new naver_id_login("4vXvpWdKFJd1iXo7QRxe", "http://localhost:8085/mypage/main.do");
-                    var state = naver_id_login.getUniqState();
-                    naver_id_login.setButton("green", 3, 90);
-                    naver_id_login.setDomain("http://localhost:8085");
-                    naver_id_login.setState(state);
-                    naver_id_login.setPopup();
-                    naver_id_login.init_naver_id_login();
-                </script>
                 <div class="w-100 mt-3 text-center"><a href="/login/findId.do">아이디 찾기</a>/<a href="/login/findPw.do">비밀번호 찾기</a></div>
                 <div class="w-100 mt-3 text-center"><a href="/member/memberJoin.do">회원가입</a>/<a href="/member/businessJoin.do">사업자 회원가입</a></div>
             </form>
@@ -134,78 +125,12 @@
 </div>
 
 <script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    // hsh
+        var naver_id_login = new naver_id_login("UzPVeRTcU83j7OZ_dIac", "http://localhost:8085/login/naverLogin.do");
+        var state = naver_id_login.getUniqState();
+        naver_id_login.setButton("green", 3, 90);
+        naver_id_login.setDomain("http://localhost:8085/login/login.do");
+        naver_id_login.setState(state);
+        naver_id_login.setPopup();
+        naver_id_login.init_naver_id_login();
 </script>

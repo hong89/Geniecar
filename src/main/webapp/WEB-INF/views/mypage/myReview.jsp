@@ -94,11 +94,6 @@
                         <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
                     </li>
                     <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
-                        <p>할인쿠폰</p>
-                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">${mypage.coupons}장</a>
-                    </li>
-                    <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>결제 내역</p>
                         <a href="/mypage/carSeller.do" class="underline"
@@ -123,9 +118,6 @@
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/point.do" class="nav-link">포인트</a>
-                </li>
-                <li class="nav-item mb-4">
-                    <a href="/mypage/coupon.do" class="nav-link">할인쿠폰</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
