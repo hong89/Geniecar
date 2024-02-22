@@ -51,7 +51,7 @@ public class LoginController {
 				
 				response.sendRedirect("/main/index.do");	
 			} else if(memberVo.getWithdrawalYn().equals("K")) {
-				out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요');history.back();</script>");
+				out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요.');history.back();</script>");
 				out.flush();
 				out.close();
 			} else {	
