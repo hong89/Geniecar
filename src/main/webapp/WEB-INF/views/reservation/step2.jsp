@@ -33,6 +33,15 @@
         color: #E70012;
         border: 1px solid #FD1326 !important;
     }
+
+    .cursor-pointer {
+        cursor: pointer !important;
+    }
+
+    .location-name > a {
+        display: block;
+    }
+
 </style>
 <script>
     var rentalCost = {
@@ -145,6 +154,7 @@
                     status: rsp.status,
                     success: rsp.success,
                 };
+
                 $.post('reservationSuccess.do', reservationSaveData, function (res) {
                     //console.log(res);
                     step3Print({
@@ -152,13 +162,22 @@
                     });
                 });
 
+
             }else{
                 alert(rsp.error_msg); //오류 메시지 출력
             }
         });
 
-        //
     }
+
+    function NotReload() {
+        if((event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode == 116) ) {
+            event.keyCode = 0;
+            event.cancelBubble = true;
+            event.returnValue = false;
+        }
+    }
+    document.onkeydown = NotReload;
 
     $(function () {
         //면책제도 변경
@@ -166,6 +185,7 @@
             $('#templateArea .cdw-btn').removeClass('on');
             $(this).addClass('on');
             rentalCost.addCost = Number($(this).data('addCost'));
+            payInfo.amount = rentalCost.step2FinalCostCal()
             $('#addRateCost').text(numberCostFormat(rentalCost.addCost + '원'));
             $('#finalCost').text(numberCostFormat(rentalCost.step2FinalCostCal()) + '원');
         });
@@ -197,11 +217,30 @@
         });
 
         $('#templateArea').on('click', '#step2NextBtn', function () {
+
+            if($('[name^=termsCheck]:not(:checked)').length > 0){
+                alert('필수 약관에 동의해주세요.');
+                return false;
+            }
+
             $('#step2PrevBtn').closest('div').show();
             $('#step2NextBtn').closest('div').hide();
             step2Print();
             return false;
         });
+
+        $('#templateArea').on('click', '[name^=termsCheck]', function(e){
+            e.stopPropagation();
+        });
+
+        $('#templateArea').on('click', 'button.accordion-button', function(){
+            $(this).closest('.accordion-item').find('[id^=flush-collapse]').slideToggle();
+        });
+
+        $('#templateArea').on('click', '#totalAgreeBtn', function(){
+            $('[name^=termsCheck]').prop('checked', true);
+        });
+
 
     });
 </script>
@@ -333,14 +372,14 @@
             <h4 style="background: #f8f7fd; padding: 20px;"><strong>약관동의</strong></h4>
             <div style="padding: 20px 20px 0  20px;">
                 <img src="/images/icons/circle-check-regular.svg" width="20px"/>
-                <strong>전체동의</strong>
+                <strong id="totalAgreeBtn" class="cursor-pointer" >전체동의</strong>
             </div>
 
             <div style="padding: 20px 40px 40px 40px;">
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed" type="button"
                                     data-bs-target="#flush-collapseOne" aria-expanded="false"
                                     aria-controls="flush-collapseOne">
                                 <input type="checkbox" name="termsCheck1"/>&nbsp;&nbsp; 예약완료를 위한 이동 동의(필수)
@@ -377,7 +416,7 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed" type="button"
                                     data-bs-target="#flush-collapseTwo" aria-expanded="false"
                                     aria-controls="flush-collapseTwo">
                                 <input type="checkbox" name="termsCheck2"/>&nbsp;&nbsp; 차량 대여를 위한 개인정보 수집(필수)
@@ -402,7 +441,7 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed" type="button"
                                     data-bs-target="#flush-collapseThree" aria-expanded="false"
                                     aria-controls="flush-collapseThree">
                                 <input type="checkbox" name="termsCheck3"/>&nbsp;&nbsp; 고유식별정보 수집에 대한 동의(필수)
@@ -450,7 +489,7 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingFour">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed" type="button"
                                     data-bs-target="#flush-collapseFour" aria-expanded="false"
                                     aria-controls="flush-collapseFour">
                                 <input type="checkbox" name="termsCheck4"/>&nbsp;&nbsp; 개인정보 제3자 제공 동의(필수)

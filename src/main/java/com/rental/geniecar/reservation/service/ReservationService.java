@@ -84,16 +84,19 @@ public class ReservationService {
     //렌트카 예약 완료
     public RentalCarReservationVo saveRentalCarReservationSuccess(ReservationSaveVo reservationSaveVo) {
 
-        //NewCarVo newCarVo = reservationDao.selectDetailCar(reservationSaveVo.getCarNo());
         reservationSaveVo.setReservationMemberId(reservationSaveVo.getRegId());
 
-        //TODO 빌릴 차대 번호 추출, 포인트 적용 필요
-        reservationSaveVo.setCarIdentificationNumber("ROKCVL07MNU710765");
+        String carIdentification = reservationDao.selectOneAvailableRentalCarIdentificationNumber(reservationSaveVo);
+        reservationSaveVo.setCarIdentificationNumber(carIdentification);
         reservationDao.saveRentalCarReservation(reservationSaveVo);
         reservationDao.savePayment(reservationSaveVo);
 
         RentalCarReservationVo rentalCarReservationVo = reservationDao.selectReservationOne(reservationSaveVo.getReservationNo());
 
         return rentalCarReservationVo;
+    }
+
+    public void updateReservationCancel(String reservationNo) {
+        reservationDao.updateReservationCancel(reservationNo);
     }
 }
