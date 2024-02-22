@@ -286,20 +286,22 @@ public class MyPageController {
         model.addAttribute("member", memberVo);
         model.addAttribute("boardList", boardList);
         model.addAttribute("boardVo", boardVo);
-
+        model.addAttribute("mypage",memberService.mypage(memberVo.getId()));
         return "mypage/myReview";
     }
     
     // JJ
  	// 이용 후기 상세보기
  	@GetMapping("/myReviewDetail.do")
- 	public String myReviewDetail(@RequestParam int no, Model model) {
+ 	public String myReviewDetail(@RequestParam int no, Model model, HttpSession session) {
  		BoardVo notice = boardService.selectNoticeDetail(no);
  		
  		List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
  		
  		setImageFilePath(imageFiles, UPLOAD_PATH);
- 		
+ 		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
+        model.addAttribute("member", membervo);
  		model.addAttribute("notice", notice);
  		model.addAttribute("imageFiles", imageFiles);
  		   
@@ -394,13 +396,16 @@ public class MyPageController {
     // JJ
     // 1:1문의 상세보기
     @GetMapping("/qnaDetail.do")
-    public String qnaDetail(@RequestParam int no, Model model) {
+    public String qnaDetail(@RequestParam int no, Model model, HttpSession session) {
         BoardVo notice = boardService.selectNoticeDetail(no);
 
         List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
 
         setImageFilePath(imageFiles, UPLOAD_PATH);
-
+        
+        MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
+        model.addAttribute("member", membervo);
         model.addAttribute("notice", notice);
         model.addAttribute("imageFiles", imageFiles);
 
