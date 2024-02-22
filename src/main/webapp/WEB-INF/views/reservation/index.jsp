@@ -353,6 +353,7 @@
         //달력 날짜 클릭 시
         $('#containerArea').on('click', '.days > td:not(.date-inactive)', function(){
             var yearMonth, day = $(this).data('day');
+
             if(reservationDateObj.dateSelectMode === 'S'){ //빌리는 날짜 선택
                 yearMonth = $(this).closest('.rental-start-calendar').find('h4.year-month').data('yearMonth') + ''
 
@@ -377,16 +378,19 @@
 
                 reservationDateObj.run();
 
-                //시간 선택 오픈
-                $('#startDateSelectHour').prop('disabled', false).focus();
-                $('#startDateSelectMinute').prop('disabled', false);
-
                 //날짜 표시
                 yearMonth = $(this).closest('.rental-start-calendar').find('h4.year-month').data('yearMonth') + '';
                 yearMonth = dateFormatReplace(yearMonth);
                 day = day < 10 ? '0' + day : day;
                 rentalForm.startDate = moment(yearMonth + '-' + day).format('YYYY-MM-DD');
                 $('#startRentalDate').text(rentalForm.startDate);
+
+
+                //시간 선택 오픈
+                $('#startDateSelectHour').prop('disabled', false).focus();
+                $('#startDateSelectMinute').prop('disabled', false);
+
+
                 //모드 변경
                 reservationDateObj.dateSelectMode = 'R';
             }
@@ -486,18 +490,23 @@
             if(rentalForm.startHour && rentalForm.returnHour){
                 var returnDate = moment(rentalForm.getReturnFullDate());
                 var startDate = moment(rentalForm.getStartFullDate());
-                rentalForm.periodDay = returnDate.diff(startDate, 'days');
-                rentalForm.PeriodHour = moment.duration(returnDate.diff(startDate)).hours();
-                rentalForm.PeriodMinute = moment.duration(returnDate.diff(startDate)).minutes();
-                rentalForm.rentalStartDate = startDate.format('YYYY-MM-DD HH:mm');
-                rentalForm.rentalReturnDate = returnDate.format('YYYY-MM-DD HH:mm');
-                rentalForm.rentalStartDateStr = startDate.format('MM/DD (dd) HH:mm');
-                rentalForm.rentalReturnDateStr = returnDate.format('MM/DD (dd) HH:mm');
-                $('#rentalPeriodDay').text(rentalForm.periodDay);
-                $('#rentalPeriodHour').text(rentalForm.PeriodHour);
-                $('#rentalPeriodMinute').text(rentalForm.PeriodMinute);
-                $('#rentalDate').text(rentalForm.rentalStartDateStr + ' ~ ' + rentalForm.rentalReturnDateStr);
-                carSearchOnOff(true);
+                var diffHour = returnDate.diff(startDate, 'hours');
+                if(diffHour < 1){
+                    carSearchOnOff(false);
+                }else{
+                    rentalForm.periodDay = returnDate.diff(startDate, 'days');
+                    rentalForm.PeriodHour = moment.duration(returnDate.diff(startDate)).hours();
+                    rentalForm.PeriodMinute = moment.duration(returnDate.diff(startDate)).minutes();
+                    rentalForm.rentalStartDate = startDate.format('YYYY-MM-DD HH:mm');
+                    rentalForm.rentalReturnDate = returnDate.format('YYYY-MM-DD HH:mm');
+                    rentalForm.rentalStartDateStr = startDate.format('MM/DD (dd) HH:mm');
+                    rentalForm.rentalReturnDateStr = returnDate.format('MM/DD (dd) HH:mm');
+                    $('#rentalPeriodDay').text(rentalForm.periodDay);
+                    $('#rentalPeriodHour').text(rentalForm.PeriodHour);
+                    $('#rentalPeriodMinute').text(rentalForm.PeriodMinute);
+                    $('#rentalDate').text(rentalForm.rentalStartDateStr + ' ~ ' + rentalForm.rentalReturnDateStr);
+                    carSearchOnOff(true);
+                }
             }else{
                 carSearchOnOff(false);
             }
@@ -506,9 +515,13 @@
         function carSearchOnOff(isOn){
             if(isOn){
                 $('#searchName').css('background', '#f8f7fd').addClass('cursor-pointer');
+                $('#rentalMsg').hide();
+                $('#rentalMsg + .text-center').show();
             }
             else{
                 $('#searchName').css('background', '#ddd').removeClass('cursor-pointer');
+                $('#rentalMsg + .text-center').hide();
+                $('#rentalMsg').show();
             }
         }
 
@@ -528,6 +541,12 @@
         $(function(){
             //차량 검색하기 버튼 클릭 시
             $(document).on('click', '#searchName.cursor-pointer', function () {
+
+                if(moment().diff(rentalForm.getStartFullDate(), 'minutes') > -120){
+                    alert('당일 예약은 현재 시간으로부터 2시간 이후에 가능합니다.');
+                    return false;
+                }
+
                 //todo spinner 시작
                 step3Print();
                 searchRentalCars(step3Print);
@@ -942,10 +961,14 @@
                         <option value="50">50분</option>
                     </select>
                     <div class="col-1 mt-3"></div>
-                    <div class="col-11 mt-3"><p class="text-center">총
-                        <span id="rentalPeriodDay">0</span>일
-                        <span id="rentalPeriodHour">0</span>시간
-                        <span id="rentalPeriodMinute">0</span>분 대여</p></div>
+                    <div class="col-11 mt-3">
+                        <p id="rentalMsg" class="text-center">최소 1시간 이상 대여해야 합니다.</p>
+                        <p class="text-center">총
+                            <span id="rentalPeriodDay">0</span>일
+                            <span id="rentalPeriodHour">0</span>시간
+                            <span id="rentalPeriodMinute">0</span>분 대여
+                        </p>
+                    </div>
 
                 </div>
             </div>
