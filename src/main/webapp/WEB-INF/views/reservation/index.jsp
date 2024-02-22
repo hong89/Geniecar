@@ -580,6 +580,7 @@
                 });
 
                 $.get('searchCar.do', searchRentalCar, function (res){
+                    if(!res) res = [];
                     res.forEach(function(obj){
                         if(obj.rentalAvailable != 'Y'){
                             obj.carDisabled = 'car-disabled';
