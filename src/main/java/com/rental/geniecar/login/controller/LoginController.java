@@ -113,4 +113,39 @@ public class LoginController {
 		return "redirect:/login/findPw.do";
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//hsh
+	//Todo 네이버 로그인 요청
+	@GetMapping("/naverLogin.do")
+	public String naverLogin(){
+		return "login/naverLogin";
+	}
 }
