@@ -111,9 +111,9 @@
                 </div>
                 <button class="w-100 btn btn-lg mt-3 text-white" type="submit" style="background-color:#41087c;">로그인</button>
                 <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=cf11928680449247d8d486d6f2f78403&redirect_uri=http://localhost:8085/main/index.do">
-                    <img src="/images/kakao_login_large_wide.png" class="w-100 mt-3" /></a>
+                    <img src="/images/kakao_btn_square.png" class="mt-3" height="50" /></a>
                 <!-- //네이버 로그인 버튼 노출 영역 -->
-                <a href="${apiURL}"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+                <a href="${apiURL}"><img height="50" class="mt-3" src="/images/naver_btn_square.png"/></a>
                 <%--<div id="naver_id_login" class="w-100 mt-3"></div>--%>
                 <div class="w-100 mt-3 text-center"><a href="/login/findId.do">아이디 찾기</a>/<a href="/login/findPw.do">비밀번호 찾기</a></div>
                 <div class="w-100 mt-3 text-center"><a href="/member/memberJoin.do">회원가입</a>/<a href="/member/businessJoin.do">사업자 회원가입</a></div>
