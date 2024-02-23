@@ -34,5 +34,10 @@ public interface MemberDao {
 	public void insertLicense(LicenseVo vo);
 	public void updateLicense(LicenseVo vo);
 	public int countQNA(String id);
-	
+
+    String hasNaverMemberId(String id);
+
+	void insertNaverMember(MemberVo memberVo);
+
+	MemberVo naverLogin(String naverId);
 }

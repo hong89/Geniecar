@@ -4,3 +4,7 @@
 
 https://developers.naver.com/docs/login/web/web.md
 
+동의하지 않으면 로그인 불가
+동의하면 db에 정보 추가하고 로그인 진행
+
+

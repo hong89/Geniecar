@@ -2,92 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
-    a{
+    a {
         text-decoration: none;
         color: #23093d;
     }
 
 </style>
 <script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </script>
@@ -109,14 +30,30 @@
                            placeholder="Password">
                     <label for="floatingPassword">Password</label>
                 </div>
-                <button class="w-100 btn btn-lg mt-3 text-white" type="submit" style="background-color:#41087c;">로그인</button>
-                <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=cf11928680449247d8d486d6f2f78403&redirect_uri=http://localhost:8085/main/index.do">
-                    <img src="/images/kakao_btn_square.png" class="mt-3" height="50" /></a>
-                <!-- //네이버 로그인 버튼 노출 영역 -->
-                <a href="${apiURL}"><img height="50" class="mt-3" src="/images/naver_btn_square.png"/></a>
-                <%--<div id="naver_id_login" class="w-100 mt-3"></div>--%>
-                <div class="w-100 mt-3 text-center"><a href="/login/findId.do">아이디 찾기</a>/<a href="/login/findPw.do">비밀번호 찾기</a></div>
-                <div class="w-100 mt-3 text-center"><a href="/member/memberJoin.do">회원가입</a>/<a href="/member/businessJoin.do">사업자 회원가입</a></div>
+                <button class="w-100 btn btn-lg mt-3 text-white" type="submit" style="background-color:#41087c;">로그인
+                </button>
+                <div class="row">
+                    <div class="col-6">
+                        <%-- 카카오 로그인 버튼 노출 영역 --%>
+                        <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=cf11928680449247d8d486d6f2f78403&redirect_uri=http://localhost:8085/main/index.do">
+                            <img class="mt-3" src="/images/kakao_login_btn.png" width="100%"/>
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <%-- 네이버 로그인 버튼 노출 영역 --%>
+                        <a href="${apiURL}">
+                            <img class="mt-3" src="/images/naver_login_btn.png" width="100%"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="w-100 mt-3 text-center">
+                    <a href="/login/findId.do">아이디 찾기</a> /
+                    <a href="/login/findPw.do">비밀번호 찾기</a>
+                </div>
+                <div class="w-100 mt-3 text-center">
+                    <a href="/member/memberJoin.do">회원가입</a> /
+                    <a href="/member/businessJoin.do">사업자 회원가입</a>
+                </div>
             </form>
         </div>
         <div class="col"></div>
@@ -126,6 +63,6 @@
 
 <script>
     <c:if test="${not empty errorMsg}">
-        alert('${errorMsg}');
+    alert('${errorMsg}');
     </c:if>
 </script>

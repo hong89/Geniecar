@@ -30,5 +30,14 @@ public class SampleController {
         return "sample/sample";
     }
 
+    @GetMapping("/sample/terms1")
+    public String terms1(){
+        return "sample/terms1";
+    }
+
+    @GetMapping("/sample/terms2")
+    public String terms2(){
+        return "sample/terms2";
+    }
 
 }

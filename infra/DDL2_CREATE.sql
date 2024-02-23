@@ -16,20 +16,21 @@ CREATE TABLE COMMON_CODE -- 공통 코드 테이블
 
 CREATE TABLE MEMBER -- 회원 테이블
 (
-    ID              VARCHAR2(20) PRIMARY KEY, -- 아이디
-    PW              VARCHAR2(200) NOT NULL,   -- 비밀번호
-    NAME            NVARCHAR2(20) NOT NULL,   -- 이름
-    GENDER          CHAR(1)       NOT NULL,   -- 성별 (M: 남, F: 여)
-    BIRTHDAY        DATE          NOT NULL,   -- 생년월일 ('YYYY-MM-DD')
-    HP              VARCHAR2(13)  NOT NULL,   -- 휴대폰 (FORMAT: XXX-XXXX-XXXX)
-    ADDRESS         VARCHAR2(200),            -- 주소
-    ADDRESS_DETAIL  VARCHAR2(100),            -- 상세주소
-    ZIP_CODE        VARCHAR2(6),              -- 우편번호
-    JOIN_DATE       DATE          NOT NULL,   -- 가입일
-    LAST_LOGIN_DATE DATE          NOT NULL,   -- 마지막 로그인 일시
-    WITHDRAWAL_YN   CHAR(1)       NOT NULL,   -- 탈퇴 여부
-    BRANCH_CODE     VARCHAR2(6),              -- 렌터카 지점 코드 (공통코드 FK) - 사업자인 경우에만 등록
-    TYPE            CHAR(1)       NOT NULL    -- 회원 타입 (U: 사용자, B: 지점, A: 사이트 관리자)
+    ID              VARCHAR2(40) PRIMARY KEY,     -- 아이디 (소셜 로그인은 메일형태로 저장)
+    PW              VARCHAR2(200)       NOT NULL, -- 비밀번호
+    NAME            NVARCHAR2(20)       NOT NULL, -- 이름
+    GENDER          CHAR(1)             NOT NULL, -- 성별 (M: 남, F: 여)
+    BIRTHDAY        DATE                NOT NULL, -- 생년월일 ('YYYY-MM-DD')
+    HP              VARCHAR2(13)        NOT NULL, -- 휴대폰 (FORMAT: XXX-XXXX-XXXX)
+    ADDRESS         VARCHAR2(200),                -- 주소
+    ADDRESS_DETAIL  VARCHAR2(100),                -- 상세주소
+    ZIP_CODE        VARCHAR2(6),                  -- 우편번호
+    JOIN_DATE       DATE                NOT NULL, -- 가입일
+    LAST_LOGIN_DATE DATE                NOT NULL, -- 마지막 로그인 일시
+    WITHDRAWAL_YN   CHAR(1) DEFAULT 'N' NOT NULL, -- 탈퇴 여부
+    BRANCH_CODE     VARCHAR2(6),                  -- 렌터카 지점 코드 (공통코드 FK) - 사업자인 경우에만 등록
+    SNS_CODE        CHAR(1) DEFAULT 'G' NOT NULL, -- SNS 타입 (N: 네이버, K: 카카오, G: 지니카 가입)
+    TYPE            CHAR(1) DEFAULT 'U' NOT NULL  -- 회원 타입 (U: 사용자, B: 지점, A: 사이트 관리자)
 );
 
 CREATE TABLE RENTAL_CAR -- 렌터 차량 테이블

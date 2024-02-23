@@ -82,4 +82,51 @@
 	<select id="selectBranchAddress" parameterType="String">
 		select ROAD_ADDRESS from RENTAL_CAR_BRANCH where BRANCH_CODE = #{branchCode}
 	</select>
+
+	<select id="hasNaverMemberId" parameterType="String" resultType="String">
+		SELECT DECODE(COUNT(*), 1, 'true', 0, 'false')
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+
+	<insert id="insertNaverMember" parameterType="memberVo">
+        INSERT INTO MEMBER( ID
+                          , PW
+                          , NAME
+                          , GENDER
+                          , BIRTHDAY
+                          , HP
+                          , JOIN_DATE
+                          , LAST_LOGIN_DATE
+                          , SNS_CODE)
+        VALUES ( #{id}
+               , #{pw}
+               , #{name}
+               , #{gender}
+               , #{birthday}
+               , #{hp}
+               , TO_DATE(SYSDATE, 'YYYY-MM-DD')
+               , SYSDATE
+               , #{snsCode})
+    </insert>
+
+	<select id="naverLogin" resultType="memberVo" parameterType="String">
+		SELECT
+			  ID
+			, PW
+			, NAME
+            , GENDER
+            , BIRTHDAY
+            , HP
+            , ADDRESS
+            , ADDRESS_DETAIL
+            , ZIP_CODE
+            , JOIN_DATE
+            , LAST_LOGIN_DATE
+            , WITHDRAWAL_YN
+            , BRANCH_CODE
+            , TYPE
+            , SNS_CODE
+		    FROM MEMBER WHERE ID = #{naverId} AND SNS_CODE = 'N'
+	</select>
 </mapper>

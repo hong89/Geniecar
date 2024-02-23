@@ -102,4 +102,16 @@ public class MemberService {
 		mypage.put("qna", memberDao.countQNA(id));
 		return mypage;
 	}
+
+    public String hasNaverMemberId(String id) {
+		return memberDao.hasNaverMemberId(id);
+    }
+
+	public void insertNaverMember(MemberVo memberVo) {
+		memberDao.insertNaverMember(memberVo);
+	}
+
+	public MemberVo naverLogin(String naverId) {
+		return memberDao.naverLogin(naverId);
+	}
 }
