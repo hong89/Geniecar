@@ -20,10 +20,10 @@
         color: #f8f7fd;
     }
 
-    .underline {
+    a{
         color: #f8f7fd;
+        text-decoration: none;
     }
-
     aside {
         width: 300px;
         background-color: #f8f7fd;
@@ -74,19 +74,19 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
-                        <a href="/mypage/payment.do" class="underline" id="commonMyCarSellCount">
+                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>예약 내역</p>
                         <span class ="text-decoration-underline">${mypage.reservation}건</span></a>
                     </li>
                     <li class="col">
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">
+                        <a href="/mypage/point.do" id="myCommonRentalPoint">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
                         <span class ="text-decoration-underline">${mypage.point}P</span></a>
                     </li>
                     <li class="col">
-                        <a href="/mypage/payment.do" class="underline" id="commonMyCarSellCount">
+                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
                         <img alt="" class="mb-1 " src="/images/icons/ico-receipt.png" width="57px">
                         <p>결제 내역</p>
                         <span class ="text-decoration-underline">${mypage.payment}건</span></a>
@@ -156,7 +156,7 @@
                     </div>
                     <div class="card-body">
                       <h5 class="card-title">${payment.name}</h5>
-                      <p class="card-text">${payment.paidAmount}${payment.currency} ${payment.paidAt}</p>
+                      <p class="card-text">${payment.paidAmount}${payment.currency} ${payment.regDate}</p>
                     </div>
                   </div>
             </c:forEach>

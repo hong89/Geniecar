@@ -20,10 +20,10 @@
         color: #f8f7fd;
     }
 
-    .underline {
+    a{
         color: #f8f7fd;
+        text-decoration: none;
     }
-
     aside {
         width: 300px;
         background-color: #f8f7fd;
