@@ -1,11 +1,8 @@
 package com.rental.geniecar.member.service;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +11,7 @@ import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.domain.member.MyReservationVo;
+import com.rental.geniecar.domain.reservation.PaymentVo;
 import com.rental.geniecar.member.dao.MemberDao;
 import com.rental.geniecar.point.dao.PointDao;
 
@@ -73,7 +71,7 @@ public class MemberService {
 		return memberDao.updateWithdrawal(id);
 	}
 	public List<MyReservationVo> allMyReservation(String id) {
-		return memberDao.allMyReservation(id);
+		return memberDao.selectAllMyReservation(id);
 	}
 	public MyReservationVo selectOneReservation(String no) {
 		MyReservationVo reservation = new MyReservationVo();
@@ -96,10 +94,14 @@ public class MemberService {
 	}
 	public Map mypage(String id) {
 		Map mypage = new HashMap<>();
-		Integer point=0;
-		if(pointDao.selectPoint(id) != null) { point = pointDao.selectPoint(id).getCurrentPoint(); }
-		mypage.put("point", point);
+		mypage.put("reservation", memberDao.countReservation(id));
+		mypage.put("point", pointDao.selectPoint(id) != null? pointDao.selectPoint(id).getCurrentPoint() :0);
+		mypage.put("payment", memberDao.countPayment(id));
 		mypage.put("qna", memberDao.countQNA(id));
+		System.out.println(mypage);
 		return mypage;
+	}
+	public List<PaymentVo> selectAllMyPayment(String id){
+		return memberDao.selectAllMyPayment(id);
 	}
 }

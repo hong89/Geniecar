@@ -110,7 +110,7 @@
                     <label for="floatingPassword">Password</label>
                 </div>
                 <button class="w-100 btn btn-lg mt-3 text-white" type="submit" style="background-color:#41087c;">로그인</button>
-                <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=cf11928680449247d8d486d6f2f78403&redirect_uri=http://localhost:8085/main/index.do">
+                <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=d32e45df85093ba4bbab108ac5afd304&redirect_uri=http://localhost:8085/login/kakao.do">
                     <img src="/images/kakao_btn_square.png" class="mt-3" height="50" /></a>
                 <!-- //네이버 로그인 버튼 노출 영역 -->
                 <a href="${apiURL}"><img height="50" class="mt-3" src="/images/naver_btn_square.png"/></a>

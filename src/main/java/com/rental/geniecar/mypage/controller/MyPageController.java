@@ -103,12 +103,14 @@ public class MyPageController {
     }
 
     //ruddud
-    @GetMapping("/coupon.do")
+    @GetMapping("/payment.do")
     public String coupon(Model model, HttpSession session) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
-        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
-        return "mypage/coupon";
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));        
+        model.addAttribute("paymentList",memberService.selectAllMyPayment(membervo.getId()));
+        
+        return "mypage/payment";
     }
 
     //ruddud

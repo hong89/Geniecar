@@ -168,6 +168,11 @@
                             <th>포인트</th>
                         </thead>
                         <tbody class="p-3">
+                            <c:if test="${pointList == []}">
+                                <tr>
+                                    <td colspan="3"><h5 class="mt-5 mb-5">포인트 내역이 없습니다.</h5></td>
+                                </tr>
+                            </c:if>
                             <c:forEach var="point" items="${pointList }">
                                 <tr>
                                     <td>${point.history}</td>
@@ -177,8 +182,6 @@
                             </c:forEach>
                         </tbody>
                     </table>
-                    <p>총 대여 포인트가 50,000 이상 적립된 경우, 지니카 전국 어느 지점에서나 차량 대여 시, 잔여 포인트 사용 가능합니다.
-                        (단, 편도 반납수수료, 유류비 등 기타 비용제외)</p>
                 </div>
                 <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact-tab2">
                     <table class="table table-bordered align-middle text-center p-3 mt-3 mb-3">
@@ -188,11 +191,15 @@
                             <th>포인트</th>
                         </thead>
                         <tbody class="p-3">
+                            <c:if test="${pointList == []}">
+                                <tr>
+                                    <td colspan="3"><h5 class="mt-5 mb-5">포인트 내역이 없습니다.</h5></td>
+                                </tr>
+                            </c:if>
                             <c:forEach var="point" items="${pointList }">
                                 <c:if test="${point.increase eq '+'}">
                                     <tr>
-                                        <td>${point.history}
-                                        </td>
+                                        <td>${point.history}</td>
                                         <td><fmt:formatDate value="${point.regDate}" pattern="yyyy-MM-dd" /></td>
                                         <td>${point.increase}${point.point}</td>
                                     </tr>
@@ -200,8 +207,6 @@
                             </c:forEach>
                         </tbody>
                     </table>
-                    <p>총 대여 포인트가 50,000 이상 적립된 경우, 지니카 전국 어느 지점에서나 차량 대여 시, 잔여 포인트 사용 가능합니다.
-                        (단, 편도 반납수수료, 유류비 등 기타 비용제외)</p>
                 </div>
                 <div class="tab-pane fade" id="contact3" role="tabpanel" aria-labelledby="contact-tab3">
                     <table class="table table-bordered align-middle text-center p-3 mt-3 mb-3">
@@ -211,6 +216,11 @@
                             <th>포인트</th>
                         </thead>
                         <tbody class="p-3">
+                            <c:if test="${pointList == []}">
+                                <tr>
+                                    <td colspan="3"><h5 class="mt-5 mb-5">포인트 내역이 없습니다.</h5></td>
+                                </tr>
+                            </c:if>
                             <c:forEach var="point" items="${pointList }">
                                 <c:if test="${point.increase eq '-'}">
                                     <tr>
@@ -223,9 +233,9 @@
                             </c:forEach>
                         </tbody>
                     </table>
-                    <p>총 대여 포인트가 50,000 이상 적립된 경우, 지니카 전국 어느 지점에서나 차량 대여 시, 잔여 포인트 사용 가능합니다.
-                        (단, 편도 반납수수료, 유류비 등 기타 비용제외)</p>
                 </div>
+                <p>총 대여 포인트가 50,000 이상 적립된 경우, 지니카 전국 어느 지점에서나 차량 대여 시, 잔여 포인트 사용 가능합니다.
+                    (단, 편도 반납수수료, 유류비 등 기타 비용제외)</p>
             </div>
         </article>
     </div>
