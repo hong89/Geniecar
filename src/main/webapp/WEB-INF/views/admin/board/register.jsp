@@ -2,6 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+    function submitForm() {
+        var title = document.getElementById("title").value;
+        if (title.length > 100) {
+            alert("제목은 100자를 초과할 수 없습니다.");
+        } else {
+            document.registerForm.submit();
+        }
+    }
+</script>
+
 <style>
     #registerForm {
         padding: 30px;
@@ -58,7 +69,7 @@
                     <input type="date" class="form-control" id="endDate" name="endDate">
                 </div>
             </div>
-            <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">등록하기</button>
+            <button type="button" class="btn text-white" style="background: #41087c" onclick="submitForm();">등록하기</button>
 
         </form>
     </div>

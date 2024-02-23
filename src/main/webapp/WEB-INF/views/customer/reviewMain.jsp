@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-
 <style>
     .nav-pills .nav-link.active,
     .nav-pills .show > .nav-link {
@@ -39,9 +38,11 @@
                 <p>
                     <span class="icon time2"></span><strong style="font-size: 30px;">이용 후기</strong>
                     <span class="icon date2"></span>
+                    <c:if test="${memberInfo != NULL}">
                     <button type="button" class="btn text-white" style="background: #41087c; float: right;"
                             onclick="location.href='/customer/reviewRegister.do'">후기등록
                     </button>
+                    </c:if>
                 </p>
             </div><hr/>
             <div class="row row-cols-1 row-cols-md-3 g-4 P-5">

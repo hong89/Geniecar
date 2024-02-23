@@ -3,6 +3,8 @@ package com.rental.geniecar.domain.board;
 import java.sql.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.rental.geniecar.domain.common.FileVo;
 
 import lombok.Getter;
@@ -21,7 +23,9 @@ public class BoardVo {
     private String noticeYn;      // 공지 유무
     private String hashTag;       // 해시 태그 (해도 되고 안해도 되고)
     private int fileNo;           // 파일 번호
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;       // 시작일자 (이벤트에 사용)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;         // 종료일자 (이벤트에 사용)
     private String regId;         // 작성자
     private Date regDate;         // 작성일시
@@ -35,8 +39,5 @@ public class BoardVo {
     }
     public void setImageFiles(List<FileVo> imageFiles) {
     	this.imageFiles = imageFiles;
-    }
-    public String getIndentedTitle() {
-        return "  ".repeat(level - 1) + title;
     }
 }
