@@ -44,8 +44,6 @@
             } else if(check === 'on') {
                 if(confirm("탈퇴하시겠습니까?")){
                     $("#leave").submit();
-                }else{
-                    alert("오류");
                 }
             }
         });

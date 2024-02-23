@@ -64,6 +64,14 @@
         background-color: #41087c;
         opacity:0.8;
     }
+    .card-header{
+        background-color: #f8f7fd;
+        min-height: 50px;
+    }
+    .card-footer{
+        background-color: #f8f7fd;
+        min-height: 50px;
+    }
 </style>
 <script>
     $(function () {
@@ -100,6 +108,11 @@
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
                         <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
+                    </li>
+                    <li class="col">
+                        <img alt="" class="mb-3 p-1" src="/images/icons/ico-driving_license.png" width="70px">
+                        <p>운전면허증</p>
+                        <a href="/mypage/license.do" class="underline" id=""></a>
                     </li>
                     <li class="col">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
@@ -185,16 +198,16 @@
                         </button>
                     </li>
                 </ul>
-
+                <c:set var="now" value="<%=new java.util.Date()%>" />
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active border-bottom text-center" id="contact1" role="tabpanel" aria-labelledby="contact-tab1">
                         <c:if test="${reservationList == []}">
                             <h5 class="mt-5 pt-3">이용중인 렌터카 차량이 없습니다.</h5>
-                            <button type="button" class="btn m-3 mb-5 " style="background-color: #41087c; color: #f8f7fd;">제주/내륙 렌터카 예약하기 </button>
+                            <button type="button" class="btn m-3 mb-5" onClick="location.href='/reservation/index.do?regionType=1'" style="background-color: #41087c; color: #f8f7fd;">제주/내륙 렌터카 예약하기 </button>
                         </c:if>
                         <c:forEach var="reservation" items="${reservationList }">
                             <div class="card text-center mb-3" style="width: 80%">
-                                <div class="card-header position-relative" style="background-color: #f8f7fd; min-height: 50px;">
+                                <div class="card-header position-relative">
                                     <span class="position-absolute top-50 start-50 translate-middle">${reservation.carName}</span>
                                 <c:if test="${reservation.cancelYn eq 'Y'}">
                                     <span class="rounded-pill p-1 ps-3 pe-3 me-3 position-absolute top-1 end-0 cnacel" >취소</span>
@@ -222,31 +235,23 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="card-footer " style="background-color: #f8f7fd;">
-                                    <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}">상세정보 확인하기</a>
+                                <div class="card-footer position-relative">
+                                    <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
                                 </div>
                             </div>
                         </c:forEach>
 
                     </div>
-                    <div class="tab-pane fade border-bottom" id="contact3" role="tabpanel"
-                         aria-labelledby="contact-tab3">.3..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact4" role="tabpanel"
-                         aria-labelledby="contact-tab4">.4..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact5" role="tabpanel"
-                         aria-labelledby="contact-tab5">.5..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact6" role="tabpanel"
-                         aria-labelledby="contact-tab6">
+                    <div class="tab-pane fade border-bottom text-center" id="contact3" role="tabpanel" aria-labelledby="contact-tab3">
+                        <c:if test="${reservationList == []}">
+                            <h5 class="mt-5 pt-3">이용중인 렌터카 차량이 없습니다.</h5>
+                            <button type="button" class="btn m-3 mb-5" onClick="location.href='/reservation/index.do?regionType=1'" style="background-color: #41087c; color: #f8f7fd;">제주/내륙 렌터카 예약하기 </button>
+                        </c:if>
                         <c:forEach var="reservation" items="${reservationList }">
-                            <c:if test="${reservation.cancelYn eq 'Y'}">
+                            <c:if test="${reservation.cancelYn eq 'N' and reservation.rentalDate > now}">
                                 <div class="card text-center mb-3" style="width: 80%">
-                                    <div class="card-header">
-                                        ${reservation.carName}
-                                        <span class="float-end ">취소</span>
-                                        <div style="clear: both;"></div>
+                                    <div class="card-header position-relative">
+                                        <span class="position-absolute top-50 start-50 translate-middle">${reservation.carName}</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="text-body-secondary">
@@ -270,8 +275,129 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}">상세정보 확인하기</a>
+                                    <div class="card-footer position-relative">
+                                        <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                    <div class="tab-pane fade border-bottom text-center" id="contact4" role="tabpanel" aria-labelledby="contact-tab4">
+                        <c:if test="${reservationList == []}">
+                            <h5 class="mt-5 pt-3">이용중인 렌터카 차량이 없습니다.</h5>
+                            <button type="button" class="btn m-3 mb-5" onClick="location.href='/reservation/index.do?regionType=1'" style="background-color: #41087c; color: #f8f7fd;">제주/내륙 렌터카 예약하기 </button>
+                        </c:if>
+                        <c:forEach var="reservation" items="${reservationList }">
+                            <c:if test="${reservation.cancelYn eq 'N' and reservation.rentalDate < now and now < reservation.returnDate }">
+                                <div class="card text-center mb-3" style="width: 80%">
+                                    <div class="card-header position-relative">
+                                        <span class="position-absolute top-50 start-50 translate-middle">${reservation.carName}</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text-body-secondary">
+                                            <table id="shortRental">
+                                                <tr>
+                                                    <td style="width: 150px;">예약일자</td>
+                                                    <td><fmt:formatDate value="${reservation.regDate}" pattern="yyyy-MM-dd"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>예약번호</td>
+                                                    <td>${reservation.reservationNo}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>대여일시/지점</td>
+                                                    <td><fmt:formatDate value="${reservation.rentalDate}" pattern="yyyy-MM-dd(E) HH:mm"/> / ${reservation.rentalPlaceName} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>반납일시/지점</td>
+                                                    <td><fmt:formatDate value="${reservation.returnDate}" pattern="yyyy-MM-dd(E) HH:mm"/> / ${reservation.rentalPlaceName}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer position-relative">
+                                        <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                    <div class="tab-pane fade border-bottom text-center" id="contact5" role="tabpanel" aria-labelledby="contact-tab5">
+                        <c:if test="${reservationList == []}">
+                            <h5 class="mt-5 pt-3">이용중인 렌터카 차량이 없습니다.</h5>
+                            <button type="button" class="btn m-3 mb-5" onClick="location.href='/reservation/index.do?regionType=1'" style="background-color: #41087c; color: #f8f7fd;">제주/내륙 렌터카 예약하기 </button>
+                        </c:if>
+                        <c:forEach var="reservation" items="${reservationList }">
+                            <c:if test="${reservation.cancelYn eq 'N' and now > reservation.returnDate}">
+                                <div class="card text-center mb-3" style="width: 80%">
+                                    <div class="card-header position-relative">
+                                        <span class="position-absolute top-50 start-50 translate-middle">${reservation.carName}</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text-body-secondary">
+                                            <table id="shortRental">
+                                                <tr>
+                                                    <td style="width: 150px;">예약일자</td>
+                                                    <td><fmt:formatDate value="${reservation.regDate}" pattern="yyyy-MM-dd"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>예약번호</td>
+                                                    <td>${reservation.reservationNo}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>대여일시/지점</td>
+                                                    <td><fmt:formatDate value="${reservation.rentalDate}" pattern="yyyy-MM-dd(E) HH:mm"/> / ${reservation.rentalPlaceName} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>반납일시/지점</td>
+                                                    <td><fmt:formatDate value="${reservation.returnDate}" pattern="yyyy-MM-dd(E) HH:mm"/> / ${reservation.rentalPlaceName}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer position-relative">
+                                        <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                    <div class="tab-pane fade border-bottom text-center" id="contact6" role="tabpanel" aria-labelledby="contact-tab6">
+                        <c:if test="${reservationList == []}">
+                            <h5 class="mt-5 pt-3">이용중인 렌터카 차량이 없습니다.</h5>
+                            <button type="button" class="btn m-3 mb-5" onClick="location.href='/reservation/index.do?regionType=1'" style="background-color: #41087c; color: #f8f7fd;">제주/내륙 렌터카 예약하기 </button>
+                        </c:if>
+                        <c:forEach var="reservation" items="${reservationList }">
+                            <c:if test="${reservation.cancelYn eq 'Y'}">
+                                <div class="card text-center mb-3" style="width: 80%">
+                                    <div class="card-header position-relative">
+                                        <span class="position-absolute top-50 start-50 translate-middle">${reservation.carName}</span>
+                                        <span class="float-end ">취소</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text-body-secondary">
+                                            <table id="shortRental">
+                                                <tr>
+                                                    <td style="width: 150px;">예약일자</td>
+                                                    <td><fmt:formatDate value="${reservation.regDate}" pattern="yyyy-MM-dd"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>예약번호</td>
+                                                    <td>${reservation.reservationNo}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>대여일시/지점</td>
+                                                    <td><fmt:formatDate value="${reservation.rentalDate}" pattern="yyyy-MM-dd(E) HH:mm"/> / ${reservation.rentalPlaceName} </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>반납일시/지점</td>
+                                                    <td><fmt:formatDate value="${reservation.returnDate}" pattern="yyyy-MM-dd(E) HH:mm"/> / ${reservation.rentalPlaceName}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer position-relative">
+                                        <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
                                     </div>
                                 </div>
                             </c:if>

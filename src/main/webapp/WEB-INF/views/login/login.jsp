@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-6">
                         <%-- 카카오 로그인 버튼 노출 영역 --%>
-                        <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=cf11928680449247d8d486d6f2f78403&redirect_uri=http://localhost:8085/main/index.do">
+                        <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=d32e45df85093ba4bbab108ac5afd304&redirect_uri=http://localhost:8085/login/kakao.do">
                             <img class="mt-3" src="/images/kakao_login_btn.png" width="100%"/>
                         </a>
                     </div>

@@ -9,7 +9,7 @@ import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.domain.member.MyReservationVo;
-import com.rental.geniecar.domain.reservation.ReservationVo;
+import com.rental.geniecar.domain.reservation.PaymentVo;
 
 @Mapper
 public interface MemberDao {
@@ -27,7 +27,7 @@ public interface MemberDao {
 	public List<MemberVo> selectWaiting();
 	public void updateType(String id);
 	public int updateWithdrawal(String id);
-	public List<MyReservationVo> allMyReservation(String id);
+	public List<MyReservationVo> selectAllMyReservation(String id);
 	public MyReservationVo selectOneReservation(String no);
 	public String selectBranchAddress(String branchCode);
 	public LicenseVo selectLicense(String id);
@@ -40,4 +40,8 @@ public interface MemberDao {
 	void insertNaverMember(MemberVo memberVo);
 
 	MemberVo naverLogin(String naverId);
+	public int countPayment(String id);
+	public int countReservation(String id);
+	public List<PaymentVo> selectAllMyPayment(String id);
+	
 }

@@ -1,9 +1,32 @@
 package com.rental.geniecar.login.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rental.geniecar.domain.api.NaverToken;
+import com.rental.geniecar.domain.member.MemberVo;
+import com.rental.geniecar.login.service.LoginService;
+import com.rental.geniecar.member.service.MemberService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import reactor.core.publisher.Mono;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
@@ -11,33 +34,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-import java.util.function.Consumer;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rental.geniecar.domain.api.NaverToken;
-import com.rental.geniecar.member.service.MemberService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.rental.geniecar.domain.member.MemberVo;
-import com.rental.geniecar.login.service.LoginService;
-
-import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Slf4j
 @Controller
@@ -240,4 +236,25 @@ public class LoginController {
 
         return "main/index";
     }
+	@GetMapping("/kakao.do")
+	public @ResponseBody ResponseEntity<String> kakao(String code){
+		RestTemplate rest = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+		body.add("grant_type", "authorization_code");
+		body.add("client_id", "d32e45df85093ba4bbab108ac5afd304");
+		body.add("redirect_uri", "http://localhost:8085/login/kakao.do");
+		body.add("code", code);
+		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(body, headers);
+		ResponseEntity<String> token = rest.exchange(
+				"https://kauth.kakao.com/oauth/token", 
+				HttpMethod.POST, 
+				entity,
+				String.class 
+		);
+		return token;
+		
+    }
+
 }

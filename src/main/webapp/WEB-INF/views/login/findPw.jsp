@@ -6,14 +6,9 @@
     <!--------------------------------------------------상단---------------------------------------------------------->
     <script>
         $(function () {
-            window.onpageshow = function (event) {
-                if (event.persisted) {
-                    window.location.reload();
-                }
-            };
-
             let msg = "${msg}";
-            if(msg ==="not") {alert("일치하는 회원정보가 없습니다.")};     
+            if(msg ==="not") {alert("일치하는 회원정보가 없습니다.")};
+            if(msg ==="ok") {alert("비밀번호가 변경되었습니다.")};
             $('#submitBtn').click(function () {
                 var id =$("#id").val();
                 var name =$("#name").val();

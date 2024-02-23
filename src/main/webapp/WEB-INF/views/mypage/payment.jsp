@@ -120,7 +120,8 @@
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/payment.do" class="nav-link">결제내역</a>
-                </li><li class="nav-item mb-4">
+                </li>
+                <li class="nav-item mb-4">
                     <a href="/mypage/myReview.do?typeCode=REVIEW" class="nav-link">이용 후기</a>
                 </li>
                 <li class="nav-item mb-4">
@@ -143,73 +144,18 @@
             </ul>
         </aside>
         <article class="p-5 container-fluid">
-            <section>
-                <ul class="nav nav-pills pb-3 border-bottom" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="contact-tab1" data-bs-toggle="tab"
-                                data-bs-target="#contact1" type="button" role="tab"
-                                aria-controls="contact1" aria-selected="true">전체
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab2" data-bs-toggle="tab"
-                                data-bs-target="#contact2" type="button" role="tab"
-                                aria-controls="contact2" aria-selected="false">결제대기
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab3" data-bs-toggle="tab"
-                                data-bs-target="#contact3" type="button" role="tab"
-                                aria-controls="contact3" aria-selected="false">계약완료
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab4" data-bs-toggle="tab"
-                                data-bs-target="#contact4" type="button" role="tab"
-                                aria-controls="contact4" aria-selected="false">이용중
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab5" data-bs-toggle="tab"
-                                data-bs-target="#contact5" type="button" role="tab"
-                                aria-controls="contact5" aria-selected="false">이용완료
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab6" data-bs-toggle="tab"
-                                data-bs-target="#contact6" type="button" role="tab"
-                                aria-controls="contact6" aria-selected="false">취소
-                        </button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active border-bottom" id="contact1"
-                         role="tabpanel" aria-labelledby="contact-tab1">
-                        <div class="text-center mt-3 mb-3 pd-5">
-                            <h5><br><br><br><br>이용중인 렌터카 차량이 없습니다.<br>
-                                <button type="button" class="btn m-3"
-                                        style="background-color: #41087c; color: #f8f7fd;">제주/내륙 렌터카 예약하기
-                                </button>
-                                <br><br><br><br></h5>
-                        </div>
+            ${paymentList}
+            <c:forEach var="payment" items="${paymentList}">
+                <div class="card m-3">
+                    <div class="card-header">
+                        <h5>${payment.merchantUid}</h5>
                     </div>
-                    <div class="tab-pane fade border-bottom" id="contact2" role="tabpanel"
-                         aria-labelledby="contact-tab2">${mypage}
+                    <div class="card-body">
+                      <h5 class="card-title">${payment.name}</h5>
+                      <p class="card-text">${payment.paidAmount}${payment.currency} ${payment.paidAt}</p>
                     </div>
-                    <div class="tab-pane fade border-bottom" id="contact3" role="tabpanel"
-                         aria-labelledby="contact-tab3">.3..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact4" role="tabpanel"
-                         aria-labelledby="contact-tab4">.4..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact5" role="tabpanel"
-                         aria-labelledby="contact-tab5">.5..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact6" role="tabpanel"
-                         aria-labelledby="contact-tab6">.6..
-                    </div>
-                </div>
-            </section>
+                  </div>
+            </c:forEach>
         </article>
     </div>
 
