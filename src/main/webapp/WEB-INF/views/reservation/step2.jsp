@@ -569,6 +569,22 @@
             </div>
         </div>
 
+        <h4 style="background: #f8f7fd; padding: 20px;"><strong>포인트</strong></h4>
+
+        <div class="p-5 pt-3">
+            <div class="row text-center">
+                <div class="col-2">
+                    <label for="point" class="col-form-label">포인트 사용</label>
+                </div>
+                <div class="col-4 w-40" >
+                    <input type="text" id="point" name="point" class="form-control" placeholder="사용하실 포인트를 입력하세요" />
+                </div>
+                <div class="col-2" >
+                    <small>가용포인트 : </small>
+                </div>
+            </div>
+        </div>
+
 
         <h4 style="background: #f8f7fd; padding: 20px;"><strong>취소 수수료 안내</strong></h4>
         <div class="p-5 pt-3">

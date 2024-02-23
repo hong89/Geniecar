@@ -16,7 +16,7 @@
                     $('#branches').html(str);
                 });
             });
-
+/*
             $('#submitBtn').on('click', function () {
                 var name = $('[name=name]').val();
                 var tel = $('[name=tel]').val();
@@ -24,7 +24,7 @@
                 var purpose = $('[name=purpose]').val();
                 var wishRegion = $('[name=wishRegion]').val();
 
-                if(name == null || name.length == 0) {
+                if (name == null || name.length == 0) {
                     alert("이름을 입력해 주세요.");
                     return false;
                 } else if (tel == null || tel.length == 0) {
@@ -42,17 +42,13 @@
                 }
                 $('#consultForm').submit();
             });
-        });
 
+*/
+            });
         function mainLink() {
             location.href = '/main/index.do';
         }
 
-        function oninputPhone(target) {
-            target.value = target.value
-                .replace(/[^0-9]/g, '')
-                .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
-        }
     </script>
     <!--------------------------------------------------상단---------------------------------------------------------->
 
@@ -77,7 +73,8 @@
                     <label for="name" class="col-form-label">이름<span>*</span></label>
                 </div>
                 <div class="col-auto">
-                    <input type="text" id="name" name="name" class="form-control" placeholder="이름을 입력하세요">
+                    <input type="text" id="name" name="name" class="form-control" required
+                           placeholder="이름을 입력하세요" pattern="^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}" >
                 </div>
             </div>
             <div class="row p-1 m-3 text-center">
@@ -85,8 +82,9 @@
                     <label for="tel" class="col-form-label">연락처<span>*</span></label>
                 </div>
                 <div class="col-6">
-                    <input type="tel" id="tel" name="tel" class="form-control" oninput="oninputPhone(this)"
-                           minlength="12" maxlength="13" placeholder="휴대전화번호를(-없이) 입력하세요">
+                    <input type="tel" id="tel" name="tel" class="form-control" pattern="\d*" minlength="10"
+                           maxlength="11" placeholder="휴대전화번호를(-없이) 입력하세요"
+                           title="연락 가능한 번호로 입력해 주세요." required="required">
                 </div>
             </div>
             <div class="row p-1 m-3 text-center">
@@ -94,7 +92,9 @@
                     <label for="email" class="col-form-label">이메일<span>*</span></label>
                 </div>
                 <div class="col-6">
-                    <input type="email" id="email" name="email" class="form-control" placeholder="이메일을 입력하세요">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="이메일을 입력하세요"
+                           pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}"
+                           title="이메일 형식으로 입력해 주세요." required="required">
                 </div>
             </div>
             <div class="row p-1 m-3 text-center">
@@ -103,7 +103,7 @@
                 </div>
                 <div class="col-6">
                     <textarea style="resize: none; height: 150px;" id="purpose" name="purpose" class="form-control"
-                              placeholder="차량사용 목적을 입력하세요" maxlength="200"></textarea>
+                              placeholder="차량사용 목적을 입력하세요" maxlength="200"  required="required"></textarea>
                 </div>
             </div>
             <div class="row p-1 m-3 text-center">
@@ -119,7 +119,7 @@
                     </select>
                 </div>
                 <div class="col-3">
-                    <select class="form-select" id="branches" name="wishRegion">
+                    <select class="form-select" id="branches" name="wishRegion" required="required">
                         <option value="" selected>선택</option>
                     </select>
                 </div>
@@ -130,7 +130,7 @@
             <div class="ps-4 pe-4">
                 <div class="card" style="width: 100%">
                     <div class="card-header p-3" style="background: #f8f7fd">
-                        <input type="checkbox" value="agree"/>
+                        <input type="checkbox" value="agree" required="required"/>
                         &nbsp;&nbsp;&nbsp;개인정보 수집 및 이용 동의(필수)
                     </div>
                     <div class="card-body p-3">
@@ -157,7 +157,7 @@
                 <button class="btn" style="border: 1px solid #41087c;"
                         onclick="mainLink(); return false;">메인으로
                 </button>
-                <button class="btn text-white" style="background-color: #41087c;" id="submitBtn">신청하기</button>
+                <button class="btn text-white" style="background-color: #41087c;" id="submitBtn" type="submit">신청하기</button>
             </div>
         </form>
     </section>
