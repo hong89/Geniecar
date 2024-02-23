@@ -2,6 +2,7 @@ package com.rental.geniecar.admin.main.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,24 +18,16 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/admin/main")
 public class AdminMainController {
-	private static final String UPLOAD_PATH = "C:\\geniecar_images";
 
-	private void setImageFilePath(List<FileVo> imageFiles, String savePath) {
-	    for (FileVo imageFile : imageFiles) {
-	        imageFile.setImageFilePath(savePath, imageFile.getSaveName());
-	        System.err.println("######## :: 이미지 경로확인 " + imageFile.getImageFilePath());
-	    }
-	}
-
-	@Autowired
-	private AdminBoardService boardService;
+	private final AdminBoardService boardService;
 	
 	
 	// JJ
 	// 관리자 메인 글 목록
-	@GetMapping("/index.do")
+	/*@GetMapping("/index.do")
 	public String index(Model model) {
 		
 		CommonCrudVo boardVo1 = new CommonCrudVo();
@@ -50,6 +43,13 @@ public class AdminMainController {
 	    model.addAttribute("boardVo2", boardVo2);
 		
 		return "admin/main/index";
-	}
+	}*/
 
+	// hsh
+	// 메인페이지
+	@GetMapping("/index.do")
+	public String index(Model model) {
+
+		return "admin/main/index";
+	}
 }

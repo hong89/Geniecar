@@ -212,8 +212,8 @@ public class LoginController {
 
                 // db에 접근하여 회원인지 확인
                 String naverId = memberService.hasNaverMemberId(naverMemberInfo.get("email").toString());
+                // false면 회원가입 진행
                 if (naverId.equals("false")) {
-                    // false면 회원가입 진행
                     MemberVo memberVo = new MemberVo();
                     memberVo.setId(naverMemberInfo.get("email").toString());
                     memberVo.setPw("naverMemberLogin");
@@ -225,12 +225,10 @@ public class LoginController {
                     Date birth = formatter.parse(naverMemberInfo.get("birthyear").toString() + "-" + naverMemberInfo.get("birthday").toString());
                     memberVo.setBirthday(birth);
                     memberService.insertNaverMember(memberVo);
-
                 }
-                    // true라면 바로 로그인 진행
-                    MemberVo memberInfo = memberService.naverLogin(naverMemberInfo.get("email").toString());
-                    session.setAttribute("isLogOn", true);
-                    session.setAttribute("memberInfo", memberInfo);
+                MemberVo memberInfo = memberService.naverLogin(naverMemberInfo.get("email").toString());
+                session.setAttribute("isLogOn", true);
+                session.setAttribute("memberInfo", memberInfo);
 
             } else {
                 ra.addFlashAttribute("errorMsg", "네이버 로그인에 실패하였습니다.");
