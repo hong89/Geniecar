@@ -140,6 +140,6 @@
 	
 	<select id="selectAllMyPayment" parameterType="String" resultType="com.rental.geniecar.domain.reservation.PaymentVo">
 		SELECT PAY_NO ,APPLY_NUM ,BUYER_NAME ,BUYER_TEL ,CARD_NAME ,CARD_NUMBER ,CARD_QUOTA ,CURRENCY ,MERCHANT_UID ,
-		NAME ,PAID_AMOUNT ,PAID_AT ,PAY_METHOD ,STATUS ,SUCCESS ,REG_ID FROM PAYMENT WHERE REG_ID = #{id} AND REG_DATE >= ADD_MONTHS(TRUNC(sysdate), -3)
+		NAME ,PAID_AMOUNT ,PAID_AT ,PAY_METHOD ,STATUS ,SUCCESS ,REG_ID,REG_DATE FROM PAYMENT WHERE REG_ID = #{id} AND REG_DATE >= ADD_MONTHS(TRUNC(sysdate), -3)
 	</select>
 </mapper>

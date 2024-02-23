@@ -19,11 +19,10 @@
     .btn-goLink {
         color: #f8f7fd;
     }
-
-    .underline {
+    a{
         color: #f8f7fd;
+        text-decoration: none;
     }
-
     aside {
         width: 300px;
         background-color: #f8f7fd;
@@ -105,26 +104,33 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
+                        <a href="/mypage/payment.do" class="underline" id="commonMyCarSellCount">
+                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
+                        <p>예약 내역</p>
+                        <span class ="text-decoration-underline">${mypage.reservation}건</span></a>
+                    </li>
+                    <li class="col">
+                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
+                        <span class ="text-decoration-underline">${mypage.point}P</span></a>
                     </li>
                     <li class="col">
-                        <img alt="" class="mb-3 p-1" src="/images/icons/ico-driving_license.png" width="70px">
-                        <p>운전면허증</p>
-                        <a href="/mypage/license.do" class="underline" id=""></a>
-                    </li>
-                    <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
+                        <a href="/mypage/payment.do" class="underline" id="commonMyCarSellCount">
+                        <img alt="" class="mb-1 " src="/images/icons/ico-receipt.png" width="57px">
                         <p>결제 내역</p>
-                        <a href="/mypage/carSeller.do" class="underline"
-                           id="commonMyCarSellCount">0건</a>
+                        <span class ="text-decoration-underline">${mypage.payment}건</span></a>
                     </li>
                     <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel06.png">
+                        <a href="/mypage/qna.do?typeCode=QNA" id="commonRentalConsultCount">
+                        <img alt="" class="mb-2 pt-2" src="/images/icons/ico-myPannel06.png">
                         <p>1:1문의</p>
-                        <a href="/mypage/qna.do?typeCode=QNA" class="underline"
-                           id="commonRentalConsultCount">${mypage.qna}건</a>
+                        <span class ="text-decoration-underline">${mypage.qna}건</span></a>
+                    </li>
+                    <li class="col">
+                        <a href="/mypage/license.do" id=""><img alt="" class="mb-2 pt-2" src="/images/icons/ico-driver-license.png" width="65px">
+                        <p>운전면허증</p>
+                        <span class ="text-decoration-underline">${mypage.license}</span></a>
                     </li>
                 </ul>
             </div>
@@ -139,6 +145,9 @@
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/point.do" class="nav-link">포인트</a>
+                </li>
+                <li class="nav-item mb-4">
+                    <a href="/mypage/payment.do" class="nav-link">결제내역</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>

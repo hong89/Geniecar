@@ -98,6 +98,7 @@ public class MemberService {
 		mypage.put("point", pointDao.selectPoint(id) != null? pointDao.selectPoint(id).getCurrentPoint() :0);
 		mypage.put("payment", memberDao.countPayment(id));
 		mypage.put("qna", memberDao.countQNA(id));
+		mypage.put("license", memberDao.selectLicense(id) == null?"등록":"수정");
 		System.out.println(mypage);
 		return mypage;
 	}
