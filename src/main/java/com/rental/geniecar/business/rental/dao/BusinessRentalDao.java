@@ -2,6 +2,7 @@ package com.rental.geniecar.business.rental.dao;
 
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
+import com.rental.geniecar.domain.reservation.ReservationDetailVo;
 import com.rental.geniecar.domain.reservation.ReservationVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -21,7 +22,7 @@ public interface BusinessRentalDao {
 
     int progressTotalCount(Pagination pagination);
 
-    ReservationVo selectDetail(String reservationNo, String branchCode);
+    ReservationDetailVo selectDetail(String reservationNo, String branchCode);
 
     int cancelTotalCount(Pagination pagination);
 

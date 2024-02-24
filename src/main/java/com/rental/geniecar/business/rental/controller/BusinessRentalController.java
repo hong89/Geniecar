@@ -4,6 +4,7 @@ import com.rental.geniecar.business.rental.service.BusinessRentalService;
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
+import com.rental.geniecar.domain.reservation.ReservationDetailVo;
 import com.rental.geniecar.domain.reservation.ReservationVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -73,7 +74,7 @@ public class BusinessRentalController {
                              @RequestParam(value = "checkBtn", required = false) String checkBtn,
                              Model model, HttpSession session){
         MemberVo member = (MemberVo)session.getAttribute("memberInfo");
-        ReservationVo reservation = businessRentalService.selectDetail(reservationNo, member.getBranchCode());
+        ReservationDetailVo reservation = businessRentalService.selectDetail(reservationNo, member.getBranchCode());
         model.addAttribute("reservation", reservation);
         model.addAttribute("checkBtn", checkBtn);
         return "business/rental/rentDetail";

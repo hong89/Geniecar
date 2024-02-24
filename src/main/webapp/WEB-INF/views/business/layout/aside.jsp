@@ -24,9 +24,6 @@
             <p><a href="/business/rental/rentComplete.do">렌트 종료 내역</a></p>
             <p><a href="/business/rental/rentCancel.do">렌트 취소 내역</a></p>
         </li>
-        <li class="list-group-item"><p>렌트 결제 관리</p>
-            <p><a href="/business/pay/payment.do">결제 내역 목록</a></p>
-        </li>
         <li class="list-group-item"><p>차량 관리</p>
             <p><a href="/business/car/list.do">차량 목록</a></p>
             <p><a href="/business/car/assignList.do">차량 인수 등록</a></p>
