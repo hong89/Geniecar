@@ -24,9 +24,6 @@
             <p><a href="/admin/rental/rentComplete.do">렌트 종료 내역</a></p>
             <p><a href="/admin/rental/rentCancel.do">렌트 취소 내역</a></p>
         </li>
-        <li class="list-group-item"><p>렌트 결제 관리</p>
-            <p><a href="/admin/pay/payment.do">결제 내역 목록</a></p>
-        </li>
         <li class="list-group-item"><p>게시판 관리</p>
             <p><a href="/admin/board/register.do">게시판 등록</a></p>
             <p><a href="/admin/board/list.do?typeCode=NOTICE">공지사항 목록</a></p>

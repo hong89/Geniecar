@@ -10,7 +10,7 @@
     }
 
     #reservationTable {
-        height: 600px;
+        height: 400px;
     }
 
     #reservationTable tr td:nth-child(odd) {
