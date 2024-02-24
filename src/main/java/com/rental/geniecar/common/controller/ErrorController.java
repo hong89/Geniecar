@@ -10,7 +10,7 @@ public class ErrorController {
 
     @GetMapping("/auth.do")
     public String errorAuth(){
-        return "error/auth";
+        return "auth";
     }
 
 }
