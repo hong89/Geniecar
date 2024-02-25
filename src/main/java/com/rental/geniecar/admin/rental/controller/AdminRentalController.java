@@ -3,7 +3,7 @@ package com.rental.geniecar.admin.rental.controller;
 import com.rental.geniecar.admin.rental.service.AdminRentalService;
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
-import com.rental.geniecar.domain.reservation.ReservationVo;
+import com.rental.geniecar.domain.reservation.ReservationDetailVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,7 +59,7 @@ public class AdminRentalController {
 
     @GetMapping("/rentDetail.do")
     public String rentDetail(@RequestParam("reservationNo") String reservationNo, Model model){
-        ReservationVo reservation = adminRentalService.selectDetail(reservationNo);
+        ReservationDetailVo reservation = adminRentalService.selectDetail(reservationNo);
         model.addAttribute("reservation", reservation);
         return "admin/rental/rentDetail";
     }

@@ -3,7 +3,7 @@ package com.rental.geniecar.admin.rental.service;
 import com.rental.geniecar.admin.rental.dao.AdminRentalDao;
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
-import com.rental.geniecar.domain.reservation.ReservationVo;
+import com.rental.geniecar.domain.reservation.ReservationDetailVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +41,7 @@ public class AdminRentalService {
         return adminRentalDao.progressTotalCount(pagination);
     }
 
-    public ReservationVo selectDetail(String reservationNo) {
+    public ReservationDetailVo selectDetail(String reservationNo) {
         return adminRentalDao.selectDetail(reservationNo);
     }
 

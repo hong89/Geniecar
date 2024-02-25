@@ -3,17 +3,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <style>
-    #reservationTable tr td {
+    #reservationTable tr td, #paymentTable tr td {
         font-size: 18px;
         padding: 13px;
         vertical-align: middle;
     }
 
     #reservationTable {
-        height: 400px;
+        height: 360px;
     }
 
-    #reservationTable tr td:nth-child(odd) {
+    #paymentTable {
+        height: 240px;
+    }
+
+    #reservationTable tr td:nth-child(odd), #paymentTable tr td:nth-child(odd) {
         background: #f8f7fd;
     }
 </style>
@@ -61,6 +65,33 @@
                     <td>${reservation.returnPlaceName}</td>
                 </tr>
             </table>
+
+            <h5 class="text-start pt-5">결제내역</h5>
+            <table class="table table-bordered border-secondary p-5" id="paymentTable">
+                <tr>
+                    <td class="col-2"><strong>결제금액</strong></td>
+                    <td class="col-3">${reservation.finalReservationPrice}원</td>
+                    <td class="col-2"><strong>결제상태</strong></td>
+                    <td class="col-3">${reservation.status}</td>
+                </tr>
+                <tr>
+                    <td><strong>카드종류</strong></td>
+                    <td>${reservation.cardName}</td>
+                    <td><strong>카드번호</strong></td>
+                    <td>${reservation.cardNumber}</td>
+                </tr>
+                <tr>
+                    <td><strong>결제방식</strong></td>
+                    <td>${reservation.pgProvider}</td>
+                    <td><strong>할부개월</strong></td>
+                    <td>${reservation.cardQuota == null ? '' : reservation.cardQuota == 0 ? '일시불' : reservation.cardQuota + '개월'}</td>
+                </tr>
+                <tr>
+                    <td><strong>승인일시</strong></td>
+                    <td colspan="3">${reservation.paidAt}</td>
+                </tr>
+            </table>
+
         </div>
         <div class="pt-5">
             <button type="button" class="btn text-white" style="background: #41087c"
