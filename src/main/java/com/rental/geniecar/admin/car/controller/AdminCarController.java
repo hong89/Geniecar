@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -180,8 +181,9 @@ public class AdminCarController {
     }
 
     @PostMapping("/newCarModify.do")
-    public String newCarModify(NewCarVo newCarVo) {
+    public String newCarModify(NewCarVo newCarVo, RedirectAttributes ra) {
         adminCarService.updateNewCar(newCarVo);
+        ra.addFlashAttribute("msg", "수정이 완료되었습니다.");
         return "redirect:newCarList.do";
     }
 
@@ -190,9 +192,9 @@ public class AdminCarController {
     public ResponseEntity newCarDelete(@RequestParam("deleteNo") int no) {
         try {
             adminCarService.deleteNewCar(no);
-            return ResponseEntity.ok("성공");
+            return ResponseEntity.ok("success");
         } catch (Exception e) {
-            return ResponseEntity.ok("실패");
+            return ResponseEntity.ok("fail");
         }
     }
 

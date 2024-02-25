@@ -14,15 +14,25 @@
             var cancel = confirm("정말로 취소하시겠습니까?");
             if (cancel) {
                 $.get("/admin/car/newCarDelete.do", {deleteNo: deleteNo}, function (res) {
-                    alert('삭제가 완료되었습니다.');
+                    console.log(res)
+                    if(res == 'success'){
+                        alert('삭제가 완료되었습니다.');
+                        location.reload();
+                    }else{
+                        alert('삭제가 실패하였습니다.');
+                    }
                 });
-                location.replace("newCarList.do");
 
             } else {
                 alert('삭제가 취소되었습니다.');
             }
         });
     })
+
+    <c:if test="${not empty msg}" >
+        alert('${msg}');
+    </c:if>
+
 </script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
