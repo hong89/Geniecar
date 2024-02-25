@@ -26,6 +26,7 @@ public class MemberService {
 	private final PointDao pointDao;
 	
 	public void newMember(MemberVo vo) {
+		System.out.println(vo);
 		memberDao.insertMember(vo);
 	}
 	public String overlapped(String id) {
@@ -116,5 +117,8 @@ public class MemberService {
 	}
 	public List<PaymentVo> selectAllMyPayment(String id){
 		return memberDao.selectAllMyPayment(id);
+	}
+	public PaymentVo selectOnePayment(String no) {
+		return memberDao.selectOnePayment(no);
 	}
 }

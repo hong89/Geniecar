@@ -20,7 +20,7 @@
         color: #f8f7fd;
     }
 
-    a{
+    ul a{
         color: #f8f7fd;
         text-decoration: none;
     }
@@ -148,18 +148,34 @@
             </ul>
         </aside>
         <article class="p-5 container-fluid">
+            <div class="border-bottom pb-5">
+                <h2 class="fw-bolder">결제 내역</h2>
+            </div>
             ${paymentList}
-            <c:forEach var="payment" items="${paymentList}">
-                <div class="card m-3">
-                    <div class="card-header">
-                        <h5>${payment.merchantUid}</h5>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">${payment.name}</h5>
-                      <p class="card-text">${payment.paidAmount}${payment.currency} ${payment.regDate}</p>
-                    </div>
-                  </div>
-            </c:forEach>
+            <table class = 'table'>
+                <thead>
+                    <tr>
+                        <td>상태</td>
+                        <td>상품</td>
+                        <td>예약번호</td>
+                        <td>결제일시</td>
+                        <td>결제수단</td>
+                        <td>금액</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="payment" items="${paymentList}">
+                        <tr>
+                            <td> <c:if test='${payment.success eq "true" }'> 결제완료</c:if></td>
+                            <td>${payment.name}</td>
+                            <td><a href="/mypage/paymentDetail.do?no=${payment.merchantUid}"">${payment.merchantUid}</a></td>
+                            <td><fmt:formatDate value="${payment.regDate}" pattern="yyyy-MM-dd hh:mm" /></td>
+                            <td>${payment.cardName}</td>
+                            <td>${payment.paidAmount}원</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
         </article>
     </div>
 

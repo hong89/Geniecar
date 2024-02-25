@@ -20,11 +20,10 @@
         color: #f8f7fd;
     }
 
-    a{
+    ul a{
         color: #f8f7fd;
         text-decoration: none;
     }
-
     aside {
         width: 300px;
         background-color: #f8f7fd;
@@ -125,7 +124,8 @@
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/payment.do" class="nav-link">결제내역</a>
-                </li><li class="nav-item mb-4">
+                </li>
+                <li class="nav-item mb-4">
                     <a href="/mypage/myReview.do?typeCode=REVIEW" class="nav-link">이용 후기</a>
                 </li>
                 <li class="nav-item mb-4">
@@ -148,28 +148,19 @@
             </ul>
         </aside>
         <article class="p-5 container-fluid">
-            <h1 class = "m-3">결제 내역</h1>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td>상태</td>
-                        <td>상품</td>
-                        <td>결제일시</td>
-                        <td>결제수단</td>
-                        <td>금액</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>결제완료</td>
-                        <td>geniecar_아반떼_0일 1시간 40분</td>
-                        <td>2024-12-11 16:45</td>
-                        <td>현대카드4578-6523-****-****</td>
-                        <td>65000원</td>
-                    </tr>
-                </tbody>
-            </table>
-            
+            <div class="border-bottom pb-5">
+                <h2 class="fw-bolder">결제 상세 내역</h2>
+            </div>
+           <table class="table">
+                <tr>
+                    <td>상태</td>
+                    <td>상품</td>
+                    <td>예약번호</td>
+                    <td>결제일시</td>
+                    <td>결제수단</td>
+                    <td>금액</td>
+                </tr>
+           </table>
         </article>
     </div>
 

@@ -104,13 +104,23 @@ public class MyPageController {
 
     //ruddud
     @GetMapping("/payment.do")
-    public String coupon(Model model, HttpSession session) {
+    public String payment(Model model, HttpSession session) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
         model.addAttribute("mypage",memberService.mypage(membervo.getId()));        
         model.addAttribute("paymentList",memberService.selectAllMyPayment(membervo.getId()));
         
         return "mypage/payment";
+    }
+    
+    @GetMapping("/paymentDetail.do")
+    public String paymentDetail(String no,Model model, HttpSession session) {
+        MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+        model.addAttribute("member", membervo);
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));        
+        model.addAttribute("paymentList",memberService.selectAllMyPayment(membervo.getId()));
+        model.addAttribute("payment", memberService.selectOnePayment(no));
+        return "mypage/paymentDetail";
     }
 
     //ruddud
