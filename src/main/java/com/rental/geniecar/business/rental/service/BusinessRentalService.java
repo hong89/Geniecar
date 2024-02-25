@@ -55,4 +55,5 @@ public class BusinessRentalService {
     public void updateReservation(String reservationNo, String id) {
         businessRentalDao.updateReservation(reservationNo, id);
     }
+
 }

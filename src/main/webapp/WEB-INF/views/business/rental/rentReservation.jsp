@@ -2,7 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<script>
+    $(function () {
+        $('#nameSearchBtn').on('click', function () {
+            var searchName = $('[name=startDate]').val();
+            var searchDate = $('[name=name]').val();
+            $('#searchForm').submit();
+        });
+    });
+</script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="p-5">
@@ -10,6 +18,38 @@
             <section class="text-center">
                 <h1 class="pb-5 tit">렌터카 예약 내역</h1>
             </section>
+
+            <div class="row pb-5">
+                <form id="searchForm" action="rentReservation.do" method="get">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col-4 text-end align-self-center">대여시작일</div>
+                                <div class="col-8">
+                                    <input type="date" class="form-control" name="startDate"
+                                           value="<c:out value='${pagination.startDate}' />"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col-4 text-end align-self-center">예약자명</div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" name="name" placeholder="이름 검색"
+                                           value="<c:out value='${pagination.name}' />"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn text-white w-100" style="background: #41087c;"
+                                    id="nameSearchBtn">
+                                검색
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             <table class="pt-5 table caption-top align-middle">
                 <thead>
                 <tr>
@@ -22,7 +62,7 @@
                     <td class="col"><strong>최종가격</strong></td>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="reservationBody">
                 <c:forEach var="res" items="${reservationList}">
                     <tr>
                         <td class="col">
@@ -64,7 +104,7 @@
                         <li class="page-item">
                             <a class="page-link" href="javascript:void(0);"
                                onclick="movePage(${idx},${pagination.cntPerPage}, ${pagination.pageSize});">
-                                    <c:out value="${idx}"/>
+                                <c:out value="${idx}"/>
                             </a>
                         </li>
                     </c:forEach>
@@ -95,7 +135,7 @@
                 //페이지 이동
                 function movePage(currentPage) {
 
-                    var url = "/admin/car/newCarList.do";
+                    var url = "rentReservation.do";
                     var params = [];
                     params.push("currentPage=" + (currentPage || 1));
 

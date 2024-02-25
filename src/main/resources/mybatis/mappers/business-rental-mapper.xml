@@ -32,6 +32,12 @@
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
 		</if>
+		<if test="startDate != null and startDate != ''.toString()">
+			AND TO_CHAR(RENTAL_DATE, 'YYYY-MM-DD') = #{startDate}
+		</if>
+		<if test="name != null and name != ''.toString()">
+			AND INSTR (NAME, #{name}) &gt; 0
+		</if>
 	</select>
 	
 	<select id="totalCount" parameterType="com.rental.geniecar.domain.common.Pagination" resultType="int">
@@ -72,6 +78,12 @@
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
 		</if>
+		<if test="startDate != null and startDate != ''.toString()">
+			AND TO_CHAR(RENTAL_DATE, 'YYYY-MM-DD') = #{startDate}
+		</if>
+		<if test="name != null and name != ''.toString()">
+			AND INSTR (NAME, #{name}) &gt; 0
+		</if>
 	</select>
 
 	<select id="completeTotalCount" parameterType="com.rental.geniecar.domain.common.Pagination" resultType="int">
@@ -111,6 +123,12 @@
 		  AND RENTAL_CAR_BRANCH_NO = #{keyword}  )
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+		</if>
+		<if test="startDate != null and startDate != ''.toString()">
+			AND TO_CHAR(RENTAL_DATE, 'YYYY-MM-DD') = #{startDate}
+		</if>
+		<if test="name != null and name != ''.toString()">
+			AND INSTR (NAME, #{name}) &gt; 0
 		</if>
 	</select>
 
@@ -165,6 +183,12 @@
 		AND RENTAL_CAR_BRANCH_NO = #{keyword}  )
 		<if test="firstRecordIndex != null and lastRecordIndex != null">
 			WHERE RN BETWEEN #{firstRecordIndex} AND #{lastRecordIndex}
+		</if>
+		<if test="startDate != null and startDate != ''.toString()">
+			AND TO_CHAR(RENTAL_DATE, 'YYYY-MM-DD') = #{startDate}
+		</if>
+		<if test="name != null and name != ''.toString()">
+			AND INSTR (NAME, #{name}) &gt; 0
 		</if>
 	</select>
 

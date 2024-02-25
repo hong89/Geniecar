@@ -5,6 +5,7 @@ import com.rental.geniecar.domain.reservation.RentalCarReservationVo;
 import com.rental.geniecar.domain.reservation.ReservationDetailVo;
 import com.rental.geniecar.domain.reservation.ReservationVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,11 +23,12 @@ public interface BusinessRentalDao {
 
     int progressTotalCount(Pagination pagination);
 
-    ReservationDetailVo selectDetail(String reservationNo, String branchCode);
+    ReservationDetailVo selectDetail(@Param("reservationNo") String reservationNo, @Param("branchCode") String branchCode);
 
     int cancelTotalCount(Pagination pagination);
 
     List<RentalCarReservationVo> selectCancelList(Pagination pagination);
 
-    void updateReservation(String reservationNo, String id);
+    void updateReservation(@Param("reservationNo") String reservationNo, @Param("id") String id);
+
 }

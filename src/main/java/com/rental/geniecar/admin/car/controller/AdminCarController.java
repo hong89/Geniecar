@@ -185,22 +185,6 @@ public class AdminCarController {
         return "redirect:newCarList.do";
     }
 
-/*    @ResponseBody
-    @PostMapping("/newCarModify.do")
-    public ResponseEntity newCarModify(NewCarVo newCarVo) {
-        try {
-            adminCarService.updateNewCar(newCarVo);
-            return ResponseEntity.ok("성공");
-        } catch (Exception e) {
-            return ResponseEntity.ok("실패");
-        }
-    }*/
-
-    /*    @GetMapping("/newCarDelete.do")
-        public String newCarDelete(@RequestParam int no) {
-            adminCarService.deleteNewCar(no);
-            return "redirect:newCarList.do";
-        }*/
     @ResponseBody
     @GetMapping("/newCarDelete.do")
     public ResponseEntity newCarDelete(@RequestParam("deleteNo") int no) {

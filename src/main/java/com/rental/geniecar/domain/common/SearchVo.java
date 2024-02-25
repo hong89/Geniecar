@@ -9,4 +9,8 @@ public class SearchVo {
     private SearchType searchType;
     private String keyword;
 
+    private String startDate;
+    private String endDate;
+    private String name;
+
 }
