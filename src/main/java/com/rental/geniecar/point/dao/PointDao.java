@@ -12,4 +12,5 @@ public interface PointDao {
 	public List<PointVo> selectAll(String memberId);
 	public void delete(String memberId);
 	public PointVo selectPoint(String memberId);
+	public void savePoint(PointVo pointVo);
 }

@@ -48,11 +48,20 @@
         saleCost: ${detail.totalCost - detail.saleCost},
         totalCost: ${detail.totalCost},
         addCost: 20000,
+        havePoint: ${detail.availablePoint}, //보유 포인트 //TODO 실제 포인트 적용
+        usePoint: 0, //사용한 포인트
         step1FinalCostCal: function () {
             return this.totalCost - this.saleCost;
         },
         step2FinalCostCal: function () {
-            return this.totalCost - this.saleCost + this.addCost;
+            var total = this.totalCost - this.saleCost + this.addCost;
+            if(total < this.usePoint){
+                alert('포인트 사용 금액이 결제 금액을 넘길 수 없어 포인트를 초기화 합니다.');
+                this.usePoint = 0;
+                $('#point').text(this.usePoint);
+                $('#templateArea #pointResetBtn').click();
+            }
+            return total - this.usePoint;
         }
     }
 
@@ -69,15 +78,18 @@
         $('#step2Area').html(rendered);
         rentalCost.addCost = 20000;
         $('#finalCost').text(numberCostFormat(rentalCost.step1FinalCostCal()) + '원');
+        rentalCost.usePoint = 0;
+        $('#pointCost').text(rentalCost.usePoint + '원');
+        $('#pointRateArea').hide();
     }
-
 
     function step2Print(){
         var template = $('#step2Template').html();
-        var rendered = Mustache.render(template);
+        var rendered = Mustache.render(template, {point: numberCostFormat(rentalCost.havePoint) + 'P'});
         $('#step2Area').html(rendered);
         var $image = $('.container .step2-nav img:eq(1)');
         $image.attr('src', $image.attr('src').replace('circle-check-regular', 'circle-check-solid'));
+
         $('#addRateArea').show();
         $('#addRateCost').text(numberCostFormat(rentalCost.addCost + '원'));
         $('#finalCost').text(numberCostFormat(rentalCost.step2FinalCostCal()) + '원');
@@ -99,6 +111,8 @@
         orderedName : '${detail.reservationMemberName}',
         buyerTel: '${detail.reservationMemberHp}'
     }
+
+
 
     IMP.init('imp34077744');
     function kgPay(payInfo){
@@ -132,6 +146,7 @@
                     addPrice: rentalCost.addCost, //면책요금
                     finalReservationPrice: rsp.paid_amount,
                     regularPrice: ${detail.totalCost},
+                    usePoint: rentalCost.usePoint, //사용 포인트
 
                     //결제정보
                     applyNum: rsp.apply_num,
@@ -152,7 +167,7 @@
                     pgTid: rsp.pg_tid,
                     pgType: rsp.pg_type,
                     status: rsp.status,
-                    success: rsp.success,
+                    success: rsp.success
                 };
 
                 $.post('reservationSuccess.do', reservationSaveData, function (res) {
@@ -241,6 +256,55 @@
             $('[name^=termsCheck]').prop('checked', true);
         });
 
+        $('#templateArea').on('keyup', '#point', function (event) {
+            var point = $(this).val();
+            point = Number(point.replaceAll(',', ''));
+            if(isNaN(point)) {
+                //숫자만 받기
+                alert('포인트는 숫자만 입력 가능합니다.')
+                $(this).val('');
+            }else {
+                if(rentalCost.havePoint < point){
+                    alert('사용 가능한 포인트는 ' + rentalCost.havePoint + 'P  입니다.');
+                    point = rentalCost.havePoint;
+                }
+
+                //#,### format 으로 replace 하기
+                $(this).val(numberCostFormat(point));
+            }
+        });
+
+        $('#templateArea').on('click', '#pointApplyBtn', function () {
+            var point = $('#templateArea #point').val();
+            point = Number(point.replaceAll(',', ''));
+            //console.log(point)
+            if(rentalCost.havePoint < point){
+                alert('사용 가능한 포인트는 ' + rentalCost.havePoint + 'P  입니다.');
+                $('#templateArea #point').val(numberCostFormat(rentalCost.havePoint));
+            }
+            else if(point < 1000){
+                alert('포인트는 1,000 포인트 이상부터 사용 가능합니다.');
+                return false;
+            }
+
+            //todo 우측 사용 포인트 항목 추가되어서 결제 금액에 반영 되도록
+            rentalCost.usePoint = point;
+            $('#templateArea #pointCost').text(numberCostFormat(rentalCost.usePoint) + '원');
+            $('#pointRateArea').show();
+
+            payInfo.amount = rentalCost.step2FinalCostCal()
+            $('#finalCost').text(numberCostFormat(payInfo.amount) + '원');
+        });
+
+        $('#templateArea').on('click', '#pointResetBtn', function () {
+            $('#templateArea #point').val('');
+            rentalCost.usePoint = 0;
+            $('#pointRateArea').hide();
+            $('#pointCost').text('0원');
+
+            payInfo.amount = rentalCost.step2FinalCostCal()
+            $('#finalCost').text(numberCostFormat(payInfo.amount) + '원');
+        });
 
     });
 </script>
@@ -321,6 +385,12 @@
                             <div class="row">
                                 <div class="col-6">추가요금</div>
                                 <div class="col-6 text-end" id="addRateCost" >20,000원</div>
+                            </div>
+                        </li>
+                        <li class="list-group-item text-white" id="pointRateArea" style="display: none;">
+                            <div class="row">
+                                <div class="col-6">포인트 사용</div>
+                                <div class="col-6 text-end" id="pointCost" ></div>
                             </div>
                         </li>
                         <li class="list-group-item text-white">
@@ -576,11 +646,15 @@
                 <div class="col-2">
                     <label for="point" class="col-form-label">포인트 사용</label>
                 </div>
-                <div class="col-4 w-40" >
-                    <input type="text" id="point" name="point" class="form-control" placeholder="사용하실 포인트를 입력하세요" />
+                <div class="col-4" >
+                    <input type="text" id="point" name="point" class="form-control" placeholder="사용하실 포인트를 입력하세요" pattern="[0-9]" />
                 </div>
                 <div class="col-2" >
-                    <small>가용포인트 : </small>
+                    <input type="button" id="pointApplyBtn"  value="적용" />
+                    <input type="button" id="pointResetBtn"  value="리셋" />
+                </div>
+                <div class="col-4" >
+                    <small>가용포인트 : {{point}}</small>
                 </div>
             </div>
         </div>

@@ -1,9 +1,11 @@
 package com.rental.geniecar.domain.member;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
 
+@NoArgsConstructor
 @Getter
 @Setter
 public class PointVo {
@@ -16,4 +18,10 @@ public class PointVo {
     private int totalUsePoint;     // 누적 사용 포인트
     private String memberId;       // 회원아이디 (회원아이디 FK)
 
+    public PointVo(int point, String increase, String history, String memberId) {
+        this.point = point;
+        this.increase = increase;
+        this.history = history;
+        this.memberId = memberId;
+    }
 }

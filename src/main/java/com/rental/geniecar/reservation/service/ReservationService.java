@@ -3,8 +3,10 @@ package com.rental.geniecar.reservation.service;
 import com.rental.geniecar.common.dao.CommonDao;
 import com.rental.geniecar.domain.branch.RentalCarBranchVo;
 import com.rental.geniecar.domain.car.NewCarVo;
+import com.rental.geniecar.domain.member.PointVo;
 import com.rental.geniecar.domain.reservation.*;
 import com.rental.geniecar.infra.util.DateUtil;
+import com.rental.geniecar.point.dao.PointDao;
 import com.rental.geniecar.reservation.dao.ReservationDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class ReservationService {
 
     private final ReservationDao reservationDao;
     private final CommonDao commonDao;
+    private final PointDao pointDao;
 
     public List<RentalCarBranchVo> selectBranchesByLocationCode(String locationCode) {
         return reservationDao.selectBranchesByLocationCode(locationCode);
@@ -76,7 +79,9 @@ public class ReservationService {
 
         String reservationNo = reservationDao.selectReservationNo();
         rentalCarReservationStep2Vo.setReservationNo(reservationNo);
+        PointVo pointVo = pointDao.selectPoint(rentalCarReservationStep2Vo.getReservationMemberId());
 
+        if(pointVo != null) rentalCarReservationStep2Vo.setAvailablePoint(pointVo.getCurrentPoint());
 
         return rentalCarReservationStep2Vo;
     }
@@ -92,6 +97,15 @@ public class ReservationService {
         reservationDao.savePayment(reservationSaveVo);
 
         RentalCarReservationVo rentalCarReservationVo = reservationDao.selectReservationOne(reservationSaveVo.getReservationNo());
+
+        int addPoint = (int) ((reservationSaveVo.getRegularPrice() - reservationSaveVo.getUsePoint()) * 0.1);
+        PointVo addPointVo = new PointVo(addPoint, "+", reservationSaveVo.getReservationNo(), reservationSaveVo.getReservationMemberId());
+        pointDao.savePoint(addPointVo);
+
+        if(reservationSaveVo.getUsePoint() > 0) {
+            PointVo pointVo = new PointVo(reservationSaveVo.getUsePoint(), "-", reservationSaveVo.getReservationNo(), reservationSaveVo.getReservationMemberId());
+            pointDao.savePoint(pointVo);
+        }
 
         return rentalCarReservationVo;
     }

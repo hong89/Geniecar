@@ -16,13 +16,14 @@ public class ReservationSaveVo {
     private String carIdentificationNumber;
     private String rentalCarBranchNo;
     private String reservationMemberId;
-    private String regularPrice;
-    private Integer saleRate;
-    private Integer totalCost;
-    private Integer finalReservationPrice;
+    private Integer regularPrice;
+    private Integer saleRate = 0;
+    private Integer totalCost = 0;
+    private Integer finalReservationPrice = 0;
     private String cancelYn;
     private String regId;
     private Integer addPrice;
+    private Integer usePoint = 0;
 
     //결제정보
     private String applyNum;
@@ -30,18 +31,19 @@ public class ReservationSaveVo {
     private String buyerTel;
     private String cardName;
     private String cardNumber;
-    private Integer cardQuota;
+    private Integer cardQuota = 0;
     private String currency;
     private String customData;
     private String impUid;
     private String merchantUid;
     private String name;
-    private Integer paidAmount;
-    private Integer paidAt;
+    private Integer paidAmount = 0;
+    private Integer paidAt = 0;
     private String payMethod;
     private String pgProvider;
     private String pgTid;
     private String pgType;
     private String status;
     private String success;
+
 }

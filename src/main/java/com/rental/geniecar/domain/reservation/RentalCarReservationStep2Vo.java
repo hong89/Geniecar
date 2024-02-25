@@ -25,6 +25,8 @@ public class RentalCarReservationStep2Vo {
     private int saleRate;                        // 할인율
     private int finalReservationPrice;           // 최종_예약_금액 (정가/할인율=최종금액)
     
+    private int availablePoint; //가용 포인트
+    
     private String rentalPeriod; //총 대여기간
     private int carNo; //자동차 no
     private String carName; //차명

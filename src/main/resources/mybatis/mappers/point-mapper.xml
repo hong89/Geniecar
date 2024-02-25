@@ -9,7 +9,41 @@
 	<delete id="delete" parameterType="String">
 		DELETE POINT WHERE MEMBER_ID = #{memberId}
 	</delete>
-	<select id="selectPoint">
+
+	<select id="selectPoint" resultType="pointVo">
 		SELECT CURRENT_POINT, TOTAL_USE_POINT FROM (SELECT ROWNUM ,P.* FROM POINT P WHERE MEMBER_ID = #{memberId} ORDER BY NO DESC) WHERE ROWNUM =1
 	</select>
+
+	<insert id="savePoint" parameterType="pointVo">
+		INSERT INTO POINT (
+		    NO
+		   ,POINT
+		   ,INCREASE
+		   ,HISTORY
+		   ,REG_DATE
+		   ,CURRENT_POINT
+		   ,TOTAL_USE_POINT
+		   ,MEMBER_ID
+		) VALUES (
+			SEQ_POINT_NO.NEXTVAL
+		   ,#{point}
+		   ,#{increase}
+		   ,#{history}
+		   ,SYSDATE
+		   ,(SELECT NVL((SELECT * FROM (SELECT CURRENT_POINT FROM POINT WHERE MEMBER_ID = #{memberId} ORDER BY NO DESC) WHERE ROWNUM = 1), 0) FROM DUAL)
+		   <choose>
+			   <when test="increase == '+'.toString()">
+				   + #{point}
+			   </when>
+			   <otherwise>
+				   - #{point}
+			   </otherwise>
+		   </choose>
+		   , (SELECT NVL((SELECT * FROM (SELECT TOTAL_USE_POINT FROM POINT WHERE MEMBER_ID = #{memberId} ORDER BY NO DESC) WHERE ROWNUM = 1), 0) FROM DUAL)
+		   <if test="increase == '-'.toString()">
+			   + #{point}
+		   </if>
+		   ,#{memberId}
+		)
+	</insert>
 </mapper>

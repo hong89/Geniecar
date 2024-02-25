@@ -76,9 +76,11 @@ public class ReservationController {
     public String step2(RentalCarReservationStep2Vo rentalCarReservationStep2Vo, Model model, HttpSession session){
         try {
             MemberVo member = (MemberVo) session.getAttribute("memberInfo");
+            rentalCarReservationStep2Vo.setReservationMemberId(member.getId());
             rentalCarReservationStep2Vo.setReservationMemberName(member.getName());
             rentalCarReservationStep2Vo.setReservationMemberHp(member.getHp());
             rentalCarReservationStep2Vo = reservationService.reservationStep2(rentalCarReservationStep2Vo);
+
             model.addAttribute("detail", rentalCarReservationStep2Vo);
         }catch (ParseException e) {
             log.error(e.getMessage());
