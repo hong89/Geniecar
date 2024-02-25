@@ -170,8 +170,7 @@ public class AdminBoardController {
 
         return "admin/board/detailEvent";
     }
-
-
+    
     // 게시판 글 쓰기 폼
     @GetMapping("/register.do")
     public String register() {

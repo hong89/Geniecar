@@ -42,7 +42,7 @@
     <div id="registerForm">
         <h3>등록하기</h3>
         <c:set var="parentNo" value="<%= parentNo %>" />
-        <form name="registerForm" action="/admin/board/insertBoard.do" method="post" enctype="multipart/form-data">
+        <form name="registerForm" action="/admin/board/insertBoard.do?returnUrl=/admin/business/qnaList.do?typeCode=QNA" method="post" enctype="multipart/form-data">
             <c:choose>
                 <c:when test="${empty parentNo}">
                 <div class="mb-3 row">

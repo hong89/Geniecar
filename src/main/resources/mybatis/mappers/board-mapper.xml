@@ -36,57 +36,59 @@
 		<if test='title != null'>
 				  AND TITLE LIKE '%' || #{title} || '%'
 		</if> 		         		    
-	         )
-		<![CDATA[
-         WHERE RN >= #{startPage} 
-           AND RN < #{startPage} + #{pageSize} 
-		]]>	         
-	  ORDER BY RN ASC
+	    	)
+				<![CDATA[
+         			WHERE RN >= #{startPage} 
+           			AND RN < #{startPage} + #{pageSize} 
+				]]>	         
+	  			ORDER BY RN ASC
 	</select>
 	
+	<!-- 마이페이지 1:1 가져오기 -->
 	<select id="selectBoardListById" parameterType="java.util.Map">
-		/* selectBoardList */
-		SELECT NO
-			 , TITLE
-			 , CONTENT
-			 , HIT
-			 , TYPE_CODE
-			 , NOTICE_YN
-			 , HASH_TAG
-			 , START_DATE
-			 , END_DATE
-			 , REG_ID
-			 , REG_DATE
-			 , RN
-  		  FROM 
-             ( SELECT NO
-			        , TITLE
+	    WITH Hierarchical_Board AS (
+	        SELECT NO
+	        	 , PARENT_NO
+	        	 , TITLE
+	             , CONTENT
+	             , HIT
+	             , TYPE_CODE
+	             , NOTICE_YN
+	             , HASH_TAG
+	             , START_DATE
+	             , END_DATE
+	             , REG_ID
+	             , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
+	             , ROW_NUMBER() OVER(ORDER BY NO DESC) AS RN
+	          FROM BOARD
+	         WHERE TYPE_CODE = 'QNA'
+	           AND REG_ID IN (#{Id}, 'ADMIN')
+	        <if test='title != null'>
+	            AND TITLE LIKE '%' || #{title} || '%'
+	        </if> 
+			)
+			   SELECT LEVEL
+			        , NO
+			        , PARENT_NO
+			        , LPAD(' ', 5*(LEVEL-1)) || CASE WHEN LEVEL > 1 THEN '[답글]: ' ELSE '' END || TITLE AS TITLE
 			        , CONTENT
 			        , HIT
 			        , TYPE_CODE
 			        , NOTICE_YN
 			        , HASH_TAG
 			        , START_DATE
-					, END_DATE
-					, REG_ID
-			        , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
-			        , ROW_NUMBER() OVER(ORDER BY NO DESC)
-			          AS RN
- 		         FROM BOARD
- 		        WHERE TYPE_CODE = #{typeCode} 
- 		          AND REG_ID = #{Id}
-		<if test='title != null'>
-				  AND TITLE LIKE '%' || #{title} || '%'
-		</if> 		         		    
-	         )
-		<![CDATA[
-         WHERE RN >= #{startPage} 
-           AND RN < #{startPage} + #{pageSize} 
-		]]>	         
-	  ORDER BY RN ASC
+			        , END_DATE
+			        , REG_ID
+			        , REG_DATE
+			        , RN
+			     FROM Hierarchical_Board
+			    START WITH PARENT_NO = 0
+			  CONNECT BY PRIOR NO = PARENT_NO
+			      AND REG_ID IN (#{Id}, 'ADMIN') AND PARENT_NO != 0
+			    ORDER SIBLINGS BY RN ASC
 	</select>
-	
-	<!-- 글 목록(계층) 가져오기 -->
+
+	<!-- 글 목록 가져오기 -->
 	<select id="selectQnaList" parameterType="com.rental.geniecar.domain.board.CommonCrudVo">
 		WITH Hierarchical_Board AS (
     		SELECT NO
@@ -111,7 +113,7 @@
 				SELECT LEVEL
 				     , NO
 				     , PARENT_NO
-				     , LPAD(' ', 5*(LEVEL-1)) || CASE WHEN LEVEL > 1 THEN '[답변]: ' ELSE '' END || TITLE AS TITLE
+				     , LPAD(' ', 5*(LEVEL-1)) || CASE WHEN LEVEL > 1 THEN '[답글]: ' ELSE '' END || TITLE AS TITLE
 				     , CONTENT
 				     , HIT
 				     , TYPE_CODE
@@ -123,13 +125,12 @@
 				     , REG_DATE
 				     , RN
 				FROM Hierarchical_Board
+			<![CDATA[
+   			   WHERE RN >= #{startPage} 
+    			 AND RN < #{startPage} + #{pageSize} 
+    		]]>
 				START WITH PARENT_NO = 0
 				CONNECT BY PRIOR NO = PARENT_NO
-		
-    		<!--<![CDATA[
-   			 	AND RN >= #{startPage} 
-    			AND RN < #{startPage} + #{pageSize} 
-    		]]>-->
 				ORDER SIBLINGS BY RN ASC
 	</select>
 	
@@ -148,6 +149,7 @@
 		INSERT INTO BOARD
 		(
 			  NO
+			, PARENT_NO
 			, TITLE
 			, CONTENT
 			, HIT
@@ -161,6 +163,7 @@
 		VALUES
 		(
 			  SEQ_BOARD_NO.NEXTVAL
+			, #{parentNo}
 			, #{title}
 			, #{content}
 			, #{hit}
@@ -223,13 +226,24 @@
             , EXTENSION = #{extension}
             , FILE_SIZE = #{fileSize}
             , REG_ID    = #{regId}
-	    WHERE FILE_NO = #{fileNo} AND SEQ = #{seq}
+	    WHERE FILE_NO   = #{fileNo} 
+	      AND SEQ       = #{seq}
     	]]>
 	</update>
-	
+
+	<!-- 댓글 포함 지우기 -->
 	<delete id="deleteNotice" parameterType="int">
-		DELETE BOARD
-		WHERE NO = #{no}
+		DELETE FROM BOARD
+		 WHERE NO IN (
+        SELECT NO
+          FROM (
+                SELECT NO
+                     , LEVEL AS LVL
+            	  FROM BOARD
+           		 START WITH NO     = #{no}
+               CONNECT BY PRIOR NO = PARENT_NO
+        	   )
+    		)
 	</delete>
 	
 	<delete id="deleteImage" parameterType="int">

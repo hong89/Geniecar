@@ -2,6 +2,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+    function deleteNotice() {
+        var confirmDelete = confirm("삭제 하시겠습니까?");
+        if(confirmDelete) {
+            var no = "${notice.no}";
+            var fileNo = "${notice.fileNo}";
+
+            $.ajax({
+                url: "/admin/board/deleteNotice.do",
+                type: "GET",
+                data: { no: no,
+                        fileNo: fileNo },
+                success: function(response) {
+                    alert("삭제 되었습니다.");
+                    var typeCode = "${notice.typeCode}"
+                    window.location.href = "/admin/business/qnaList.do?typeCode=" + typeCode;
+                },
+                error: function(xhr, status, error) {
+                    alert("삭제에 실패하였습니다.", error);
+                }
+            });
+        }
+    }
+</script>
+
 <style>
     .responsive-image {
         max-width: 100%;
@@ -39,7 +64,7 @@
                     onclick="location.href='updateNoticeForm.do?no=${notice.no}'">수정하기
             </button>
             <button type="button" class="btn text-white" style="background: #41087c"
-                    onclick="location.href='deleteNotice.do?no=${notice.no}&fileNo=${notice.fileNo}'">삭제하기
+                    onclick="deleteNotice();">삭제하기
             </button>
         </div>
     </div>

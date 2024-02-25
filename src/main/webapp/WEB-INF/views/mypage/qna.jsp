@@ -56,6 +56,14 @@
         border-bottom:#d1c9ff solid 2px;
         padding: 15px;
     }
+    pre {
+        margin: auto 0;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 16px;
+    }
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -169,7 +177,7 @@
                                 <c:forEach var="notice" items="${boardList}">
                                     <tr>
                                         <td align="center">${notice.no}</td>
-                                        <td align="left"><a href="/mypage/qnaDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
+                                        <td align="left"><pre><a href="/mypage/qnaDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</pre></a>
                                         </td>
                                         <td align="center">${notice.regDate}</td>
                                     </tr>

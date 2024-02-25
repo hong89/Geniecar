@@ -85,7 +85,7 @@
                     <c:forEach var="notice" items="${boardList}">
                         <tr>
                             <td align="center">${notice.no}</td>
-                            <td align="left"><pre><a href="/admin/board/detailNotice.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</pre></a>
+                            <td align="left"><pre><a href="/admin/business/adminQnaDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</pre></a>
                             </td>
                             <td align="center">${notice.regDate}</td>
                         </tr>

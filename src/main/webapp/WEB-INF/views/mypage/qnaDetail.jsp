@@ -2,6 +2,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+    function deleteNotice() {
+        var confirmDelete = confirm("삭제 하시겠습니까?");
+        if(confirmDelete) {
+            var no = "${notice.no}";
+            var fileNo = "${notice.fileNo}";
+
+            $.ajax({
+                url: "/admin/board/deleteNotice.do",
+                type: "GET",
+                data: { no: no,
+                        fileNo: fileNo },
+                success: function(response) {
+                    alert("삭제 되었습니다.");
+                    var typeCode = "${notice.typeCode}"
+                    window.location.href = "/admin/board/list.do?typeCode=" + typeCode;
+                },
+                error: function(xhr, status, error) {
+                    alert("삭제에 실패하였습니다.", error);
+                }
+            });
+        }
+    }
+</script>
+
 <style>
     .breadcrumb-item a {
         text-decoration: none;
@@ -156,8 +181,12 @@
                         <div class="p-5" style="text-align: center;">
                             <a href="/mypage/qna.do?typeCode=${notice.typeCode}" class="btn text-white"
                                style="background-color: #41087c;">목록가기</a>
+                            <c:if test="${memberInfo != NULL && memberInfo.id eq notice.regId}">
                             <a href="/mypage/deleteNotice.do?no=${notice.no}&fileNo=${notice.fileNo}" class="btn text-white"
-                               style="background-color: #41087c;">삭제하기</a>
+                               style="background-color: #41087c;" onclick="return deleteNotice();">삭제하기</a>
+                            </c:if>
+                            <a href="/mypage/qnaRegister.do?parentNo=${notice.no}" class="btn text-white"
+                               style="background-color: #41087c;">답글달기</a>
                         </div>
                     </div>
                 </div>
