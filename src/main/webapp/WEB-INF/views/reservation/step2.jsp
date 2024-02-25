@@ -649,11 +649,11 @@
                 <div class="col-4" >
                     <input type="text" id="point" name="point" class="form-control" placeholder="사용하실 포인트를 입력하세요" pattern="[0-9]" />
                 </div>
-                <div class="col-2" >
-                    <input type="button" id="pointApplyBtn"  value="적용" />
-                    <input type="button" id="pointResetBtn"  value="리셋" />
+                <div class="col-3" >
+                    <input type="button" id="pointApplyBtn" class="btn text-white" style="background: #41087c" value="적용" />
+                    <input type="button" id="pointResetBtn" class="btn text-white" style="background: #41087c" value="리셋" />
                 </div>
-                <div class="col-4" >
+                <div class="col-3" >
                     <small>가용포인트 : {{point}}</small>
                 </div>
             </div>
