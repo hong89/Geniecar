@@ -46,22 +46,28 @@ public class LoginController {
 
     //ruddud
     @GetMapping("/login.do")
-    public String login(HttpSession session, Model model) throws UnsupportedEncodingException {
+    public String login(HttpSession session, Model model){
         session.getAttribute("isLogOn");
         //System.out.println(session.getAttribute("isLogOn"));
+        return "login/login";
+    }
 
+
+    @GetMapping("/fetchNaverApiUrl.do")
+    @ResponseBody
+    public String fetchNaverApiUrl(HttpServletRequest request) throws UnsupportedEncodingException {
         String clientId = "UzPVeRTcU83j7OZ_dIac";//애플리케이션 클라이언트 아이디값";
-        String redirectURI = URLEncoder.encode("http://localhost:8085/login/naverLogin.do", "UTF-8");
+
+
+        String redirectURI = URLEncoder.encode("http://" + request.getServerName() + ":8085/login/naverLogin.do", "UTF-8");
         SecureRandom random = new SecureRandom();
         String state = new BigInteger(130, random).toString();
         String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code"
                 + "&client_id=" + clientId
                 + "&redirect_uri=" + redirectURI
                 + "&state=" + state;
-        session.setAttribute("state", state);
-        model.addAttribute("apiURL", apiURL);
 
-        return "login/login";
+        return apiURL;
     }
 
     //ruddud
@@ -204,7 +210,6 @@ public class LoginController {
                 Mono<Map> mapMono = webClient.get().retrieve().bodyToMono(Map.class);
                 Map naverMemberInfo = (Map) mapMono.block().get("response");
                 System.out.println(naverMemberInfo);
-                // TODO naverMemberInfo 정보로 로그인 객체 생성 => 세션에 담기
 
                 // db에 접근하여 회원인지 확인
                 String naverId = memberService.hasNaverMemberId(naverMemberInfo.get("email").toString());

@@ -10,7 +10,11 @@
 </style>
 <script>
 
-
+    function naverLogin(){
+        $.get('fetchNaverApiUrl.do', function (res) {
+            location.href = res;
+        })
+    }
 </script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -41,7 +45,7 @@
                     </div>
                     <div class="col-6">
                         <%-- 네이버 로그인 버튼 노출 영역 --%>
-                        <a href="${apiURL}">
+                        <a href="#" id="naverLoginBtn" onclick="naverLogin(); return false;">
                             <img class="mt-3" src="/images/naver_login_btn.png" width="100%"/>
                         </a>
                     </div>
