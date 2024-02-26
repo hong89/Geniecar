@@ -26,4 +26,7 @@ public class PointService {
 	public PointVo selectPoint(String memberId){
 		return pointDao.selectPoint(memberId);		
 	}
+	public PointVo selectOne(String no) {
+		return pointDao.selectOne(no);
+	}
 }

@@ -44,4 +44,7 @@ public interface MemberDao {
 	public int countReservation(String id);
 	public List<PaymentVo> selectAllMyPayment(String id);
 	public PaymentVo selectOnePayment(String no);
+	public void updateReservationCancel(Map map);
+	public void updatePaymentCancel(Map map);
+	
 }

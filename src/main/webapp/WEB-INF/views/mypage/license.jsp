@@ -20,7 +20,7 @@
         color: #f8f7fd;
     }
 
-    a{
+    ul a{
         color: #f8f7fd;
         text-decoration: none;
     }
@@ -126,6 +126,10 @@
     }
 </style>
 <script>
+    $(function() {    
+        let msg = "${msg}";
+        if(msg.length != 0){alert(msg);}
+    })
     function onlyNumber(){
         const reg = /\D/g;
         event.target.value = event.target.value.replace(reg, "");
@@ -139,6 +143,7 @@
     $(function () {
         var isnull = document.getElementById('isnull').value;
         if(isnull == ""){
+            
             $('#submitBtn').click(function () {
                 $('#licenseNumber').val($("#licenseNumber1").val()+ "-" + $("#licenseNumber2").val() + "-" + $("#licenseNumber3").val() + "-" + $("#licenseNumber4").val());
                 chk();
@@ -247,7 +252,7 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
-                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
+                        <a href="/mypage/reservation.do" id="commonMyCarSellCount">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>예약 내역</p>
                         <span class ="text-decoration-underline">${mypage.reservation}건</span></a>

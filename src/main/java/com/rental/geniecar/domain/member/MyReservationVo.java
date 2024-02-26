@@ -25,6 +25,8 @@ public class MyReservationVo {
     private String reservationMemberHp;          // 예약자_전화번호
     private int regularPrice;                    // 정가
     private int saleRate;                        // 할인율
+    private int addPrice;						 //	추가요금(면책금)
+    private int usePoint;						 // 사용 포인트
     private int finalReservationPrice;           // 최종_예약_금액 (정가/할인율=최종금액)
     private String cancelYn;					 // 예약 취소 여부
     private String regId;                        // 등록자 (회원아이디 FK)

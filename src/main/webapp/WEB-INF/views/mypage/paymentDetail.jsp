@@ -74,7 +74,7 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
-                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
+                        <a href="/mypage/reservation.do" id="commonMyCarSellCount">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>예약 내역</p>
                         <span class ="text-decoration-underline">${mypage.reservation}건</span></a>
@@ -151,16 +151,27 @@
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">결제 상세 내역</h2>
             </div>
-           <table class="table">
+            <table class="table table-bordered reservationTable mb-5">
                 <tr>
-                    <td>상태</td>
-                    <td>상품</td>
-                    <td>예약번호</td>
-                    <td>결제일시</td>
-                    <td>결제수단</td>
-                    <td>금액</td>
+                    <td class="col-2"><strong>결제금액</strong></td>
+                    <td class="col-3">${payment.paidAmount}원</td>
+                    <td class="col-2"><strong>결제상태</strong></td>
+                    <td class="col-3">${payment.status}</td>
+                    ${payment }
                 </tr>
-           </table>
+                <tr>
+                    <td><strong>카드종류</strong></td>
+                    <td>${payment.cardName}</td>
+                    <td><strong>카드번호</strong></td>
+                    <td>${payment.cardNumber}</td>
+                </tr>
+                <tr>
+                    <td><strong>할부개월</strong></td>
+                    <td>${payment.cardQuota == null ? '' : payment.cardQuota == 0 ? '일시불' : payment.cardQuota + '개월'}</td>
+                    <td><strong>결제 날짜</strong></td>
+                    <td><fmt:formatDate value="${payment.regDate}" pattern="yyyy-MM-dd(E) HH:mm"/> </td>
+                </tr>
+            </table>
         </article>
     </div>
 

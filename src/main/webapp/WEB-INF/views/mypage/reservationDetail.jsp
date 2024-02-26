@@ -20,7 +20,7 @@
         color: #f8f7fd;
     }
 
-    a{
+    ul a{
         color: #f8f7fd;
         text-decoration: none;
     }
@@ -44,6 +44,12 @@
         padding-left: 25px;
     }
 </style>
+<script>
+    $(function() {    
+        let msg = "${msg}";
+        if(msg.length != 0){alert(msg);}
+    })
+</script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="pb-5 position-relative">
@@ -71,7 +77,7 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
-                        <a href="/mypage/payment.do" class="underline" id="commonMyCarSellCount">
+                        <a href="/mypage/reservation.do" class="underline" id="commonMyCarSellCount">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>예약 내역</p>
                         <span class ="text-decoration-underline">${mypage.reservation}건</span></a>
@@ -142,82 +148,108 @@
             </ul>
         </aside>
         <article class="p-5 container-fluid">
-            <div class="border-bottom pb-5">
+            <div class="border-bottom pb-5 mb-5">
                 <h2 class="fw-bolder">단기 렌터카예약</h2>
             </div>
-            <br/><br/>
-            <table class="table table-bordered reservationTable">
-                <tr>
-                    <th class="col-1">예약자명</th>
-                    <td class="col-3">${member.name}</td>
-                    <th class="col-1">전화번호</th>
-                    <td class="col-3">${member.hp}</td>
-                </tr>
-                <tr>
-                    <th>예약일자</th>
-                    <td><fmt:formatDate value="${reservation.regDate}" pattern="yyyy-MM-dd"/></td>
-                    <th>예약번호</th>
-                    <td>${reservation.reservationNo}</td>
-                </tr>
-                <tr>
-                    <th>대여일시</th>
-                    <td><fmt:formatDate value="${reservation.rentalDate}" pattern="yyyy-MM-dd(E) HH:mm"/></td>
-                    <th>반납일시</th>
-                    <td><fmt:formatDate value="${reservation.returnDate}" pattern="yyyy-MM-dd(E) HH:mm"/></td>
-                </tr>
-                <tr>
-                    <th>대여지점</th>
-                    <td>${reservation.rentalPlaceName}</td>
-                    <th>반납지점</th>
-                    <td>${reservation.returnPlaceName}</td>
-                </tr>
-                <tr>
-                    <th>대여주소</th>
-                    <td>${reservation.rentalPlaceAddress}</td>
-                    <th>반납주소</th>
-                    <td>${reservation.returnPlaceAddress}</td>
-                </tr>
-            </table>
-            <br/>
-            <br/>
-
-            <h4 class="fw-bolder">자차손해 면책제도 (CDW)</h4>
-            <table class="table table-bordered reservationTable">
-                <tr>
-                    <th scope="row">보험 미적용</th>
-                </tr>
-            </table>
-            <br/>
-            <br/>
-            <h4 class="fw-bolder">예약자 운전면허 정보</h4>
-            <table class="table table-bordered reservationTable">
-                <tr>
-                    <th scope="row">이름</th>
-                    <td colspan="3">${license.driverName}</td>
-                </tr>
-                <tr>
-                    <th scope="row">법정생년월일</th>
-                    <td><fmt:formatDate value="${license.driverBirth}" pattern="yyyy-MM-dd"/></td>
-                    <th scope="row">휴대전화번호</th>
-                    <td>${member.hp}</td>
-                </tr>
-                <tr>
-                    <th scope="row">면허종류</th>
-                    <td>${license.licenseGradeCode}</td>
-                    <th scope="row">면허증번호</th>
-                    <td>${license.licenseNumber}</td>
-                </tr>
-                <tr>
-                    <th scope="row">갱신기간</th>
-                    <td><fmt:formatDate value="${license.licenseTestDate}" pattern="yyyy-MM-dd"/></td>
-                    <th scope="row">발급일</th>
-                    <td><fmt:formatDate value="${license.licenseIssueDate}" pattern="yyyy-MM-dd"/></td>
-                </tr>
-            </table>
-            <ul class="mt-3 lh-lg">
-                <li>최근 90일 이내 예약건만 확인이 가능합니다.</li>
-                <li>90일 이전 예약내역은 고객센터(1588-1230)로 문의해주시기 바랍니다.</li>
-            </ul>
+            <form action="/mypage/reservationCancel.do" method="get">
+                <table class="table table-bordered reservationTable mb-5">
+                    <tr>
+                        <th class="col-1">예약자명</th>
+                        <td class="col-3">${member.name}</td>
+                        <th class="col-1">전화번호</th>
+                        <td class="col-3">${member.hp}</td>
+                    </tr>
+                    <tr>
+                        <th>예약일자</th>
+                        <td><fmt:formatDate value="${reservation.regDate}" pattern="yyyy-MM-dd"/></td>
+                        <th>예약번호</th>
+                        <td>${reservation.reservationNo}</td>
+                        <input type ="hidden" name = "no" value="${reservation.reservationNo}">
+                    </tr>
+                    <tr>
+                        <th>대여일시</th>
+                        <td><fmt:formatDate value="${reservation.rentalDate}" pattern="yyyy-MM-dd(E) HH:mm"/></td>
+                        <th>반납일시</th>
+                        <td><fmt:formatDate value="${reservation.returnDate}" pattern="yyyy-MM-dd(E) HH:mm"/></td>
+                    </tr>
+                    <tr>
+                        <th>대여지점</th>
+                        <td>${reservation.rentalPlaceName}</td>
+                        <th>반납지점</th>
+                        <td>${reservation.returnPlaceName}</td>
+                    </tr>
+                    <tr>
+                        <th>대여주소</th>
+                        <td>${reservation.rentalPlaceAddress}</td>
+                        <th>반납주소</th>
+                        <td>${reservation.returnPlaceAddress}</td>
+                    </tr>
+                </table>
+                <h4 class="fw-bolder mb-3">자차손해 면책제도 (CDW)</h4>
+                <table class="table table-bordered reservationTable mb-5">
+                    <tr>
+                        <c:if test= '${reservation.addPrice eq "0" }'><th scope="row">사고시 면택금 100% 부담 <span class="ps-5" >0원</span></th></c:if>
+                        <c:if test= '${reservation.addPrice eq "10000" }'><th scope="row">사고시 면책금 30만원 <span class="ps-5">10,000원</span></th></c:if>
+                        <c:if test= '${reservation.addPrice eq "12000" }'><th scope="row">사고시 면책금 10만원 <span class="ps-5">12,000원</span></th></c:if>
+                        <c:if test= '${reservation.addPrice eq "20000" }'><th scope="row">고객부담금 면제 <span class="ps-5">20,000원</span></th></c:if>
+                    </tr>
+                </table>
+                <h4 class="fw-bolder mb-3">예약자 운전면허 정보</h4>
+                <table class="table table-bordered reservationTable mb-5">
+                    <tr>
+                        <th scope="row">이름</th>
+                        <td colspan="3">${license.driverName}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class = "col-2">법정생년월일</th>
+                        <td class = "col-3"><fmt:formatDate value="${license.driverBirth}" pattern="yyyy-MM-dd"/></td>
+                        <th class = "col-2" scope="row">휴대전화번호</th>
+                        <td class = "col-3">${member.hp}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">면허종류</th>
+                        <td>${license.licenseGradeCode}</td>
+                        <th scope="row">면허증번호</th>
+                        <td>${license.licenseNumber}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">갱신기간</th>
+                        <td><fmt:formatDate value="${license.licenseTestDate}" pattern="yyyy-MM-dd"/></td>
+                        <th scope="row">발급일</th>
+                        <td><fmt:formatDate value="${license.licenseIssueDate}" pattern="yyyy-MM-dd"/></td>
+                    </tr>
+                </table>
+                <h4 class="fw-bolder mb-3">결제 정보</h4>
+                <table class="table table-bordered reservationTable mb-5">
+                    <tr>
+                        <th scope="row" class="col-2"><strong>결제금액</strong></td>
+                        <td class="col-3">${payment.paidAmount}원</td>
+                        <th scope="row" class="col-2"><strong>결제상태</strong></td>
+                        <td class="col-3">${payment.status}</td>
+                    </tr>
+                    <tr>
+                        <th><strong>카드종류</strong></td>
+                        <td>${payment.cardName}</td>
+                        <th><strong>카드번호</strong></td>
+                        <td>${payment.cardNumber}</td>
+                    </tr>
+                    <tr>
+                        <th><strong>할부개월</strong></td>
+                        <td>${payment.cardQuota == null ? '' : payment.cardQuota == 0 ? '일시불' : payment.cardQuota + '개월'}</td>
+                        <th><strong>결제 날짜</strong></td>
+                        <td><fmt:formatDate value="${payment.regDate}" pattern="yyyy-MM-dd(E) HH:mm"/> </td>
+                    </tr>
+                </table>
+                <ul class="mt-3 lh-lg">
+                    <li>최근 90일 이내 예약건만 확인이 가능합니다.</li>
+                    <li>90일 이전 예약내역은 고객센터(1588-1230)로 문의해주시기 바랍니다.</li>
+                </ul>
+                <div class="text-center">
+                    <c:if test="${reservation.cancelYn eq 'N'}"><input type = "submit" class="btn mt-4 mb-5" value="예약 취소" style="border: 1px solid #41087c; width: 110px;"></c:if>
+                    <button type="button" class="btn mt-4 mb-5 text-white" onclick='location.href="/mypage/reservation.do"' style="background-color: #41087c; width: 110px;">목록</button>
+                </div>
+            </form>
+            
         </article>
     </div>
 

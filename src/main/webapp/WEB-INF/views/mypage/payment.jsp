@@ -74,7 +74,7 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
-                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
+                        <a href="/mypage/reservation.do" id="commonMyCarSellCount">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>예약 내역</p>
                         <span class ="text-decoration-underline">${mypage.reservation}건</span></a>
@@ -151,27 +151,31 @@
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">결제 내역</h2>
             </div>
-            ${paymentList}
             <table class = 'table'>
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <td>상태</td>
-                        <td>상품</td>
                         <td>예약번호</td>
                         <td>결제일시</td>
                         <td>결제수단</td>
                         <td>금액</td>
+                        <td>예약상세내역</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="payment" items="${paymentList}">
+                    <c:if test="${paymentList == []}">
                         <tr>
-                            <td> <c:if test='${payment.success eq "true" }'> 결제완료</c:if></td>
-                            <td>${payment.name}</td>
-                            <td><a href="/mypage/paymentDetail.do?no=${payment.merchantUid}"">${payment.merchantUid}</a></td>
+                            <td colspan="6" class="text-center"><h5 class="mt-5 mb-5">결제 내역이 없습니다.</h5></td>
+                        </tr>
+                    </c:if>
+                    <c:forEach var="payment" items="${paymentList}">
+                        <tr class="text-center">
+                            <td>${payment.status}</td>
+                            <td>${payment.merchantUid}</td>
                             <td><fmt:formatDate value="${payment.regDate}" pattern="yyyy-MM-dd hh:mm" /></td>
                             <td>${payment.cardName}</td>
                             <td>${payment.paidAmount}원</td>
+                            <td><a href="/mypage/reservationDetail.do?no=${payment.merchantUid}">보러가기</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

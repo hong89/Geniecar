@@ -3,11 +3,14 @@ package com.rental.geniecar.domain.member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 import java.util.Date;
 
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class PointVo {
     private String no;             // 시퀀스
     private int point;          // 포인트
