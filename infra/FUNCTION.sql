@@ -60,6 +60,8 @@ BEGIN
         VS_STATUS_NAME := '결제완료';
     ELSIF STATUS = 'failed' THEN
         VS_STATUS_NAME := '결제실패';
+    ELSIF STATUS = 'cancel' THEN
+        VS_STATUS_NAME := '결제취소';
     ELSE
         VS_STATUS_NAME := '문의요망';
     END IF;
