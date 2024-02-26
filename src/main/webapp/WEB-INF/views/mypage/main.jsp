@@ -20,8 +20,9 @@
         color: #f8f7fd;
     }
 
-    .underline {
+    a{
         color: #f8f7fd;
+        text-decoration: none;
     }
 
     aside {
@@ -74,32 +75,33 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
+                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>예약 내역</p>
-                        <a href="/mypage/payment.do" class="underline"
-                           id="commonMyCarSellCount">${mypage.reservation}건</a>
+                        <span class ="text-decoration-underline">${mypage.reservation}건</span></a>
                     </li>
                     <li class="col">
+                        <a href="/mypage/point.do" id="myCommonRentalPoint">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
+                        <span class ="text-decoration-underline">${mypage.point}P</span></a>
                     </li>
                     <li class="col">
+                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
                         <img alt="" class="mb-1 " src="/images/icons/ico-receipt.png" width="57px">
                         <p>결제 내역</p>
-                        <a href="/mypage/payment.do" class="underline"
-                           id="commonMyCarSellCount">${mypage.payment}건</a>
+                        <span class ="text-decoration-underline">${mypage.payment}건</span></a>
                     </li>
                     <li class="col">
+                        <a href="/mypage/qna.do?typeCode=QNA" id="commonRentalConsultCount">
                         <img alt="" class="mb-2 pt-2" src="/images/icons/ico-myPannel06.png">
                         <p>1:1문의</p>
-                        <a href="/mypage/qna.do?typeCode=QNA" class="underline"
-                           id="commonRentalConsultCount">${mypage.qna}건</a>
+                        <span class ="text-decoration-underline">${mypage.qna}건</span></a>
                     </li>
                     <li class="col">
-                        <a href="/mypage/license.do" class="underline" id=""><img alt="" class="mb-2 pt-2" src="/images/icons/ico-driver-license.png" width="65px"></a>
+                        <a href="/mypage/license.do" id=""><img alt="" class="mb-2 pt-2" src="/images/icons/ico-driver-license.png" width="65px">
                         <p>운전면허증</p>
-                        <a href="/mypage/license.do" class="underline" id=""></a>
+                        <span class ="text-decoration-underline">${mypage.license}</span></a>
                     </li>
                 </ul>
             </div>
@@ -114,6 +116,9 @@
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/point.do" class="nav-link">포인트</a>
+                </li>
+                <li class="nav-item mb-4">
+                    <a href="/mypage/payment.do" class="nav-link">결제내역</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
@@ -143,73 +148,28 @@
             </ul>
         </aside>
         <article class="p-5 container-fluid">
-            <section>
-                <ul class="nav nav-pills pb-3 border-bottom" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="contact-tab1" data-bs-toggle="tab"
-                                data-bs-target="#contact1" type="button" role="tab"
-                                aria-controls="contact1" aria-selected="true">전체
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab2" data-bs-toggle="tab"
-                                data-bs-target="#contact2" type="button" role="tab"
-                                aria-controls="contact2" aria-selected="false">결제대기
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab3" data-bs-toggle="tab"
-                                data-bs-target="#contact3" type="button" role="tab"
-                                aria-controls="contact3" aria-selected="false">계약완료
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab4" data-bs-toggle="tab"
-                                data-bs-target="#contact4" type="button" role="tab"
-                                aria-controls="contact4" aria-selected="false">이용중
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab5" data-bs-toggle="tab"
-                                data-bs-target="#contact5" type="button" role="tab"
-                                aria-controls="contact5" aria-selected="false">이용완료
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="contact-tab6" data-bs-toggle="tab"
-                                data-bs-target="#contact6" type="button" role="tab"
-                                aria-controls="contact6" aria-selected="false">취소
-                        </button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active border-bottom" id="contact1"
-                         role="tabpanel" aria-labelledby="contact-tab1">
-                        <div class="text-center mt-3 mb-3 pd-5">
-                            <h5><br><br><br><br>이용중인 렌터카 차량이 없습니다.<br>
-                                <button type="button" class="btn m-3"
-                                        style="background-color: #41087c; color: #f8f7fd;">제주/내륙 렌터카 예약하기
-                                </button>
-                                <br><br><br><br></h5>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact2" role="tabpanel"
-                         aria-labelledby="contact-tab2">${mypage}
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact3" role="tabpanel"
-                         aria-labelledby="contact-tab3">.3..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact4" role="tabpanel"
-                         aria-labelledby="contact-tab4">.4..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact5" role="tabpanel"
-                         aria-labelledby="contact-tab5">.5..
-                    </div>
-                    <div class="tab-pane fade border-bottom" id="contact6" role="tabpanel"
-                         aria-labelledby="contact-tab6">.6..
-                    </div>
-                </div>
-            </section>
+            <h1 class = "m-3">결제 내역</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>상태</td>
+                        <td>상품</td>
+                        <td>결제일시</td>
+                        <td>결제수단</td>
+                        <td>금액</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>결제완료</td>
+                        <td>geniecar_아반떼_0일 1시간 40분</td>
+                        <td>2024-12-11 16:45</td>
+                        <td>현대카드4578-6523-****-****</td>
+                        <td>65000원</td>
+                    </tr>
+                </tbody>
+            </table>
+            
         </article>
     </div>
 

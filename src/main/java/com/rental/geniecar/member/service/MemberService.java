@@ -26,6 +26,7 @@ public class MemberService {
 	private final PointDao pointDao;
 	
 	public void newMember(MemberVo vo) {
+		System.out.println(vo);
 		memberDao.insertMember(vo);
 	}
 	public String overlapped(String id) {
@@ -98,6 +99,7 @@ public class MemberService {
 		mypage.put("point", pointDao.selectPoint(id) != null? pointDao.selectPoint(id).getCurrentPoint() :0);
 		mypage.put("payment", memberDao.countPayment(id));
 		mypage.put("qna", memberDao.countQNA(id));
+		mypage.put("license", memberDao.selectLicense(id) == null?"등록":"수정");
 		System.out.println(mypage);
 		return mypage;
 	}
@@ -115,5 +117,8 @@ public class MemberService {
 	}
 	public List<PaymentVo> selectAllMyPayment(String id){
 		return memberDao.selectAllMyPayment(id);
+	}
+	public PaymentVo selectOnePayment(String no) {
+		return memberDao.selectOnePayment(no);
 	}
 }

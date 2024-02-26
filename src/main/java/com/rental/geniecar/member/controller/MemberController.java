@@ -56,6 +56,7 @@ public class MemberController {
 	//ruddud
 	@PostMapping("/completeJoin.do")
 	public String completeJoin(@Valid @ModelAttribute("Join")MemberVo member, Model model, Errors errors){
+		member.setSnsCode("G");
 		memberService.newMember(member);
 		model.addAttribute("name", member.getName());
 		return "member/completeJoin";

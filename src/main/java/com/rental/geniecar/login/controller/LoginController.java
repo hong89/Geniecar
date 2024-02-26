@@ -1,30 +1,11 @@
 package com.rental.geniecar.login.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rental.geniecar.domain.api.NaverToken;
-import com.rental.geniecar.domain.member.MemberVo;
-import com.rental.geniecar.login.service.LoginService;
-import com.rental.geniecar.member.service.MemberService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import reactor.core.publisher.Mono;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Member;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -33,7 +14,42 @@ import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rental.geniecar.domain.api.KakaoToken;
+import com.rental.geniecar.domain.api.NaverToken;
+import com.rental.geniecar.domain.member.MemberVo;
+import com.rental.geniecar.login.service.LoginService;
+import com.rental.geniecar.member.service.MemberService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Mono;
 
 @Slf4j
 @Controller
@@ -242,24 +258,85 @@ public class LoginController {
         return "main/index";
     }
 	@GetMapping("/kakao.do")
-	public @ResponseBody ResponseEntity<String> kakao(String code){
+	public void kakao(String code, HttpSession session, HttpServletResponse httpServletResponse)throws Exception{
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		//토큰 가져오기
 		RestTemplate rest = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		
 		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
 		body.add("grant_type", "authorization_code");
 		body.add("client_id", "d32e45df85093ba4bbab108ac5afd304");
 		body.add("redirect_uri", "http://localhost:8085/login/kakao.do");
 		body.add("code", code);
+		
 		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(body, headers);
-		ResponseEntity<String> token = rest.exchange(
+		ResponseEntity<String> response = rest.postForEntity(
 				"https://kauth.kakao.com/oauth/token", 
-				HttpMethod.POST, 
 				entity,
 				String.class 
 		);
-		return token;
 		
+		ObjectMapper objectMapper = new ObjectMapper();
+		KakaoToken kakao =null;
+		objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+		try {
+			kakao = objectMapper.readValue(response.getBody(), KakaoToken.class);
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// 사용자 정보 가져오기
+		RestTemplate restTemplate = new RestTemplate();
+		HttpHeaders headers2 = new HttpHeaders();
+		
+		headers2.add("Authorization", "Bearer "+kakao.getAccess_token());
+		headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		
+		HttpEntity<MultiValueMap<String, String>> entity2 = new HttpEntity<>(headers2);
+		ResponseEntity<Map> responseEntity = restTemplate.postForEntity(
+				"https://kapi.kakao.com/v2/user/me", 
+				entity2,
+				Map.class 
+		);
+		Map userInfo = responseEntity.getBody();
+		
+		//kakao -> geniecar
+		Map kakaoAccount =  (Map) userInfo.get("kakao_account");
+		MemberVo user = new MemberVo();
+		
+		user.setId((String)kakaoAccount.get("email"));
+		user.setPw("kakoMemberLogin");
+		user.setName((String) kakaoAccount.get("name"));	
+		user.setGender(kakaoAccount.get("gender").toString().substring(0, 1).toUpperCase());
+        user.setBirthday(formatter.parse(kakaoAccount.get("birthyear").toString() + "-" + (kakaoAccount.get("birthday").toString()).substring(0,2) + "-" +(kakaoAccount.get("birthday").toString()).substring(2,4)));
+		user.setHp(kakaoAccount.get("phone_number").toString().replace("+82 ", "0"));
+		user.setSnsCode("K");
+
+		//DB에 확인
+		if(memberService.overlapped(user.getId()).equals("false")){
+			memberService.newMember(user);
+		}
+		
+		//login
+		httpServletResponse.setContentType("text/html; charset=UTF-8");
+	    PrintWriter out = httpServletResponse.getWriter();
+		if (memberService.selectOne(user.getId()).getWithdrawalYn().equals("N")) {
+            session.setAttribute("isLogOn", true);
+            session.setAttribute("memberInfo", memberService.selectOne(user.getId()));
+            httpServletResponse.sendRedirect("/main/index.do");
+            
+        } else if (memberService.selectOne(user.getId()).getWithdrawalYn().equals("K")) {
+            out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요.');history.back();</script>");
+            out.flush();
+            out.close();
+        } 		
     }
 
 }

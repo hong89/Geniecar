@@ -20,10 +20,10 @@
         color: #f8f7fd;
     }
 
-    .underline {
+    ul a{
         color: #f8f7fd;
+        text-decoration: none;
     }
-
     aside {
         width: 300px;
         background-color: #f8f7fd;
@@ -74,32 +74,33 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
+                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>예약 내역</p>
-                        <a href="/mypage/payment.do" class="underline"
-                           id="commonMyCarSellCount">${mypage.reservation}건</a>
+                        <span class ="text-decoration-underline">${mypage.reservation}건</span></a>
                     </li>
                     <li class="col">
+                        <a href="/mypage/point.do" id="myCommonRentalPoint">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
+                        <span class ="text-decoration-underline">${mypage.point}P</span></a>
                     </li>
                     <li class="col">
+                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
                         <img alt="" class="mb-1 " src="/images/icons/ico-receipt.png" width="57px">
                         <p>결제 내역</p>
-                        <a href="/mypage/payment.do" class="underline"
-                           id="commonMyCarSellCount">${mypage.payment}건</a>
+                        <span class ="text-decoration-underline">${mypage.payment}건</span></a>
                     </li>
                     <li class="col">
+                        <a href="/mypage/qna.do?typeCode=QNA" id="commonRentalConsultCount">
                         <img alt="" class="mb-2 pt-2" src="/images/icons/ico-myPannel06.png">
                         <p>1:1문의</p>
-                        <a href="/mypage/qna.do?typeCode=QNA" class="underline"
-                           id="commonRentalConsultCount">${mypage.qna}건</a>
+                        <span class ="text-decoration-underline">${mypage.qna}건</span></a>
                     </li>
                     <li class="col">
-                        <a href="/mypage/license.do" class="underline" id=""><img alt="" class="mb-2 pt-2" src="/images/icons/ico-driver-license.png" width="65px"></a>
+                        <a href="/mypage/license.do" id=""><img alt="" class="mb-2 pt-2" src="/images/icons/ico-driver-license.png" width="65px">
                         <p>운전면허증</p>
-                        <a href="/mypage/license.do" class="underline" id=""></a>
+                        <span class ="text-decoration-underline">${mypage.license}</span></a>
                     </li>
                 </ul>
             </div>
@@ -114,6 +115,9 @@
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/point.do" class="nav-link">포인트</a>
+                </li>
+                <li class="nav-item mb-4">
+                    <a href="/mypage/payment.do" class="nav-link">결제내역</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
@@ -144,18 +148,34 @@
             </ul>
         </aside>
         <article class="p-5 container-fluid">
+            <div class="border-bottom pb-5">
+                <h2 class="fw-bolder">결제 내역</h2>
+            </div>
             ${paymentList}
-            <c:forEach var="payment" items="${paymentList}">
-                <div class="card m-3">
-                    <div class="card-header">
-                        <h5>${payment.merchantUid}</h5>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">${payment.name}</h5>
-                      <p class="card-text">${payment.paidAmount}${payment.currency} ${payment.paidAt}</p>
-                    </div>
-                  </div>
-            </c:forEach>
+            <table class = 'table'>
+                <thead>
+                    <tr>
+                        <td>상태</td>
+                        <td>상품</td>
+                        <td>예약번호</td>
+                        <td>결제일시</td>
+                        <td>결제수단</td>
+                        <td>금액</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="payment" items="${paymentList}">
+                        <tr>
+                            <td> <c:if test='${payment.success eq "true" }'> 결제완료</c:if></td>
+                            <td>${payment.name}</td>
+                            <td><a href="/mypage/paymentDetail.do?no=${payment.merchantUid}"">${payment.merchantUid}</a></td>
+                            <td><fmt:formatDate value="${payment.regDate}" pattern="yyyy-MM-dd hh:mm" /></td>
+                            <td>${payment.cardName}</td>
+                            <td>${payment.paidAmount}원</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
         </article>
     </div>
 

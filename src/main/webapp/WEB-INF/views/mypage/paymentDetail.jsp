@@ -20,10 +20,10 @@
         color: #f8f7fd;
     }
 
-    .underline {
+    ul a{
         color: #f8f7fd;
+        text-decoration: none;
     }
-
     aside {
         width: 300px;
         background-color: #f8f7fd;
@@ -32,6 +32,20 @@
     aside .nav-link {
 
         color: #41087c;
+    }
+
+    .nav-item button {
+        color: #41087c;
+    }
+
+    .nav-item button:hover {
+        color: #41087c;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show > .nav-link {
+        background-color: #41087c !important;
+        color: white;
     }
 </style>
 <div class="container-xl">
@@ -45,7 +59,6 @@
             </ol>
         </nav>
     </div>
-
     <div id="mypageheader" class="mb-5">
         <section class="text-center pb-4">
             <h1 class="fw-bolder">마이페이지</h1>
@@ -61,26 +74,33 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
+                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
+                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
+                        <p>예약 내역</p>
+                        <span class ="text-decoration-underline">${mypage.reservation}건</span></a>
+                    </li>
+                    <li class="col">
+                        <a href="/mypage/point.do" id="myCommonRentalPoint">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel02.png">
                         <p>포인트</p>
-                        <a href="/mypage/point.do" class="underline" id="myCommonRentalPoint">${mypage.point}P</a>
+                        <span class ="text-decoration-underline">${mypage.point}P</span></a>
                     </li>
                     <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel03.png">
-                        <p>할인쿠폰</p>
-                        <a href="/mypage/coupon.do" class="underline" id="myCommonRentalCoupon">${mypage.coupons}장</a>
-                    </li>
-                    <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
+                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
+                        <img alt="" class="mb-1 " src="/images/icons/ico-receipt.png" width="57px">
                         <p>결제 내역</p>
-                        <a href="/mypage/carSeller.do" class="underline"
-                           id="commonMyCarSellCount">0건</a>
+                        <span class ="text-decoration-underline">${mypage.payment}건</span></a>
                     </li>
                     <li class="col">
-                        <img alt="" class="mb-3" src="/images/icons/ico-myPannel06.png">
+                        <a href="/mypage/qna.do?typeCode=QNA" id="commonRentalConsultCount">
+                        <img alt="" class="mb-2 pt-2" src="/images/icons/ico-myPannel06.png">
                         <p>1:1문의</p>
-                        <a href="/mypage/qna.do?typeCode=QNA" class="underline"
-                           id="commonRentalConsultCount">${mypage.qna}건</a>
+                        <span class ="text-decoration-underline">${mypage.qna}건</span></a>
+                    </li>
+                    <li class="col">
+                        <a href="/mypage/license.do" id=""><img alt="" class="mb-2 pt-2" src="/images/icons/ico-driver-license.png" width="65px">
+                        <p>운전면허증</p>
+                        <span class ="text-decoration-underline">${mypage.license}</span></a>
                     </li>
                 </ul>
             </div>
@@ -91,16 +111,19 @@
             <ul class="nav flex-column">
                 <li class="nav-item mb-4">
                     <a href="/mypage/reservation.do" class="nav-link" data-link-area="마이페이지"
-                       data-link-name="메뉴" data-link-text="렌터카 예약">렌터카 예약</a>
+                       data-link-name="메뉴" data-link-text="단기렌터카 예약">렌터카 예약</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/point.do" class="nav-link">포인트</a>
                 </li>
                 <li class="nav-item mb-4">
-                    <a href="/mypage/coupon.do" class="nav-link">할인쿠폰</a>
+                    <a href="/mypage/payment.do" class="nav-link">결제내역</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
+                </li>
+                <li class="nav-item mb-4">
+                    <a href="/mypage/payment.do" class="nav-link">결제내역</a>
                 </li>
                 <li class="nav-item mb-4">
                     <a href="/mypage/myReview.do?typeCode=REVIEW" class="nav-link">이용 후기</a>
@@ -126,11 +149,18 @@
         </aside>
         <article class="p-5 container-fluid">
             <div class="border-bottom pb-5">
-                <h2 class="fw-bolder">할인쿠폰</h2>
-                <button class="btn btn-lg mt-3 text-white"
-                        style="background-color:#41087c;">할인쿠폰 등록하기
-                </button>
+                <h2 class="fw-bolder">결제 상세 내역</h2>
             </div>
+           <table class="table">
+                <tr>
+                    <td>상태</td>
+                    <td>상품</td>
+                    <td>예약번호</td>
+                    <td>결제일시</td>
+                    <td>결제수단</td>
+                    <td>금액</td>
+                </tr>
+           </table>
         </article>
     </div>
 

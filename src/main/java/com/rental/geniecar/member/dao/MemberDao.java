@@ -43,5 +43,5 @@ public interface MemberDao {
 	public int countPayment(String id);
 	public int countReservation(String id);
 	public List<PaymentVo> selectAllMyPayment(String id);
-	
+	public PaymentVo selectOnePayment(String no);
 }
