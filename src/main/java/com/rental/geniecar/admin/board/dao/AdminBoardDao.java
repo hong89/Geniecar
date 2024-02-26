@@ -50,4 +50,6 @@ public interface AdminBoardDao {
 
 	List<CommonCrudVo> selectQnaList(CommonCrudVo boardVo);
 
+	int increaseHit(int no);
+
 }

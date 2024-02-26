@@ -23,8 +23,6 @@
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
-
-
     <div class="pb-5 position-relative">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb"
              class="position-absolute end-0">
@@ -36,7 +34,6 @@
             </ol>
         </nav>
     </div>
-
     <div class="pt-5">
         <div class="inner-type2">
             <section class="text-center">
@@ -50,12 +47,10 @@
         </div>
         <div>
             <div class="p-5" style="text-align: center;">
-                <a href="javascript:history.back();" class="btn text-white"
+                <a href="/customer/winnerEventMain.do?typeCode=${notice.typeCode}" class="btn text-white"
                    style="background-color: #41087c;">목록으로 돌아가기</a>
             </div>
         </div>
     </div>
-
-
     <!--------------------------------------------------하단---------------------------------------------------------->
 </div>

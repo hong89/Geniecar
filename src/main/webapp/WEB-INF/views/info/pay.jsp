@@ -24,7 +24,7 @@
     }
 
     .nav-item a:hover {
-        color: #41087c;
+        color: black;
     }
 
     .nav-item button {

@@ -41,7 +41,7 @@
          			WHERE RN >= #{startPage} 
            			AND RN < #{startPage} + #{pageSize} 
 				]]>	         
-	  			ORDER BY RN ASC
+	  			ORDER BY RN DESC
 	</select>
 	
 	<!-- 마이페이지 1:1 가져오기 -->
@@ -61,7 +61,7 @@
 	             , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
 	             , ROW_NUMBER() OVER(ORDER BY NO DESC) AS RN
 	          FROM BOARD
-	         WHERE TYPE_CODE = 'QNA'
+	         WHERE TYPE_CODE = #{typeCode}
 	           AND REG_ID IN (#{Id}, 'ADMIN')
 	        <if test='title != null'>
 	            AND TITLE LIKE '%' || #{title} || '%'
@@ -85,7 +85,7 @@
 			    START WITH PARENT_NO = 0
 			  CONNECT BY PRIOR NO = PARENT_NO
 			      AND REG_ID IN (#{Id}, 'ADMIN') AND PARENT_NO != 0
-			    ORDER SIBLINGS BY RN ASC
+			    ORDER SIBLINGS BY RN DESC
 	</select>
 
 	<!-- 글 목록 가져오기 -->
@@ -105,7 +105,7 @@
 		         , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
 		         , ROW_NUMBER() OVER(ORDER BY NO DESC) AS RN
 		    FROM BOARD
-		    WHERE TYPE_CODE = 'QNA'
+		    WHERE TYPE_CODE = #{typeCode}
 		    <if test='title != null'>
            		AND TITLE LIKE '%' || #{title} || '%'
         	</if> 
@@ -131,7 +131,7 @@
     		]]>
 				START WITH PARENT_NO = 0
 				CONNECT BY PRIOR NO = PARENT_NO
-				ORDER SIBLINGS BY RN ASC
+				ORDER SIBLINGS BY RN DESC
 	</select>
 	
 	<select id="selectBoardListSize" parameterType="boardVo">
@@ -300,5 +300,11 @@
     	JOIN BOARD ON IMAGE_FILE.FILE_NO = BOARD.FILE_NO 
     	WHERE BOARD.NO = #{no}
 	</select>
+	
+	<update id="increaseHit">
+	    UPDATE BOARD
+	    SET HIT = HIT + 1
+	    WHERE NO = #{no}
+	</update>
 
 </mapper>

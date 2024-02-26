@@ -9,8 +9,38 @@
         if (page == null || page == '' || page == 'undefined') {
             page = 1;
         }
-        location.href = "/admin/business/reviewList.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
+        var baseUrl = "/admin/business/reviewList.do";
+        var typeCode = $("#typeCode").val();
+        var title = $("#title").val();
+        
+        var encodedUrl = baseUrl + "?typeCode=" + encodeURIComponent(typeCode) +
+                        "&title=" + encodeURIComponent(title) +
+                        "&PageNum=" + page;
+        
+        location.href = encodedUrl;
     }
+    $(document).ready(function() {
+    $(".increaseHit").click(function(e) {
+        e.preventDefault(); // 기본 동작 방지
+
+        var articleUrl = $(this).attr("href"); // 해당 글의 URL 가져오기
+        var no = $(this).data("no");
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/board/increaseHit.do",
+            data: { no: no },
+            success: function(response) {
+                console.log("Hit increased successfully.");
+                window.location.href = articleUrl;
+            },
+            error: function(xhr, status, error) {
+                console.error("Error occurred while increasing hit:", error);
+                window.location.href = articleUrl;
+            }
+        });
+    });
+});
 </script>
 <style>
     .card img {
@@ -71,7 +101,7 @@
                      <c:forEach var="notice" items="${boardList}">
                         <div class="col">
                             <div class="card h-100">
-                                <a href="/admin/board/detailNotice.do?no=${notice.no}" style="text-decoration-line: none; color:black">
+                                <a href="/admin/business/reviewDetail.do?no=${notice.no}" class="increaseHit" data-no="${notice.no}" style="text-decoration-line: none; color:black">
                                     <c:forEach var="imageFile" items="${notice.imageFiles}">
                                         <c:if test="${not empty imageFile.saveName}">
                                             <img src="/downloadFile/${imageFile.saveName}" alt="images">
@@ -83,6 +113,9 @@
                                 </div>
                                 <div class="card-footer">작성일 :&nbsp;
                                     <small class="text-muted">${notice.regDate}</small>
+                                </div>
+                                <div class="card-footer">조회수 :&nbsp;
+                                    <small class="text-muted">${notice.hit}</small>
                                 </div>
                                 </a>
                             </div>
