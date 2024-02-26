@@ -8,9 +8,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletResponse;
@@ -136,11 +138,33 @@ public class AdminBoardController {
     }
   
     // JJ
-    // 게시판 상세 보기 (여기 부분 확인 필요 fileNo)
+    // 게시판 상세 보기
     @GetMapping("/detailNotice.do")
-    public String detailNotice(@RequestParam int no, Model model) {
+    public String detailNotice(@RequestParam int no, HttpSession session, Model model) {
         BoardVo notice = boardService.selectNoticeDetail(no);
+        
+        // 야는 F5 연타 날리면 조회수 신나게 올라감
+        boardService.increaseHit(no);
+        
+        // 세션에 글번호 저장했다가 중복으로 글 조회수 올라가는거 막음
+        /*
+        if (session.getAttribute("hitCnt") == null) {
+            Set<Integer> hitCnt = new HashSet<>();
+            hitCnt.add(no);
+            session.setAttribute("hitCnt", hitCnt);
 
+            boardService.increaseHit(no);
+        } else {
+            @SuppressWarnings("unchecked")
+            Set<Integer> hitCnt = (Set<Integer>) session.getAttribute("hitCnt");
+            if (!hitCnt.contains(no)) {
+            	hitCnt.add(no);
+                session.setAttribute("hitCnt", hitCnt);
+
+                boardService.increaseHit(no);
+            }
+        }
+		*/
         // 이미지 파일 정보 가져오기
         List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
         
@@ -157,6 +181,9 @@ public class AdminBoardController {
     @GetMapping("/detailEvent.do")
     public String detailEvent(@RequestParam int no, Model model) {
         BoardVo notice = boardService.selectNoticeDetail(no);
+        
+        // 조회수 증가
+        boardService.increaseHit(no);
 
         // 이미지 파일 정보 가져오기
         List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
