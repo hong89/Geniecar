@@ -56,7 +56,7 @@
         </div>
         <div>
             <div class="p-5" style="text-align: center;">
-                <a href="javascript:history.back();" class="btn text-white"
+                <a href="/customer/reviewMain.do?typeCode=${notice.typeCode}" class="btn text-white"
                    style="background-color: #41087c;">목록으로 돌아가기</a>
             </div>
         </div>

@@ -58,7 +58,7 @@
         </div>
         <div class="py-5">
             <button type="button" class="btn text-white" style="background: #41087c"
-                    onclick="location.href='list.do?typeCode=${notice.typeCode}'">목록가기
+                    onclick="location.href='qnaList.do?typeCode=${notice.typeCode}'">목록가기
             </button>
             <button type="button" class="btn text-white" style="background: #41087c"
                     onclick="location.href='updateNoticeForm.do?no=${notice.no}'">수정하기

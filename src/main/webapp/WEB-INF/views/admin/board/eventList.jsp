@@ -11,6 +11,29 @@
         }
         location.href = "/admin/board/eventList.do?typeCode=" + $("#typeCode").val() + "&title=" + $("#title").val() + "&PageNum=" + page;
     }
+
+    $(document).ready(function() {
+    $(".increaseHit").click(function(e) {
+        e.preventDefault(); // 기본 동작 방지
+
+        var articleUrl = $(this).attr("href"); // 해당 글의 URL 가져오기
+        var no = $(this).data("no");
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/board/increaseHit.do",
+            data: { no: no },
+            success: function(response) {
+                console.log("Hit increased successfully.");
+                window.location.href = articleUrl;
+            },
+            error: function(xhr, status, error) {
+                console.error("Error occurred while increasing hit:", error);
+                window.location.href = articleUrl;
+            }
+        });
+    });
+});
 </script>
 <style>
     .table thead tr td {
@@ -70,6 +93,7 @@
                         <td align="center" scope="col"><strong>No.</strong></td>
                         <td align="center" scope="col"><strong>제목</strong></td>
                         <td align="center" scope="col"><strong>작성일</strong></td>
+                        <td align="center" scope="col"><strong>조회수</strong></td>
                     </tr>
                     </thead>
 
@@ -77,9 +101,10 @@
                     <c:forEach var="notice" items="${boardList}">
                         <tr>
                             <td align="center">${notice.rn}</td>
-                            <td align="left"><a href="/admin/board/detailEvent.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
+                            <td align="left"><a href="/admin/board/detailEvent.do?no=${notice.no}"  class="increaseHit" data-no="${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
                             </td>
                             <td align="center">${notice.regDate}</td>
+                            <td align="center">${notice.hit}</td>
                         </tr>
                     </c:forEach>
                     </tbody>

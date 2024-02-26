@@ -1,6 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<script>
+    $(document).ready(function() {
+    $(".increaseHit").click(function(e) {
+        e.preventDefault(); // 기본 동작 방지
+
+        var articleUrl = $(this).attr("href"); // 해당 글의 URL 가져오기
+        var no = $(this).data("no");
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/board/increaseHit.do",
+            data: { no: no },
+            success: function(response) {
+                console.log("Hit increased successfully.");
+                window.location.href = articleUrl;
+            },
+            error: function(xhr, status, error) {
+                console.error("Error occurred while increasing hit:", error);
+                window.location.href = articleUrl;
+            }
+        });
+    });
+});
+</script>
+
 <style>
     .breadcrumb-item a {
         text-decoration: none;
@@ -186,16 +212,18 @@
                                     <td align="center" scope="col"><strong>No.</strong></td>
                                     <td align="center" scope="col"><strong>제목</strong></td>
                                     <td align="center" scope="col"><strong>작성일</strong></td>
+                                    <td align="center" scope="col"><strong>조회수</strong></td>
                                 </tr>
                                 </thead>
             
                                 <tbody>
                                 <c:forEach var="notice" items="${boardList}">
                                     <tr>
-                                        <td align="center">${notice.no}</td>
-                                        <td align="left"><pre><a href="/mypage/qnaDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</pre></a>
+                                        <td align="center">${notice.rn}</td>
+                                        <td align="left"><pre><a href="/mypage/qnaDetail.do?no=${notice.no}" class="increaseHit" data-no="${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</pre></a>
                                         </td>
                                         <td align="center">${notice.regDate}</td>
+                                        <td align="center">${notice.hit}</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

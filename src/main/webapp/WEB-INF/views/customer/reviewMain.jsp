@@ -2,6 +2,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+    $(document).ready(function() {
+    $(".increaseHit").click(function(e) {
+        e.preventDefault(); // 기본 동작 방지
+
+        var articleUrl = $(this).attr("href"); // 해당 글의 URL 가져오기
+        var no = $(this).data("no");
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/board/increaseHit.do",
+            data: { no: no },
+            success: function(response) {
+                console.log("Hit increased successfully.");
+                window.location.href = articleUrl;
+            },
+            error: function(xhr, status, error) {
+                console.error("Error occurred while increasing hit:", error);
+                window.location.href = articleUrl;
+            }
+        });
+    });
+});
+</script>
 
 <style>
     .nav-pills .nav-link.active,
@@ -49,7 +73,7 @@
                 <c:forEach var="notice" items="${boardList}">
                 <div class="col">
                   <div class="card h-100">
-                    <a href="/customer/reviewDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">
+                    <a href="/customer/reviewDetail.do?no=${notice.no}" class="increaseHit" data-no="${notice.no}" style="text-decoration-line: none; color:black">
                         <c:forEach var="imageFile" items="${notice.imageFiles}">
                             <c:if test="${not empty imageFile.saveName}">
                                 <img src="/downloadFile/${imageFile.saveName}" alt="images">
@@ -62,6 +86,9 @@
                     <div class="card-footer">작성일 :&nbsp;
                       <small class="text-muted">${notice.regDate}</small>
                     </div>
+                    <div class="card-footer">조회수 :&nbsp;
+                        <small class="text-muted">${notice.hit}</small>
+                      </div>
                     </a>
                   </div>
                 </div>

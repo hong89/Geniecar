@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletResponse;
@@ -112,6 +114,29 @@ public class CustomerController {
 	@GetMapping("/reviewDetail.do")
 	public String reviewDetail(@RequestParam int no, Model model) {
 		BoardVo notice = boardService.selectNoticeDetail(no);
+		
+		// 야는 F5 연타 날리면 조회수 신나게 올라감
+        boardService.increaseHit(no);
+        
+        // 세션에 글번호 저장했다가 중복으로 글 조회수 올라가는거 막음
+        /*
+        if (session.getAttribute("hitCnt") == null) {
+            Set<Integer> hitCnt = new HashSet<>();
+            hitCnt.add(no);
+            session.setAttribute("hitCnt", hitCnt);
+
+            boardService.increaseHit(no);
+        } else {
+            @SuppressWarnings("unchecked")
+            Set<Integer> hitCnt = (Set<Integer>) session.getAttribute("hitCnt");
+            if (!hitCnt.contains(no)) {
+            	hitCnt.add(no);
+                session.setAttribute("hitCnt", hitCnt);
+
+                boardService.increaseHit(no);
+            }
+        }
+		*/
 		
 		List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
 		
@@ -254,9 +279,31 @@ public class CustomerController {
 	// JJ
 	// 당첨자 상세보기
 	@GetMapping("/winnerEventDetail.do")
-	public String winnerEventDetail(@RequestParam int no, Model model) {
+	public String winnerEventDetail(@RequestParam int no, HttpSession session,  Model model) {
 		BoardVo notice = boardService.selectNoticeDetail(no);
+		
+		// 야는 F5 연타 날리면 조회수 신나게 올라감
+        boardService.increaseHit(no);
+        
+        // 세션에 글번호 저장했다가 중복으로 글 조회수 올라가는거 막음
+        /*
+        if (session.getAttribute("hitCnt") == null) {
+            Set<Integer> hitCnt = new HashSet<>();
+            hitCnt.add(no);
+            session.setAttribute("hitCnt", hitCnt);
 
+            boardService.increaseHit(no);
+        } else {
+            @SuppressWarnings("unchecked")
+            Set<Integer> hitCnt = (Set<Integer>) session.getAttribute("hitCnt");
+            if (!hitCnt.contains(no)) {
+            	hitCnt.add(no);
+                session.setAttribute("hitCnt", hitCnt);
+
+                boardService.increaseHit(no);
+            }
+        }
+		*/
 		List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
 
 		setImageFilePath(imageFiles, UPLOAD_PATH);
@@ -284,9 +331,31 @@ public class CustomerController {
 	}
 
 	@GetMapping("/noticeDetail.do")
-	public String noticeDetail(@RequestParam int no, Model model) {
+	public String noticeDetail(@RequestParam int no, HttpSession session, Model model) {
 		BoardVo notice = boardService.selectNoticeDetail(no);
+		
+		// 야는 F5 연타 날리면 조회수 신나게 올라감
+        boardService.increaseHit(no);
+        
+        /*
+        // 세션에 글번호 저장했다가 중복으로 글 조회수 올라가는거 막음
+        if (session.getAttribute("hitCnt") == null) {
+            Set<Integer> hitCnt = new HashSet<>();
+            hitCnt.add(no);
+            session.setAttribute("hitCnt", hitCnt);
 
+            boardService.increaseHit(no);
+        } else {
+            @SuppressWarnings("unchecked")
+            Set<Integer> hitCnt = (Set<Integer>) session.getAttribute("hitCnt");
+            if (!hitCnt.contains(no)) {
+            	hitCnt.add(no);
+                session.setAttribute("hitCnt", hitCnt);
+
+                boardService.increaseHit(no);
+            }
+        }
+        */
 		List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
 
 		setImageFilePath(imageFiles, UPLOAD_PATH);

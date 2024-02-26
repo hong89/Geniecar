@@ -207,7 +207,7 @@
                     </div>
                     <div>
                         <div class="p-5" style="text-align: center;">
-                            <a href="javascript:history.back();" class="btn text-white"
+                            <a href="/mypage/myReview.do?typeCode=${notice.typeCode}" class="btn text-white"
                                style="background-color: #41087c;">목록가기</a>
                             <a href="/mypage/deleteMyReview.do?no=${notice.no}&fileNo=${notice.fileNo}" class="btn text-white"
                                style="background-color: #41087c;" onclick="return deleteNotice();">삭제하기</a>

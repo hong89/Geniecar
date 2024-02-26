@@ -1,21 +1,26 @@
 package com.rental.geniecar.admin.business.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import com.rental.geniecar.consult.service.ConsultService;
-import com.rental.geniecar.domain.common.Pagination;
-import com.rental.geniecar.domain.customer.ConsultVo;
-import lombok.RequiredArgsConstructor;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rental.geniecar.admin.board.service.AdminBoardService;
+import com.rental.geniecar.consult.service.ConsultService;
 import com.rental.geniecar.domain.board.BoardVo;
 import com.rental.geniecar.domain.board.CommonCrudVo;
 import com.rental.geniecar.domain.common.FileVo;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.rental.geniecar.domain.common.Pagination;
+import com.rental.geniecar.domain.customer.ConsultVo;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
@@ -85,11 +90,33 @@ public class AdminBusinessController {
     }
     
     // JJ
-    // 게시판 상세 보기 (여기 부분 확인 필요 fileNo)
+    // 게시판 상세 보기
     @GetMapping("/adminQnaDetail.do")
-    public String adminQnaDetail(@RequestParam int no, Model model) {
+    public String adminQnaDetail(@RequestParam int no, HttpSession session, Model model) {
         BoardVo notice = boardService.selectNoticeDetail(no);
+        
+        // 야는 F5 연타 날리면 조회수 신나게 올라감
+        boardService.increaseHit(no);
+        
+        // 세션에 글번호 저장했다가 중복으로 글 조회수 올라가는거 막음
+        /*
+        if (session.getAttribute("hitCnt") == null) {
+            Set<Integer> hitCnt = new HashSet<>();
+            hitCnt.add(no);
+            session.setAttribute("hitCnt", hitCnt);
 
+            boardService.increaseHit(no);
+        } else {
+            @SuppressWarnings("unchecked")
+            Set<Integer> hitCnt = (Set<Integer>) session.getAttribute("hitCnt");
+            if (!hitCnt.contains(no)) {
+            	hitCnt.add(no);
+                session.setAttribute("hitCnt", hitCnt);
+
+                boardService.increaseHit(no);
+            }
+        }
+		*/
         // 이미지 파일 정보 가져오기
         List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
         
@@ -101,6 +128,47 @@ public class AdminBusinessController {
         model.addAttribute("imageFiles", imageFiles);
 
         return "admin/business/adminQnaDetail";
+    }
+    
+    // JJ
+    // 게시판 상세 보기
+    @GetMapping("/reviewDetail.do")
+    public String reviewDetail(@RequestParam int no, HttpSession session, Model model) {
+        BoardVo notice = boardService.selectNoticeDetail(no);
+        
+        // 야는 F5 연타 날리면 조회수 신나게 올라감
+        boardService.increaseHit(no);
+        
+        // 세션에 글번호 저장했다가 중복으로 글 조회수 올라가는거 막음
+        /*
+        if (session.getAttribute("hitCnt") == null) {
+            Set<Integer> hitCnt = new HashSet<>();
+            hitCnt.add(no);
+            session.setAttribute("hitCnt", hitCnt);
+
+            boardService.increaseHit(no);
+        } else {
+            @SuppressWarnings("unchecked")
+            Set<Integer> hitCnt = (Set<Integer>) session.getAttribute("hitCnt");
+            if (!hitCnt.contains(no)) {
+            	hitCnt.add(no);
+                session.setAttribute("hitCnt", hitCnt);
+
+                boardService.increaseHit(no);
+            }
+        }
+		*/
+        // 이미지 파일 정보 가져오기
+        List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
+        
+        System.out.println(imageFiles.toString());
+        // 이미지 경로
+        setImageFilePath(imageFiles, UPLOAD_PATH);
+
+        model.addAttribute("notice", notice);
+        model.addAttribute("imageFiles", imageFiles);
+
+        return "admin/business/reviewDetail";
     }
     
     // 게시판 글 쓰기 폼

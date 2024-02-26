@@ -176,5 +176,8 @@ public class AdminBoardService {
 		List<CommonCrudVo> boardList = boardDao.selectQnaList(boardVo);
 		return boardList;
 	}
+	public int increaseHit(int no) {
+		return boardDao.increaseHit(no);
+	}
 	
 }
