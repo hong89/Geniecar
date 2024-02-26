@@ -1,6 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<script>
+    function deleteNotice() {
+        var confirmDelete = confirm("삭제 하시겠습니까?");
+        if(confirmDelete) {
+            var noticeNo = "${notice.no}";
+            var fileNo = "${notice.fileNo}";
+
+            $.ajax({
+                url: "/admin/board/deleteNotice.do",
+                type: "GET",
+                data: { no: noticeNo,
+                        fileNo: fileNo },
+                success: function(response) {
+                    alert("삭제 되었습니다.");
+                    var typeCode = "${notice.typeCode}"
+                    window.location.href = "/admin/board/list.do?typeCode=" + typeCode;
+                },
+                error: function(xhr, status, error) {
+                    alert("삭제에 실패하였습니다.", error);
+                }
+            });
+        }
+        return false;
+    }
+</script>
+
 <style>
     .breadcrumb-item a {
         text-decoration: none;
@@ -183,7 +210,7 @@
                             <a href="javascript:history.back();" class="btn text-white"
                                style="background-color: #41087c;">목록가기</a>
                             <a href="/mypage/deleteMyReview.do?no=${notice.no}&fileNo=${notice.fileNo}" class="btn text-white"
-                               style="background-color: #41087c;">삭제하기</a>
+                               style="background-color: #41087c;" onclick="return deleteNotice();">삭제하기</a>
                         </div>
                     </div>
                     </div>

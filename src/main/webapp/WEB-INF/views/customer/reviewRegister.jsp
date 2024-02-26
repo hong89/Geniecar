@@ -2,6 +2,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+    function submitForm() {
+        var title = $('[name=title]').val();
+        var content = $('[name=content]').val();
+        var files = $('[name=file]')[0].files;
+
+        if (title == '' || title.length == 0 || title == 'undefined') {
+            alert("제목을 입력하세요.");
+            $("#title").focus();
+            return false;
+        } else if (title.length > 100) {
+            alert("제목은 100자를 초과할 수 없습니다.");
+            $("#title").focus();
+            return false;
+        } else if (content == '' || content.length == 0 || content == 'undefined') {
+            alert("내용을 입력하세요");
+            $("#content").focus();
+            return false;
+        } else if (files.length == 0) {
+            alert("후기사진 1장은 필수 입니다.");
+            return false;
+        }
+        var confirmSubmit = confirm("등록하시겠습니까?");
+        if (confirmSubmit) {
+        document.registerForm.submit();
+            alert("등록되었습니다.");
+        }
+    }
+</script>
+
 <style>
     #registerForm {
         padding: 30px;
@@ -42,7 +72,7 @@
                 </div>
             </div>
             
-            <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">등록하기</button>
+            <button type="button" class="btn text-white" style="background: #41087c" onclick="submitForm();">등록하기</button>
 
         </form>
     </div>

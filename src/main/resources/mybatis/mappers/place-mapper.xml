@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rental.geniecar.map.dao.PlaceDao">
+
+	<select id="selectPlace" resultType="com.rental.geniecar.domain.map.PlaceVo" parameterType="com.rental.geniecar.domain.map.PlaceVo">
+         SELECT a.branch_code
+                AS ID
+         	  , B.GROUP_CODE_NAME || B.CODE_NAME || B.DESCRIPTION
+                AS placeName
+              , A.LATITUDE
+                AS Y
+              , A.LONGITUDE
+                AS X
+              , A.ROAD_ADDRESS ||  A.STREET_ADDRESS
+                AS addressName
+              , '서비스,산업 > 전문대행 > 렌터카'
+				AS distance
+		      , A.TEL
+		        AS phone
+              , ''
+                AS placeUrl
+           FROM RENTAL_CAR_BRANCH A
+          INNER JOIN COMMON_CODE B
+             ON A.BRANCH_CODE = B.FULL_code
+	      WHERE B.GROUP_CODE_NAME || B.CODE_NAME || B.DESCRIPTION LIKE '%' || #{placeName} || '%'
+    </select>
+
+</mapper>
+
+

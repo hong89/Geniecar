@@ -83,6 +83,31 @@ public class AdminBusinessController {
     public String paymentList() {
         return "admin/business/paymentList";
     }
+    
+    // JJ
+    // 게시판 상세 보기 (여기 부분 확인 필요 fileNo)
+    @GetMapping("/adminQnaDetail.do")
+    public String adminQnaDetail(@RequestParam int no, Model model) {
+        BoardVo notice = boardService.selectNoticeDetail(no);
+
+        // 이미지 파일 정보 가져오기
+        List<FileVo> imageFiles = boardService.selectImageFiles(notice.getFileNo());
+        
+        System.out.println(imageFiles.toString());
+        // 이미지 경로
+        setImageFilePath(imageFiles, UPLOAD_PATH);
+
+        model.addAttribute("notice", notice);
+        model.addAttribute("imageFiles", imageFiles);
+
+        return "admin/business/adminQnaDetail";
+    }
+    
+    // 게시판 글 쓰기 폼
+    @GetMapping("/adminQnaRegister.do")
+    public String adminQnaRegister() {
+        return "admin/business/adminQnaRegister";
+    }
 
 
 

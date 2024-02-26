@@ -15,6 +15,52 @@
 
         reader.readAsDataURL(file);
     }
+    function submitForm() {
+        var title = $('[name=title]').val();
+        var content = $('[name=content]').val();
+
+        if (title == '' || title.length == 0 || title == undefined) {
+            alert("제목을 입력하세요.");
+            $("#title").focus();
+            return false;
+        } else if (title.length > 100) {
+            alert("제목은 100자를 초과할 수 없습니다.");
+            $("#title").focus();
+            return false;
+        } else if (content == '' || content.length == 0 || content == undefined) {
+            alert("내용을 입력하세요");
+            $("#content").focus();
+            return false;
+        }
+
+        var confirmSubmit = confirm("수정을 적용하시겠습니까?");
+        if (confirmSubmit) {
+            document.registerForm.submit();
+            alert("수정되었습니다.");
+        }
+    }
+    function deleteNotice() {
+        var confirmDelete = confirm("삭제 하시겠습니까?");
+        if(confirmDelete) {
+            var noticeNo = "${notice.no}";
+            var fileNo = "${notice.fileNo}";
+
+            $.ajax({
+                url: "/admin/board/deleteNotice.do",
+                type: "GET",
+                data: { no: noticeNo,
+                        fileNo: fileNo },
+                success: function(response) {
+                    alert("삭제 되었습니다.");
+                    var typeCode = "${notice.typeCode}"
+                    window.location.href = "/admin/board/list.do?typeCode=" + typeCode;
+                },
+                error: function(xhr, status, error) {
+                    alert("삭제에 실패하였습니다.", error);
+                }
+            });
+        }
+    }
 </script>
 
 <style>
@@ -87,10 +133,10 @@
                 onclick="location.href='list.do?typeCode=${notice.typeCode}'">목록가기
             </button>
             <input type="hidden" name="no" value="${notice.no}">
-            <button type="button" class="btn text-white" style="background: #41087c" onclick="submit();">수정적용</button>
+            <button type="button" class="btn text-white" style="background: #41087c" onclick="submitForm();">수정적용</button>
             <!-- <button type="button" class="btn text-white" style="background: #41087c" onclick="location.href='updateNoticeForm.do?no=${notice.no}'">수정적용</button> -->
             <button type="button" class="btn text-white" style="background: #41087c"
-                    onclick="location.href='deleteNotice.do?no=${notice.no}'">삭제하기
+                    onclick="deleteNotice();">삭제하기
             </button>
 
         </form>

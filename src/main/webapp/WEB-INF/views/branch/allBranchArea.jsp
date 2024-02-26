@@ -2,7 +2,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
+<script>
+    // 셀렉트 박스 선택 시 검색을 수행하는 함수
+    function searchBySelectedValue() {
+        // 셀렉트 박스에서 선택된 값 가져오기
+        var selectedValue = document.getElementById('selectKeyword').value;
+        
+        // 검색어 필드에 선택된 값 설정
+        document.getElementById('keyword').value = selectedValue;
+        
+        // 검색 수행
+        searchPlaces();
+        var searchBox = document.getElementById("keyword");
+        searchBox.value = "";
+    }
+</script>
 
 <style>
     .map_wrap, .map_wrap * {margin:0;padding:0;font-size:12px;}
@@ -45,54 +59,34 @@
     <div class="carLife-container">
         <div class="inner-type2">
             <section class="text-center">
-                <h1 class="tit">전국지점안내</h1>
+                <h1 class="pb-5 tit">전국지점안내</h1>
             </section>
-
-            <form class="pt-5 row g-3 align-items-center" style="text-align: center;">
+            <div class="row g-3 align-items-center">
                 <div class="col-6">
-                    <label class="visually-hidden" for="inlineFormInputGroupUsername">Use</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="inlineFormInputGroupUsername"
-                               placeholder="지역, 지점명을 검색하시면 가까운 매장을 찾으실 수 있습니다.">
-                    </div>
+                    <form onsubmit="searchPlaces(); return false;">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="서울" id="keyword" placeholder="지역, 지점명을 검색하시면 가까운 매장을 찾으실 수 있습니다.">
+                            <button type="submit" class="btn mx-2" style="background-color: #41087c; color: white;">검색하기</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="col-3">
-                    <div class="d-flex">
-                        <button type="submit" class="btn" style="background-color: #41087c; color: white;">검색</button>
-                    </div>
-                </div>
-                <div class="col-3 text-right">
-                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                    <select class="form-select" id="inlineFormSelectPref">
-                        <option value="">지역-전체보기</option>
-                        <option value="290">24시간지점</option>
-                        <option value="280">역사지점</option>
-                        <option value="270">공항지점</option>
-                        <option value="100">서울</option>
-                        <option value="110,120">인천/경기</option>
-                        <option value="130">강원</option>
-                        <option value="140,150,160,170">충청/대전/세종</option>
-                        <option value="180,190,200">전라/광주</option>
-                        <option value="210,220,230,240,250">경상/대구/부산/울산</option>
-                        <option value="260">제주</option>
+                <div class="col-3 offset-3 text-end">
+                    <select class="form-select" id="selectKeyword" onchange="searchBySelectedValue()">
+                        <option value="지점" selected>선택</option>
+                        <c:forEach var="branch" items="${branches}">
+                            <option value="${branch.codeName}"
+                                    <c:if test="${not empty param.keyword and param.keyword eq branch.fullCode}">selected</c:if>>
+                                    ${branch.codeName}
+                            </option>
+                        </c:forEach>
                     </select>
                 </div>
-        
-            </form>
+            
+            </div>
             <hr/>
             <div class="map_wrap row">
                 <div class="col d-flex">   
                     <div id="menu_wrap" class="bg_white" style="width:30%;height:500px;">
-                        <div class="option">
-                            <div>
-                                <form onsubmit="searchPlaces(); return false;">
-                                    지역,지점명 : <input type="text" value="지니카" id="keyword" size="15">
-
-                                    <button type="submit" class="btn" style="background-color: #41087c; color: white;">검색하기</button>
-                                </form>
-                            </div>
-                        </div>
-                        <hr>
                         <ul id="placesList"></ul>
                         <div id="pagination"></div>
                     </div>
@@ -134,16 +128,58 @@
                     alert('키워드를 입력해주세요!');
                     return false;
                 }
-                keyword += " 렌터카";
-            
+                
+
+            // 주어진 JSON 데이터를 파싱하여 자바스크립트 객체로 변환하는 함수
+            function parseJson(jsonString) {
+                return JSON.parse(jsonString);
+            }
+
+            // 주어진 JSON 데이터에서 필요한 정보만을 추출하여 새로운 배열로 만드는 함수
+            function extractData(jsonList) {
+                var dataArray = [];
+                for (var i = 0; i < jsonList.length; i++) {
+                    var data = jsonList[i];
+                    var newData = {
+                        id: data.id,
+                        addressName: data.addressName,
+                        phone: data.phone,
+                        placeName: data.placeName,
+                        x: data.x,
+                        y: data.y
+                        // 필요한 항목들을 추가로 추출하시면 됩니다.
+                    };
+                    dataArray.push(newData);
+                }
+                return dataArray;
+            }
                 // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-                ps.keywordSearch( keyword, placesSearchCB); 
+                //keyword += " 렌터카";
+                if(keyword != null && keyword != ''){
+                    $.ajax({
+                        type: "get",
+                        async: false,
+                        url: "/place/getPlace.do",
+                        dataType: "text",
+                        data: { placeName: keyword },
+                        success: function (data, Status) {
+                            // TODO:페이징 정보 
+                            const page = {};
+                            placesSearchCB(parseJson(data), 'OK', page) 
+                        },
+                        error: function (data, Status) {
+                            alert("에러가 발생했습니다.");
+                        }
+                    });
+                }
+                
+                // 기존 카카오 방식
+                // ps.keywordSearch( keyword, placesSearchCB); 
             }
             
             // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
             function placesSearchCB(data, status, pagination) {
                 if (status === kakao.maps.services.Status.OK) {
-            
                     // 정상적으로 검색이 완료됐으면
                     // 검색 목록과 마커를 표출합니다
                     displayPlaces(data);
@@ -166,7 +202,6 @@
             
             // 검색 결과 목록과 마커를 표출하는 함수입니다
             function displayPlaces(places) {
-            
                 var listEl = document.getElementById('placesList'), 
                 menuEl = document.getElementById('menu_wrap'),
                 fragment = document.createDocumentFragment(), 
@@ -178,9 +213,7 @@
             
                 // 지도에 표시되고 있는 마커를 제거합니다
                 removeMarker();
-                
                 for ( var i=0; i<places.length; i++ ) {
-            
                     // 마커를 생성하고 지도에 표시합니다
                     var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
                         marker = addMarker(placePosition, i), 
@@ -224,7 +257,6 @@
             
             // 검색결과 항목을 Element로 반환하는 함수입니다
             function getListItem(index, places) {
-            
                 var el = document.createElement('li'),
                 itemStr = '<span class="markerbg marker_' + (1) + '"></span>' +
                             '<div class="info">' +
