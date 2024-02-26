@@ -11,6 +11,7 @@ import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.member.LicenseVo;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.domain.member.MyReservationVo;
+import com.rental.geniecar.domain.member.PointVo;
 import com.rental.geniecar.domain.reservation.PaymentVo;
 import com.rental.geniecar.member.dao.MemberDao;
 import com.rental.geniecar.point.dao.PointDao;
@@ -120,5 +121,15 @@ public class MemberService {
 	}
 	public PaymentVo selectOnePayment(String no) {
 		return memberDao.selectOnePayment(no);
+	}
+	public void cancelReservation(Map<String, String> map) {
+		//예약 내역 수정
+		memberDao.updateReservationCancel(map);
+		//결제 수정
+		memberDao.updatePaymentCancel(map);
+		//포인트 수정
+		PointVo cancelpoint =  pointDao.selectOne(map.get("reservationNo"));
+		PointVo point = new PointVo(cancelpoint.getPoint(), "-", cancelpoint.getHistory(), cancelpoint.getMemberId());
+		pointDao.savePoint(point);
 	}
 }

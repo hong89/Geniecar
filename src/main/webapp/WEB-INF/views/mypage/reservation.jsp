@@ -19,7 +19,7 @@
     .btn-goLink {
         color: #f8f7fd;
     }
-    a{
+    ul a{
         color: #f8f7fd;
         text-decoration: none;
     }
@@ -104,7 +104,7 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
-                        <a href="/mypage/payment.do" class="underline" id="commonMyCarSellCount">
+                        <a href="/mypage/reservation.do" class="underline" id="commonMyCarSellCount">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>예약 내역</p>
                         <span class ="text-decoration-underline">${mypage.reservation}건</span></a>
@@ -219,7 +219,7 @@
                                 <div class="card-header position-relative">
                                     <span class="position-absolute top-50 start-50 translate-middle">${reservation.carName}</span>
                                 <c:if test="${reservation.cancelYn eq 'Y'}">
-                                    <span class="rounded-pill p-1 ps-3 pe-3 me-3 position-absolute top-1 end-0 cnacel" >취소</span>
+                                    <span class="rounded-pill p-1 ps-3 pe-3 me-3 position-absolute top-1 end-0 cnacel" >취소완료</span>
                                 </c:if>
                                 </div>
                                 <div class="card-body">
@@ -245,7 +245,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer position-relative">
-                                    <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
+                                    <a href="/mypage/reservationDetail.do?no=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
                                 </div>
                             </div>
                         </c:forEach>
@@ -285,7 +285,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer position-relative">
-                                        <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
+                                        <a href="/mypage/reservationDetail.do?no=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
                                     </div>
                                 </div>
                             </c:if>
@@ -325,7 +325,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer position-relative">
-                                        <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
+                                        <a href="/mypage/reservationDetail.do?no=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
                                     </div>
                                 </div>
                             </c:if>
@@ -365,7 +365,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer position-relative">
-                                        <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
+                                        <a href="/mypage/reservationDetail.do?no=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
                                     </div>
                                 </div>
                             </c:if>
@@ -406,7 +406,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer position-relative">
-                                        <a href="/mypage/reservationDetail.do?reservationNo=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
+                                        <a href="/mypage/reservationDetail.do?no=${reservation.reservationNo}" class="position-absolute top-50 start-50 translate-middle">상세정보 확인하기</a>
                                     </div>
                                 </div>
                             </c:if>

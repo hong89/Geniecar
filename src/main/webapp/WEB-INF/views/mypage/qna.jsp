@@ -20,7 +20,7 @@
         color: #f8f7fd;
     }
 
-    a{
+    ul a{
         color: #f8f7fd;
         text-decoration: none;
     }
@@ -92,7 +92,7 @@
                 </div>
                 <ul class="row text-center">
                     <li class="col">
-                        <a href="/mypage/payment.do" id="commonMyCarSellCount">
+                        <a href="/mypage/reservation.do" id="commonMyCarSellCount">
                         <img alt="" class="mb-3" src="/images/icons/ico-myPannel05.png">
                         <p>예약 내역</p>
                         <span class ="text-decoration-underline">${mypage.reservation}건</span></a>

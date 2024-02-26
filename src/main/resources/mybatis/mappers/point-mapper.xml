@@ -46,4 +46,8 @@
 		   ,#{memberId}
 		)
 	</insert>
+	<select id="selectOne" parameterType="String" resultType="pointVo">
+		SELECT * FROM POINT WHERE HISTORY = #{reservationNo}
+	</select>
+
 </mapper>

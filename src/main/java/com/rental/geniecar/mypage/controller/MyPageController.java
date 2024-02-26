@@ -77,18 +77,27 @@ public class MyPageController {
         model.addAttribute("reservationList", reservationList);
         return "mypage/reservation";
     }
-
 	//ruddud
 	@GetMapping("/reservationDetail.do")
-	public String reservationDetail(@RequestParam("reservationNo") String reservationNo, Model model, HttpSession session){
+	public String reservationDetail(@RequestParam("no") String no, Model model, HttpSession session){
 		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
 		model.addAttribute("member", membervo);
 		model.addAttribute("mypage",memberService.mypage(membervo.getId()));
-		model.addAttribute("reservation", memberService.selectOneReservation(reservationNo));
+		model.addAttribute("reservation", memberService.selectOneReservation(no));
 		model.addAttribute("license", memberService.selectLicense(membervo.getId()));
+		model.addAttribute("payment", memberService.selectOnePayment(no));
         return "mypage/reservationDetail";
     }
-
+	@GetMapping("/reservationCancel.do")
+	public String reservationCancel(String no, HttpSession session, RedirectAttributes re){
+		Map<String, String> map = new HashMap<>();
+		MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
+		map.put("reservationNo", no);
+		map.put("id", membervo.getId());		
+		memberService.cancelReservation(map);
+		re.addFlashAttribute("msg", "예약이 취소되었습니다.");
+        return "redirect:/mypage/reservationDetail.do?no="+no;
+    }
     //ruddud
     @GetMapping("/point.do")
     public String point(Model model, HttpSession session) {
@@ -114,12 +123,11 @@ public class MyPageController {
     }
     
     @GetMapping("/paymentDetail.do")
-    public String paymentDetail(String no,Model model, HttpSession session) {
+    public String paymentDetail(@RequestParam String no,Model model, HttpSession session) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
-        model.addAttribute("mypage",memberService.mypage(membervo.getId()));        
-        model.addAttribute("paymentList",memberService.selectAllMyPayment(membervo.getId()));
-        model.addAttribute("payment", memberService.selectOnePayment(no));
+        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
+        
         return "mypage/paymentDetail";
     }
 
@@ -136,7 +144,7 @@ public class MyPageController {
 
     //ruddud
     @PostMapping("/addLicense.do")
-    public String addLicense(HttpServletRequest request) throws ParseException {
+    public String addLicense(HttpServletRequest request, RedirectAttributes re) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         LicenseVo license = new LicenseVo();
         license.setLicenseGradeCode(request.getParameter("licenseGradeCode"));
@@ -146,21 +154,22 @@ public class MyPageController {
         license.setDriverBirth(format.parse(request.getParameter("driverBirth")));
         license.setLicenseTestDate(format.parse(request.getParameter("licenseTestDate")));
         license.setLicenseIssueDate(format.parse(request.getParameter("licenseIssueDate")));
-        System.out.println(license);
+        re.addFlashAttribute("msg", "등록되었습니다.");
         memberService.insertLicense(license);
         return "redirect:/mypage/license.do";
     }
 
     //ruddud
     @PostMapping("/updateLicense.do")
-    public String updateLicense(LicenseVo license) {
+    public String updateLicense(LicenseVo license, RedirectAttributes re) {
         memberService.updateLicense(license);
+        re.addFlashAttribute("msg", "수정되었습니다.");
         return "redirect:/mypage/license.do";
     }
 
     //ruddud
     @GetMapping("/member/modify.do")
-    public String memberModify(HttpSession session, Model model) {
+    public String memberModify(HttpSession session, Model model, RedirectAttributes re) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
         model.addAttribute("mypage",memberService.mypage(membervo.getId()));
@@ -169,9 +178,10 @@ public class MyPageController {
 
     //ruddud
     @PostMapping("/member/domodify.do")
-    public String domodify(HttpSession session, MemberVo vo) {
+    public String domodify(HttpSession session, MemberVo vo, RedirectAttributes re) {
         session.removeAttribute("memberInfo");
         session.setAttribute("memberInfo", memberService.updateMember(vo));
+        re.addFlashAttribute("msg", "회원정보가 수정되었습니다.");
         return "redirect:/mypage/member/modify.do";
     }
 

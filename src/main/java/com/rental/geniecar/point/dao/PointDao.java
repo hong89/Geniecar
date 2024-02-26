@@ -13,4 +13,5 @@ public interface PointDao {
 	public void delete(String memberId);
 	public PointVo selectPoint(String memberId);
 	public void savePoint(PointVo pointVo);
+	public PointVo selectOne(String no);
 }
