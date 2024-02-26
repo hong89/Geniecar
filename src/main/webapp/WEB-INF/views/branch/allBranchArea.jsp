@@ -86,7 +86,7 @@
             <hr/>
             <div class="map_wrap row">
                 <div class="col d-flex">   
-                    <div id="menu_wrap" class="bg_white" style="width:30%;height:500px;">
+                    <div id="menu_wrap" class="bg_white" style="width:45%;height:500px;">
                         <ul id="placesList"></ul>
                         <div id="pagination"></div>
                     </div>
