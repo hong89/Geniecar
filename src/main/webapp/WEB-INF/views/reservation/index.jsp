@@ -352,6 +352,8 @@
 
         //달력 날짜 클릭 시
         $('#containerArea').on('click', '.days > td:not(.date-inactive)', function(){
+            if($(this).hasClass('prev-date')) return false;
+
             var yearMonth, day = $(this).data('day');
 
             if(reservationDateObj.dateSelectMode === 'S'){ //빌리는 날짜 선택
