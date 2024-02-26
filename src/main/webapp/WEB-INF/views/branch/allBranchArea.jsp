@@ -21,7 +21,7 @@
 <style>
     .map_wrap, .map_wrap * {margin:0;padding:0;font-size:12px;}
     .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-    .map_wrap {position:relative;width:100%;height:500px;}
+    .map_wrap {position:relative;width:100%;height:700px;}
     #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:#f8f7fd;z-index: 1;font-size:12px;border-radius: 10px;}
     .bg_white {background:#fff;}
     #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
@@ -86,13 +86,13 @@
             <hr/>
             <div class="map_wrap row">
                 <div class="col d-flex">   
-                    <div id="menu_wrap" class="bg_white" style="width:45%;height:500px;">
+                    <div id="menu_wrap" class="bg_white" style="width:45%;height:700px;">
                         <ul id="placesList"></ul>
                         <div id="pagination"></div>
                     </div>
                 </div>    
                 <div class="col d-flex pt-2">  
-                    <div id="map" style="width:100%;height:500px;"></div>
+                    <div id="map" style="width:100%;height:700px;"></div>
                 </div>
             </div>
 
