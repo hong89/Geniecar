@@ -15,7 +15,7 @@
                 var name =$("#name").val();
                 var hp =$("#hp").val();
 
-                if(name == '' || name == null) {
+                if(name == '' || name.length == 0) {
                     alert("이름을 입력해주세요");
                     $("#name").focus();
                     return false;
@@ -29,12 +29,11 @@
                     dataType: "text",
                     data : $("#findid").serialize(),
                     success : function (text) {
-                        if(text == ''){
-                            $("#result").html("일치하는 정보가 없습니다.");
+                        if(text == ''||text.length==0){
+                            alert('일치하는 회원 정보가 없습니다.');
                         } else {
                             alert('회원님의 아이디는 "' +text +'" 입니다.');
                         }
-
                     },
                     error: function (){
                         console.log("실패 :" + data);

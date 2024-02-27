@@ -146,7 +146,6 @@
             
             $('#submitBtn').click(function () {
                 $('#licenseNumber').val($("#licenseNumber1").val()+ "-" + $("#licenseNumber2").val() + "-" + $("#licenseNumber3").val() + "-" + $("#licenseNumber4").val());
-                chk();
                 $("form").attr("action", "/mypage/addLicense.do");
             });
         }
@@ -167,7 +166,9 @@
     })
     function check() {
         var format = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-      var form = document.form;
+        var replaceName = /^[가-힣a-zA-Z\s]+$/
+      
+        var form = document.form;
       if (!form.licenseGradeCode.value) {
             alert("면허 종류를 선택해 주세요");
             form.licenseGradeCode.focus();
@@ -203,6 +204,9 @@
         }else if(!form.driverName.value){
             alert("이름을 입력해주세요");
             form.driverName.focus();
+            return false;
+        } else if (!form.driverName.value.match(replaceName)) {
+            alert("이름을 올바르게 입력해주세요");
             return false;
         }else if(!form.driverBirth.value){
             alert("생년월일을 입력해주세요");

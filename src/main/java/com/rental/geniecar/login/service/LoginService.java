@@ -1,6 +1,5 @@
 package com.rental.geniecar.login.service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.rental.geniecar.domain.member.MemberVo;
 import com.rental.geniecar.login.dao.LoginDao;
 import com.rental.geniecar.point.dao.PointDao;
-import com.rental.geniecar.point.service.PointService;
 
 import lombok.RequiredArgsConstructor;
 
