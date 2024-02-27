@@ -46,6 +46,9 @@
         color:black;
     }
 
+    thead {
+        background-color:  #f8f7fd;
+    }
 </style>
 
 <div class="container-xl">
@@ -67,45 +70,45 @@
         </section>
     </div>
     <div class="mb-5 sticky-xl-top">
-        <ul class="nav nav-pills nav-fill mb-3 bg-light" id="pills-tab" role="tablist">
-            <li class="nav-item p-3">
+        <ul class="nav nav-pills nav-fill mt-2 mb-3 bg-light" id="pills-tab" role="tablist">
+            <li class="nav-item p-3 mt-3">
                 <a class="nav-link" href="#no1" onclick="changeColor(this)"><img alt="" src="/images/icons/ico-pannel01.png"/>
-                    <p>대여 자격</p>
+                    <p class="mt-2">대여 자격</p>
                 </a>
             </li>
-            <li class="nav-item p-3">
+            <li class="nav-item p-3 mt-3">
                 <a class="nav-link" href="#no2" onclick="changeColor(this)"><img src="/images/icons/ico-pannel02.png"/>
-                    <p>요금 안내</p>
+                    <p class="mt-2">요금 안내</p>
                 </a>
             </li>
-            <li class="nav-item p-3">
+            <li class="nav-item p-3 mt-3">
                 <a class="nav-link" href="#no3" onclick="changeColor(this)"><img src="/images/icons/ico-pannel03.png"/>
-                    <p>추가 요금</p>
+                    <p class="mt-2">추가 요금</p>
                 </a>
             </li>
-            <li class="nav-item p-3">
+            <li class="nav-item p-3 mt-3">
                 <a class="nav-link" href="#no4" onclick="changeColor(this)"><img src="/images/icons/ico-pannel04.png"/>
-                    <p>대여 절차</p>
+                    <p class="mt-2">대여 절차</p>
                 </a>
             </li>
-            <li class="nav-item p-3">
+            <li class="nav-item p-3 mt-3">
                 <a class="nav-link" href="#no5" onclick="changeColor(this)"><img src="/images/icons/ico-pannel05.png"/>
-                    <p>반납 절차</p>
+                    <p class="mt-2">반납 절차</p>
                 </a>
             </li>
-            <li class="nav-item p-3">
+            <li class="nav-item p-3 mt-3">
                 <a class="nav-link" href="#no6" onclick="changeColor(this)"><img src="/images/icons/ico-pannel06.png"/>
-                    <p>보험 및 보상</p>
+                    <p class="mt-2">보험 및 보상</p>
                 </a>
             </li>
-            <li class="nav-item p-3">
+            <li class="nav-item p-3 mt-3">
                 <a class="nav-link" href="#no7" onclick="changeColor(this)"><img src="/images/icons/ico-pannel07.png"/>
-                    <p>자차손해면책제도</p>
+                    <p class="mt-2">자차손해면책제도</p>
                 </a>
             </li>
-            <li class="nav-item p-3">
-                <a class="nav-link" href="#no8" onclick="changeColor(this)"><img src="/images/icons/ico-pannel08.png"/>
-                    <p>기타안내</p>
+            <li class="nav-item p-3 mt-3">
+                <a class="nav-link pt-4" href="#no8" onclick="changeColor(this)"><img src="/images/icons/ico-pannel08.png"/>
+                    <p class="mt-2">기타안내</p>
                 </a>
             </li>
         </ul>
@@ -115,14 +118,13 @@
             <h2 class="fw-bold mb-4">대여 자격</h2>
         </div>
         <div class="explain-cont">
-            <p class="txt">도로교통법상 유효한 운전면허증을 소지하여야 대여가 가능하며, 1종 면허의 경우 적성기간 경과 후 1년이 지나면 운전면허
+            <p>도로교통법상 유효한 운전면허증을 소지하여야 대여가 가능하며, 1종 면허의 경우 적성기간 경과 후 1년이 지나면 운전면허
                 취소로 대여가 불가합니다.
             </p>
 
             <div class="">
                 <table class="table align-middle text-center">
-                    <caption>대여 자격의 차량 유형, 9인승 이하, 11~12인승, 15인승, 면허 종류, 운전자 연령, 취득 후 기간을 나타내는 표
-                    </caption>
+                    <caption class="invisible">대여 자격의 차량 유형, 9인승 이하, 11~12인승, 15인승, 면허 종류, 운전자 연령, 취득 후 기간을 나타내는 표</caption>
                     <thead>
                     <tr>
                         <th>차량 유형</th>
@@ -277,7 +279,7 @@
                             <div class="tbl-box">
                                 <p>대여기간별 일일 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 기간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 기간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -319,7 +321,7 @@
                             <div class="tbl-box">
                                 <p>대여시간별 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -372,7 +374,7 @@
                             <div class="tbl-box">
                                 <p>대여기간별 일일 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 기간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 기간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -414,7 +416,7 @@
                             <div class="tbl-box">
                                 <p>대여시간별 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption></caption>
+                                    <caption class="invisible"></caption>
                                     <colgroup>
                                         <col style="width: 25%;">
                                         <col>
@@ -465,7 +467,7 @@
                             <div class="tbl-box">
                                 <p>대여기간별 일일 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 기간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 기간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -516,7 +518,7 @@
                             <div class="tbl-box">
                                 <p>대여시간별 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -575,7 +577,7 @@
                             <div class="tbl-box">
                                 <p>대여기간별 일일 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 기간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 기간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -659,7 +661,7 @@
                             <div class="tbl-box">
                                 <p>대여시간별 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -748,7 +750,7 @@
                             <div class="tbl-box">
                                 <p>대여기간별 일일 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 기간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 기간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -808,7 +810,7 @@
                             <div class="tbl-box">
                                 <p>대여시간별 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -875,7 +877,7 @@
                             <div class="tbl-box">
                                 <p>대여기간별 일일 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 기간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 기간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -962,7 +964,7 @@
                             <div class="tbl-box">
                                 <p>대여시간별 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -1052,7 +1054,7 @@
                             <div class="tbl-box">
                                 <p>대여기간별 일일 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 기간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 기간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -1132,7 +1134,7 @@
                             <div class="tbl-box">
                                 <p>대여시간별 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -1215,7 +1217,7 @@
                             <div class="tbl-box">
                                 <p>대여기간별 일일 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 기간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 기간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="30%">
                                         <col>
@@ -1389,7 +1391,7 @@
                             <div class="tbl-box">
                                 <p>대여시간별 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="30%">
                                         <col>
@@ -1558,7 +1560,7 @@
                             <div class="tbl-box">
                                 <p>대여기간별 일일 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 기간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 기간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -1654,7 +1656,7 @@
                             <div class="tbl-box">
                                 <p>대여시간별 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -1814,7 +1816,7 @@
                             <div class="tbl-box">
                                 <p class="tit">일반 회원 대여 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -1877,7 +1879,7 @@
                             <div class="tbl-box">
                                 <p class="tit">제주 신고 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -1934,7 +1936,7 @@
                             <div class="tbl-box">
                                 <p class="tit">일반 회원 대여 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -1986,7 +1988,7 @@
                             <div class="tbl-box">
                                 <p class="tit">제주 신고 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2034,7 +2036,7 @@
                             <div class="tbl-box">
                                 <p>일반 회원 대여 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2099,7 +2101,7 @@
                             <div class="tbl-box">
                                 <p>제주 신고 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2158,7 +2160,7 @@
                             <div class="tbl-box">
                                 <p>일반 회원 대여 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2221,7 +2223,7 @@
                             <div class="tbl-box">
                                 <p>제주 신고 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2280,7 +2282,7 @@
                             <div class="tbl-box">
                                 <p class="tit">일반 회원 대여 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2341,7 +2343,7 @@
                             <div class="tbl-box">
                                 <p class="tit">제주 신고 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2398,7 +2400,7 @@
                             <div class="tbl-box">
                                 <p>일반 회원 대여 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2479,7 +2481,7 @@
                             <div class="tbl-box">
                                 <p>제주 신고 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2557,7 +2559,7 @@
                             <div class="tbl-box">
                                 <p>일반 회원 대여 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2657,7 +2659,7 @@
                             <div class="tbl-box">
                                 <p>제주 신고 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2753,7 +2755,7 @@
                             <div class="tbl-box">
                                 <p>일반 회원 대여 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2814,7 +2816,7 @@
                             <div class="tbl-box">
                                 <p>제주 신고 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2871,7 +2873,7 @@
                             <div class="tbl-box">
                                 <p>일반 회원 대여 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -2977,7 +2979,7 @@
                             <div class="tbl-box">
                                 <p>제주 신고 요금</p>
                                 <table class="table table-bordered align-middle text-center">
-                                    <caption>차종명과 시간별 대여 요금을 나타내는 표</caption>
+                                    <caption class="invisible">차종명과 시간별 대여 요금을 나타내는 표</caption>
                                     <colgroup>
                                         <col width="25%">
                                         <col>
@@ -3150,25 +3152,25 @@
         <div class="pb-3 pt-3 border-bottom mb-5">
             <h2 class="fw-bold mb-4">대여 절차</h2>
         </div>
-        <div class="explain-cont">
-            <ol class="row">
+        <div>
+            <ol class="row list-unstyled text-center">
                 <li class="col">
-                    <div class="img-item">
+                    <div class="mb-3 text-center" style="min-height: 100px;">
                         <img alt="" src="/images/icons/ico-purchase-step01.png"/>
                     </div>
-                    <p>1. 지점 방문</p>
-                    <p class="txt">
+                    <h5 class = "fw-bold mb-3">1. 지점 방문</h5>
+                    <p>
                         직원에게 예약번호 또는 <br>
                         예약자 성명을 말씀해주세요.<br>
                         (외국인일 경우 여권 및 국제면허증 지참)
                     </p>
                 </li>
                 <li class="col">
-                    <div class="img-item">
+                    <div class="mb-3 text-center" style="min-height: 100px;">
                         <img alt="" src="/images/icons/ico-purchase-step02.png"/>
                     </div>
-                    <p>2. 고객 정보 확인</p>
-                    <p class="txt">
+                    <h5 class = "fw-bold mb-3">2. 고객 정보 확인</h5>
+                    <p>
                         예약사항을 확인 후, <br>
                         차량임대차 계약서 작성을 위해<br>
                         면허증을 담당직원에게 제시해 주세요.<br>
@@ -3176,30 +3178,30 @@
                     </p>
                 </li>
                 <li class="col">
-                    <div class="img-item">
+                    <div class="mb-3 text-center" style="min-height: 100px;">
                         <img alt="" src="/images/icons/ico-purchase-step03.png"/>
                     </div>
-                    <p>3. 대여료 결제</p>
-                    <p class="txt">
+                    <h5 class = "fw-bold mb-3">3. 대여료 결제</h5>
+                    <p>
                         대여기간 및 차종, 옵션 등 <br>
                         최종 확인한 후<br>
                         차량 대여료를 결제해주세요.
                     </p>
                 </li>
                 <li class="col">
-                    <div class="img-item">
+                    <div class="mb-3 text-center" style="min-height: 100px;">
                         <img alt="" src="/images/icons/ico-purchase-step04.png"/>
                     </div>
-                    <p>4. 차량 확인 및 계약서 작성</p>
-                    <p class="txt">
+                    <h5 class = "fw-bold mb-3">4. 차량 확인 및 계약서 작성</h5>
+                    <p>
                         직원을 따라 주차장으로 이동하신 후 <br>
                         차량 상태를 확인하시고<br>
                         차량 임대차 계약서에 서명해주세요.
                     </p>
                 </li>
             </ol>
-            <div class="align-c mb-60">
-                <ul class="lst dot inline-block">
+            <div class="text-muted text-center mt-5">
+                <ul class="list-unstyled">
                     <li>지니카 홈페이지 또는 모바일웹/APP으로 예약하는 경우 결제를 완료하셔야 예약이 완료됩니다.</li>
                 </ul>
             </div>
@@ -3210,45 +3212,45 @@
             <h2 class="fw-bold mb-4">반납 절차</h2>
         </div>
         <div class="explain-cont">
-            <ol class="row">
+            <ol class="row list-unstyled text-center">
                 <li class="col">
-                    <div class="img-item">
+                    <div class="mb-3 text-center" style="min-height: 100px;">
                         <img alt="" src="/images/icons/ico-purchase-step01.png"/>
                     </div>
-                    <p>1. 지점 방문</p>
-                    <p class="txt">
+                    <h5 class = "fw-bold mb-3">1. 지점 방문</h5>
+                    <p>
                         반납지점 주차장에 차량을 주차하고 <br>
                         시동을 완전히 끈 후 차량 Key 와 <br>
                         소지품을 챙겨 지점 사무실로 들어갑니다.
                     </p>
                 </li>
                 <li class="col">
-                    <div class="img-item">
+                    <div class="mb-3 text-center" style="min-height: 100px;">
                         <img alt="" src="/images/icons/ico-purchase-step05.png"/>
                     </div>
-                    <p>2. 자동차 키 반납</p>
-                    <p class="txt">
+                    <h5 class = "fw-bold mb-3">2. 자동차 키 반납</h5>
+                    <p>
                         담당직원에게 <br>
                         차량 Key를 반납하세요.
                     </p>
                 </li>
                 <li class="col">
-                    <div class="img-item">
+                    <div class="mb-3 text-center" style="min-height: 100px;">
                         <img alt="" src="/images/icons/ico-purchase-step06.png"/>
                     </div>
-                    <p>3. 차량 확인</p>
-                    <p class="txt">
+                    <h5 class = "fw-bold mb-3">3. 차량 확인</h5>
+                    <p>
                         담당직원과 함께 차량이 주차된 곳으로 <br>
                         이동하여 차량 상태, <br>
                         유류상태 등을 확인해 주세요.
                     </p>
                 </li>
                 <li class="col">
-                    <div class="img-item">
+                    <div class="mb-3 text-center" style="min-height: 100px;">
                         <img alt="" src="/images/icons/ico-purchase-step03.png"/>
                     </div>
-                    <p>4. 추가 비용 정산</p>
-                    <p class="txt">
+                    <h5 class = "fw-bold mb-3">4. 추가 비용 정산</h5>
+                    <p>
                         반납시간 초과, 차량의 손망실, <br>
                         유류비, 범칙금 등 추가금이 <br>
                         발생한 경우 추가비용을 정산해주세요.
@@ -3262,12 +3264,12 @@
             <h2 class="fw-bold mb-4">보험 및 보상</h2>
         </div>
         <div class="explain-cont">
-            <p>차량 사고 시 보험 및 보상범위</p>
-            <p class="txt">지니카의 모든 차량은 차량 이용 중 사고가 발생하였을 때 아래의 보험 보상범위 내에서 고객님을 보호하기 위해 최선을
+            <h5 class = "fw-bold mb-3">차량 사고 시 보험 및 보상범위</h5>
+            <p>지니카의 모든 차량은 차량 이용 중 사고가 발생하였을 때 아래의 보험 보상범위 내에서 고객님을 보호하기 위해 최선을
                 다하겠습니다.</p>
             <div class="tbl-box">
                 <table class="table align-middle text-center">
-                    <caption>대인, 무한, 대물, 자손에 따른 보험 보상범위를 나타내는 표</caption>
+                    <caption class="invisible">대인, 무한, 대물, 자손에 따른 보험 보상범위를 나타내는 표</caption>
                     <colgroup>
                         <col width="16.6%">
                         <col width="*">
@@ -3297,7 +3299,7 @@
             <h2 class="fw-bold mb-4">자차 손해 면책제도(CDW)</h2>
         </div>
         <div class="explain-cont">
-            <p class="txt">
+            <p>
                 차량대여 중 귀책사유로 인하여 발생하는 모든 차량손해(손, 망실)는 고객님의 책임이 발생하며, 자차손해 면책제도(CDW)에 가입하신 경우 고객의
                 실수로 발생한
                 자차사고에 대한 보호를
@@ -3306,7 +3308,7 @@
             <dl class="define-area">
                 <dt class="mt-5 mb-4 fs-5">면책금 안내</dt>
                 <dd class="mt-3 mb-3">
-                    <p class="txt">
+                    <p>
                         CDW 면책금액에 따라 차량손해의 액수에 상관없이 사고로 인한 파손 부위 1건당 5만원~30만원만 지불하시면 차량손해에 대한
                         책임을 보호 받을 수
                         있습니다.<br>
@@ -3314,7 +3316,7 @@
                     </p>
                     <div class="tbl-box">
                         <table class="table align-middle text-center">
-                            <caption>면책금에 관한 대물, 자손, 국산차량, 수입차량을 나타내는 표</caption>
+                            <caption class="invisible">면책금에 관한 대물, 자손, 국산차량, 수입차량을 나타내는 표</caption>
                             <thead>
                             <tr>
                                 <th>구분</th>
@@ -3350,7 +3352,7 @@
                 </dd>
                 <dt class="mt-5 mb-4 fs-5">휴차보상료</dt>
                 <dd class="mt-3 mb-3">
-                    <p class="txt">
+                    <p>
                         자차손해 면책제도 가입 유무와 관계없이 사고로 인하여 차량이 휴차 할 경우에는 차량 운영의 차질로 인하여 발생한 수리기간
                         동안<br>
                         대여차량 정상요금의 50%에 해당하는 휴차보상료가 청구됩니다.
@@ -3358,7 +3360,7 @@
 
                     <div class="tbl-box">
                         <table class="table align-middle text-center">
-                            <caption>휴차보상료에 관한 국산차량, 수입차량, 청구기준, 청구금액을 나타내는 표</caption>
+                            <caption class="invisible">휴차보상료에 관한 국산차량, 수입차량, 청구기준, 청구금액을 나타내는 표</caption>
                             <colgroup>
                                 <col width="16.6%">
                                 <col width="*">

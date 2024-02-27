@@ -25,7 +25,7 @@ public interface MemberDao {
 	public List<Map> selectAllBusiness(Pagination pagination);
 	public int countBusiness(Pagination pagination);
 	public List<MemberVo> selectWaiting();
-	public void updateType(String id);
+	public int updateType(String id);
 	public int updateWithdrawal(String id);
 	public List<MyReservationVo> selectAllMyReservation(String id);
 	public MyReservationVo selectOneReservation(String no);

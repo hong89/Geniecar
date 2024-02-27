@@ -34,10 +34,9 @@
         function oninputPhone(target) {
         target.value = target.value
             .replace(/[^0-9]/g, '')
-            .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+            .replace(/(^02.{0}|^01.{1}|[0-9]{2,3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
         }
     </script>
-    
     <h1 class="m-5 text-center fw-bolder">비밀번호 찾기</h1>
     <section class="row p-3">
         <div class="col"></div>
@@ -64,7 +63,7 @@
                         <label for="hp" class="col-form-label">전화번호</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" id="hp" name="hp" class="form-control" oninput="oninputPhone(this)" maxlength="13">
+                        <input type="text" id="hp" name="hp" class="form-control" oninput="oninputPhone(this)"  maxlength="13">
                     </div>
                 </div>
                 <div class="text-center">

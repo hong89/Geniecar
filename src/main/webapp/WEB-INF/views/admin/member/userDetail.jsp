@@ -20,9 +20,7 @@
                     alert("에러가 발생했습니다.");
                 }
             });
-        }
-        
-        
+        }   
     }
     function mask(strName){
         if (strName.length > 2) {

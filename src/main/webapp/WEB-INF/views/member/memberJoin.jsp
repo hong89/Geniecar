@@ -102,6 +102,11 @@
                     return false;
                 } else if (!passwordRegex.test(pw)) {
                     alert("비밀번호는 8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.");
+                    $("#pw").focus();
+                    return false;
+                } else if (pw.search(/\s/) != -1) {
+                    alert("비밀번호는 공백 없이 입력해주세요.");
+                    $("#pw").focus();
                     return false;
                 } else if (pwCheck == '' || pwCheck.length == 0) {
                     alert("비밀번호 확인을 입력해주세요");

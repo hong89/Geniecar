@@ -121,16 +121,6 @@ public class MyPageController {
         
         return "mypage/payment";
     }
-    
-    @GetMapping("/paymentDetail.do")
-    public String paymentDetail(@RequestParam String no,Model model, HttpSession session) {
-        MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
-        model.addAttribute("member", membervo);
-        model.addAttribute("mypage",memberService.mypage(membervo.getId()));
-        
-        return "mypage/paymentDetail";
-    }
-
     //ruddud
     @GetMapping("/license.do")
     public String license(Model model, HttpSession session) {
@@ -211,10 +201,11 @@ public class MyPageController {
 
     //ruddud
     @GetMapping("/member/leave.do")
-    public String memberLeave(Model model, HttpSession session) {
+    public String memberLeave(Model model, HttpSession session, RedirectAttributes re) {
         MemberVo membervo = (MemberVo) session.getAttribute("memberInfo");
         model.addAttribute("member", membervo);
         model.addAttribute("mypage",memberService.mypage(membervo.getId()));
+        re.addFlashAttribute("msg", "회원탈퇴가 완료되었습니다.");
         return "mypage/member/leave";
     }
 

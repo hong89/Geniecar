@@ -38,14 +38,18 @@
 </style>
 <script>
     $(function () {
+
         $('#submitBtn').click(function () {
+
             var check = $('input:checkbox[name="check"]:checked').val();
             if(check == null||check != 'on'){
                 alert("탈퇴하시기 전 유의사항을 확인해주세요.");
                 return false;
             } else if(check === 'on') {
                 if(confirm("탈퇴하시겠습니까?")){
+                    let msg = "${msg}";
                     $("#leave").submit();
+                    alert(msg);
                 }
             }
         });
