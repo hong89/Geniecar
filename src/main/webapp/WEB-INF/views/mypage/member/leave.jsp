@@ -47,9 +47,8 @@
                 return false;
             } else if(check === 'on') {
                 if(confirm("탈퇴하시겠습니까?")){
-                    let msg = "${msg}";
                     $("#leave").submit();
-                    alert(msg);
+                    alert("탈퇴가 완료되었습니다.");
                 }
             }
         });
