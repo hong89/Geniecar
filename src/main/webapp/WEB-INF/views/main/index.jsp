@@ -122,7 +122,7 @@
                             <tr class="mhover">
                                 <td align="left"><a href="/customer/noticeDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
                                 </td>
-                                <td align="center">${notice.regDate}</td>
+                                <td align="center"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></td>
                             </tr>
                         </c:forEach>
                         </tbody>

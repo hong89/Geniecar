@@ -39,7 +39,7 @@
         <div class="inner-type2">
             <p align="left" style="font-size:20px;">
                 <strong>${notice.title}</strong>
-                <span style="float: right; font-size:15px;">${notice.regDate}</span>
+                <span style="float: right; font-size:15px;"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></span>
             </p><hr/>
             <p align="left">${notice.content}</p> 
             <c:if test="${not empty imageFiles}">
@@ -48,7 +48,7 @@
                         <c:if test="${not empty imageFile.saveName}">
                             <div class="mb-3 row">
                                 <div class="col-sm-12">
-                                    <img class="responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="1000px" aria-readonly="true">
+                                    <!-- <img class="responsive-image" src="/downloadFile/${imageFile.saveName}" alt="images" width="1000px" aria-readonly="true"> -->
                                 </div>
                             </div>
                         </c:if>

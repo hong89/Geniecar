@@ -130,7 +130,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3">
+            <!--     <div class="mb-3">
                         <h4 class="fw-bold mb-4">이용 중 관리 서비스 이용 방법</h4>
                         <ol class="service-guide-list row">
                             <li class="col-6">
@@ -176,7 +176,7 @@
                                 </div>
                             </li>
                         </ol>
-                    </div>
+                    </div>-->
                 </div>
             </section>
         </div>
@@ -812,7 +812,7 @@
                             <img alt="" class="img-fluid" src="/images/img-smart02.png">
                         </div>
                     </div>
-                    <div class="row section03">
+                <!--<div class="row section03">
                         <h4 class="fw-bold mb-4">예약 방법</h4>
                         <ol class="service-guide-list row">
                             <li class="col-6">
@@ -864,7 +864,7 @@
                                 </div>
                             </li>
                         </ol>
-                    </div>
+                    </div>-->
                     <div class="row section04">
                         <h4 class="fw-bold mb-4">서비스 지점 안내</h4>
                         <div class="tbl-box">

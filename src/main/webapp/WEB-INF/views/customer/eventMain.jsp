@@ -60,7 +60,7 @@
                       <!-- <p class="card-text">${notice.content}</p> -->
                     </div>
                     <div class="card-footer">이벤트 기간 :&nbsp;
-                      <small class="text-muted">${notice.startDate} ~ ${notice.endDate}</small>
+                      <small class="text-muted"><fmt:formatDate value="${notice.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${notice.endDate}" pattern="yyyy-MM-dd"/></small>
                     </div>
                     </a>
                   </div>

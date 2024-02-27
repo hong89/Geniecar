@@ -143,7 +143,7 @@
     $(function () {
         var isnull = document.getElementById('isnull').value;
         if(isnull == ""){
-            
+            $("#btnarea").html("일치하는 정보가 없습니다.");
             $('#submitBtn').click(function () {
                 $('#licenseNumber').val($("#licenseNumber1").val()+ "-" + $("#licenseNumber2").val() + "-" + $("#licenseNumber3").val() + "-" + $("#licenseNumber4").val());
                 $("form").attr("action", "/mypage/addLicense.do");
@@ -340,6 +340,7 @@
             </ul>
         </aside>
         <article class="p-5 container-fluid">
+            
             <div class="border-bottom pb-5">
                 <h2 class="fw-bolder">운전면허 정보</h2>
             </div>
@@ -429,7 +430,10 @@
                     </div>  
                 </div> 
                 <div class="text-center">
-                    <button class="btn text-white" id="submitBtn" style="background-color: #41087c; width: 100px;" >등록하기</button>
+                    <button class="btn text-white" id="submitBtn" style="background-color: #41087c; width: 100px;" >
+                        <c:if test='${(license != null)}'>수정하기</c:if>
+                        <c:if test='${(license == null)}'>등록하기</c:if>
+                    </button>
                 </div> 
             </form>
 

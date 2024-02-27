@@ -250,7 +250,7 @@
     <div class="container-xl">
         <!--------------------------------------------------상단---------------------------------------------------------->
 
-            <h1 class="mt-3 mb-4 text-center fw-bolder">사업자 회원가입</h1>
+            <h1 class="mt-3 mb-4 text-center fw-bolder pt-5">사업자 회원가입</h1>
             <div id="1" style="display:block" class="p-3">
                 <section class = "mb-3 d-flex justify-content-center">
                     <ul class="list-group list-group-horizontal ">

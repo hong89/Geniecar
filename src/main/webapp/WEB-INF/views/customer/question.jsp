@@ -65,7 +65,7 @@
                             <td align="center">공지</td>
                             <td align="left"><a href="/info/noticeDetail.do?no=${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
                             </td>
-                            <td align="center">${notice.regDate}</td>
+                            <td align="center"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></td>
                         </tr>
                     </c:forEach>
                     </tbody>

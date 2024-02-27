@@ -12,12 +12,9 @@
     <!--------------------------------------------------상단---------------------------------------------------------->
     <div class="pt-5">
         <div class="inner-type2">
-            <section class="text-center">
-                <h1 class="tit pb-5">공지사항 상세 내용</h1>
-            </section>
             <p style="font-size:20px;">
                 <strong>${notice.title}</strong>
-                <span style="float: right; font-size:15px;">${notice.regDate}</span>
+                <span style="float: right; font-size:15px;"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></span>
             </p><hr/>
             <!-- <pre>${notice.content}</pre>  -->
             <c:if test="${not empty imageFiles}">

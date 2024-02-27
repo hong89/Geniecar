@@ -15,6 +15,13 @@
             location.href = res;
         })
     }
+    function chkCharCode(event) {
+            const regExp = /[^0-9a-zA-Z]/g;
+            const ele = event.target;
+            if (regExp.test(ele.value)) {
+                ele.value = ele.value.replace(regExp, '');
+            }
+        };
 </script>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
@@ -23,10 +30,10 @@
         <div class="col"></div>
         <div class="col">
             <form action="/login/dologin.do" method="post">
-                <img class="mb-4" src="/images/common/logo-full-image.png" alt="지니카">
+                <img class="mb-4 pt-5" src="/images/common/logo-full-image.png" alt="지니카">
                 <h5 class="mb-3 fw-normal text-center">로그인 방식을 선택해 주세요</h5>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" name="id" placeholder="">
+                    <input type="text" class="form-control" id="floatingInput" name="id" placeholder="" onkeyup="chkCharCode(event)">
                     <label for="floatingInput">Id</label>
                 </div>
                 <div class="form-floating">
@@ -53,10 +60,6 @@
                 <div class="w-100 mt-3 text-center">
                     <a href="/login/findId.do">아이디 찾기</a> /
                     <a href="/login/findPw.do">비밀번호 찾기</a>
-                </div>
-                <div class="w-100 mt-3 text-center">
-                    <a href="/member/memberJoin.do">회원가입</a> /
-                    <a href="/member/businessJoin.do">사업자 회원가입</a>
                 </div>
             </form>
         </div>

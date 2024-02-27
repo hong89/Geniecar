@@ -214,7 +214,7 @@
                                   <p class="card-text" style="overflow: hidden; height:70px;">${notice.content}</p>
                                 </div>
                                 <div class="card-footer">작성일 :&nbsp;
-                                  <small class="text-muted">${notice.regDate}</small>
+                                  <small class="text-muted"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></small>
                                 </div>
                                 <div class="card-footer">조회수 :&nbsp;
                                     <small class="text-muted">${notice.hit}</small>

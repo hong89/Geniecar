@@ -28,7 +28,7 @@
 			        , START_DATE
 					, END_DATE
 					, REG_ID
-			        , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
+			        , REG_DATE
 			        , ROW_NUMBER() OVER(ORDER BY NO DESC)
 			          AS RN
  		         FROM BOARD
@@ -58,7 +58,7 @@
 	             , START_DATE
 	             , END_DATE
 	             , REG_ID
-	             , TO_CHAR(REG_DATE, 'yyyy-mm-dd') AS REG_DATE
+	             , REG_DATE
 	             , ROW_NUMBER() OVER(ORDER BY NO DESC) AS RN
 	          FROM BOARD
 	         WHERE TYPE_CODE = #{typeCode}

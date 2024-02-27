@@ -121,6 +121,7 @@
                     return false; 
                 } else if (!name.match(replaceName)) {
                     alert("이름은 한글, 영문만 입력 가능합니다.");
+                    $("#name").focus();
                     return false;
                 } else if (gender == null) {
                     alert("성별을 입력해주세요");
@@ -238,7 +239,7 @@
     <div class="container-xl">
         <!--------------------------------------------------상단---------------------------------------------------------->
 
-            <h1 class="mt-3 mb-4 text-center fw-bolder">회원가입</h1>
+            <h1 class="mt-3 mb-4 text-center fw-bolder pt-5">회원가입</h1>
             <div id="1" style="display:block" class="p-3">
                 <section class = "mb-3 d-flex justify-content-center">
                     <ul class="list-group list-group-horizontal ">
@@ -935,7 +936,7 @@ Chrome: 웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설�
                             <label for="id" class="col-form-label">아이디</label>
                         </div>
                         <div class="col-auto">
-                            <input type="text" id="_id" class="form-control" maxlength="20" onkeyup="chkCharCode(event)"/>
+                            <input type="text" id="_id" class="form-control" minlength="4"  maxlength="20" onkeyup="chkCharCode(event)"/>
                             <input type="hidden" name="id" id="id" />
                         </div>
                         <div class="col-2">
@@ -985,11 +986,11 @@ Chrome: 웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설�
                         <div class="col-auto">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" value="M">
-                                <label class="form-check-label">M</label>
+                                <label class="form-check-label">남성</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" value="F">
-                                <label class="form-check-label">F</label>
+                                <label class="form-check-label">여성</label>
                             </div>
                         </div>
                     </div>

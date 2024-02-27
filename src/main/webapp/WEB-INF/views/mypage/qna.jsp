@@ -222,7 +222,7 @@
                                         <td align="center">${notice.rn}</td>
                                         <td align="left"><pre><a href="/mypage/qnaDetail.do?no=${notice.no}" class="increaseHit" data-no="${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</pre></a>
                                         </td>
-                                        <td align="center">${notice.regDate}</td>
+                                        <td align="center"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></td>
                                         <td align="center">${notice.hit}</td>
                                     </tr>
                                 </c:forEach>

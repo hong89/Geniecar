@@ -113,7 +113,7 @@
                             <td align="center">${notice.rn}</td>
                             <td align="left"><a href="/admin/board/detailNotice.do?no=${notice.no}" class="increaseHit" data-no="${notice.no}" style="text-decoration-line: none; color:black">${notice.title}</a>
                             </td>
-                            <td align="center">${notice.regDate}</td>
+                            <td align="center"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></td>
                             <c:if test="${boardList[0].typeCode ne 'FAQ'}">
                                 <td align="center">${notice.hit}</td>
                             </c:if>

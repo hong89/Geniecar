@@ -187,7 +187,7 @@
                     <div class="inner-type2">
                         <p style="font-size:20px;">
                             <strong>${notice.title}</strong>
-                            <span style="float: right; font-size:15px;">${notice.regDate}</span>
+                            <span style="float: right; font-size:15px;"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></span>
                         </p><hr/>
                         <div class="text-center">
                             <p>${notice.content}</p>

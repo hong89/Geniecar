@@ -46,7 +46,7 @@
             -->
             <p style="font-size:20px;">
                 <strong>${notice.title}</strong>
-                <span style="float: right; font-size:15px;">${notice.regDate}</span>
+                <span style="float: right; font-size:15px;"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></span>
             </p><hr/>
             <!-- <p>${notice.content}</p> -->
             <div class="m-2 card-footer">이벤트 기간 :&nbsp;

@@ -1,7 +1,7 @@
 package com.rental.geniecar.domain.common;
 
 import java.io.File;
-import java.sql.Date;
+import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 

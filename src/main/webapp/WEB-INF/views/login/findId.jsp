@@ -42,7 +42,7 @@
             });
         })
     </script>
-    <h1 class="m-5 text-center fw-bolder">아이디 찾기</h1>
+    <h1 class="m-5 text-center fw-bolder pt-5">아이디 찾기</h1>
     <section class="row p-3">
         <div class="col"></div>
         <div class="col">

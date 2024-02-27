@@ -46,7 +46,7 @@
                             <td align="center">${notice.no}</td>
                             <td align="left"><a href="/admin/board/detailNotice.do?no=${notice.no}">${notice.title}</a>
                             </td>
-                            <td align="center">${notice.regDate}</td>
+                            <td align="center"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></td>
                         </tr>
                     </c:forEach>
                     </tbody>

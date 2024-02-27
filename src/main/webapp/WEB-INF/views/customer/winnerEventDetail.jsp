@@ -36,12 +36,9 @@
     </div>
     <div class="pt-5">
         <div class="inner-type2">
-            <section class="text-center">
-                <h1 class="tit pb-5">당첨자 상세 내용</h1>
-            </section>
             <p style="font-size:20px;">
                 <strong>${notice.title}</strong>
-                <span style="float: right; font-size:15px;">${notice.regDate}</span>
+                <span style="float: right; font-size:15px;"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd"/></span>
             </p><hr/>
             <p>${notice.content}</p>
         </div>

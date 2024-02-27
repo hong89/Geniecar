@@ -47,7 +47,7 @@
                         <label for ="pw" class="col-form-label">새 비밀번호</label>
                     </div>
                     <div class="col">
-                        <input type="password" name="pw" id= "pw" class="form-control" style="width: 210px;">
+                        <input type="password" name="pw" id= "pw" class="form-control" style="width: 210px;" maxlength="20">
                     </div>
                 </div>
                 
@@ -56,7 +56,7 @@
                         <label class="col-form-label" for="pw_">새 비밀번호 확인</label>
                     </div>
                     <div class="col ">
-                        <input class="form-control" type="password" name="pw_" id="pw_"  style="width: 210px;">
+                        <input class="form-control" type="password" name="pw_" id="pw_"  style="width: 210px;" maxlength="20">
                     </div>
                     <input type="hidden" id = "id" name = "id" value="${id}" >
                 </div>
