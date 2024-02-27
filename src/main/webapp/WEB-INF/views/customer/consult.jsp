@@ -16,35 +16,8 @@
                     $('#branches').html(str);
                 });
             });
-/*
-            $('#submitBtn').on('click', function () {
-                var name = $('[name=name]').val();
-                var tel = $('[name=tel]').val();
-                var email = $('[name=email]').val();
-                var purpose = $('[name=purpose]').val();
-                var wishRegion = $('[name=wishRegion]').val();
+        });
 
-                if (name == null || name.length == 0) {
-                    alert("이름을 입력해 주세요.");
-                    return false;
-                } else if (tel == null || tel.length == 0) {
-                    alert("연락받으실 전화번호를 입력해 주세요.");
-                    return false;
-                } else if (email == null || email.length == 0) {
-                    alert("연락받으실 이메일을 입력해 주세요.");
-                    return false;
-                } else if (purpose == null || purpose.length == 0) {
-                    alert("사용 목적을 입력해 주세요.");
-                    return false;
-                } else if (wishRegion == null || wishRegion.length == 0) {
-                    alert("희망 대여 지역을 선택해 주세요.");
-                    return false;
-                }
-                $('#consultForm').submit();
-            });
-
-*/
-            });
         function mainLink() {
             location.href = '/main/index.do';
         }
@@ -54,7 +27,50 @@
                 .replace(/[^0-9]/g, '')
                 .replace(/(^02.{0}|^01.{1}|[0-9]{2,3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
         }
+        function check() {   
+            var form = document.forms.consultForm;
+            var replaceName = /^[가-힣a-zA-Z\s]+$/
+            var replaceEmail = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 
+            if (!form.name.value) {
+                alert("이름을 입력해 주세요");
+                form.name.focus();
+                return false;
+            }else if (!form.name.value.match(replaceName)) {
+                alert("이름은 한글, 영문만 입력 가능합니다.");
+                form.name.focus();
+                return false;
+            }else if(!form.tel.value){
+                alert("전화번호를 입력해 주세요");
+                form.tel.focus();
+                return false;
+            } else if (form.tel.value.length < 11) {
+                alert("전화번호를 올바르게 입력해주세요");
+                form.tel.focus();
+                return false;
+            }else if(!form.email.value){
+                alert("이메일을 입력해 주세요");
+                form.email.focus();
+                return false;
+            }else if (!form.email.value.match(replaceEmail)) {
+                alert("이메일을 올바르게 입력해주세요");
+                form.email.focus();
+                return false;
+            }else if(!form.purpose.value){
+                alert("사용목적을 입력해 주세요");
+                form.purpose.focus();
+                return false;
+            }else if(!form.branches.value){
+                alert("희망대여지역을 선택해 주세요");
+                form.branches.focus();
+                return false;
+            }else if(form.branches.value == '선택'){
+                alert("희망대여지역을 선택해 주세요");
+                form.branches.focus();
+                return false;
+            }
+            
+        }
     </script>
     <!--------------------------------------------------상단---------------------------------------------------------->
 
@@ -73,14 +89,14 @@
         <div class="mt-4 mb-4 p-4" style="background-color: #f8f7fd; color: #23093d;">
             <h4 class="fw-bold">예약자 정보 입력</h4>
         </div>
-        <form id="consultForm" method="post" action="/consult/insertConsult.do">
+        <form id="consultForm" method="post" action="/consult/insertConsult.do" onsubmit="return check()">
             <div class="row p-1 m-3 text-center">
                 <div class="col-2">
                     <label for="name" class="col-form-label">이름<span>*</span></label>
                 </div>
                 <div class="col-auto">
                     <input type="text" id="name" name="name" class="form-control"
-                           placeholder="이름을 입력하세요" pattern="^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}" required />
+                           placeholder="이름을 입력하세요" />
                 </div>
             </div>
             <div class="row p-1 m-3 text-center">
@@ -89,7 +105,7 @@
                 </div>
                 <div class="col-6">
                     <input type="tel" id="tel" name="tel" class="form-control" oninput="oninputPhone(this)" minlength="12"
-                           maxlength="13" placeholder="휴대전화번호를(-없이) 입력하세요" required />
+                           maxlength="13" placeholder="휴대전화번호를(-없이) 입력하세요" />
                 </div>
             </div>
             <div class="row p-1 m-3 text-center">
@@ -97,9 +113,7 @@
                     <label for="email" class="col-form-label">이메일<span>*</span></label>
                 </div>
                 <div class="col-6">
-                    <input type="email" id="email" name="email" class="form-control" placeholder="이메일을 입력하세요"
-                           pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}"
-                           required />
+                    <input type="text" id="email" name="email" class="form-control" placeholder="이메일을 입력하세요" />
                 </div>
             </div>
             <div class="row p-1 m-3 text-center">
@@ -108,7 +122,7 @@
                 </div>
                 <div class="col-6">
                     <textarea style="resize: none; height: 150px;" id="purpose" name="purpose" class="form-control"
-                              placeholder="차량사용 목적을 입력하세요" maxlength="200"  required ></textarea>
+                              placeholder="차량사용 목적을 입력하세요" maxlength="200"></textarea>
                 </div>
             </div>
             <div class="row p-1 m-3 text-center">
@@ -124,7 +138,7 @@
                     </select>
                 </div>
                 <div class="col-3">
-                    <select class="form-select" id="branches" name="wishRegion" required />
+                    <select class="form-select" id="branches" name="wishRegion" />
                         <option value="" selected>선택</option>
                     </select>
                 </div>
@@ -159,8 +173,7 @@
             </div>
 
             <div class="text-center text-center m-5">
-                <button class="btn" style="border: 1px solid #41087c;"
-                        onclick="mainLink(); return false;">메인으로
+                <button class="btn" style="border: 1px solid #41087c;" onclick="mainLink(); return false;">메인으로
                 </button>
                 <button class="btn text-white" style="background-color: #41087c;" id="submitBtn" type="submit">신청하기</button>
             </div>
