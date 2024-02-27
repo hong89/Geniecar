@@ -10,14 +10,14 @@
             var fileNo = "${notice.fileNo}";
 
             $.ajax({
-                url: "/admin/board/deleteNotice.do",
+                url: "/mypage/deleteMyReview.do",
                 type: "GET",
                 data: { no: noticeNo,
                         fileNo: fileNo },
                 success: function(response) {
                     alert("삭제 되었습니다.");
                     var typeCode = "${notice.typeCode}"
-                    window.location.href = "/admin/board/list.do?typeCode=" + typeCode;
+                    window.location.href = "/mypage/myReview.do?typeCode=" + typeCode;
                 },
                 error: function(xhr, status, error) {
                     alert("삭제에 실패하였습니다.", error);
