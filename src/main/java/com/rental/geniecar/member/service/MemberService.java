@@ -84,8 +84,6 @@ public class MemberService {
 	}
 	public LicenseVo selectLicense(String id) {
 		LicenseVo license = memberDao.selectLicense(id);
-		
-
 		return license;
 	}
 	public void insertLicense(LicenseVo vo) {
