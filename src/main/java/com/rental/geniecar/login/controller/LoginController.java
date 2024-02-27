@@ -102,7 +102,12 @@ public class LoginController {
 
                 response.sendRedirect("/main/index.do");
             } else if (memberVo.getWithdrawalYn().equals("K")) {
-                out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요.\\n 강퇴사유 :');history.back();</script>");
+                out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요.\\n\\n- 원치 않는 상대방에게 홍보하는 행위\\n"
+                		+ "- 음란/선정성 정보를 보내거나 성적 만남을 목적으로 하는 대화\\n"
+                		+ "- 아동/청소년 유해 활동\\n"
+                		+ "- 같은 메시지를 연속으로 보내는 도배 행위\\n"
+                		+ "- 욕설 및 타인에게 불편함을 줄 수 있는 비방적 메시지 발송\\n"
+                		+ "- 다른 사용자의 서비스 이용에 불편함을 주는 기타 행위 등');history.back();</script>");
                 out.flush();
                 out.close();
             } else {
