@@ -64,7 +64,7 @@ public class LoginController {
     @GetMapping("/login.do")
     public String login(HttpSession session, Model model){
         session.getAttribute("isLogOn");
-        //System.out.println(session.getAttribute("isLogOn"));
+        System.out.println(session.getAttribute("isLogOn"));
         return "login/login";
     }
 
@@ -102,7 +102,7 @@ public class LoginController {
 
                 response.sendRedirect("/main/index.do");
             } else if (memberVo.getWithdrawalYn().equals("K")) {
-                out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요.');history.back();</script>");
+                out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요.\\n 강퇴사유 :');history.back();</script>");
                 out.flush();
                 out.close();
             } else {
@@ -312,7 +312,7 @@ public class LoginController {
 		MemberVo user = new MemberVo();
 		
 		user.setId((String)kakaoAccount.get("email"));
-		user.setPw("kakoMemberLogin");
+		user.setPw("kakaoMemberLogin");
 		user.setName((String) kakaoAccount.get("name"));	
 		user.setGender(kakaoAccount.get("gender").toString().substring(0, 1).toUpperCase());
         user.setBirthday(formatter.parse(kakaoAccount.get("birthyear").toString() + "-" + (kakaoAccount.get("birthday").toString()).substring(0,2) + "-" +(kakaoAccount.get("birthday").toString()).substring(2,4)));
@@ -336,7 +336,11 @@ public class LoginController {
             out.print("<script>alert('규정위반으로 강퇴당한 회원입니다. 관리자에게 문의하세요.');history.back();</script>");
             out.flush();
             out.close();
-        } 		
+        } else {
+            out.print("<script>alert(\"등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력하셨습니다.\");history.back();</script>");
+            out.flush();
+            out.close();
+        }		
     }
 
 }

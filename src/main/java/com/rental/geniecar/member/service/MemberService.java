@@ -66,8 +66,8 @@ public class MemberService {
 	public List<MemberVo> selectWaitingApproval(){
 		return memberDao.selectWaiting();
 	}
-	public void updateType(String id) {
-		memberDao.updateType(id);
+	public int updateType(String id) {
+		return memberDao.updateType(id);
 	}
 	public int kick(String id) {
 		return memberDao.updateWithdrawal(id);

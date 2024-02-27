@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rental.geniecar.domain.common.Pagination;
 import com.rental.geniecar.domain.member.MemberVo;
@@ -53,13 +54,13 @@ public class AdminMemberController {
     public String waitingList(Model model) {
     	List<MemberVo> waitingList = memberService.selectWaitingApproval();
     	model.addAttribute("waitingList",waitingList);
+    	
         return "admin/member/waitingList";
     }
     
     @GetMapping("/approvla.do")
-    public String approvla(String id) {
-    	memberService.updateType(id);
-    	 return "admin/member/waitingList";
+    public @ResponseBody int approvla(String id) {
+    	return memberService.updateType(id);
     }
     
     @GetMapping("/kick.do")

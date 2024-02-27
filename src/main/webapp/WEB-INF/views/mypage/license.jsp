@@ -166,6 +166,7 @@
         
     })
     function check() {
+        var format = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
       var form = document.form;
       if (!form.licenseGradeCode.value) {
             alert("면허 종류를 선택해 주세요");
@@ -207,12 +208,24 @@
             alert("생년월일을 입력해주세요");
             form.driverBirth.focus();
             return false;
-        }else if(!form.licenseIssueDate.value){
+        }else if(!format.test(form.driverBirth.value)){
+            alert("생년월일을 올바르게 입력해주세요");
+            form.driverBirth.focus();
+            return false;
+        }else if(!form.licenseTestDate.value){
             alert("만료일자를 입력해주세요");
-            form.licenseIssueDate.focus();
+            form.licenseTestDate.focus();
+            return false;
+        }else if(!format.test(form.licenseTestDate.value)){
+            alert("만료일자를 올바르게 입력해주세요");
+            form.licenseTestDate.focus();
             return false;
         }else if(!form.licenseIssueDate.value){
             alert("발급일자를 입력해주세요");
+            form.licenseIssueDate.focus();
+            return false;
+        }else if(!format.test(form.licenseIssueDate.value)){
+            alert("발급일자를 올바르게 입력해주세요");
             form.licenseIssueDate.focus();
             return false;
         }

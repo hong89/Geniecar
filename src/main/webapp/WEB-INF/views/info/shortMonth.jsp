@@ -111,6 +111,7 @@
             <div class="col">
                 <div class="position-relative text-center mb-3">
                     <img src="/images/img_premium.png" class="img-fluid" alt="">
+                    <div class="position-absolute bottom-0 "  style="background-color: #f8f7fd; opacity:0.5; width: 100%; height:18%;"></div>
                     <span class="position-absolute bottom-0 start-50 translate-middle">Premium</span>
                 </div>
                 <p class="fw-bolder">운행 36개월 미만 & 주행거리 6만 km 미만 차량</p>
@@ -125,11 +126,12 @@
             <div class="col">
                 <div class="position-relative text-center mb-3">
                     <img src="/images/img_standard.png" class="img-fluid" alt="">
+                    <div class="position-absolute bottom-0 "  style="background-color: #f8f7fd; opacity:0.5; width: 100%; height:18%;"></div>
                     <span class="position-absolute bottom-0 start-50 translate-middle">Standard</span>
                 </div>
                 <p class="fw-bolder">주행거리 6만 km 이상 ~ 12만 km 미만 차량</p>
                 <div class="txt">
-                    <em class="bgc">추천고객</em>
+                    <em>추천고객</em>
                     <ul class="lst dot mt-10">
                         <li>신차장기렌터카를 생각중이나 아직 부담이 됩니다.</li>
                         <li>적당한 가격에 좋은 퀄리티의 차를 이용하고 싶습니다.</li>
@@ -139,7 +141,9 @@
             <div class="col">
                 <div class="position-relative text-center mb-3">
                     <img src="/images/img_slim.png" class="img-fluid" alt="">
+                    <div class="position-absolute bottom-0 "  style="background-color: #f8f7fd; opacity:0.5; width: 100%; height:18%;"></div>
                     <span class="position-absolute bottom-0 start-50 translate-middle">Slim</span>
+
                 </div>
                 <p class="fw-bolder">주행거리 12만 km 이상 차량</p>
                 <div class="txt">
@@ -684,32 +688,32 @@
             <ol class="list-group list-group-horizontal row text-center">
                 <li class="list-group-item p-3 col">
                     <div>
-                        <span class="num">01</span><strong class="tit"> 상담 신청 </strong>
+                        <p class="mt-3"><span class="border rounded-circle p-2" style="background-color:  #f8f7fd;">01</span></p><p><strong> 상담 신청 </strong></p>
                     </div>
                 </li>
                 <li class="list-group-item p-3 col">
                     <div>
-                        <span class="num">02</span><strong class="tit"> 견적 의뢰 </strong>
+                        <p class="mt-3"><span class="border rounded-circle p-2" style="background-color:  #f8f7fd;">02</span></p><p><strong> 견적 의뢰 </strong></p>
                     </div>
                 </li>
                 <li class="list-group-item p-3 col">
                     <div>
-                        <span class="num">03</span><strong class="tit"> 계약 </strong>
+                        <p class="mt-3"><span class="border rounded-circle p-2" style="background-color:  #f8f7fd;">03</span></p><p><strong> 계약 </strong></p>
                     </div>
                 </li>
                 <li class="list-group-item p-3 col">
                     <div>
-                        <span class="num">04</span><strong class="tit"> 차량 인도 </strong>
+                        <p class="mt-3"><span class="border rounded-circle p-2" style="background-color:  #f8f7fd;">04</span></p><p><strong> 차량 인도 </strong></p>
                     </div>
                 </li>
                 <li class="list-group-item p-3 col">
                     <div>
-                        <span class="num">05</span><strong class="tit">차량 이용</strong>
+                        <p class="mt-3"><span class="border rounded-circle p-2" style="background-color:  #f8f7fd;">05</span></p><p><strong>차량 이용</strong></p>
                     </div>
                 </li>
                 <li class="list-group-item p-3 col">
                     <div>
-                        <span class="num">06</span><strong class="tit"> 차량 반납 </strong>
+                        <p class="mt-3"><span class="border rounded-circle p-2" style="background-color:  #f8f7fd;">06</span></p><p><strong> 차량 반납 </strong></p>
                     </div>
                 </li>
             </ol>

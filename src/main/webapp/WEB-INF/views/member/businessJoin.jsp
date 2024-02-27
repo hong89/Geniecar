@@ -128,9 +128,11 @@
                     return false;
                 }else if (!name.match(replaceName)) {
                     alert("이름은 한글, 영문만 입력 가능합니다.");
+                    $("#name").focus();
                     return false;
                 } else if (branchCode == '선택') {
                     alert("지점을 선택해주세요");
+                    $("#branchCode").focus();
                     return false;
                 } else if (gender == null) {
                     alert("성별을 입력해주세요");
@@ -978,7 +980,7 @@ Chrome: 웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설�
                                 </c:forEach>
                             </select>
                             <select class="form-select" id="branches" name="branchCode" style=" display: inline;width: auto;">
-                                <option value="" selected>선택</option>
+                                <option value="선택" selected>선택</option>
                             </select>
                         </div>
                     </div>
