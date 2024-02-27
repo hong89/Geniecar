@@ -137,7 +137,8 @@ public class MyPageController {
     //ruddud
     @PostMapping("/addLicense.do")
     public String addLicense(HttpServletRequest request, RedirectAttributes re) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        
         LicenseVo license = new LicenseVo();
         license.setLicenseGradeCode(request.getParameter("licenseGradeCode"));
         license.setLicenseNumber(request.getParameter("licenseNumber"));
@@ -145,9 +146,9 @@ public class MyPageController {
         license.setMemberId(request.getParameter("memberId"));
         license.setDriverBirth(format.parse(request.getParameter("driverBirth")));
         license.setLicenseTestDate(format.parse(request.getParameter("licenseTestDate")));
-        license.setLicenseIssueDate(format.parse(request.getParameter("licenseIssueDate")));
-        re.addFlashAttribute("msg", "등록되었습니다.");
+        license.setLicenseIssueDate(format.parse(request.getParameter("licenseIssueDate")));   
         memberService.insertLicense(license);
+        re.addFlashAttribute("msg", "등록되었습니다.");
         return "redirect:/mypage/license.do";
     }
 
