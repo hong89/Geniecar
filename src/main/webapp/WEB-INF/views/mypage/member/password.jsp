@@ -200,6 +200,7 @@
                         <input type="hidden" id="pw" name="pw">
                     </div>
                 </div>
+                <p class="m-3 pt-2 pb-5">비밀번호는 8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.</p>
                 <div class="text-center m">
                     <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" onclick="history.back()">취소</button>
                     <button type="" class="btn text-white" id="btnSubmit" style="background: #41087c; width: 110px;">변경하기</button>

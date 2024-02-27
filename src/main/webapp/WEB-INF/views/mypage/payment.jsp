@@ -123,9 +123,6 @@
                     <a href="/mypage/license.do" class="nav-link">운전면허증</a>
                 </li>
                 <li class="nav-item mb-4">
-                    <a href="/mypage/payment.do" class="nav-link">결제내역</a>
-                </li>
-                <li class="nav-item mb-4">
                     <a href="/mypage/myReview.do?typeCode=REVIEW" class="nav-link">이용 후기</a>
                 </li>
                 <li class="nav-item mb-4">
