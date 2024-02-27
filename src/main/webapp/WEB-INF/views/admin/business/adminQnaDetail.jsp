@@ -61,7 +61,7 @@
                     onclick="location.href='qnaList.do?typeCode=${notice.typeCode}'">목록가기
             </button>
             <button type="button" class="btn text-white" style="background: #41087c"
-                    onclick="location.href='updateNoticeForm.do?no=${notice.no}'">수정하기
+                    onclick="location.href='businessUpdateNoticeForm.do?no=${notice.no}'">수정하기
             </button>
             <button type="button" class="btn text-white" style="background: #41087c"
                     onclick="deleteNotice();">삭제하기

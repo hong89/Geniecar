@@ -53,7 +53,7 @@
                 success: function(response) {
                     alert("삭제 되었습니다.");
                     var typeCode = "${notice.typeCode}"
-                    window.location.href = "/admin/board/list.do?typeCode=" + typeCode;
+                    window.location.href = "/admin/business/reviewList.do?typeCode=" + typeCode;
                 },
                 error: function(xhr, status, error) {
                     alert("삭제에 실패하였습니다.", error);
@@ -83,15 +83,19 @@
 </style>
 <div class="container-xl">
     <!--------------------------------------------------상단---------------------------------------------------------->
-    <div id="registerForm">
-        <h3>내용 수정하기</h3>
 
-        <form name="registerForm" action="/admin/board/updateNotice.do" method="post" enctype="multipart/form-data">
+    <div id="registerForm">
+        <h3>등록하기</h3>
+
+        <form name="registerForm" action="/admin/business/updateNotice.do" method="post" enctype="multipart/form-data">
             <input type="hidden" name="no" value="${notice.no}">
+            <section class="text-center">
+                <h1 class="tit">내용 수정하기</h1>
+            </section>
             <div class="mb-3 row">
                 <label for="title" class="col-sm-2 col-form-label">구분</label>
                 <div class="col-sm-10">
-                    <select class="form-select" id="typeCode" name="typeCode" value = "${notice.typeCode}">
+                    <select class="form-select" id="typeCode" name="typeCode">
                         <option value="NOTICE">공지사항</option>
                         <option value="FAQ">FAQ</option>
                         <option value="EVENT">이벤트</option>

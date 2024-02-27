@@ -131,7 +131,7 @@
     		]]>
 				START WITH PARENT_NO = 0
 				CONNECT BY PRIOR NO = PARENT_NO
-				ORDER SIBLINGS BY RN DESC
+				ORDER SIBLINGS BY NO DESC
 	</select>
 	
 	<select id="selectBoardListSize" parameterType="boardVo">
