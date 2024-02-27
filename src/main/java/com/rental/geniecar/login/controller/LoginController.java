@@ -187,7 +187,7 @@ public class LoginController {
             String clientSecret = "GUacqebacy";//애플리케이션 클라이언트 시크릿값";
             String code = request.getParameter("code");
             String state = request.getParameter("state");
-            String redirectURI = URLEncoder.encode("http://localhost:8085/login/naverLogin.do", "UTF-8");
+            String redirectURI = URLEncoder.encode("http://" + request.getServerName() + ":8085/login/naverLogin.do", "UTF-8");
             String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code"
                     + "&client_id=" + clientId
                     + "&client_secret=" + clientSecret
@@ -263,7 +263,7 @@ public class LoginController {
         return "main/index";
     }
 	@GetMapping("/kakao.do")
-	public void kakao(String code, HttpSession session, HttpServletResponse httpServletResponse)throws Exception{
+	public void kakao(String code, HttpSession session, HttpServletResponse httpServletResponse, HttpServletRequest request)throws Exception{
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		
 		//토큰 가져오기
@@ -274,7 +274,7 @@ public class LoginController {
 		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
 		body.add("grant_type", "authorization_code");
 		body.add("client_id", "d32e45df85093ba4bbab108ac5afd304");
-		body.add("redirect_uri", "http://localhost:8085/login/kakao.do");
+		body.add("redirect_uri", "http://" + request.getServerName() + ":8085/login/kakao.do");
 		body.add("code", code);
 		
 		HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(body, headers);
