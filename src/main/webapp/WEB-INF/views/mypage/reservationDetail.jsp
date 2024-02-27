@@ -188,7 +188,7 @@
                 <h4 class="fw-bolder mb-3">자차손해 면책제도 (CDW)</h4>
                 <table class="table table-bordered reservationTable mb-5">
                     <tr>
-                        <c:if test= '${reservation.addPrice eq "0" }'><th scope="row">사고시 면택금 100% 부담 <span class="ps-5" >0원</span></th></c:if>
+                        <c:if test= '${reservation.addPrice eq "0" }'><th scope="row">사고시 면책금 100% 부담 <span class="ps-5" >0원</span></th></c:if>
                         <c:if test= '${reservation.addPrice eq "10000" }'><th scope="row">사고시 면책금 30만원 <span class="ps-5">10,000원</span></th></c:if>
                         <c:if test= '${reservation.addPrice eq "12000" }'><th scope="row">사고시 면책금 10만원 <span class="ps-5">12,000원</span></th></c:if>
                         <c:if test= '${reservation.addPrice eq "20000" }'><th scope="row">고객부담금 면제 <span class="ps-5">20,000원</span></th></c:if>

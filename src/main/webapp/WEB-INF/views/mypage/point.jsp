@@ -191,7 +191,10 @@
                             </c:if>
                             <c:forEach var="point" items="${pointList }">
                                 <tr>
-                                    <td><a href="/mypage/reservationDetail.do?no=${point.history}">${point.history}</a></td>
+                                    <td>
+                                            <%--<a href="/mypage/reservationDetail.do?no=${point.history}"></a>--%>
+                                            ${point.history}
+                                    </td>
                                     <td><fmt:formatDate value="${point.regDate}" pattern="yyyy-MM-dd" /></td>
                                     <td>${point.increase}${point.point}</td>
                                 </tr>
@@ -215,7 +218,10 @@
                             <c:forEach var="point" items="${pointList }">
                                 <c:if test="${point.increase eq '+'}">
                                     <tr>
-                                        <td><a href="/mypage/reservationDetail.do?no=${point.history}">${point.history}</a></td>
+                                        <td>
+                                            <%--<a href="/mypage/reservationDetail.do?no=${point.history}"></a>--%>
+                                                ${point.history}
+                                        </td>
                                         <td><fmt:formatDate value="${point.regDate}" pattern="yyyy-MM-dd" /></td>
                                         <td>${point.increase}${point.point}</td>
                                     </tr>
@@ -240,7 +246,10 @@
                             <c:forEach var="point" items="${pointList }">
                                 <c:if test="${point.increase eq '-'}">
                                     <tr>
-                                        <td><a href="/mypage/reservationDetail.do?no=${point.history}">${point.history}</a></td>
+                                        <td>
+                                                <%--<a href="/mypage/reservationDetail.do?no=${point.history}"></a>--%>
+                                                ${point.history}
+                                        </td>
                                         <td><fmt:formatDate value="${point.regDate}" pattern="yyyy-MM-dd" /></td>
                                         <td>${point.increase}${point.point}</td>
                                     </tr>

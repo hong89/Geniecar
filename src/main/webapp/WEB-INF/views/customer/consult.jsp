@@ -49,6 +49,12 @@
             location.href = '/main/index.do';
         }
 
+        function oninputPhone(target) {
+            target.value = target.value
+                .replace(/[^0-9]/g, '')
+                .replace(/(^02.{0}|^01.{1}|[0-9]{2,3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+        }
+
     </script>
     <!--------------------------------------------------상단---------------------------------------------------------->
 
@@ -82,8 +88,8 @@
                     <label for="tel" class="col-form-label">연락처<span>*</span></label>
                 </div>
                 <div class="col-6">
-                    <input type="tel" id="tel" name="tel" class="form-control" pattern="\d*" minlength="10"
-                           maxlength="11" placeholder="휴대전화번호를(-없이) 입력하세요" required />
+                    <input type="tel" id="tel" name="tel" class="form-control" oninput="oninputPhone(this)" minlength="12"
+                           maxlength="13" placeholder="휴대전화번호를(-없이) 입력하세요" required />
                 </div>
             </div>
             <div class="row p-1 m-3 text-center">
