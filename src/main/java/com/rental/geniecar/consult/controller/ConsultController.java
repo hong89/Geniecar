@@ -20,7 +20,7 @@ public class ConsultController {
             consultService.insertConsult(consultVo);
             return "customer/complete";
         } catch (Exception e) {
-            return "customer/consult";
+            return "redirect:/customer/consult.do";
         }
 
     }

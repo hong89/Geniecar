@@ -91,6 +91,10 @@
         $(function () {
             var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
             var replaceName = /^[가-힣a-zA-Z\s]+$/
+            var now_utc = Date.now()
+            var timeOff = new Date().getTimezoneOffset()*60000;
+            var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+            document.getElementById("birthday").setAttribute("max", today);
 
             $('#submitBtn').click(function () {
                 var pw = $('[name=pw]').val();
@@ -144,6 +148,10 @@
                     return false;
                 } else if (hp == '' || hp == null) {
                     alert("전화번호를 입력해주세요");
+                    $("#hp").focus();
+                    return false;
+                } else if (hp.length < 11) {
+                    alert("전화번호를 올바르게 입력해주세요");
                     $("#hp").focus();
                     return false;
                 } else if (zipCode == '' || zipCode == null) {
@@ -209,6 +217,10 @@
             var _id = $("#_id").val();
             if (_id == '') {
                 alert("ID를 입력해주세요");
+                return;
+            }
+            if (_id.length <6 ) {
+                alert("ID는 6~20자의 영문과 숫자를 사용해 주세요.");
                 return;
             }
             $.ajax({
@@ -921,65 +933,73 @@ Chrome: 웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설�
                 <form action="/member/completeJoin.do" method="post" name="Join" autocomplete="on">
                     <div class="row g-3 align-items-center join-container">
                         <div class="col-2"></div>
-                        <div class="col-2">
+                        <div class="col-2 me-2">
                             <label for="id" class="col-form-label">아이디</label>
                         </div>
-                        <div class="col-auto">
-                            <input type="text" id="_id" class="form-control" onkeyup="chkCharCode(event)">
+                        <div class="col-4 row">
+                            <input type="text" id="_id" class="form-control ms-1 col" minlength="4"  maxlength="20" onkeyup="chkCharCode(event)"/>
                             <input type="hidden" name="id" id="id" />
-                        </div>
-                        <div class="col-2">
-                            <button type="button" class="btn text-white" onClick="fn_overlapped()"
+                            <button type="button" class="btn text-white col-4 ms-2" onClick="fn_overlapped()"
                                 style="background: #41087c; width: 110px;">중복확인</button>
                         </div>
                     </div>
-
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-4"></div>
+                        <div class="col-auto">
+                            <p class="form-text" style="margin-top: -8%;">
+                                6~20자의 영문 대/소문자, 숫자를 사용해 주세요.
+                            </p>
+                        </div>
+                    </div>
                     <div class="row g-3 align-items-center join-container">
                         <div class="col-2"></div>
                         <div class="col-2">
                             <label for="pw" class="col-form-label">비밀번호</label>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-4">
                             <input type="password" id="pw" name="pw" class="form-control" 
                                 aria-describedby="passwordHelpInline">
                         </div>
+                    </div>    
+                    <div class="row g-3 align-items-center join-container">
+                        <div class="col-4"></div>
                         <div class="col-auto">
-                            <span id="passwordHelpInline" class="form-text">
+                            <p class="form-text" style="margin-top: -4%;">
                                 8~20자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.
-                            </span>
+                            </p>
                         </div>
                     </div>
-                    <div class="row g-3 align-items-center join-container">
+                    <div class="row g-3 align-items-center join-container mb-3">
                         <div class="col-2"></div>
                         <div class="col-2">
                             <label for="pwCheck" class="col-form-label">비밀번호 확인</label>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-4">
                             <input type="password" id="pwCheck" name="pwCheck" class="form-control">
                         </div>
                     </div>
-                    <div class="row g-3 align-items-center join-container">
+                    <div class="row g-3 align-items-center join-container mb-3">
                         <div class="col-2"></div>
                         <div class="col-2">
                             <label for="name" class="col-form-label">이름</label>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-4">
                             <input type="text" id="name" name="name" class="form-control">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center join-container" id="onlyb">
                         <div class="col-2"></div>
-                        <div class="col-2">
+                        <div class="col-2 me-2">
                             <label for="branchCode" class="col-form-label">지점</label>
                         </div>
-                        <div class="col-auto">
-                            <select class="form-select" id="locations" name="locations" style="display: inline; width: auto;">
+                        <div class="col-4 row">
+                            <select class="form-select col me-2 ms-1" id="locations" name="locations" style="display: inline; width: auto;">
                                 <option selected>선택</option>
                                 <c:forEach var="loc" items="${locations}">
                                     <option value="${loc.fullCode}">${loc.codeName}</option>
                                 </c:forEach>
                             </select>
-                            <select class="form-select" id="branches" name="branchCode" style=" display: inline;width: auto;">
+                            <select class="form-select col" id="branches" name="branchCode" style=" display: inline;width: auto;">
                                 <option value="선택" selected>선택</option>
                             </select>
                         </div>
@@ -1000,34 +1020,33 @@ Chrome: 웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설�
                             </div>
                         </div>
                     </div>
-                    <div class="row g-3 align-items-center join-container">
+                    <div class="row g-3 align-items-center join-container mb-3">
                         <div class="col-2"></div>
                         <div class="col-2">
                             <label for="birthday" class="col-form-label">생년월일</label>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-4">
                             <input type="date" id="birthday" name="birthday" class="form-control">
                         </div>
                     </div>
-                    <div class="row g-3 align-items-center join-container">
+                    <div class="row g-3 align-items-center join-container mb-3">
                         <div class="col-2"></div>
                         <div class="col-2">
                             <label for="hp" class="col-form-label">전화번호</label>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-4">
                             <input type="text" id="hp" name="hp" class="form-control" oninput="oninputPhone(this)" maxlength="13">
                         </div>
                     </div>
 
                     <div class="row g-3 align-items-center join-container">
                         <div class="col-2"></div>
-                        <div class="col-2">
+                        <div class="col-2 me-2">
                             <label for="zipCode" class="col-form-label">주소</label>
                         </div>
-                        <div class="col-auto row">
-                            <input type="button" class="btn text-white col-4 me-1" style="background: #41087c;"
-                                onclick="execDaumPostcode()" value="우편번호 찾기"><input type="address" id="zipCode"
-                                name="zipCode" class="form-control col" readonly="readonly">
+                        <div class="col-4 row">
+                            <input type="address" id="zipCode" name="zipCode" class="form-control ms-1 col" readonly="readonly">
+                            <input type="button" class="btn text-white col-4 ms-2" style="background: #41087c;" onclick="execDaumPostcode()" value="우편번호 찾기">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center join-container">
@@ -1035,7 +1054,7 @@ Chrome: 웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설�
                         <div class="col-2">
                             <label for="address" class="col-form-label"></label>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-4">
                             <input type="address" id="address" name="address" class="form-control" readonly="readonly">
                         </div>
                     </div>
@@ -1044,14 +1063,14 @@ Chrome: 웹 브라우저 우측의 설정 메뉴 > 화면 하단의 고급 설�
                         <div class="col-2">
                             <label for="addressDetail" class="col-form-label"></label>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-4">
                             <input type="address" id="addressDetail" name="addressDetail" class="form-control">
                         </div>
                     </div>
                     <div class="position-relative mb-5 pb-5">
                         <div class="col-4"></div>
                         <div class="position-absolute top-100 start-50 translate-middle">
-                            <button type="button" class="btn" style="border: 1px solid #41087c; width: 110px;" id="backBtn">뒤로가기</button>
+                            <button type="button" class="btn me-2" style="border: 1px solid #41087c; width: 110px;" id="backBtn">뒤로가기</button>
                             <button type="submit" class="btn text-white" id="submitBtn" style="background: #41087c; width: 110px;">가입하기</button>
                         </div>
                     </div>
