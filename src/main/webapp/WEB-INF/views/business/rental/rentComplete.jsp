@@ -63,6 +63,13 @@
                 </tr>
                 </thead>
                 <tbody>
+                <c:if test="${empty completeList}">
+                    <tr>
+                        <td colspan="7" class="text-align-center">
+                            내역이 존재하지 않습니다.
+                        </td>
+                    </tr>
+                </c:if>
                 <c:forEach var="com" items="${completeList}">
                     <tr>
                         <td class="col">

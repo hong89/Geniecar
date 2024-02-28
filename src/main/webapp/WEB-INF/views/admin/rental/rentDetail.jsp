@@ -95,7 +95,7 @@
         </div>
         <div class="pt-5">
             <button type="button" class="btn text-white" style="background: #41087c"
-                    onclick="location.href='rentReservation.do'">목록가기
+                    onclick="history.back()">목록가기
             </button>
         </div>
     </div>

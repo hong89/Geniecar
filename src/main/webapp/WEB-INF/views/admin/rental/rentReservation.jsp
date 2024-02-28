@@ -63,6 +63,13 @@
                 </tr>
                 </thead>
                 <tbody>
+                <c:if test="${empty reservationList}">
+                    <tr>
+                        <td colspan="7" class="text-align-center">
+                            내역이 존재하지 않습니다.
+                        </td>
+                    </tr>
+                </c:if>
                 <c:forEach var="res" items="${reservationList}">
                     <tr>
                         <td class="col">
